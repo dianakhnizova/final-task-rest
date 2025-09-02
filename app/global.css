@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0;
@@ -56,9 +56,9 @@ a:active {
 html,
 body {
   font-family: var(--ff-base);
+  background-color: var(--clr-bg-1);
   color: var(--clr-line-1);
   font-size: 12px;
-  background-color: var(--clr-bg-1);
   min-height: 100vh;
 }
 
