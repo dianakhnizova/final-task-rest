@@ -4,13 +4,27 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import { globalIgnores } from 'eslint/config';
-import prettierPlugin from "eslint-plugin-prettier";
-
+import prettierPlugin from 'eslint-plugin-prettier';
 
 export default tseslint.config([
-  globalIgnores(['dist']),
+  globalIgnores(['dist','.react-router/']),
   {
     files: ['**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': [
+        'warn',
+        { 
+          allowExportNames: [
+            'meta', 
+            'loader', 
+            'action', 
+            'headers',
+            'ErrorBoundary',
+            'HydrateFallback'
+          ] 
+        }
+      ]
+    },
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,

@@ -1,0 +1,45 @@
+.errorBoundary {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--clr-error-1);
+  margin-bottom: 1rem;
+}
+
+.errorDetails {
+  color: var(--clr-line-1);
+  margin-bottom: 1.5rem;
+}
+
+.errorStack {
+  width: 100%;
+  padding: 1rem;
+  overflow-x: auto;
+  background-color: var(--clr-line-1);
+}
+
+.errorStack code {
+  font-size: 1rem;
+  color: var(--clr-overlay);
+}
+
+.debugParams {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: var(--clr-line-1);
+  color: var(--clr-overlay);
+}
+
+.debugTitle {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.debugContent {
+  font-size: 0.75rem;
+}
