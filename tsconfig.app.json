@@ -26,5 +26,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["app", "*.d.ts", "types/**/*"]
+  "include": ["src", "*.d.ts", "types/**/*"]
 }
