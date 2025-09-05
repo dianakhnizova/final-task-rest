@@ -31,4 +31,6 @@ export const ReactPortal: FC<Props> = memo(
   }
 );
 
+ReactPortal.displayName = 'Portal';
+
 export default ReactPortal;

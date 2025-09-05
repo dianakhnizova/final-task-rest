@@ -5,6 +5,7 @@ import { Modal } from './components/ui/modal/Modal';
 import { Select } from './components/ui/select/Select';
 
 import { messages } from './sources/messages';
+import { InputType } from './sources/enums';
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(true);
@@ -18,7 +19,7 @@ function App() {
       <h1>Init project</h1>
       <Button>{messages.buttons.testButton}</Button>
 
-      <Input id={'test'} />
+      <Input id={'test'} type={InputType.RADIO} />
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         {'test content'}

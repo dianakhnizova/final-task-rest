@@ -19,7 +19,15 @@ export const Select: FC<Props> = ({
   };
 
   return (
-    <select defaultValue="" onChange={onSelect} className={styles.select}>
+    <select
+      defaultValue={
+        defaultValue !== undefined && defaultValue !== null
+          ? String(defaultValue)
+          : ''
+      }
+      onChange={onSelect}
+      className={styles.select}
+    >
       {defaultValue && <option value="">{defaultValue}</option>}
 
       {options.map(option => (

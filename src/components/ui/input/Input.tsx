@@ -1,24 +1,15 @@
-import classNames from 'classnames';
 import styles from './Input.module.css';
 import type { FC } from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
-  htmlFor?: string;
   label?: string;
-  isCheckbox?: boolean;
-  isRadio?: boolean;
-  isLabel?: boolean;
   setInput?: (value: string) => void;
 }
 
 export const Input: FC<Props> = ({
   id,
-  htmlFor,
   label,
-  isCheckbox,
-  isRadio,
-  isLabel,
   setInput,
   onChange,
   ...rest
@@ -36,16 +27,13 @@ export const Input: FC<Props> = ({
         <input
           id={id}
           {...rest}
+          className={styles.input}
           onChange={handleInputChange}
-          className={classNames(styles.input, {
-            [styles.checkbox]: isCheckbox,
-            [styles.radio]: isRadio,
-          })}
         />
       </div>
 
-      {isLabel && (
-        <label htmlFor={htmlFor} className={styles.label}>
+      {label && (
+        <label htmlFor={id} className={styles.label}>
           {label}
         </label>
       )}

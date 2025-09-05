@@ -26,8 +26,8 @@
   }
 }
 
-.checkbox,
-.radio {
+.input[type='checkbox'],
+.input[type='radio'] {
   cursor: pointer;
   accent-color: var(--clr-bg-button);
 }
