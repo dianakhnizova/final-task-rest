@@ -20,3 +20,5 @@ export const Button: React.FC<Props> = memo(
     );
   }
 );
+
+Button.displayName = 'Button';

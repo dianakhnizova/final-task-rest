@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inputWrapper {
+  display: flex;
+  position: relative;
+}
+
+.input {
+  background-color: var(--clr-bg-3);
+  border-radius: 15px;
+  padding: 8px 80px 8px 36px;
+  color: var(--clr-line);
+  border: 1px solid transparent;
+
+  &::placeholder {
+    color: var(--clr-line-2);
+    opacity: 1;
+  }
+
+  &:focus {
+    border: 1px solid var(--clr-bg-button);
+  }
+}
+
+.input[type='checkbox'],
+.input[type='radio'] {
+  cursor: pointer;
+  accent-color: var(--clr-bg-button);
+}
