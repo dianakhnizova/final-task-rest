@@ -8,36 +8,36 @@
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--color-primary);
-  margin-bottom: var(--indent-l);
+  margin-bottom: var(--spacing-5);
 }
 
 .errorDetails {
   color: var(--color-primary);
-  margin-bottom: var(--indent-xl);
+  margin-bottom: var(--spacing-6);
 }
 
 .errorStack {
   width: 100%;
-  padding: var(--indent-l);
+  padding: var(--spacing-5);
   overflow-x: auto;
   background-color: var(--color-background);
 }
 
 .errorStack code {
   font-size: var(--font-size-base);
-  color: var(--clr-overlay);
+  color: var(--color-primary);
 }
 
 .debugParams {
-  margin-top: var(--indent-l);
-  padding: var(--indent-m);
+  margin-top: var(--spacing-5);
+  padding: var(--spacing-5);
   background-color: var(--color-background);
   color: var(--color-primary);
 }
 
 .debugTitle {
   font-weight: var(--font-weight-bold);
-  margin-bottom: var(--indent-s);
+  margin-bottom: var(--spacing-4);
 }
 
 .debugContent {
