@@ -1,7 +1,9 @@
+import { aboutPage as messages } from '@/sources/messages/aboutPage';
+
 export function meta() {
   return [
-    { title: 'REST client App / About' },
-    { name: 'description', content: 'Welcome to About' },
+    { title: messages.metaTitle },
+    { name: messages.metaName, content: messages.metaContent },
   ];
 }
 
