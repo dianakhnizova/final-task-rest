@@ -1,50 +1,79 @@
 .button {
-  color: var(--clr-line-button);
-  box-shadow: var(--shadow-4);
-  transition: all 0.2s ease;
-  font-family: var(--ff-base);
-  font-size: 12px;
-  border: 1px solid transparent;
-  border-radius: 15px;
-  padding: 4px 20px;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  box-shadow: var(--elevation-level1);
+  transition:
+    box-shadow var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  border: var(--border-width-sm) solid transparent;
+  border-radius: var(--radius-standard);
+  padding: var(--spacing-3) var(--spacing-6);
   align-items: center;
   cursor: pointer;
 
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
   &.primary {
-    background-color: var(--clr-bg-button);
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+
+    &::before {
+      background-color: var(--state-layer-color-primary);
+    }
   }
 
   &.secondary {
     padding: 0;
-    width: 20px;
-    height: 20px;
+    width: var(--spacing-6);
+    height: var(--spacing-6);
     background: transparent;
     box-shadow: none;
+    color: var(--color-primary);
+    border-radius: var(--radius-full);
+
+    &::before {
+      background-color: var(--color-primary);
+    }
   }
 
-  &:hover {
-    background-color: var(--clr-bg-1);
+  &:hover::before {
+    opacity: var(--state-layer-opacity-hover);
+  }
+
+  &:active {
+    box-shadow: var(--elevation-level0);
+  }
+
+  &:active::before {
+    opacity: var(--state-layer-opacity-pressed);
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  &:focus {
-    outline: 1px solid var(--clr-focus-button);
-    outline-offset: 1px;
-  }
-
-  &:focus-visible {
-    outline: 1px solid var(--clr-focus-button);
-    outline-offset: 1px;
+    box-shadow: none;
   }
 }
 
-@media (width <= 550px) {
+@media (width <= 40rem) {
   .button {
-    font-size: 30%;
-    padding: 2px 20px;
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-2) var(--spacing-6);
   }
 }
