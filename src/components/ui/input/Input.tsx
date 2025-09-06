@@ -1,5 +1,4 @@
 import styles from './Input.module.css';
-import type { FC } from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -7,7 +6,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   setInput?: (value: string) => void;
 }
 
-export const Input: FC<Props> = ({
+export const Input: React.FC<Props> = ({
   id,
   label,
   setInput,

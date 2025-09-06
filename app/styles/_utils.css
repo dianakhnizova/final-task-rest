@@ -35,8 +35,7 @@
   --breakpoint-md: 48rem; /* 768px */
   --breakpoint-lg: 64rem; /* 1024px */
   --breakpoint-xl: 80rem; /* 1280px */
-
-  /* Transition Durations */
+  --breakpoint-2xl: 96rem (1536px) /* Transition Durations */;
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
