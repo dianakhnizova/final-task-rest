@@ -1,21 +1,24 @@
 import type { Route } from '../../+types/root';
 import { isRouteErrorResponse } from 'react-router';
 import styles from './ErrorBoundary.module.css';
-// import { messages } from '@/sources/messages';
+import { messages } from '@/sources/messages';
 
 export function ErrorBoundaryComponent({
   error,
   params,
 }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
+  let message = messages.errorBoundary.oops;
+  let details = messages.errorBoundary.details;
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
+    message =
+      error.status === 404
+        ? messages.errorBoundary.notFound
+        : messages.errorBoundary.error;
     details =
       error.status === 404
-        ? 'The requested page could not be found.'
+        ? messages.errorBoundary.notFound
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
@@ -33,7 +36,7 @@ export function ErrorBoundaryComponent({
       )}
       {import.meta.env.DEV && params && (
         <div className={styles.debugParams}>
-          <h3 className={styles.debugTitle}>Params:</h3>
+          <h3 className={styles.debugTitle}>{messages.errorBoundary.params}</h3>
           <pre className={styles.debugContent}>
             {JSON.stringify(params, null, 2)}
           </pre>
