@@ -1,6 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
-import { ErrorBoundaryComponent } from './components/errorBoundary/ErrorBoundary';
+import { ErrorBoundaryComponent } from './components/errorBoundary';
 
 import type { Route } from './+types/root';
 import './global.css';
