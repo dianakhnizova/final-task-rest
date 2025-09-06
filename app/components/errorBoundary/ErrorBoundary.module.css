@@ -5,41 +5,41 @@
 }
 
 .errorTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--clr-error-1);
-  margin-bottom: 1rem;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--indent-l);
 }
 
 .errorDetails {
-  color: var(--clr-line-1);
-  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--indent-xl);
 }
 
 .errorStack {
   width: 100%;
-  padding: 1rem;
+  padding: var(--indent-l);
   overflow-x: auto;
-  background-color: var(--clr-line-1);
+  background-color: var(--color-background);
 }
 
 .errorStack code {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   color: var(--clr-overlay);
 }
 
 .debugParams {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background-color: var(--clr-line-1);
-  color: var(--clr-overlay);
+  margin-top: var(--indent-l);
+  padding: var(--indent-m);
+  background-color: var(--color-background);
+  color: var(--color-primary);
 }
 
 .debugTitle {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--indent-s);
 }
 
 .debugContent {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
 }

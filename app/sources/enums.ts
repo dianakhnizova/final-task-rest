@@ -15,3 +15,7 @@ export enum InputType {
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
 }
+
+export enum errorCode {
+  NOTFOUND = 404,
+}

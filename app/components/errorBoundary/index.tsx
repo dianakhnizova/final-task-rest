@@ -2,6 +2,7 @@ import type { Route } from '../../+types/root';
 import { isRouteErrorResponse } from 'react-router';
 import styles from './ErrorBoundary.module.css';
 import { messages } from '@/sources/messages';
+import { errorCode } from '@/sources/enums';
 
 export function ErrorBoundaryComponent({
   error,
@@ -13,11 +14,11 @@ export function ErrorBoundaryComponent({
 
   if (isRouteErrorResponse(error)) {
     message =
-      error.status === 404
+      error.status === errorCode.NOTFOUND
         ? messages.errorBoundary.notFound
         : messages.errorBoundary.error;
     details =
-      error.status === 404
+      error.status === errorCode.NOTFOUND
         ? messages.errorBoundary.notFound
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
