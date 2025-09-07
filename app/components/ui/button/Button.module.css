@@ -47,6 +47,18 @@
     }
   }
 
+  &.icon {
+    padding: var(--spacing-3);
+    background: transparent;
+    box-shadow: none;
+    color: var(--color-text-default);
+    border-radius: var(--radius-full);
+
+    &::before {
+      background-color: var(--color-surface-variant);
+    }
+  }
+
   &:hover::before {
     opacity: var(--state-layer-opacity-hover);
   }
