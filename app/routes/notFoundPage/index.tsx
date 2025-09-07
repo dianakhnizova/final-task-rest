@@ -16,13 +16,16 @@ export function meta({ location }: Route.MetaArgs) {
 
 export default function NotFoundPage() {
   const location = useLocation();
+
   return (
     <main className={styles.notFoundContainer}>
       <section className={styles.notFoundSection}>
         <h1 className={styles.notFoundTitle}>{messages.title}</h1>
+
         <p className={styles.notFoundInfo}>
           {messages.metaContent} - {location.pathname}
         </p>
+
         <a className={styles.notFoundBtnBack} href={AppRoutes.HOME}>
           {messages.btnBack}
         </a>

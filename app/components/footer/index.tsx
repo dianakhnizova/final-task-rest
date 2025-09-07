@@ -13,10 +13,12 @@ export const Footer = () => {
           <GithubLogo />
           <span>{footer.githubProject}</span>
         </a>
+
         <a href={RSS_COURSE_URL} className={styles.link}>
           <RsSchoolLogo />
           <span>{footer.rsSchoolCourse}</span>
         </a>
+
         <div>{footer.copyright}</div>
       </div>
     </footer>

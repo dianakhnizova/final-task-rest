@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { SignInUpToggler } from '@/components/signInUpToggler';
 import styles from './mainPage.module.css';
+import { Outlet } from 'react-router';
+import { useEffect, useState } from 'react';
 import { mainPage as messages } from '@/sources/messages/mainPage';
 import { Button } from '@/components/ui/button/Button';
-import {
-  handleHistory,
-  handleRestClient,
-  handleSignIn,
-  handleSignUp,
-  handleVariables,
-} from './handlers';
+import { handleHistory, handleRestClient, handleVariables } from './handlers';
 
 export function meta() {
   return [
@@ -44,10 +40,10 @@ export default function MainPage() {
   return (
     <main className={styles.container}>
       <h2>{messages.welcomeNew}</h2>
-      <section className={styles.btnSection}>
-        <Button onClick={handleSignIn}>{messages.btnSignIn}</Button>
-        <Button onClick={handleSignUp}>{messages.btnSignUp}</Button>
-      </section>
+
+      <SignInUpToggler />
+
+      <Outlet />
     </main>
   );
 }
