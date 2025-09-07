@@ -3,4 +3,5 @@ export const notFoundPage = {
   metaName: 'description',
   metaContent: 'Error 404 / Page not Found',
   title: 'Page not Found',
+  btnBack: 'Back to Home Page',
 };
