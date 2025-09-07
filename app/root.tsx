@@ -26,7 +26,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Footer />
           </Wrapper>
         </div>
-
         <ScrollRestoration />
         <Scripts />
       </body>
