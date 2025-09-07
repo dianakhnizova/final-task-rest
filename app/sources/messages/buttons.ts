@@ -1,4 +1,4 @@
 export const buttons = {
-  signInButton: 'Sign in',
-  signUpButton: 'Sign up',
+  signIn: 'Sign in',
+  signUp: 'Sign up',
 };

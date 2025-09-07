@@ -1,4 +1,6 @@
+import { SignInUpToggler } from '@/components/signInUpToggler';
 import styles from './mainPage.module.css';
+import { Outlet } from 'react-router';
 
 export function meta() {
   return [
@@ -10,7 +12,8 @@ export function meta() {
 export default function MainPage() {
   return (
     <div className={styles.container}>
-      <h2>Home Page</h2>
+      <SignInUpToggler />
+      <Outlet />
     </div>
   );
 }

@@ -8,6 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { userSchema } from '@/schemas/userSchema';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { messages } from '@/sources/messages';
+import { Link } from 'react-router';
+import { AppRoutes } from '@/sources/enums';
+import { buttons } from '@/sources/messages/buttons';
 
 export function meta() {
   return [
@@ -16,7 +19,7 @@ export function meta() {
   ];
 }
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<UserForm>({
     resolver: zodResolver(userSchema),
     mode: 'onChange',
@@ -33,7 +36,7 @@ export default function SignInPage() {
       <Form
         onSubmit={handleSubmit(onSubmit)}
         isDisabled={!formState.isValid}
-        buttonLabel={messages.buttons.signUpButton}
+        buttonLabel={messages.buttons.signUp}
       >
         {inputFields.map(field => (
           <Input
@@ -49,6 +52,14 @@ export default function SignInPage() {
           />
         ))}
       </Form>
+
+      <div className={styles.info}>
+        <p className={styles.title}>{signUpPage.infoTitle}</p>
+
+        <Link to={AppRoutes.SIGN_IN} className={styles.link}>
+          {buttons.signIn}
+        </Link>
+      </div>
     </div>
   );
 }

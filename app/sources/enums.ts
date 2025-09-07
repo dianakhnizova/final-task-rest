@@ -8,8 +8,8 @@ export enum AppRoutes {
   HOME = '/',
   ABOUT = 'about',
   NOT_FOUND = '*',
-  SIGN_IN = 'signIn',
-  SIGN_UP = 'signUp',
+  SIGN_IN = '/signIn',
+  SIGN_UP = '/signUp',
 }
 
 export enum InputType {
