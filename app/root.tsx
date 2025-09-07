@@ -4,7 +4,9 @@ import { ErrorBoundaryComponent } from './components/errorBoundary';
 
 import type { Route } from './+types/root';
 import './global.css';
+import Wrapper from './components/wrapper';
 import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import { root } from './sources/messages/root';
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -20,9 +22,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div id="root">
-          {children}
-
-          <Footer />
+          <Wrapper>
+            <Header />
+            {children}
+            <Footer />
+          </Wrapper>
         </div>
         <ScrollRestoration />
 

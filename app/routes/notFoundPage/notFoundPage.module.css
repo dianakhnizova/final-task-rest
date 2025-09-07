@@ -1,0 +1,27 @@
+.notFoundContainer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFoundSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.notFoundTitle {
+  text-align: center;
+  padding: var(--spacing-5);
+}
+
+.notFoundInfo {
+  color: var(--md-sys-color-on-primary);
+  background-color: var(--md-sys-color-on-background);
+  padding: var(--spacing-5);
+}
+
+.notFoundBtnBack {
+  margin: var(--spacing-5) auto;
+  text-decoration: none;
+}

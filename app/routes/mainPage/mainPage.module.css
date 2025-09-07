@@ -1,7 +1,16 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   padding: var(--spacing-7);
+  gap: var(--spacing-5);
   width: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnSection {
+  display: flex;
+  gap: var(--spacing-5);
+  margin: var(--spacing-5);
 }

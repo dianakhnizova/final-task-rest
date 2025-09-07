@@ -30,7 +30,7 @@ export const Modal: FC<Props> = ({ isOpen, onClose, children }) => {
         {onClose && (
           <Button
             onClick={onClose}
-            variant={Variant.SECONDARY}
+            variant={Variant.ICON}
             className={styles.closeButton}
           >
             <img

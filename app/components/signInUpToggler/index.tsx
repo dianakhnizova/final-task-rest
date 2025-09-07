@@ -12,6 +12,7 @@ export const SignInUpToggler = () => {
       <Button onClick={() => navigate(AppRoutes.SIGN_IN)}>
         {togglers.signIn}
       </Button>
+
       <Button onClick={() => navigate(AppRoutes.SIGN_UP)}>
         {togglers.signUp}
       </Button>
