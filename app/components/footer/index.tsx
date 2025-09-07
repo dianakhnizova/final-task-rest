@@ -10,11 +10,11 @@ export const Footer = () => {
 
       <div className={styles.content}>
         <a href={GITHUB_PROJECT_URL} className={styles.link}>
-          <GithubLogo width="1.5rem" height="1.5rem" />
+          <GithubLogo />
           <span>{footer.githubProject}</span>
         </a>
         <a href={RSS_COURSE_URL} className={styles.link}>
-          <RsSchoolLogo width="1.5rem" height="1.5rem" />
+          <RsSchoolLogo />
           <span>{footer.rsSchoolCourse}</span>
         </a>
         <div>{footer.copyright}</div>

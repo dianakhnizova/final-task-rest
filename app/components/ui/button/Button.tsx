@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import styles from './Button.module.css';
-import { type ButtonHTMLAttributes } from 'react';
-import { Variant } from '../../../sources/enums';
+import { type ButtonHTMLAttributes, type FC, type ReactNode } from 'react';
+import { Variant } from '@/sources/enums.ts';
 
 type Props = {
   variant?: Variant;
-  children?: React.ReactNode;
+  children?: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<Props> = ({
+export const Button: FC<Props> = ({
   variant = Variant.PRIMARY,
   className,
   children,

@@ -1,11 +1,11 @@
-import type { IconProps } from '@/components/icons/iconProps.ts';
+import styles from './icon.module.css';
 
-export const RsSchoolLogo = (props: IconProps) => (
+export const RsSchoolLogo = () => (
   <svg
     viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    {...props}
+    className={styles.footerIcon}
   >
     <g clipPath="url(#clip0_5701_38384)">
       <circle cx="32" cy="32" r="32" fill="black" />
