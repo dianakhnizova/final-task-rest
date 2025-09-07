@@ -3,7 +3,7 @@ import type { IconProps } from '@/components/icons/iconProps.ts';
 export const GithubLogo = (props: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 -2 24 24"
+    viewBox="-2 -2 24 24"
     fill="currentColor"
     {...props}
   >
