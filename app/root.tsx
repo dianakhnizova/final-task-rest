@@ -5,6 +5,7 @@ import { ErrorBoundaryComponent } from './components/errorBoundary';
 import type { Route } from './+types/root';
 import './global.css';
 import { Footer } from '@/components/footer/Footer.tsx';
+import Wrapper from './components/wrapper';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -18,8 +19,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div id="root">
-          {children}
-          <Footer />
+          <Wrapper>
+            {children}
+            <Footer />
+          </Wrapper>
         </div>
         <ScrollRestoration />
         <Scripts />
