@@ -10,7 +10,7 @@ export function meta() {
 export default function MainPage() {
   return (
     <div className={styles.container}>
-      <h2>Home Page</h2>
+      <h2 style={{ height: '150vh' }}>Home Page</h2>
     </div>
   );
 }
