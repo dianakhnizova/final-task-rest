@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const Wrapper = ({ children }: Props) => {
+export const Wrapper: React.FC<Props> = ({ children }: Props) => {
   return (
     <div id="wrapper" className={styles.wrapper}>
       {children}

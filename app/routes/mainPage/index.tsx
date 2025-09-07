@@ -2,6 +2,13 @@ import { useEffect, useState } from 'react';
 import styles from './mainPage.module.css';
 import { mainPage as messages } from '@/sources/messages/mainPage';
 import { Button } from '@/components/ui/button/Button';
+import {
+  handleHistory,
+  handleRestClient,
+  handleSignIn,
+  handleSignUp,
+  handleVariables,
+} from './handlers';
 
 export function meta() {
   return [
@@ -13,28 +20,6 @@ export function meta() {
 export default function MainPage() {
   const [auth, setAuth] = useState(false);
   const [username, setUsername] = useState('');
-
-  const handleSignIn = () => {
-    //todo - feat component for sign in
-    //setAuth(result)
-  };
-
-  const handleSignUp = () => {
-    //todo - feat component for sign up
-    //setAuth(result)
-  };
-
-  const handleRestClient = () => {
-    //todo - feat component for REST Client
-  };
-
-  const handleHistory = () => {
-    //todo - feat component for History
-  };
-
-  const handleVariables = () => {
-    //todo - feat component for Variables
-  };
 
   useEffect(() => {
     //todo - feat check auth
