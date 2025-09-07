@@ -4,6 +4,7 @@ import { ErrorBoundaryComponent } from './components/errorBoundary';
 
 import type { Route } from './+types/root';
 import './global.css';
+import { Footer } from '@/components/footer/Footer.tsx';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div id="root">{children}</div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>

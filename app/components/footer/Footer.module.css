@@ -1,0 +1,27 @@
+.container {
+  padding: var(--spacing-5);
+}
+
+.separator {
+  width: 100%;
+  height: var(--border-width-sm);
+  background-color: var(--color-text-default);
+  margin-bottom: var(--spacing-5);
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-5);
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-2);
+  text-decoration: none;
+  color: var(--color-text-default);
+}
