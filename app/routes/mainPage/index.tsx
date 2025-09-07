@@ -30,7 +30,9 @@ export default function MainPage() {
   if (auth)
     return (
       <main className={styles.container}>
-        <h2>Welcome Back, {username}!</h2>
+        <h2>
+          {messages.welcomeOld} {username}
+        </h2>
         <section className={styles.btnSection}>
           <Button onClick={handleRestClient}>{messages.btnRestClient}</Button>
           <Button onClick={handleHistory}>{messages.btnHistory}</Button>
@@ -41,7 +43,7 @@ export default function MainPage() {
 
   return (
     <main className={styles.container}>
-      <h2>Welcome!</h2>
+      <h2>{messages.welcomeNew}</h2>
       <section className={styles.btnSection}>
         <Button onClick={handleSignIn}>{messages.btnSignIn}</Button>
         <Button onClick={handleSignUp}>{messages.btnSignUp}</Button>

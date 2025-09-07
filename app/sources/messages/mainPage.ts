@@ -7,4 +7,6 @@ export const mainPage = {
   btnVariables: 'Variables',
   btnSignIn: 'Sign In',
   btnSignUp: 'Sign Up',
+  welcomeNew: 'Welcome!',
+  welcomeOld: 'Welcome Back,',
 };
