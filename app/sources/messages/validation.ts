@@ -2,12 +2,12 @@ export const validation = {
   error: {
     errorMessage: 'Error',
     emailMessage: 'Invalid email address',
+    emailLatinMessage: 'Email must contain only Latin characters',
     password: {
-      message1: 'Password must be at least 8 characters long',
-      message2: 'Password must contain at least one uppercase letter',
-      message3: 'Password must contain at least one lowercase letter',
-      message4: 'Password must contain at least one number',
-      message5: 'Password must contain at least one special character',
+      tooShort: 'Password must be at least 8 characters long',
+      noLetter: 'Password must contain at least one letter',
+      noDigit: 'Password must contain at least one digit',
+      noSpecial: 'Password must contain at least one special character',
     },
     nameMessage: 'Name must start with a capital letter',
     confirmMessage: 'Passwords must match',

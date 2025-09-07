@@ -1,4 +1,8 @@
-import { NAME_REGEX, PASSWORD_REGEX } from '@/sources/constants';
+import {
+  EMAIL_REGEX,
+  NAME_REGEX,
+  PASSWORD_UNICODE_REGEX,
+} from '@/sources/constants';
 import { validation } from '@/sources/messages/validation';
 import { z } from 'zod';
 
@@ -13,39 +17,36 @@ export const nameSchema = z
 export const emailSchema = z
   .string()
   .trim()
-  .email({ message: validation.error.emailMessage });
+  .min(1, { message: validation.error.emailMessage })
+  .refine(value => EMAIL_REGEX.test(value), {
+    message: validation.error.emailLatinMessage,
+  });
 
 export const passwordSchema = z
   .string()
   .trim()
-  .min(8, { message: validation.error.password.message1 })
-  .refine(password => PASSWORD_REGEX.UPPERCASE.test(password), {
-    message: validation.error.password.message2,
+  .min(8, { message: validation.error.password.tooShort })
+  .refine(val => PASSWORD_UNICODE_REGEX.LETTER.test(val), {
+    message: validation.error.password.noLetter,
   })
-  .refine(password => PASSWORD_REGEX.LOWERCASE.test(password), {
-    message: validation.error.password.message3,
+  .refine(val => PASSWORD_UNICODE_REGEX.DIGIT.test(val), {
+    message: validation.error.password.noDigit,
   })
-  .refine(password => PASSWORD_REGEX.DIGIT.test(password), {
-    message: validation.error.password.message4,
-  })
-  .refine(password => PASSWORD_REGEX.SPECIAL.test(password), {
-    message: validation.error.password.message5,
+  .refine(val => PASSWORD_UNICODE_REGEX.SPECIAL.test(val), {
+    message: validation.error.password.noSpecial,
   });
 
 export const confirmPasswordSchema = z
   .string()
   .trim()
   .min(1, { message: validation.error.confirmMessage })
-  .refine(password => PASSWORD_REGEX.UPPERCASE.test(password), {
-    message: validation.error.password.message2,
+  .min(8, { message: validation.error.password.tooShort })
+  .refine(val => PASSWORD_UNICODE_REGEX.LETTER.test(val), {
+    message: validation.error.password.noLetter,
   })
-
-  .refine(password => PASSWORD_REGEX.LOWERCASE.test(password), {
-    message: validation.error.password.message3,
+  .refine(val => PASSWORD_UNICODE_REGEX.DIGIT.test(val), {
+    message: validation.error.password.noDigit,
   })
-  .refine(password => PASSWORD_REGEX.DIGIT.test(password), {
-    message: validation.error.password.message4,
-  })
-  .refine(password => PASSWORD_REGEX.SPECIAL.test(password), {
-    message: validation.error.password.message5,
+  .refine(val => PASSWORD_UNICODE_REGEX.SPECIAL.test(val), {
+    message: validation.error.password.noSpecial,
   });

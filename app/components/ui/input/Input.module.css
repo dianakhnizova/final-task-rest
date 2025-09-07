@@ -28,3 +28,9 @@
   cursor: pointer;
   accent-color: var(--clr-bg-button);
 }
+
+.error {
+  color: var(--color-error);
+  font-weight: var(--line-height-loose);
+  font-size: var(--font-size-xs);
+}

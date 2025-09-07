@@ -8,6 +8,7 @@ import type { UserForm } from '@/sources/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userSchema } from '@/schemas/userSchema';
 import { messages } from '@/sources/messages';
+import { InputID } from '@/sources/enums';
 
 export function meta() {
   return [
@@ -36,7 +37,11 @@ export default function SignInPage() {
         buttonLabel={messages.buttons.signInButton}
       >
         {inputFields
-          .filter(field => field.id === 'email' || field.id === 'password')
+          .filter(
+            field =>
+              field.id === InputID.ID_1_EMAIL ||
+              field.id === InputID.ID_3_PASSWORD
+          )
           .map(field => (
             <Input
               key={field.id}

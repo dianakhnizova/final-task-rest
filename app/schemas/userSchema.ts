@@ -17,5 +17,5 @@ export const userSchema = z
   })
   .refine(data => data.password === data.confirmPassword, {
     message: validation.error.confirmMessage,
-    path: [InputID.ID_4],
+    path: [InputID.ID_4_CONFIRM_PASSWORD],
   });

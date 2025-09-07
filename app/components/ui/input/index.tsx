@@ -20,6 +20,8 @@ export const Input: React.FC<Props> = ({
   errorMessage,
   ...rest
 }) => {
+  const { onChange, ...restRegister } = register(name);
+
   return (
     <>
       <div className={styles.container}>
@@ -32,20 +34,16 @@ export const Input: React.FC<Props> = ({
         <input
           id={id}
           {...rest}
-          {...register(name, {
-            onChange: e => {
-              setInput?.(e.target.value);
-            },
-          })}
+          {...restRegister}
+          onChange={event => {
+            setInput?.(event.target.value);
+            onChange(event);
+          }}
           className={styles.input}
         />
-      </div>
 
-      {errorMessage && (
-        <div className={styles.infoWrapper}>
-          <p>{errorMessage}</p>
-        </div>
-      )}
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+      </div>
     </>
   );
 };
