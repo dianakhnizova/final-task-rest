@@ -18,9 +18,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Header />
-        <div id="root">{children}</div>
-        <Footer />
+        <div id="root">
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
