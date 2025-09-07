@@ -1,0 +1,21 @@
+.headerLogo {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.headerLogo img {
+  width: 100%;
+  height: 100%;
+}
+
+.headerIcon {
+  width: var(--spacing-5);
+  height: var(--spacing-5);
+}
+
+.footerIcon {
+  width: var(--spacing-6);
+  height: var(--spacing-6);
+}

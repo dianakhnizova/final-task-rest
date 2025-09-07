@@ -1,8 +1,12 @@
-import type { IconProps } from '@/components/icons/iconProps.ts';
+import styles from './icon.module.css';
 
-export const SunIcon = (props: IconProps) => {
+export const SunIcon = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      className={styles.headerIcon}
+    >
       <g fill="none" fill-rule="evenodd" transform="translate(-442 -200)">
         <g fill="currentColor" transform="translate(356 144)">
           <path
