@@ -4,7 +4,8 @@ import { ErrorBoundaryComponent } from './components/errorBoundary';
 
 import type { Route } from './+types/root';
 import './global.css';
-import { Footer } from '@/components/footer/Footer.tsx';
+import { Footer } from '@/components/footer';
+import { root } from './sources/messages/root';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,14 +13,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>REST client</title>
+        <title>{root.appTitle}</title>
         <Meta />
+
         <Links />
       </head>
       <body>
-        <div id="root">{children}</div>
-        <Footer />
+        <div id="root">
+          {children}
+
+          <Footer />
+        </div>
         <ScrollRestoration />
+
         <Scripts />
       </body>
     </html>

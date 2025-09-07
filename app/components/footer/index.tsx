@@ -9,14 +9,16 @@ export const Footer = () => {
       <div className={styles.separator}></div>
 
       <div className={styles.content}>
-        <a href={GITHUB_PROJECT_URL} className={styles.link}>
+        <a href={GITHUB_PROJECT_URL} target="_blank" className={styles.link}>
           <GithubLogo width="1.5rem" height="1.5rem" />
           <span>{footer.githubProject}</span>
         </a>
-        <a href={RSS_COURSE_URL} className={styles.link}>
+
+        <a href={RSS_COURSE_URL} target="_blank" className={styles.link}>
           <RsSchoolLogo width="1.5rem" height="1.5rem" />
           <span>{footer.rsSchoolCourse}</span>
         </a>
+
         <div>{footer.copyright}</div>
       </div>
     </footer>
