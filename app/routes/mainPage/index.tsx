@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { mainPage as messages } from '@/sources/messages/mainPage';
 import { Button } from '@/components/ui/button/Button';
 import { handleHistory, handleRestClient, handleVariables } from './handlers';
+import { AppRoutes } from '@/sources/enums';
 
 export function meta() {
   return [
@@ -24,7 +25,7 @@ export default function MainPage() {
     setUsername('Anonymous');
   }, []);
 
-  const hasNestedRoutes = location.pathname !== '/';
+  const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
   if (auth)
     return (
