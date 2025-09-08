@@ -3,7 +3,7 @@ import styles from './mainPage.module.css';
 import { Outlet, useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import { mainPage as messages } from '@/sources/messages/mainPage';
-import { Button } from '@/components/ui/button/Button';
+import { Button } from '@/components/ui/button';
 import { handleHistory, handleRestClient, handleVariables } from './handlers';
 import { AppRoutes } from '@/sources/enums';
 

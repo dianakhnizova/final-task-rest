@@ -1,6 +1,7 @@
 import type { UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.css';
 import type { UserForm } from '@/sources/interfaces';
+import type { FC } from 'react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -11,7 +12,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
 }
 
-export const Input: React.FC<Props> = ({
+export const Input: FC<Props> = ({
   id,
   label,
   setInput,

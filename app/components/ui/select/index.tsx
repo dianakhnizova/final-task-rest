@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import styles from './Select.module.css';
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
   defaultValue?: string | number | null;
 }
 
-export const Select: React.FC<Props> = ({
+export const Select: FC<Props> = ({
   setSelectedValue,
   options,
   defaultValue,

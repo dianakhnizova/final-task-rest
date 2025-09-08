@@ -20,16 +20,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <Links />
       </head>
+
       <body>
         <div id="root">
-          <Wrapper>
-            <Header />
-            {children}
-            <Footer />
-          </Wrapper>
+          <Header />
+          <Wrapper>{children}</Wrapper>
+          <Footer />
         </div>
-        <ScrollRestoration />
 
+        <ScrollRestoration />
         <Scripts />
       </body>
     </html>

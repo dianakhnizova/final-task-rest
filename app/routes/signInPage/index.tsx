@@ -4,13 +4,13 @@ import { useInputFields } from '@/utils/hooks/useInputFields';
 import { Input } from '@/components/ui/input';
 import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import type { UserForm } from '@/sources/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { messages } from '@/sources/messages';
 import { AppRoutes, InputID } from '@/sources/enums';
 import { Link } from 'react-router';
 import { buttons } from '@/sources/messages/buttons';
 import { signInSchema } from '@/schemas/signInSchema';
+import type { SignInForm } from '@/sources/interfaces';
 
 export function meta() {
   return [
@@ -20,14 +20,14 @@ export function meta() {
 }
 
 export default function SignInPage() {
-  const { register, handleSubmit, formState } = useForm<UserForm>({
+  const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
     mode: 'onChange',
   });
 
   const { inputFields } = useInputFields();
 
-  const onSubmit: SubmitHandler<UserForm> = async data => {
+  const onSubmit: SubmitHandler<SignInForm> = async data => {
     console.log('Submit', data);
   };
 
@@ -52,10 +52,10 @@ export default function SignInPage() {
               placeholder={field.placeholder}
               type={field.type}
               onChange={field.onChange}
-              name={field.id as keyof UserForm}
+              name={field.id as keyof SignInForm}
               register={register}
               errorMessage={
-                formState.errors[field.id as keyof UserForm]?.message
+                formState.errors[field.id as keyof SignInForm]?.message
               }
             />
           ))}

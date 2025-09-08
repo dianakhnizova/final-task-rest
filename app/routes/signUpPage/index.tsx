@@ -3,7 +3,6 @@ import { useInputFields } from '@/utils/hooks/useInputFields';
 import { Input } from '@/components/ui/input';
 import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import type { UserForm } from '@/sources/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { messages } from '@/sources/messages';
@@ -11,6 +10,7 @@ import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
+import type { SignUpForm } from '@/sources/interfaces';
 
 export function meta() {
   return [
@@ -20,14 +20,14 @@ export function meta() {
 }
 
 export default function SignUpPage() {
-  const { register, handleSubmit, formState } = useForm<UserForm>({
+  const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
     mode: 'onChange',
   });
 
   const { inputFields } = useInputFields();
 
-  const onSubmit: SubmitHandler<UserForm> = async data => {
+  const onSubmit: SubmitHandler<SignUpForm> = async data => {
     console.log('Submit', data);
   };
 
@@ -46,9 +46,11 @@ export default function SignUpPage() {
             placeholder={field.placeholder}
             type={field.type}
             onChange={field.onChange}
-            name={field.id as keyof UserForm}
+            name={field.id as keyof SignUpForm}
             register={register}
-            errorMessage={formState.errors[field.id as keyof UserForm]?.message}
+            errorMessage={
+              formState.errors[field.id as keyof SignUpForm]?.message
+            }
           />
         ))}
       </Form>

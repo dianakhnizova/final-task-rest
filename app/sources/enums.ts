@@ -29,9 +29,14 @@ export enum InputID {
 }
 
 export enum errorCode {
-  NOTFOUND = 404,
+  NOT_FOUND = 404,
 }
 
 export enum ButtonType {
   SUBMIT = 'submit',
+}
+
+export enum DisplayName {
+  PORTAL = 'Portal',
+  BUTTON = 'Button',
 }

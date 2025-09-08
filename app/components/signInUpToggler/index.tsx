@@ -1,5 +1,5 @@
 import styles from './SignInUpToggler.module.css';
-import { Button } from '../ui/button/Button';
+import { Button } from '../ui/button';
 import { useNavigate } from 'react-router';
 import { togglers } from '@/sources/messages/togglers';
 import { AppRoutes } from '@/sources/enums';
