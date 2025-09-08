@@ -42,7 +42,7 @@ export default function SignInPage() {
     });
 
     if (error) {
-      if (error.message.includes(toastMessages.partOfTextError)) {
+      if (error.message.includes(toastMessages.partOfTextError1)) {
         toast.error(toastMessages.errorConfirmEmail);
       } else {
         toast.error(error.message);

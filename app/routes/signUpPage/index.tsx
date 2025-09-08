@@ -43,11 +43,20 @@ export default function SignUpPage() {
     });
 
     if (error) {
-      toast.error(error.message);
-    } else {
-      console.log(authData.user);
-      toast.success(toastMessages.signUp);
+      if (error.message.includes(toastMessages.partOfTextError2)) {
+        toast.error(toastMessages.userExists);
+      } else {
+        toast.error(error.message || toastMessages.somethingError);
+      }
+      return;
     }
+
+    if (authData.user?.identities?.length === 0) {
+      toast.error(toastMessages.userExists);
+      return;
+    }
+
+    toast.success(toastMessages.signUp);
   };
 
   return (
