@@ -7,10 +7,11 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { messages } from '@/sources/messages';
 import { AppRoutes, InputID } from '@/sources/enums';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { buttons } from '@/sources/messages/buttons';
 import { signInSchema } from '@/schemas/signInSchema';
 import type { SignInForm } from '@/sources/interfaces';
+import { supabase } from '@/supabaseClient';
 
 export function meta() {
   return [
@@ -20,6 +21,8 @@ export function meta() {
 }
 
 export default function SignInPage() {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
     mode: 'onChange',
@@ -27,8 +30,20 @@ export default function SignInPage() {
 
   const { inputFields } = useInputFields();
 
-  const onSubmit: SubmitHandler<SignInForm> = async data => {
-    console.log('Submit', data);
+  const onSubmit: SubmitHandler<SignInForm> = async formData => {
+    const { email, password } = formData;
+
+    const { data: authData, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error('Sign-in error:', error.message);
+    } else {
+      console.log('Signed in:', authData.user);
+      navigate(AppRoutes.ABOUT);
+    }
   };
 
   return (

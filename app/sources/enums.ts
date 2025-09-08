@@ -7,7 +7,7 @@ export enum Variant {
 
 export enum AppRoutes {
   HOME = '/',
-  ABOUT = 'about',
+  ABOUT = '/about',
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',

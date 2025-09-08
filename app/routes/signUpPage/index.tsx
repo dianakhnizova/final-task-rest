@@ -6,11 +6,12 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { messages } from '@/sources/messages';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import type { SignUpForm } from '@/sources/interfaces';
+import { supabase } from '@/supabaseClient';
 
 export function meta() {
   return [
@@ -20,6 +21,8 @@ export function meta() {
 }
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
     mode: 'onChange',
@@ -28,7 +31,19 @@ export default function SignUpPage() {
   const { inputFields } = useInputFields();
 
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
-    console.log('Submit', data);
+    const { email, password } = data;
+
+    const { data: authData, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      console.error('Sign-up error:', error.message);
+    } else {
+      console.log('User sign up: ', authData);
+      navigate(AppRoutes.HOME);
+    }
   };
 
   return (
