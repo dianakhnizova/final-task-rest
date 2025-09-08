@@ -4,13 +4,10 @@
   --spacing-2: 0.125rem; /* 2px */
   --spacing-3: 0.25rem; /* 4px */
   --spacing-4: 0.5rem; /* 8px */
-  --spacing-4-5: 0.75rem; /* 12px */
   --spacing-5: 1rem; /* 16px */
   --spacing-6: 2rem; /* 32px */
   --spacing-7: 4rem; /* 64px */
-  --spacing-7-5: 4.375rem /* 70px */;
   --spacing-8: 8rem; /* 128px */
-  --spacing-9: 75rem; /* 1200px */
 
   /* Border Radius */
   --radius-sm: 0.25rem; /* 4px */
@@ -21,6 +18,7 @@
   /* Border Widths */
   --border-width-sm: 1px;
   --border-width-md: 2px;
+  --border-width-lg: 3px;
 
   /* Z-Indices */
   --z-index-hidden: -1;

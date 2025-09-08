@@ -1,6 +1,6 @@
 .errorBoundary {
   width: 90%;
-  max-width: var(--spacing-9);
+  max-width: 1200px;
   margin: 0 auto;
 }
 
