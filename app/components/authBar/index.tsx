@@ -2,10 +2,13 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '@/store/slices/auth/selectors';
 import { useActions } from '@/utils/hooks/useActions';
-import { AppRoutes } from '@/sources/enums';
+import { AppRoutes, Auth } from '@/sources/enums';
 import { supabase } from '@/supabaseClient';
 import { Button } from '../ui/button';
-import { header as messages } from '@/sources/messages/header';
+import { header as headerMessages } from '@/sources/messages/header';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+
+import toast from 'react-hot-toast';
 
 export const AuthBar = () => {
   const navigate = useNavigate();
@@ -18,17 +21,18 @@ export const AuthBar = () => {
 
   const handleLogOut = async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem('user');
+    localStorage.removeItem(Auth.USER);
     clearUser();
+    toast.success(toastMessages.logOut);
     navigate(AppRoutes.HOME);
   };
 
   return (
     <>
       {user ? (
-        <Button onClick={handleLogOut}>{messages.logOut}</Button>
+        <Button onClick={handleLogOut}>{headerMessages.logOut}</Button>
       ) : (
-        <Button onClick={handleSignIn}>{messages.signIn}</Button>
+        <Button onClick={handleSignIn}>{headerMessages.signIn}</Button>
       )}
     </>
   );

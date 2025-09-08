@@ -5,14 +5,15 @@ import { Input } from '@/components/ui/input';
 import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { messages } from '@/sources/messages';
-import { AppRoutes, InputID } from '@/sources/enums';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
+import { AppRoutes, Auth, InputID } from '@/sources/enums';
 import { Link, useNavigate } from 'react-router';
-import { buttons } from '@/sources/messages/buttons';
 import { signInSchema } from '@/schemas/signInSchema';
 import type { SignInForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
 import { useActions } from '@/utils/hooks/useActions';
+import toast from 'react-hot-toast';
 
 export function meta() {
   return [
@@ -41,10 +42,15 @@ export default function SignInPage() {
     });
 
     if (error) {
-      console.error('Sign-in error:', error.message);
+      if (error.message.includes(toastMessages.partOfTextError)) {
+        toast.error(toastMessages.errorConfirmEmail);
+      } else {
+        toast.error(error.message);
+      }
     } else {
       setUser(authData.user);
-      localStorage.setItem('user', JSON.stringify(authData.user));
+      localStorage.setItem(Auth.USER, JSON.stringify(authData.user));
+      toast.success(toastMessages.signIn);
       navigate(AppRoutes.HOME);
     }
   };
@@ -54,7 +60,7 @@ export default function SignInPage() {
       <Form
         onSubmit={handleSubmit(onSubmit)}
         isDisabled={!formState.isValid}
-        buttonLabel={messages.buttons.signIn}
+        buttonLabel={buttonsMessages.signIn}
       >
         {inputFields
           .filter(
@@ -83,7 +89,7 @@ export default function SignInPage() {
         <p className={styles.title}>{signInPage.infoTitle}</p>
 
         <Link to={AppRoutes.SIGN_UP} className={styles.link}>
-          {buttons.signUp}
+          {buttonsMessages.signUp}
         </Link>
       </div>
     </div>

@@ -5,13 +5,14 @@ import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpPage } from '@/sources/messages/signUpPage';
-import { messages } from '@/sources/messages';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
-import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import type { SignUpForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
+import toast from 'react-hot-toast';
 
 export function meta() {
   return [
@@ -42,9 +43,10 @@ export default function SignUpPage() {
     });
 
     if (error) {
-      console.error('Sign-up error:', error.message);
+      toast.error(error.message);
     } else {
       console.log(authData.user);
+      toast.success(toastMessages.signUp);
     }
   };
 
@@ -53,7 +55,7 @@ export default function SignUpPage() {
       <Form
         onSubmit={handleSubmit(onSubmit)}
         isDisabled={!formState.isValid}
-        buttonLabel={messages.buttons.signUp}
+        buttonLabel={buttonsMessages.signUp}
       >
         {inputFields.map(field => (
           <Input
@@ -76,7 +78,7 @@ export default function SignUpPage() {
         <p className={styles.title}>{signUpPage.infoTitle}</p>
 
         <Link to={AppRoutes.SIGN_IN} className={styles.link}>
-          {buttons.signIn}
+          {buttonsMessages.signIn}
         </Link>
       </div>
     </div>

@@ -40,3 +40,7 @@ export enum DisplayName {
   PORTAL = 'Portal',
   BUTTON = 'Button',
 }
+
+export enum Auth {
+  USER = 'user',
+}
