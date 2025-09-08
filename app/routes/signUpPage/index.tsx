@@ -6,13 +6,12 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { messages } from '@/sources/messages';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import type { SignUpForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
-import { useActions } from '@/utils/hooks/useActions';
 
 export function meta() {
   return [
@@ -22,9 +21,6 @@ export function meta() {
 }
 
 export default function SignUpPage() {
-  const navigate = useNavigate();
-  const { setUser } = useActions();
-
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
     mode: 'onChange',
@@ -48,10 +44,7 @@ export default function SignUpPage() {
     if (error) {
       console.error('Sign-up error:', error.message);
     } else {
-      console.log('User sign up: ', authData);
-      console.log('user: ', authData.user?.user_metadata.name);
-      setUser(authData.user);
-      navigate(AppRoutes.HOME);
+      console.log(authData.user);
     }
   };
 

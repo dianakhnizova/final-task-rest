@@ -12,6 +12,7 @@ import { buttons } from '@/sources/messages/buttons';
 import { signInSchema } from '@/schemas/signInSchema';
 import type { SignInForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
+import { useActions } from '@/utils/hooks/useActions';
 
 export function meta() {
   return [
@@ -22,6 +23,7 @@ export function meta() {
 
 export default function SignInPage() {
   const navigate = useNavigate();
+  const { setUser } = useActions();
 
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
@@ -41,8 +43,8 @@ export default function SignInPage() {
     if (error) {
       console.error('Sign-in error:', error.message);
     } else {
-      console.log('Signed in:', authData.user);
-      navigate(AppRoutes.ABOUT);
+      setUser(authData.user);
+      navigate(AppRoutes.HOME);
     }
   };
 
