@@ -3,14 +3,13 @@
   overflow: hidden;
   display: inline-flex;
   justify-content: center;
-  box-shadow: var(--elevation-level1);
   transition:
     box-shadow var(--duration-fast) var(--ease-out),
     opacity var(--duration-fast) var(--ease-out);
   font-family: var(--font-family-base);
   font-size: var(--font-size-xs);
   border: var(--border-width-sm) solid transparent;
-  border-radius: var(--radius-standard);
+  border-radius: var(--radius-sm);
   padding: var(--spacing-3) var(--spacing-6);
   align-items: center;
   cursor: pointer;

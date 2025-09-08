@@ -6,11 +6,11 @@ import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { UserForm } from '@/sources/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchema } from '@/schemas/userSchema';
 import { messages } from '@/sources/messages';
 import { AppRoutes, InputID } from '@/sources/enums';
 import { Link } from 'react-router';
 import { buttons } from '@/sources/messages/buttons';
+import { signInSchema } from '@/schemas/signInSchema';
 
 export function meta() {
   return [
@@ -21,7 +21,7 @@ export function meta() {
 
 export default function SignInPage() {
   const { register, handleSubmit, formState } = useForm<UserForm>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(signInSchema),
     mode: 'onChange',
   });
 

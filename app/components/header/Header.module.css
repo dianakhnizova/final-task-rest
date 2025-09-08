@@ -25,17 +25,12 @@
     box-shadow: var(--elevation-level2);
   }
 
-  .left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
+  .left,
   .right {
     display: flex;
     flex-direction: row;
-    gap: var(--spacing-2);
     align-items: center;
+    gap: var(--spacing-3);
   }
 }
 

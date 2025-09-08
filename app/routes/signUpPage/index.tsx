@@ -5,12 +5,12 @@ import { Form } from '@/components/ui/form';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { UserForm } from '@/sources/interfaces';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchema } from '@/schemas/userSchema';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { messages } from '@/sources/messages';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { buttons } from '@/sources/messages/buttons';
+import { signUpSchema } from '@/schemas/signUpSchema';
 
 export function meta() {
   return [
@@ -21,7 +21,7 @@ export function meta() {
 
 export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<UserForm>({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(signUpSchema),
     mode: 'onChange',
   });
 

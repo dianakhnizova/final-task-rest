@@ -8,8 +8,8 @@ export interface InputFields {
 }
 
 export interface UserForm {
-  name: string;
+  name?: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
 }

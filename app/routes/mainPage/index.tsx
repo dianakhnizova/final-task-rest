@@ -44,9 +44,12 @@ export default function MainPage() {
 
   return (
     <main className={styles.container}>
-      <h2>{messages.welcomeNew}</h2>
-
-      {!hasNestedRoutes && <SignInUpToggler />}
+      {!hasNestedRoutes && (
+        <div className={styles.content}>
+          <h2 className={styles.title}>{messages.welcomeNew}</h2>
+          <SignInUpToggler />
+        </div>
+      )}
 
       <Outlet />
     </main>
