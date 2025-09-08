@@ -3,9 +3,9 @@ import { useLayoutEffect } from 'react';
 import styles from './Modal.module.css';
 import ReactPortal from '@/components/react-portal/ReactPortal';
 import { useEscapeKey } from '@/utils/hooks/useEscapeKey';
-import { Button } from '../button/Button';
+import { Button } from '../button';
 import { Variant } from '@/sources/enums';
-import { messages } from '@/sources/messages';
+import { images } from '@/sources/messages/images';
 
 interface Props {
   isOpen: boolean;
@@ -35,7 +35,7 @@ export const Modal: FC<Props> = ({ isOpen, onClose, children }) => {
           >
             <img
               src={'close.svg'}
-              alt={messages.alt.close}
+              alt={images.close}
               className={styles.image}
             />
           </Button>

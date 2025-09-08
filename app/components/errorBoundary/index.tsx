@@ -14,11 +14,11 @@ export function ErrorBoundaryComponent({
 
   if (isRouteErrorResponse(error)) {
     message =
-      error.status === errorCode.NOTFOUND
+      error.status === errorCode.NOT_FOUND
         ? messages.errorBoundary.notFound
         : messages.errorBoundary.error;
     details =
-      error.status === errorCode.NOTFOUND
+      error.status === errorCode.NOT_FOUND
         ? messages.errorBoundary.notFound
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
@@ -29,12 +29,14 @@ export function ErrorBoundaryComponent({
   return (
     <main className={styles.errorBoundary}>
       <h1 className={styles.errorTitle}>{message}</h1>
+
       <p className={styles.errorDetails}>{details}</p>
       {stack && (
         <pre className={styles.errorStack}>
           <code>{stack}</code>
         </pre>
       )}
+
       {import.meta.env.DEV && params && (
         <div className={styles.debugParams}>
           <h3 className={styles.debugTitle}>{messages.errorBoundary.params}</h3>

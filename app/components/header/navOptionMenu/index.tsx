@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button/Button';
+import { Button } from '@/components/ui/button';
 import styles from '../Header.module.css';
 import { AppRoutes, Variant } from '@/sources/enums';
 import { LanguageIcon, SunIcon } from '@/components/icons';

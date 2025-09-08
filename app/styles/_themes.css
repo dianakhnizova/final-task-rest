@@ -24,7 +24,8 @@
   --md-sys-color-surface-variant: rgb(67 71 78);
   --md-sys-color-outline: rgb(142 144 153);
   --md-sys-color-outline-variant: rgb(67 71 78);
-  --md-sys-color-shadow: rgb(0 0 0);
+  --md-sys-color-shadow:
+    rgb(146 145 145 / 31.6%) 0 1px 3px 0, rgb(134 134 134 / 27.4%) 0 0 0 1px;
   --md-sys-color-shadow-rgb: 0, 0, 0;
   --md-sys-color-scrim: rgb(0 0 0);
   --md-sys-color-inverse-surface: rgb(227 229 235);
@@ -37,8 +38,6 @@
   --md-sys-color-surface-container: rgb(30 34 42);
   --md-sys-color-surface-container-high: rgb(41 45 53);
   --md-sys-color-surface-container-highest: rgb(52 56 64);
-  --shadow-1:
-    rgb(154 154 154 / 31.6%) 0 1px 3px 0, rgb(134 103 103 / 27.4%) 0 0 0 1px;
 }
 
 [data-theme='light'] {

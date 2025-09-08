@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './Button.module.css';
 import { type ButtonHTMLAttributes, type FC, type ReactNode } from 'react';
-import { Variant } from '@/sources/enums.ts';
+import { DisplayName, Variant } from '@/sources/enums.ts';
 
 type Props = {
   variant?: Variant;
@@ -24,4 +24,4 @@ export const Button: FC<Props> = ({
   );
 };
 
-Button.displayName = 'Button';
+Button.displayName = DisplayName.BUTTON;

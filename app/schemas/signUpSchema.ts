@@ -8,7 +8,7 @@ import {
 import { validation } from '@/sources/messages/validation';
 import { InputID } from '@/sources/enums';
 
-export const userSchema = z
+export const signUpSchema = z
   .object({
     name: nameSchema,
     email: emailSchema,

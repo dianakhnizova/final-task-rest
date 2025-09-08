@@ -1,11 +1,12 @@
 import { WRAPPER_ROOT_PORTAL_ID } from '@/sources/constants';
+import { DisplayName } from '@/sources/enums';
 import { createWrapperPortal } from '@/utils/createWrapperPortal';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { memo, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   wrapperId?: string;
 }
 
@@ -31,6 +32,6 @@ export const ReactPortal: FC<Props> = memo(
   }
 );
 
-ReactPortal.displayName = 'Portal';
+ReactPortal.displayName = DisplayName.PORTAL;
 
 export default ReactPortal;

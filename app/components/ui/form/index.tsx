@@ -1,15 +1,16 @@
 import styles from './Form.module.css';
 import { ButtonType } from '@/sources/enums';
-import { Button } from '../button/Button';
+import { Button } from '../button';
+import type { FC, ReactNode } from 'react';
 
 interface Props {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  children: React.ReactNode;
+  children: ReactNode;
   isDisabled?: boolean;
   buttonLabel?: string;
 }
 
-export const Form: React.FC<Props> = ({
+export const Form: FC<Props> = ({
   onSubmit,
   children,
   isDisabled,

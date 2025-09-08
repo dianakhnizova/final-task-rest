@@ -3,14 +3,16 @@
   flex-direction: column;
   align-items: flex-start;
   width: 70%;
-  gap: var(--spacing-6);
-  padding: var(--spacing-6);
+  gap: var(--spacing-5);
+  padding: var(--spacing-5) var(--spacing-6);
+  box-shadow: var(--color-shadow);
+  border-radius: var(--radius-lg);
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   gap: var(--spacing-5);
   border-radius: var(--radius-lg);
 }

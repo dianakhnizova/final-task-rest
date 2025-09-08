@@ -1,5 +1,6 @@
 .container {
   padding: var(--spacing-5);
+  width: 100%;
 }
 
 .separator {
@@ -14,7 +15,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-5);
+  gap: var(--spacing-6);
 }
 
 .link {
