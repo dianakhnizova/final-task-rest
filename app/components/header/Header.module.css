@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 100;
   padding: var(--spacing-5);
   background-color: var(--color-background);
   display: flex;
@@ -42,7 +43,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--spacing-3);
   text-decoration: none;
   color: var(--color-text-default);
 }

@@ -1,6 +1,6 @@
 import { SignInUpToggler } from '@/components/signInUpToggler';
 import styles from './mainPage.module.css';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
 import { mainPage as messages } from '@/sources/messages/mainPage';
 import { Button } from '@/components/ui/button/Button';
@@ -16,6 +16,7 @@ export function meta() {
 export default function MainPage() {
   const [auth, setAuth] = useState(false);
   const [username, setUsername] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     //todo - feat check auth
@@ -23,12 +24,15 @@ export default function MainPage() {
     setUsername('Anonymous');
   }, []);
 
+  const hasNestedRoutes = location.pathname !== '/';
+
   if (auth)
     return (
       <main className={styles.container}>
         <h2>
           {messages.welcomeOld} {username}
         </h2>
+
         <section className={styles.btnSection}>
           <Button onClick={handleRestClient}>{messages.btnRestClient}</Button>
           <Button onClick={handleHistory}>{messages.btnHistory}</Button>
@@ -41,7 +45,7 @@ export default function MainPage() {
     <main className={styles.container}>
       <h2>{messages.welcomeNew}</h2>
 
-      <SignInUpToggler />
+      {!hasNestedRoutes && <SignInUpToggler />}
 
       <Outlet />
     </main>
