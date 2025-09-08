@@ -8,6 +8,8 @@ import Wrapper from './components/wrapper';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { root } from './sources/messages/root';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -22,14 +24,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        <div id="root">
-          <Header />
-          <Wrapper>{children}</Wrapper>
-          <Footer />
-        </div>
+        <Provider store={store}>
+          <div id="root">
+            <Header />
+            <Wrapper>{children}</Wrapper>
+            <Footer />
+          </div>
 
-        <ScrollRestoration />
-        <Scripts />
+          <ScrollRestoration />
+          <Scripts />
+        </Provider>
       </body>
     </html>
   );

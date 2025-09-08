@@ -12,6 +12,7 @@ import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import type { SignUpForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
+import { useActions } from '@/utils/hooks/useActions';
 
 export function meta() {
   return [
@@ -22,6 +23,7 @@ export function meta() {
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const { setUser } = useActions();
 
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
@@ -31,17 +33,24 @@ export default function SignUpPage() {
   const { inputFields } = useInputFields();
 
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
-    const { email, password } = data;
+    const { email, password, name } = data;
 
     const { data: authData, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          name,
+        },
+      },
     });
 
     if (error) {
       console.error('Sign-up error:', error.message);
     } else {
       console.log('User sign up: ', authData);
+      console.log('user: ', authData.user?.user_metadata.name);
+      setUser(authData.user);
       navigate(AppRoutes.HOME);
     }
   };
