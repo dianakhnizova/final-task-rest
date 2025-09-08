@@ -10,6 +10,7 @@ import { Header } from '@/components/header';
 import { root } from './sources/messages/root';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import AppInitializer from './components/appInitializer';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,6 +26,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <body>
         <Provider store={store}>
+          <AppInitializer />
+
           <div id="root">
             <Header />
             <Wrapper>{children}</Wrapper>

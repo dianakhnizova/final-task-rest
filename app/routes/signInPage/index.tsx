@@ -44,6 +44,7 @@ export default function SignInPage() {
       console.error('Sign-in error:', error.message);
     } else {
       setUser(authData.user);
+      localStorage.setItem('user', JSON.stringify(authData.user));
       navigate(AppRoutes.HOME);
     }
   };
