@@ -71,8 +71,8 @@
   }
 
   &:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: var(--border-width-md) solid var(--color-primary);
+    outline-offset: var(--spacing-2);
   }
 
   &:disabled {
