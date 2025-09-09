@@ -1,14 +1,18 @@
-import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
 import { selectAuth } from '@/store/slices/auth/selectors';
-import { useActions } from '@/utils/hooks/useActions';
-import { AppRoutes, Auth } from '@/sources/enums';
 import { supabase } from '@/supabaseClient';
-import { Button } from '../ui/button';
+
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
+import { AppRoutes, Auth } from '@/sources/enums';
+
 import { header as headerMessages } from '@/sources/messages/header';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
 
-import toast from 'react-hot-toast';
+import { useActions } from '@/utils/hooks/useActions';
+
+import { Button } from '../ui/button';
 
 export const AuthBar = () => {
   const navigate = useNavigate();

@@ -1,19 +1,25 @@
-import styles from './SignInPage.module.css';
-import { signInPage } from '@/sources/messages/signInPage';
-import { useInputFields } from '@/utils/hooks/useInputFields';
-import { Input } from '@/components/ui/input';
-import { Form } from '@/components/ui/form';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { toasts as toastMessages } from '@/sources/messages/toasts';
-import { buttons as buttonsMessages } from '@/sources/messages/buttons';
-import { AppRoutes, Auth, InputID } from '@/sources/enums';
-import { Link, useNavigate } from 'react-router';
 import { signInSchema } from '@/schemas/signInSchema';
-import type { SignInForm } from '@/sources/interfaces';
 import { supabase } from '@/supabaseClient';
-import { useActions } from '@/utils/hooks/useActions';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router';
+
+import { AppRoutes, Auth, InputID } from '@/sources/enums';
+import { inputFields } from '@/sources/inputFields';
+import type { SignInForm } from '@/sources/interfaces';
+
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
+import { signInPage } from '@/sources/messages/signInPage';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import { useActions } from '@/utils/hooks/useActions';
+
+import styles from './SignInPage.module.css';
 
 export function meta() {
   return [
@@ -28,10 +34,12 @@ export default function SignInPage() {
 
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
-  const { inputFields } = useInputFields();
+  const filteredFields = inputFields.filter(
+    ({ id }) => id === InputID.ID_EMAIL || id === InputID.ID_PASSWORD
+  );
 
   const onSubmit: SubmitHandler<SignInForm> = async formData => {
     const { email, password } = formData;
@@ -62,27 +70,17 @@ export default function SignInPage() {
         isDisabled={!formState.isValid}
         buttonLabel={buttonsMessages.signIn}
       >
-        {inputFields
-          .filter(
-            field =>
-              field.id === InputID.ID_1_EMAIL ||
-              field.id === InputID.ID_3_PASSWORD
-          )
-          .map(field => (
-            <Input
-              key={field.id}
-              id={field.id}
-              label={field.label}
-              placeholder={field.placeholder}
-              type={field.type}
-              onChange={field.onChange}
-              name={field.id as keyof SignInForm}
-              register={register}
-              errorMessage={
-                formState.errors[field.id as keyof SignInForm]?.message
-              }
-            />
-          ))}
+        {filteredFields.map(field => (
+          <Input
+            key={field.id}
+            {...field}
+            name={field.id as keyof SignInForm}
+            register={register}
+            errorMessage={
+              formState.errors[field.id as keyof SignInForm]?.message
+            }
+          />
+        ))}
       </Form>
 
       <div className={styles.info}>

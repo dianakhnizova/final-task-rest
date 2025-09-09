@@ -1,30 +1,15 @@
-import type { Route } from '../../+types/root';
-import { isRouteErrorResponse } from 'react-router';
-import styles from './ErrorBoundary.module.css';
 import { messages } from '@/sources/messages';
-import { errorCode } from '@/sources/enums';
+
+import { getErrorData } from '@/utils/getErrorData';
+
+import type { Route } from '../../+types/root';
+import styles from './ErrorBoundary.module.css';
 
 export function ErrorBoundaryComponent({
   error,
   params,
 }: Route.ErrorBoundaryProps) {
-  let message = messages.errorBoundary.oops;
-  let details = messages.errorBoundary.details;
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message =
-      error.status === errorCode.NOT_FOUND
-        ? messages.errorBoundary.notFound
-        : messages.errorBoundary.error;
-    details =
-      error.status === errorCode.NOT_FOUND
-        ? messages.errorBoundary.notFound
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
+  const { message, details, stack } = getErrorData(error);
 
   return (
     <main className={styles.errorBoundary}>

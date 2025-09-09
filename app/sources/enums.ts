@@ -22,10 +22,10 @@ export enum InputType {
 }
 
 export enum InputID {
-  ID_1_EMAIL = 'email',
-  ID_2_NAME = 'name',
-  ID_3_PASSWORD = 'password',
-  ID_4_CONFIRM_PASSWORD = 'confirmPassword',
+  ID_EMAIL = 'email',
+  ID_NAME = 'name',
+  ID_PASSWORD = 'password',
+  ID_CONFIRM_PASSWORD = 'confirmPassword',
 }
 
 export enum errorCode {

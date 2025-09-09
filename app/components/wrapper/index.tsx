@@ -1,11 +1,8 @@
-import type { ReactNode } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+
 import styles from './wrapper.module.css';
 
-type Props = {
-  children: ReactNode;
-};
-
-export const Wrapper: React.FC<Props> = ({ children }: Props) => {
+export const Wrapper: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div id="wrapper" className={styles.wrapper}>
       {children}

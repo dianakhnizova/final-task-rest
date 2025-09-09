@@ -1,18 +1,23 @@
-import styles from './SignUpPage.module.css';
-import { useInputFields } from '@/utils/hooks/useInputFields';
-import { Input } from '@/components/ui/input';
-import { Form } from '@/components/ui/form';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { signUpSchema } from '@/schemas/signUpSchema';
+import { supabase } from '@/supabaseClient';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router';
+
+import { AppRoutes } from '@/sources/enums';
+import { inputFields } from '@/sources/inputFields';
+import type { SignUpForm } from '@/sources/interfaces';
+
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
-import { buttons as buttonsMessages } from '@/sources/messages/buttons';
-import { Link } from 'react-router';
-import { AppRoutes } from '@/sources/enums';
-import { signUpSchema } from '@/schemas/signUpSchema';
-import type { SignUpForm } from '@/sources/interfaces';
-import { supabase } from '@/supabaseClient';
-import toast from 'react-hot-toast';
+
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import styles from './SignUpPage.module.css';
 
 export function meta() {
   return [
@@ -24,10 +29,8 @@ export function meta() {
 export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
-
-  const { inputFields } = useInputFields();
 
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
     const { email, password, name } = data;

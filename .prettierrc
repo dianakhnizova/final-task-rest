@@ -6,5 +6,18 @@
   "tabWidth": 2,
   "useTabs": false,
   "bracketSpacing": true,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react$",
+    "^react-dom$",
+    "^@?\\w",
+    "^@/sources/(enums|interfaces|messages|constants|inputFields)$",
+    "^@/sources",
+    "^@/components",
+    "^@/utils",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
