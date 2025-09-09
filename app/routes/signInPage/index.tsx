@@ -52,6 +52,8 @@ export default function SignInPage() {
     if (error) {
       if (error.message.includes(toastMessages.partOfTextError1)) {
         toast.error(toastMessages.errorConfirmEmail);
+      } else if (error.message.includes(toastMessages.partOfTextError3)) {
+        toast.error(toastMessages.invalidPasswordEmail);
       } else {
         toast.error(error.message);
       }
