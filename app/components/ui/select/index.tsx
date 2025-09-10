@@ -1,10 +1,11 @@
 import type { FC } from 'react';
+
 import styles from './Select.module.css';
 
 interface Props {
-  setSelectedValue: (value: string | null) => void;
+  setSelectedValue: React.Dispatch<React.SetStateAction<string | null>>;
   options: (number | string)[];
-  defaultValue?: string | number | null;
+  defaultValue?: string | number;
 }
 
 export const Select: FC<Props> = ({
@@ -20,11 +21,7 @@ export const Select: FC<Props> = ({
 
   return (
     <select
-      defaultValue={
-        defaultValue !== undefined && defaultValue !== null
-          ? String(defaultValue)
-          : ''
-      }
+      defaultValue={defaultValue}
       onChange={onSelect}
       className={styles.select}
     >

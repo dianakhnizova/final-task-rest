@@ -8,6 +8,10 @@ import Wrapper from './components/wrapper';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { root } from './sources/messages/root';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import AppInitializer from './components/appInitializer';
+import { Toaster } from 'react-hot-toast';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -22,14 +26,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
 
       <body>
-        <div id="root">
-          <Header />
-          <Wrapper>{children}</Wrapper>
-          <Footer />
-        </div>
+        <Provider store={store}>
+          <AppInitializer />
 
-        <ScrollRestoration />
-        <Scripts />
+          <div id="root">
+            <Header />
+            <Wrapper>{children}</Wrapper>
+            <Footer />
+          </div>
+
+          <Toaster position="bottom-right" />
+
+          <ScrollRestoration />
+          <Scripts />
+        </Provider>
       </body>
     </html>
   );

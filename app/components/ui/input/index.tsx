@@ -1,18 +1,18 @@
-import type { UseFormRegister } from 'react-hook-form';
-import styles from './Input.module.css';
-import type { UserForm } from '@/sources/interfaces';
-import type { FC } from 'react';
+import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+import styles from './Input.module.css';
+
+interface Props<T extends FieldValues>
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> {
   id: string;
   label?: string;
   setInput?: (value: string) => void;
-  name: keyof UserForm;
-  register: UseFormRegister<UserForm>;
+  name: Path<T>;
+  register: UseFormRegister<T>;
   errorMessage?: string;
 }
 
-export const Input: FC<Props> = ({
+export const Input = <T extends FieldValues>({
   id,
   label,
   setInput,
@@ -20,31 +20,31 @@ export const Input: FC<Props> = ({
   register,
   errorMessage,
   ...rest
-}) => {
+}: Props<T>) => {
   const { onChange, ...restRegister } = register(name);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput?.(event.target.value);
+    onChange(event);
+  };
+
   return (
-    <>
-      <div className={styles.container}>
-        {label && (
-          <label htmlFor={id} className={styles.label}>
-            {label}
-          </label>
-        )}
+    <div className={styles.container}>
+      {label && (
+        <label htmlFor={id} className={styles.label}>
+          {label}
+        </label>
+      )}
 
-        <input
-          id={id}
-          {...rest}
-          {...restRegister}
-          onChange={event => {
-            setInput?.(event.target.value);
-            onChange(event);
-          }}
-          className={styles.input}
-        />
+      <input
+        id={id}
+        {...rest}
+        {...restRegister}
+        onChange={handleChange}
+        className={styles.input}
+      />
 
-        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-      </div>
-    </>
+      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+    </div>
   );
 };

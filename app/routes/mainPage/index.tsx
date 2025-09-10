@@ -1,11 +1,12 @@
 import { SignInUpToggler } from '@/components/signInUpToggler';
 import styles from './mainPage.module.css';
 import { Outlet, useLocation } from 'react-router';
-import { useEffect, useState } from 'react';
 import { mainPage as messages } from '@/sources/messages/mainPage';
 import { Button } from '@/components/ui/button';
 import { handleHistory, handleRestClient, handleVariables } from './handlers';
 import { AppRoutes } from '@/sources/enums';
+import { useSelector } from 'react-redux';
+import { selectAuth } from '@/store/slices/auth/selectors';
 
 export function meta() {
   return [
@@ -15,23 +16,16 @@ export function meta() {
 }
 
 export default function MainPage() {
-  const [auth, setAuth] = useState(false);
-  const [username, setUsername] = useState('');
+  const user = useSelector(selectAuth);
   const location = useLocation();
-
-  useEffect(() => {
-    //todo - feat check auth
-    setAuth(false); //for test, use result after feat check auth
-    setUsername('Anonymous');
-  }, []);
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
-  if (auth)
+  if (user)
     return (
       <main className={styles.container}>
         <h2>
-          {messages.welcomeOld} {username}
+          {messages.welcomeOld} {user.user_metadata.name}
         </h2>
 
         <section className={styles.btnSection}>

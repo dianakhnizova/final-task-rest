@@ -1,7 +1,10 @@
-import styles from './Footer.module.css';
+import { GITHUB_PROJECT_URL, RSS_COURSE_URL } from '@/sources/constants';
+
+import { footer } from '@/sources/messages/footer';
+
 import { GithubLogo, RsSchoolLogo } from '@/components/icons';
-import { GITHUB_PROJECT_URL, RSS_COURSE_URL } from '@/sources/constants.ts';
-import { footer } from '@/sources/messages/footer.ts';
+
+import styles from './Footer.module.css';
 
 export const Footer = () => {
   return (

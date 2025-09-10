@@ -1,21 +1,21 @@
-import styles from './SignInUpToggler.module.css';
-import { Button } from '../ui/button';
-import { useNavigate } from 'react-router';
-import { togglers } from '@/sources/messages/togglers';
+import { Link } from 'react-router';
+
 import { AppRoutes } from '@/sources/enums';
 
-export const SignInUpToggler = () => {
-  const navigate = useNavigate();
+import { togglers } from '@/sources/messages/togglers';
 
+import styles from './SignInUpToggler.module.css';
+
+export const SignInUpToggler = () => {
   return (
     <div className={styles.container}>
-      <Button onClick={() => navigate(AppRoutes.SIGN_IN)}>
+      <Link to={AppRoutes.SIGN_IN} className={styles.link}>
         {togglers.signIn}
-      </Button>
+      </Link>
 
-      <Button onClick={() => navigate(AppRoutes.SIGN_UP)}>
+      <Link to={AppRoutes.SIGN_UP} className={styles.link}>
         {togglers.signUp}
-      </Button>
+      </Link>
     </div>
   );
 };

@@ -1,12 +1,15 @@
-import classNames from 'classnames';
-import styles from './Button.module.css';
 import { type ButtonHTMLAttributes, type FC, type ReactNode } from 'react';
+
+import clsx from 'clsx';
+
 import { DisplayName, Variant } from '@/sources/enums.ts';
 
-type Props = {
+import styles from './Button.module.css';
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
   children?: ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
 export const Button: FC<Props> = ({
   variant = Variant.PRIMARY,
@@ -16,7 +19,7 @@ export const Button: FC<Props> = ({
 }: Props) => {
   return (
     <button
-      className={classNames(styles.button, styles[variant], className)}
+      className={clsx(styles.button, styles[variant], className)}
       {...rest}
     >
       {children}

@@ -7,7 +7,7 @@ export enum Variant {
 
 export enum AppRoutes {
   HOME = '/',
-  ABOUT = 'about',
+  ABOUT = '/about',
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
@@ -22,10 +22,10 @@ export enum InputType {
 }
 
 export enum InputID {
-  ID_1_EMAIL = 'email',
-  ID_2_NAME = 'name',
-  ID_3_PASSWORD = 'password',
-  ID_4_CONFIRM_PASSWORD = 'confirmPassword',
+  ID_EMAIL = 'email',
+  ID_NAME = 'name',
+  ID_PASSWORD = 'password',
+  ID_CONFIRM_PASSWORD = 'confirmPassword',
 }
 
 export enum errorCode {
@@ -39,4 +39,14 @@ export enum ButtonType {
 export enum DisplayName {
   PORTAL = 'Portal',
   BUTTON = 'Button',
+}
+
+export enum Auth {
+  USER = 'user',
+}
+
+export enum AuthErrors {
+  USER_EXIST = 'user_already_exists',
+  CREDENTIALS_INVALID = 'invalid_credentials',
+  NOT_CONFIRMED = 'email_not_confirmed',
 }

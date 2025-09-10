@@ -1,16 +1,25 @@
-import styles from './SignUpPage.module.css';
-import { useInputFields } from '@/utils/hooks/useInputFields';
-import { Input } from '@/components/ui/input';
-import { Form } from '@/components/ui/form';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signUpPage } from '@/sources/messages/signUpPage';
-import { messages } from '@/sources/messages';
-import { Link } from 'react-router';
-import { AppRoutes } from '@/sources/enums';
-import { buttons } from '@/sources/messages/buttons';
 import { signUpSchema } from '@/schemas/signUpSchema';
+import { supabase } from '@/supabaseClient';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router';
+
+import { AppRoutes } from '@/sources/enums';
+import { inputFields } from '@/sources/inputFields';
 import type { SignUpForm } from '@/sources/interfaces';
+
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
+import { signUpPage } from '@/sources/messages/signUpPage';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import { authError } from '@/utils/authError';
+
+import styles from './SignUpPage.module.css';
 
 export function meta() {
   return [
@@ -22,13 +31,35 @@ export function meta() {
 export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
-  const { inputFields } = useInputFields();
-
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
-    console.log('Submit', data);
+    const { email, password, name } = data;
+
+    const { data: authData, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+
+    if (error) {
+      authError(error);
+      return null;
+    }
+
+    if (authData.user?.identities?.length === 0) {
+      toast.error(toastMessages.userExist);
+      return;
+    }
+
+    toast.success(
+      `${toastMessages.signUp}, ${authData.user?.user_metadata.name}`
+    );
   };
 
   return (
@@ -36,16 +67,12 @@ export default function SignUpPage() {
       <Form
         onSubmit={handleSubmit(onSubmit)}
         isDisabled={!formState.isValid}
-        buttonLabel={messages.buttons.signUp}
+        buttonLabel={buttonsMessages.signUp}
       >
         {inputFields.map(field => (
           <Input
             key={field.id}
-            id={field.id}
-            label={field.label}
-            placeholder={field.placeholder}
-            type={field.type}
-            onChange={field.onChange}
+            {...field}
             name={field.id as keyof SignUpForm}
             register={register}
             errorMessage={
@@ -59,7 +86,7 @@ export default function SignUpPage() {
         <p className={styles.title}>{signUpPage.infoTitle}</p>
 
         <Link to={AppRoutes.SIGN_IN} className={styles.link}>
-          {buttons.signIn}
+          {buttonsMessages.signIn}
         </Link>
       </div>
     </div>

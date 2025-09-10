@@ -4,3 +4,11 @@
   gap: var(--spacing-5);
   width: 70%;
 }
+
+.link {
+  color: var(--md-sys-color-primary);
+
+  &:hover {
+    color: var(--md-sys-color-on-primary);
+  }
+}

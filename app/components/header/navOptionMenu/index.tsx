@@ -1,13 +1,12 @@
-import { Button } from '@/components/ui/button';
-import styles from '../Header.module.css';
-import { AppRoutes, Variant } from '@/sources/enums';
+import { Variant } from '@/sources/enums';
+
 import { LanguageIcon, SunIcon } from '@/components/icons';
-import { header as messages } from '@/sources/messages/header';
-import { useNavigate } from 'react-router';
+import { Button } from '@/components/ui/button';
+
+import styles from '../Header.module.css';
+import { AuthBar } from './components/authBar';
 
 export const NavOptionMenu = () => {
-  const navigate = useNavigate();
-
   return (
     <div className={styles.right}>
       <Button variant={Variant.ICON}>
@@ -18,9 +17,7 @@ export const NavOptionMenu = () => {
         <SunIcon />
       </Button>
 
-      <Button onClick={() => navigate(AppRoutes.SIGN_IN)}>
-        {messages.signIn}
-      </Button>
+      <AuthBar />
     </div>
   );
 };

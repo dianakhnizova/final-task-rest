@@ -1,16 +1,27 @@
-import styles from './SignInPage.module.css';
-import { signInPage } from '@/sources/messages/signInPage';
-import { useInputFields } from '@/utils/hooks/useInputFields';
-import { Input } from '@/components/ui/input';
-import { Form } from '@/components/ui/form';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { messages } from '@/sources/messages';
-import { AppRoutes, InputID } from '@/sources/enums';
-import { Link } from 'react-router';
-import { buttons } from '@/sources/messages/buttons';
 import { signInSchema } from '@/schemas/signInSchema';
+import { supabase } from '@/supabaseClient';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router';
+
+import { AppRoutes, Auth, InputID } from '@/sources/enums';
+import { inputFields } from '@/sources/inputFields';
 import type { SignInForm } from '@/sources/interfaces';
+
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
+import { signInPage } from '@/sources/messages/signInPage';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
+
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+
+import { authError } from '@/utils/authError';
+import { useActions } from '@/utils/hooks/useActions';
+import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
+
+import styles from './SignInPage.module.css';
 
 export function meta() {
   return [
@@ -20,15 +31,40 @@ export function meta() {
 }
 
 export default function SignInPage() {
+  const navigate = useNavigate();
+  const { setUser } = useActions();
+  const { setUserToStorage } = useSaveUserToLS(Auth.USER, null);
+
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
-  const { inputFields } = useInputFields();
+  const filteredFields = inputFields.filter(
+    ({ id }) => id === InputID.ID_EMAIL || id === InputID.ID_PASSWORD
+  );
 
-  const onSubmit: SubmitHandler<SignInForm> = async data => {
-    console.log('Submit', data);
+  const onSubmit: SubmitHandler<SignInForm> = async formData => {
+    const { email, password } = formData;
+
+    const { data: authData, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      authError(error);
+      return null;
+    }
+
+    setUser(authData.user);
+    setUserToStorage(authData.user);
+
+    toast.success(
+      `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`
+    );
+
+    navigate(AppRoutes.HOME);
   };
 
   return (
@@ -36,36 +72,26 @@ export default function SignInPage() {
       <Form
         onSubmit={handleSubmit(onSubmit)}
         isDisabled={!formState.isValid}
-        buttonLabel={messages.buttons.signIn}
+        buttonLabel={buttonsMessages.signIn}
       >
-        {inputFields
-          .filter(
-            field =>
-              field.id === InputID.ID_1_EMAIL ||
-              field.id === InputID.ID_3_PASSWORD
-          )
-          .map(field => (
-            <Input
-              key={field.id}
-              id={field.id}
-              label={field.label}
-              placeholder={field.placeholder}
-              type={field.type}
-              onChange={field.onChange}
-              name={field.id as keyof SignInForm}
-              register={register}
-              errorMessage={
-                formState.errors[field.id as keyof SignInForm]?.message
-              }
-            />
-          ))}
+        {filteredFields.map(field => (
+          <Input
+            key={field.id}
+            {...field}
+            name={field.id as keyof SignInForm}
+            register={register}
+            errorMessage={
+              formState.errors[field.id as keyof SignInForm]?.message
+            }
+          />
+        ))}
       </Form>
 
       <div className={styles.info}>
         <p className={styles.title}>{signInPage.infoTitle}</p>
 
         <Link to={AppRoutes.SIGN_UP} className={styles.link}>
-          {buttons.signUp}
+          {buttonsMessages.signUp}
         </Link>
       </div>
     </div>
