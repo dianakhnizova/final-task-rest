@@ -1,8 +1,10 @@
-import { Button } from '@/components/ui/button';
-import styles from '../Header.module.css';
 import { Variant } from '@/sources/enums';
+
 import { LanguageIcon, SunIcon } from '@/components/icons';
-import { AuthBar } from '@/components/authBar';
+import { Button } from '@/components/ui/button';
+
+import styles from '../Header.module.css';
+import { AuthBar } from './components/authBar';
 
 export const NavOptionMenu = () => {
   return (

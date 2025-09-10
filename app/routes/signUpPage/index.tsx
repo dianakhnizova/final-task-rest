@@ -17,6 +17,8 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import { authError } from '@/utils/authError';
+
 import styles from './SignUpPage.module.css';
 
 export function meta() {
@@ -46,20 +48,18 @@ export default function SignUpPage() {
     });
 
     if (error) {
-      if (error.message.includes(toastMessages.partOfTextError2)) {
-        toast.error(toastMessages.userExists);
-      } else {
-        toast.error(error.message || toastMessages.somethingError);
-      }
-      return;
+      authError(error);
+      return null;
     }
 
     if (authData.user?.identities?.length === 0) {
-      toast.error(toastMessages.userExists);
+      toast.error(toastMessages.userExist);
       return;
     }
 
-    toast.success(toastMessages.signUp);
+    toast.success(
+      `${toastMessages.signUp}, ${authData.user?.user_metadata.name}`
+    );
   };
 
   return (
@@ -72,11 +72,7 @@ export default function SignUpPage() {
         {inputFields.map(field => (
           <Input
             key={field.id}
-            id={field.id}
-            label={field.label}
-            placeholder={field.placeholder}
-            type={field.type}
-            onChange={field.onChange}
+            {...field}
             name={field.id as keyof SignUpForm}
             register={register}
             errorMessage={

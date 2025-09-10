@@ -1,6 +1,6 @@
 import { messages } from '@/sources/messages';
 
-import { getErrorData } from '@/utils/getErrorData';
+import { getErrorData } from '@/components/errorBoundary/getErrorData';
 
 import type { Route } from '../../+types/root';
 import styles from './ErrorBoundary.module.css';

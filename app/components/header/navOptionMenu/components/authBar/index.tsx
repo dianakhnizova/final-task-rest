@@ -10,14 +10,17 @@ import { AppRoutes, Auth } from '@/sources/enums';
 import { header as headerMessages } from '@/sources/messages/header';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
 
-import { useActions } from '@/utils/hooks/useActions';
+import { Button } from '@/components/ui/button';
 
-import { Button } from '../ui/button';
+import { useActions } from '@/utils/hooks/useActions';
+import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
 
 export const AuthBar = () => {
   const navigate = useNavigate();
   const user = useSelector(selectAuth);
   const { clearUser } = useActions();
+
+  const { removeUserFromStorage } = useSaveUserToLS(Auth.USER, null);
 
   const handleSignIn = () => {
     navigate(AppRoutes.SIGN_IN);
@@ -25,19 +28,16 @@ export const AuthBar = () => {
 
   const handleLogOut = async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem(Auth.USER);
+    removeUserFromStorage();
+    toast.success(`${user?.user_metadata.name} ${toastMessages.logOut}`);
+
     clearUser();
-    toast.success(toastMessages.logOut);
     navigate(AppRoutes.HOME);
   };
 
-  return (
-    <>
-      {user ? (
-        <Button onClick={handleLogOut}>{headerMessages.logOut}</Button>
-      ) : (
-        <Button onClick={handleSignIn}>{headerMessages.signIn}</Button>
-      )}
-    </>
+  return user ? (
+    <Button onClick={handleLogOut}>{headerMessages.logOut}</Button>
+  ) : (
+    <Button onClick={handleSignIn}>{headerMessages.signIn}</Button>
   );
 };

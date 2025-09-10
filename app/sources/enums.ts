@@ -44,3 +44,9 @@ export enum DisplayName {
 export enum Auth {
   USER = 'user',
 }
+
+export enum AuthErrors {
+  USER_EXIST = 'user_already_exists',
+  CREDENTIALS_INVALID = 'invalid_credentials',
+  NOT_CONFIRMED = 'email_not_confirmed',
+}

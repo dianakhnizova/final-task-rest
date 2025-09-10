@@ -17,7 +17,9 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
+import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
 
 import styles from './SignInPage.module.css';
 
@@ -31,6 +33,7 @@ export function meta() {
 export default function SignInPage() {
   const navigate = useNavigate();
   const { setUser } = useActions();
+  const { setUserToStorage } = useSaveUserToLS(Auth.USER, null);
 
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
@@ -50,19 +53,18 @@ export default function SignInPage() {
     });
 
     if (error) {
-      if (error.message.includes(toastMessages.partOfTextError1)) {
-        toast.error(toastMessages.errorConfirmEmail);
-      } else if (error.message.includes(toastMessages.partOfTextError3)) {
-        toast.error(toastMessages.invalidPasswordEmail);
-      } else {
-        toast.error(error.message);
-      }
-    } else {
-      setUser(authData.user);
-      localStorage.setItem(Auth.USER, JSON.stringify(authData.user));
-      toast.success(toastMessages.signIn);
-      navigate(AppRoutes.HOME);
+      authError(error);
+      return null;
     }
+
+    setUser(authData.user);
+    setUserToStorage(authData.user);
+
+    toast.success(
+      `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`
+    );
+
+    navigate(AppRoutes.HOME);
   };
 
   return (
