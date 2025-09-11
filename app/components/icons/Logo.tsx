@@ -1,11 +1,11 @@
-import styles from './icon.module.css';
+import { LOGO_URL } from '@/sources/constants';
+
 import { header as messages } from '@/sources/messages/header';
+
+import styles from './icon.module.css';
 
 export const Logo = () => (
   <div className={styles.headerLogo}>
-    <img
-      src="https://raw.githubusercontent.com/dianakhnizova/StudioTeams/develop/src/components/logo/snake.svg"
-      alt={messages.textInsteadLogo}
-    />
+    <img src={LOGO_URL} alt={messages.textInsteadLogo} />
   </div>
 );
