@@ -11,6 +11,7 @@ export enum AppRoutes {
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
+  REST_CLIENT = '/restClient',
 }
 
 export enum InputType {
@@ -26,6 +27,7 @@ export enum InputID {
   ID_NAME = 'name',
   ID_PASSWORD = 'password',
   ID_CONFIRM_PASSWORD = 'confirmPassword',
+  ID_URL = 'url',
 }
 
 export enum errorCode {

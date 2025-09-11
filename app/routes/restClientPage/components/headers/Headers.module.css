@@ -1,0 +1,10 @@
+.table {
+  width: 60%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
+    padding: var(--spacing-4);
+  }
+}
