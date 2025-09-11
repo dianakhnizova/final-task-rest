@@ -53,3 +53,11 @@ export enum AuthErrors {
   CREDENTIALS_INVALID = 'invalid_credentials',
   NOT_CONFIRMED = 'email_not_confirmed',
 }
+
+export enum Methods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
+}

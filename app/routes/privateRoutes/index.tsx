@@ -1,15 +1,24 @@
 import { selectAuth } from '@/store/slices/auth/selectors';
 
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
 
 export default function PrivateRoutes() {
   const user = useSelector(selectAuth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate(AppRoutes.SIGN_IN, { replace: true });
+    }
+  }, [user, navigate]);
 
   if (!user) {
-    return <Navigate to={AppRoutes.SIGN_IN} replace />;
+    return null;
   }
 
   return <Outlet />;

@@ -3,10 +3,6 @@ export const restClientPage = {
   metaName: 'description',
   metaContent: 'Welcome to Rest Client',
 
-  url: {
-    title: 'Method',
-  },
-
   table: {
     headerKey: 'Header key',
     headerValue: 'Header value',

@@ -20,7 +20,6 @@ export const Input = <T extends FieldValues>({
   name,
   register,
   errorMessage,
-  className,
   ...rest
 }: Props<T>) => {
   const { onChange, ...restRegister } = register
@@ -33,7 +32,7 @@ export const Input = <T extends FieldValues>({
   };
 
   return (
-    <div className={clsx(styles.container, className)}>
+    <div className={clsx(styles.container, { [styles.urlContainer]: !label })}>
       {label && (
         <label htmlFor={id} className={styles.label}>
           {label}

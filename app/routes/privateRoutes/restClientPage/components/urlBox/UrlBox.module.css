@@ -1,5 +1,7 @@
-.urlInput {
-  flex-direction: row;
+.container {
+  display: flex;
   align-items: center;
-  width: 50%;
+  justify-content: center;
+  width: 100%;
+  gap: var(--spacing-4);
 }
