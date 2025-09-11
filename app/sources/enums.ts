@@ -50,3 +50,9 @@ export enum AuthErrors {
   CREDENTIALS_INVALID = 'invalid_credentials',
   NOT_CONFIRMED = 'email_not_confirmed',
 }
+
+export enum WrapperId {
+  default = 'wrapper',
+  header = 'wrapperHeader',
+  footer = 'wrapperFooter',
+}
