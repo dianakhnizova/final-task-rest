@@ -1,6 +1,10 @@
 import { clsx } from 'clsx';
 
+import { WrapperId } from '@/sources/enums';
+
 import { header as messages } from '@/sources/messages/header.ts';
+
+import Wrapper from '@/components/wrapper';
 
 import useInView from '@/utils/hooks/useInView.ts';
 
@@ -20,8 +24,12 @@ export const Header = () => {
       <div ref={triggerRef} />
 
       <header className={clsx(styles.header, !inView && styles.stuck)}>
-        <NavLogo />
-        <NavOptionMenu />
+        <Wrapper id={WrapperId.header}>
+          <section className={clsx(styles.header, inView && styles.stuck)}>
+            <NavLogo />
+            <NavOptionMenu />
+          </section>
+        </Wrapper>
       </header>
     </>
   );

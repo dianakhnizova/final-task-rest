@@ -1,29 +1,23 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
+import '@/global.css';
+import { store } from '@/store/store';
 
-import { ErrorBoundaryComponent } from './components/errorBoundary';
+import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+import { Outlet, Scripts, ScrollRestoration } from 'react-router';
+
+import AppInitializer from '@/components/appInitializer';
+import { Footer } from '@/components/footer';
+import Head from '@/components/head';
+import { Header } from '@/components/header';
+import Wrapper from '@/components/wrapper';
 
 import type { Route } from './+types/root';
-import './global.css';
-import Wrapper from './components/wrapper';
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
-import { root } from './sources/messages/root';
-import { Provider } from 'react-redux';
-import { store } from './store/store';
-import AppInitializer from './components/appInitializer';
-import { Toaster } from 'react-hot-toast';
+import { ErrorBoundaryComponent } from './components/errorBoundary';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="dark">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{root.appTitle}</title>
-        <Meta />
-
-        <Links />
-      </head>
+      <Head />
 
       <body>
         <Provider store={store}>

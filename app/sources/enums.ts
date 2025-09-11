@@ -61,3 +61,9 @@ export enum Methods {
   PATCH = 'PATCH',
   DELETE = 'DELETE',
 }
+
+export enum WrapperId {
+  default = 'wrapper',
+  header = 'wrapperHeader',
+  footer = 'wrapperFooter',
+}
