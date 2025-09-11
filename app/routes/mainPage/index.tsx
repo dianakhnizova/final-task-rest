@@ -1,12 +1,17 @@
-import { SignInUpToggler } from '@/components/signInUpToggler';
-import styles from './mainPage.module.css';
-import { Outlet, useLocation } from 'react-router';
-import { mainPage as messages } from '@/sources/messages/mainPage';
-import { Button } from '@/components/ui/button';
-import { handleHistory, handleRestClient, handleVariables } from './handlers';
-import { AppRoutes } from '@/sources/enums';
-import { useSelector } from 'react-redux';
 import { selectAuth } from '@/store/slices/auth/selectors';
+
+import { useSelector } from 'react-redux';
+import { Outlet, useLocation, useNavigate } from 'react-router';
+
+import { AppRoutes } from '@/sources/enums';
+
+import { mainPage as messages } from '@/sources/messages/mainPage';
+
+import { SignInUpToggler } from '@/components/signInUpToggler';
+import { Button } from '@/components/ui/button';
+
+import { handleHistory, handleRestClient, handleVariables } from './handlers';
+import styles from './mainPage.module.css';
 
 export function meta() {
   return [
@@ -18,6 +23,7 @@ export function meta() {
 export default function MainPage() {
   const user = useSelector(selectAuth);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
@@ -29,7 +35,9 @@ export default function MainPage() {
         </h2>
 
         <section className={styles.btnSection}>
-          <Button onClick={handleRestClient}>{messages.btnRestClient}</Button>
+          <Button onClick={() => handleRestClient(navigate)}>
+            {messages.btnRestClient}
+          </Button>
           <Button onClick={handleHistory}>{messages.btnHistory}</Button>
           <Button onClick={handleVariables}>{messages.btnVariables}</Button>
         </section>

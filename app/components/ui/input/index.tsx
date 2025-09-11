@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import styles from './Input.module.css';
@@ -7,8 +8,8 @@ interface Props<T extends FieldValues>
   id: string;
   label?: string;
   setInput?: (value: string) => void;
-  name: Path<T>;
-  register: UseFormRegister<T>;
+  name?: Path<T>;
+  register?: UseFormRegister<T>;
   errorMessage?: string;
 }
 
@@ -21,15 +22,17 @@ export const Input = <T extends FieldValues>({
   errorMessage,
   ...rest
 }: Props<T>) => {
-  const { onChange, ...restRegister } = register(name);
+  const { onChange, ...restRegister } = register
+    ? register(name as Path<T>)
+    : {};
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput?.(event.target.value);
-    onChange(event);
+    onChange?.(event);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, { [styles.urlContainer]: !label })}>
       {label && (
         <label htmlFor={id} className={styles.label}>
           {label}

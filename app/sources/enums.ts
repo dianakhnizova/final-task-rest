@@ -7,10 +7,12 @@ export enum Variant {
 
 export enum AppRoutes {
   HOME = '/',
+  PRIVATE = '',
   ABOUT = '/about',
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
+  REST_CLIENT = '/restClient',
 }
 
 export enum InputType {
@@ -26,6 +28,7 @@ export enum InputID {
   ID_NAME = 'name',
   ID_PASSWORD = 'password',
   ID_CONFIRM_PASSWORD = 'confirmPassword',
+  ID_URL = 'url',
 }
 
 export enum errorCode {
@@ -49,6 +52,14 @@ export enum AuthErrors {
   USER_EXIST = 'user_already_exists',
   CREDENTIALS_INVALID = 'invalid_credentials',
   NOT_CONFIRMED = 'email_not_confirmed',
+}
+
+export enum Methods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
 }
 
 export enum WrapperId {
