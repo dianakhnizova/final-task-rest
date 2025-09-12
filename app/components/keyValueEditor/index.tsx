@@ -54,6 +54,7 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
     value: pair[field],
     setInput: getChangeHandler(pair, field),
     renderErrorMessage: false,
+    className: styles.input,
   });
 
   return (
@@ -83,16 +84,10 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
           {keyValues.map((keyValue, index) => (
             <tr key={index}>
               <td>
-                <Input
-                  {...buildInput(keyValue, 'key')}
-                  className={styles.input}
-                />
+                <Input {...buildInput(keyValue, 'key')} />
               </td>
               <td>
-                <Input
-                  {...buildInput(keyValue, 'value')}
-                  className={styles.input}
-                />
+                <Input {...buildInput(keyValue, 'value')} />
               </td>
               <td>
                 <Button onClick={() => handleDelete(keyValue.id)}>
