@@ -3,21 +3,15 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 
 import { Button } from '@/components/ui/button';
 
+import { pageMeta } from '@/utils/metaHelpers.ts';
+
 import styles from './RestClientPage.module.css';
 import { Body } from './components/body';
 import { Headers } from './components/headers';
 import { Response } from './components/response';
 import { UrlBox } from './components/urlBox';
 
-export function meta() {
-  return [
-    { title: restClientMessages.metaTitle },
-    {
-      name: restClientMessages.metaName,
-      content: restClientMessages.metaContent,
-    },
-  ];
-}
+export const meta = pageMeta(restClientMessages);
 
 export default function RestClientPage() {
   return (
