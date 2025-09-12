@@ -70,7 +70,9 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
             <th>Key</th>
             <th>Value</th>
             <th>
-              <Button onClick={handleAdd}>Add</Button>
+              <Button className={styles.addButton} onClick={handleAdd}>
+                Add
+              </Button>
             </th>
           </tr>
         </thead>
