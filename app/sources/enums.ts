@@ -42,6 +42,7 @@ export enum ButtonType {
 export enum DisplayName {
   PORTAL = 'Portal',
   BUTTON = 'Button',
+  LOADER = 'Loader',
 }
 
 export enum Auth {
