@@ -19,7 +19,11 @@ export const UrlBox = () => {
         setSelectedValue={value => setMethod(value as Methods)}
       />
 
-      <Input id={InputID.ID_URL} type={InputType.TEXT} />
+      <Input
+        id={InputID.ID_URL}
+        type={InputType.TEXT}
+        containerClassName={styles.urlInputContainer}
+      />
     </div>
   );
 };

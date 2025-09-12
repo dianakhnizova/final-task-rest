@@ -1,16 +1,20 @@
+import type { ChangeEvent, InputHTMLAttributes } from 'react';
+
 import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import styles from './Input.module.css';
 
 interface Props<T extends FieldValues>
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'name'> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'name'> {
   id: string;
   label?: string;
   setInput?: (value: string) => void;
   name?: Path<T>;
   register?: UseFormRegister<T>;
   errorMessage?: string;
+  containerClassName?: string;
+  renderErrorMessage?: boolean;
 }
 
 export const Input = <T extends FieldValues>({
@@ -20,19 +24,28 @@ export const Input = <T extends FieldValues>({
   name,
   register,
   errorMessage,
+  className,
+  containerClassName,
+  renderErrorMessage = true,
   ...rest
 }: Props<T>) => {
   const { onChange, ...restRegister } = register
     ? register(name as Path<T>)
     : {};
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInput?.(event.target.value);
     onChange?.(event);
   };
 
   return (
-    <div className={clsx(styles.container, { [styles.urlContainer]: !label })}>
+    <div
+      className={clsx(
+        styles.container,
+        containerClassName,
+        renderErrorMessage && styles.containerWithErrorMessage
+      )}
+    >
       {label && (
         <label htmlFor={id} className={styles.label}>
           {label}
@@ -44,10 +57,12 @@ export const Input = <T extends FieldValues>({
         {...rest}
         {...restRegister}
         onChange={handleChange}
-        className={styles.input}
+        className={clsx(className, styles.input)}
       />
 
-      {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+      {errorMessage && renderErrorMessage && (
+        <p className={styles.error}>{errorMessage}</p>
+      )}
     </div>
   );
 };
