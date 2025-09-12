@@ -67,3 +67,13 @@ export enum WrapperId {
   header = 'wrapperHeader',
   footer = 'wrapperFooter',
 }
+
+export enum Theme {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
+export enum Language {
+  EN = 'en',
+  RU = 'ru',
+}
