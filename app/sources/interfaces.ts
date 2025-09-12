@@ -18,3 +18,13 @@ export interface SignInForm {
   email: string;
   password: string;
 }
+
+export type FetchPrepare = {
+  url: string;
+  options: RequestInit;
+};
+
+export type FetchResponse = {
+  response: Response | null;
+  error: string | null;
+};
