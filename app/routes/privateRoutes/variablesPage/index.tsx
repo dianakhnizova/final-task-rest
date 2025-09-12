@@ -6,6 +6,8 @@ import { type KeyValue, KeyValueEditor } from '@/components/keyValueEditor';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
+import styles from './variables.module.css';
+
 export const meta = pageMeta(messages);
 
 export default function VariablesPage() {
@@ -13,7 +15,7 @@ export default function VariablesPage() {
 
   return (
     <div>
-      <h1>Variables</h1>
+      <h1 className={styles.header}>Variables</h1>
       <div>
         <KeyValueEditor keyValues={keyValues} onChange={setKeyValues} />
       </div>
