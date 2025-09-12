@@ -12,6 +12,7 @@ export enum AppRoutes {
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
+  VARIABLES = '/variables',
   REST_CLIENT = '/restClient',
 }
 

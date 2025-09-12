@@ -36,7 +36,9 @@ export default function MainPage() {
             {messages.btnRestClient}
           </Button>
           <Button onClick={handleHistory}>{messages.btnHistory}</Button>
-          <Button onClick={handleVariables}>{messages.btnVariables}</Button>
+          <Button onClick={() => handleVariables(navigate)}>
+            {messages.btnVariables}
+          </Button>
         </section>
       </main>
     );
