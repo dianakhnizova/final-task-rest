@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
-import { InputID } from '@/sources/enums';
-
 import styles from './Input.module.css';
 
 interface Props<T extends FieldValues>
@@ -13,6 +11,7 @@ interface Props<T extends FieldValues>
   name?: Path<T>;
   register?: UseFormRegister<T>;
   errorMessage?: string;
+  isHeader?: boolean;
 }
 
 export const Input = <T extends FieldValues>({
@@ -22,6 +21,7 @@ export const Input = <T extends FieldValues>({
   name,
   register,
   errorMessage,
+  isHeader,
   ...rest
 }: Props<T>) => {
   const { onChange, ...restRegister } = register
@@ -37,8 +37,7 @@ export const Input = <T extends FieldValues>({
     <div
       className={clsx(styles.container, {
         [styles.urlContainer]: !label,
-        [styles.headerContainer]:
-          id === InputID.ID_HEADER_KEY || InputID.ID_HEADER_VALUE,
+        [styles.headerContainer]: isHeader,
       })}
     >
       {label && (

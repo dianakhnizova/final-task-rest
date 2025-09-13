@@ -3,4 +3,5 @@ export const buttons = {
   signUp: 'Sign up',
   headers: 'Headers',
   send: 'Send request',
+  delete: 'Delete',
 };

@@ -49,6 +49,7 @@ export const Headers = () => {
                       updateHeader({ index, key: value, value: header.value })
                     }
                     placeholder={inputMessages.placeholder.key}
+                    isHeader
                   />
                 </td>
                 <td>
@@ -60,10 +61,13 @@ export const Headers = () => {
                       updateHeader({ index, key: header.key, value })
                     }
                     placeholder={inputMessages.placeholder.value}
+                    isHeader
                   />
                 </td>
                 <td>
-                  <Button onClick={() => removeHeader(index)}>✕</Button>
+                  <Button onClick={() => removeHeader(index)}>
+                    {buttonMessages.delete}
+                  </Button>
                 </td>
               </tr>
             ))}
