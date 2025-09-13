@@ -24,7 +24,6 @@ export const UrlBox = () => {
   return (
     <div className={styles.container}>
       <Select
-        defaultValue={methodList[0]}
         options={methodList}
         setSelectedValue={value =>
           handleMethod(value as HttpMethods | null, setMethod)

@@ -8,4 +8,8 @@ export const methodList: Method[] = [
   HttpMethods.PUT,
   HttpMethods.PATCH,
   HttpMethods.DELETE,
+  HttpMethods.HEAD,
+  HttpMethods.OPTIONS,
+  HttpMethods.TRACE,
+  HttpMethods.CONNECT,
 ];
