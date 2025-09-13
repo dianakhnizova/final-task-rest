@@ -1,0 +1,29 @@
+.input {
+  border-radius: var(--radius-standard);
+}
+
+.addButton {
+  width: 100%;
+}
+
+.container {
+  border-radius: var(--radius-standard);
+  border: var(--border-width-sm) solid var(--color-border-variant);
+  padding: var(--spacing-4);
+  background-color: var(--color-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    padding: var(--spacing-4);
+    text-align: left;
+  }
+
+  thead {
+    border-bottom: var(--border-width-sm) solid var(--color-border-variant);
+  }
+}

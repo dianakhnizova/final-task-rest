@@ -8,6 +8,6 @@ export const handleHistory = () => {
   //todo - feat component for History
 };
 
-export const handleVariables = () => {
-  //todo - feat component for Variables
+export const handleVariables = (navigate: (path: string) => void) => {
+  navigate(AppRoutes.VARIABLES);
 };

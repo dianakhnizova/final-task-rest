@@ -10,15 +10,12 @@ import { mainPage as messages } from '@/sources/messages/mainPage';
 import { SignInUpToggler } from '@/components/signInUpToggler';
 import { Button } from '@/components/ui/button';
 
+import { pageMeta } from '@/utils/metaHelpers.ts';
+
 import { handleHistory, handleRestClient, handleVariables } from './handlers';
 import styles from './mainPage.module.css';
 
-export function meta() {
-  return [
-    { title: messages.metaTitle },
-    { name: messages.metaName, content: messages.metaContent },
-  ];
-}
+export const meta = pageMeta(messages);
 
 export default function MainPage() {
   const user = useSelector(selectAuth);
@@ -39,7 +36,9 @@ export default function MainPage() {
             {messages.btnRestClient}
           </Button>
           <Button onClick={handleHistory}>{messages.btnHistory}</Button>
-          <Button onClick={handleVariables}>{messages.btnVariables}</Button>
+          <Button onClick={() => handleVariables(navigate)}>
+            {messages.btnVariables}
+          </Button>
         </section>
       </main>
     );

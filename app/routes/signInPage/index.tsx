@@ -19,16 +19,12 @@ import { Input } from '@/components/ui/input';
 
 import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
+import { pageMeta } from '@/utils/metaHelpers.ts';
 import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
 
 import styles from './SignInPage.module.css';
 
-export function meta() {
-  return [
-    { title: signInPage.metaTitle },
-    { name: signInPage.metaName, content: signInPage.metaContent },
-  ];
-}
+export const meta = pageMeta(signInPage);
 
 export default function SignInPage() {
   const navigate = useNavigate();

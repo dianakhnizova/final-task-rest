@@ -18,15 +18,11 @@ import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
 import { authError } from '@/utils/authError';
+import { pageMeta } from '@/utils/metaHelpers.ts';
 
 import styles from './SignUpPage.module.css';
 
-export function meta() {
-  return [
-    { title: signUpPage.metaTitle },
-    { name: signUpPage.metaName, content: signUpPage.metaContent },
-  ];
-}
+export const meta = pageMeta(signUpPage);
 
 export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
