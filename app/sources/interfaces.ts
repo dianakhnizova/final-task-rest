@@ -18,3 +18,9 @@ export interface SignInForm {
   email: string;
   password: string;
 }
+
+export interface KeyValue {
+  id: number;
+  key: string;
+  value: string;
+}

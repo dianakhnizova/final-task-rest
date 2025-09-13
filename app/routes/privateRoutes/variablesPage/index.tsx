@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
+import type { KeyValue } from '@/sources/interfaces.ts';
 import { variablesPage as messages } from '@/sources/messages/variablesPage.ts';
 
-import { type KeyValue, KeyValueEditor } from '@/components/keyValueEditor';
+import { KeyValueEditor } from '@/components/keyValueEditor';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
@@ -15,7 +16,7 @@ export default function VariablesPage() {
 
   return (
     <div>
-      <h1 className={styles.header}>Variables</h1>
+      <h1 className={styles.header}>{messages.header}</h1>
       <div>
         <KeyValueEditor keyValues={keyValues} onChange={setKeyValues} />
       </div>

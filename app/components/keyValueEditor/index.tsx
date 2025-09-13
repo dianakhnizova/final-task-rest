@@ -1,22 +1,22 @@
 import { type FC, useId } from 'react';
 
+import type { KeyValue } from '@/sources/interfaces.ts';
+import { keyValueEditor as messages } from '@/sources/messages/keyValueEditor.ts';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 import styles from './KeyValueEditor.module.css';
-
-export interface KeyValue {
-  id: number;
-  key: string;
-  value: string;
-}
 
 export interface Props {
   keyValues: KeyValue[];
   onChange: (newValues: KeyValue[]) => void;
 }
 
-type EditableField = 'key' | 'value';
+const enum EditableField {
+  KEY = 'key',
+  VALUE = 'value',
+}
 
 export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
   const id = useId();
@@ -71,7 +71,7 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
             <th>Value</th>
             <th>
               <Button className={styles.addButton} onClick={handleAdd}>
-                Add
+                {messages.add}
               </Button>
             </th>
           </tr>
@@ -79,21 +79,21 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
         <tbody>
           {keyValues.length === 0 && (
             <tr>
-              <td colSpan={3}>Click the "Add" button to add a value</td>
+              <td colSpan={3}>{messages.emptyMessage}</td>
             </tr>
           )}
 
-          {keyValues.map((keyValue, index) => (
-            <tr key={index}>
+          {keyValues.map(keyValue => (
+            <tr key={keyValue.id}>
               <td>
-                <Input {...buildInput(keyValue, 'key')} />
+                <Input {...buildInput(keyValue, EditableField.KEY)} />
               </td>
               <td>
-                <Input {...buildInput(keyValue, 'value')} />
+                <Input {...buildInput(keyValue, EditableField.VALUE)} />
               </td>
               <td>
                 <Button onClick={() => handleDelete(keyValue.id)}>
-                  Delete
+                  {messages.delete}
                 </Button>
               </td>
             </tr>
