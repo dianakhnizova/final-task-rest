@@ -33,6 +33,7 @@ export default function RestClientPage() {
   const method = useSelector(selectMethod);
   const url = useSelector(selectUrl);
 
+  console.log(url);
   const [status, setStatus] = useState<number | null>(null);
   const [body, setBody] = useState<string | null>(null);
 

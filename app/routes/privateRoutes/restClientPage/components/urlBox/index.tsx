@@ -15,8 +15,8 @@ export const UrlBox = () => {
     if (value) setMethod(value);
   };
 
-  const handleUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUrl(event.target.value);
+  const handleUrl = (value: string) => {
+    setUrl(value);
   };
 
   return (
@@ -27,7 +27,7 @@ export const UrlBox = () => {
         setSelectedValue={handleMethod}
       />
 
-      <Input id={InputID.ID_URL} type={InputType.TEXT} onChange={handleUrl} />
+      <Input id={InputID.ID_URL} type={InputType.TEXT} setInput={handleUrl} />
     </div>
   );
 };
