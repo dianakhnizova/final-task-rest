@@ -1,20 +1,18 @@
-import type { FC } from 'react';
-
 import styles from './Select.module.css';
 
-interface Props {
-  setSelectedValue: React.Dispatch<React.SetStateAction<string | null>>;
+interface Props<T extends string | number> {
+  setSelectedValue: (value: T | null) => void;
   options: (number | string)[];
   defaultValue?: string | number;
 }
 
-export const Select: FC<Props> = ({
+export const Select = <T extends string | number>({
   setSelectedValue,
   options,
   defaultValue,
-}) => {
+}: Props<T>) => {
   const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+    const value = event.target.value as T;
 
     setSelectedValue(value || null);
   };

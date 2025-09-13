@@ -1,11 +1,11 @@
-import { Methods } from '@/sources/enums';
+import { HttpMethods } from '@/sources/enums';
 
-export type Method = Methods;
+export type Method = HttpMethods;
 
 export const methodList: Method[] = [
-  Methods.GET,
-  Methods.POST,
-  Methods.PUT,
-  Methods.PATCH,
-  Methods.DELETE,
+  HttpMethods.GET,
+  HttpMethods.POST,
+  HttpMethods.PUT,
+  HttpMethods.PATCH,
+  HttpMethods.DELETE,
 ];

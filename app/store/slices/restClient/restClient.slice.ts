@@ -1,21 +1,26 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { Methods } from '@/sources/enums';
+import { HttpMethods } from '@/sources/enums';
 
 interface RestClientState {
-  method: Methods;
+  method: HttpMethods;
+  url: string;
 }
 
 const initialState: RestClientState = {
-  method: Methods.GET,
+  method: HttpMethods.GET,
+  url: '',
 };
 
 const restClientSlice = createSlice({
   name: 'restClient',
   initialState,
   reducers: {
-    setMethod(state, action: PayloadAction<Methods>) {
+    setMethod(state, action: PayloadAction<HttpMethods>) {
       state.method = action.payload;
+    },
+    setUrl(state, action: PayloadAction<string>) {
+      state.url = action.payload;
     },
   },
 });

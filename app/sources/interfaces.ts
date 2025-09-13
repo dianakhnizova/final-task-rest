@@ -1,5 +1,3 @@
-import type { Methods } from './enums';
-
 export interface InputFields {
   id: string;
   label: string;
@@ -21,9 +19,12 @@ export interface SignInForm {
   password: string;
 }
 
-export interface FetchOptions {
+export type FetchPrepare = {
   url: string;
-  method: Methods;
-  headers?: Map<string, string>;
-  body?: unknown;
-}
+  options: RequestInit;
+};
+
+export type FetchResponse = {
+  response: Response | null;
+  error: string | null;
+};
