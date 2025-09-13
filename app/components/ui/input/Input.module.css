@@ -6,7 +6,7 @@
   height: 70px;
 
   &.urlContainer {
-    width: 40%;
+    width: 50%;
     justify-content: center;
   }
 }

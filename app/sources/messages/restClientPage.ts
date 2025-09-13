@@ -16,5 +16,6 @@ export const restClientPage = {
   response: {
     statusTitle: 'Status: ',
     bodyTitle: 'Body: ',
+    emptyData: 'No data yet',
   },
 };
