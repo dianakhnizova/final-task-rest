@@ -6,6 +6,7 @@ export const restClientPage = {
   table: {
     headerKey: 'Header key',
     headerValue: 'Header value',
+    headerDelete: 'Delete',
   },
 
   body: {

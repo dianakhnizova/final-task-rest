@@ -1,17 +1,20 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { HttpMethods } from '@/sources/enums';
+import type { Header } from '@/sources/interfaces';
 
 interface RestClientState {
   method: HttpMethods;
   url: string;
   status: number | null;
   body: string | null;
+  headers: Header[];
 }
 
 const initialState: RestClientState = {
   method: HttpMethods.GET,
   url: '',
+  headers: [],
   status: null,
   body: null,
 };
@@ -36,6 +39,19 @@ const restClientSlice = createSlice({
     clearResponse(state) {
       state.status = null;
       state.body = null;
+    },
+    addHeader(state) {
+      state.headers.push({ key: '', value: '' });
+    },
+    updateHeader(
+      state,
+      action: PayloadAction<{ index: number; key: string; value: string }>
+    ) {
+      const { index, key, value } = action.payload;
+      state.headers[index] = { key, value };
+    },
+    removeHeader(state, action: PayloadAction<number>) {
+      state.headers.splice(action.payload, 1);
     },
   },
 });

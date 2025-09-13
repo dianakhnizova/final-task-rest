@@ -29,6 +29,8 @@ export enum InputID {
   ID_PASSWORD = 'password',
   ID_CONFIRM_PASSWORD = 'confirmPassword',
   ID_URL = 'url',
+  ID_HEADER_KEY = 'header_key',
+  ID_HEADER_VALUE = 'header_value',
 }
 
 export enum ErrorCode {

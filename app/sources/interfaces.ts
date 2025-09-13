@@ -28,3 +28,8 @@ export type FetchResponse = {
   response: Response | null;
   error: string | null;
 };
+
+export interface Header {
+  key: string;
+  value: string;
+}

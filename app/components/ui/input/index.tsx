@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
+import { InputID } from '@/sources/enums';
+
 import styles from './Input.module.css';
 
 interface Props<T extends FieldValues>
@@ -32,7 +34,13 @@ export const Input = <T extends FieldValues>({
   };
 
   return (
-    <div className={clsx(styles.container, { [styles.urlContainer]: !label })}>
+    <div
+      className={clsx(styles.container, {
+        [styles.urlContainer]: !label,
+        [styles.headerContainer]:
+          id === InputID.ID_HEADER_KEY || InputID.ID_HEADER_VALUE,
+      })}
+    >
       {label && (
         <label htmlFor={id} className={styles.label}>
           {label}

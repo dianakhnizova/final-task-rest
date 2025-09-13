@@ -11,5 +11,7 @@ export const input = {
     email: 'Enter your e-mail',
     password: 'Enter your password',
     confirmPassword: 'Confirm password',
+    key: 'key',
+    value: 'value',
   },
 };

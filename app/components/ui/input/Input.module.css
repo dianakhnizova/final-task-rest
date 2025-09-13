@@ -9,6 +9,10 @@
     width: 50%;
     justify-content: center;
   }
+
+  &.headerContainer {
+    width: 100%;
+  }
 }
 
 .label {
