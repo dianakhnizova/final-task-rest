@@ -1,6 +1,9 @@
-import type { FetchResponse } from '@/sources/interfaces';
+export default async function fetchParsed(response: Response) {
+  const contentType = response.headers.get('content-type');
 
-export default function fetchParsed(response: FetchResponse) {
-  //todo - must be parsed
-  return response;
+  if (contentType?.includes('application/json')) {
+    return await response.json();
+  }
+
+  return await response.text();
 }

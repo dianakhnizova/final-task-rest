@@ -1,10 +1,33 @@
+import { ContentType, HttpMethods } from '@/sources/enums';
+
 import fetchParsed from './fetchParsed';
 import fetchPrepare from './fetchPrepare';
 import fetchWithErrorHandling from './fetchWithErrorHandling';
 
-export default async function fetchData() {
-  const { url, options } = fetchPrepare('test.com'); //todo - use data from redux
-  const response = await fetchWithErrorHandling(url, options);
-  const responseParsed = fetchParsed(response);
-  console.log('responseParsed = ', responseParsed);
+export default async function fetchData(
+  url: string,
+  method: HttpMethods = HttpMethods.GET,
+  headers?: HeadersInit | null,
+  body?: BodyInit | object | null,
+  contentType: ContentType = ContentType.JSON
+) {
+  const { url: preparedUrl, options } = fetchPrepare(
+    url,
+    method,
+    headers,
+    body,
+    contentType
+  );
+
+  const { response, error } = await fetchWithErrorHandling(
+    preparedUrl,
+    options
+  );
+
+  if (error) {
+    return { error, data: null };
+  }
+
+  const data = await fetchParsed(response!);
+  return { error: null, data };
 }

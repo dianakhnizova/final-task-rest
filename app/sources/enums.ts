@@ -31,8 +31,9 @@ export enum InputID {
   ID_URL = 'url',
 }
 
-export enum errorCode {
+export enum ErrorCode {
   NOT_FOUND = 404,
+  OK = 200,
 }
 
 export enum ButtonType {
