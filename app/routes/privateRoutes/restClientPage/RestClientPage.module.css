@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   width: 80%;
-  gap: var(--spacing-4);
+  gap: var(--spacing-5);
   border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
   border-radius: var(--radius-lg);
   padding: var(--spacing-5);
@@ -24,16 +24,5 @@
   gap: var(--spacing-5);
   align-items: center;
   width: 80%;
-  margin-top: var(--spacing-6);
-}
-
-.title {
-  color: var(--color-primary);
-  font-size: var(--font-size-xs);
-}
-
-.parser {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
+  margin-top: var(--spacing-5);
 }

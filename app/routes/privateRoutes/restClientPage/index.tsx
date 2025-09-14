@@ -8,6 +8,7 @@ import { RequestSender } from './RequestSender';
 import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
 import { Headers } from './components/headers';
+import { Parser } from './components/parser';
 import { UrlBox } from './components/urlBox';
 
 export const meta = pageMeta(restClientMessages);
@@ -21,6 +22,8 @@ export default function RestClientPage() {
         <Headers />
 
         <BodyEditor />
+
+        <Parser />
 
         <RequestSender />
       </div>
