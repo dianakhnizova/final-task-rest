@@ -3,6 +3,7 @@ import type { LoaderData } from '@/sources/interfaces';
 import { errors as errorMessages } from '@/sources/messages/errors';
 
 import fetchData from '@/utils/fetchData/fetchData';
+import { getUrl } from '@/utils/getUrl';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
 import type { Route } from './+types/index.lazy';
@@ -20,9 +21,7 @@ export async function serverFetchLoader({
     };
   }
 
-  const fullUrl = targetUrl.match(/^https?:\/\//)
-    ? targetUrl
-    : `${protocol}${targetUrl}`;
+  const fullUrl = getUrl(targetUrl, protocol);
 
   const { response, error } = await fetchData(fullUrl, method);
 

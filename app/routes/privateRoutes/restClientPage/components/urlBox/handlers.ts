@@ -5,6 +5,8 @@ import {
   SearchParams,
 } from '@/sources/enums';
 
+import { getUrl } from '@/utils/getUrl';
+
 export const handleMethod = (
   value: HttpMethods | null,
   setMethod: (method: HttpMethods) => void
@@ -40,7 +42,7 @@ export const handleServerFetch = async (
 
     setSearchParams(newSearchParams);
 
-    const fullUrl = url.match(/^https?:\/\//) ? url : `${protocol}${url}`;
+    const fullUrl = getUrl(url, protocol);
 
     const response = await fetch(fullUrl, {
       method,
