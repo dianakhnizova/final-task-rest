@@ -14,7 +14,7 @@ import styles from './RestClientPage.module.css';
 import { Response } from './components/response';
 import { parserList } from './components/response/parserList';
 
-export { serverFetchLoader as loader } from './loaders/serverFetchLoader';
+export { serverFetchLoader as loader } from './serverFetchLoader';
 
 export default function ServerFetchPanel({ loaderData }: Route.ComponentProps) {
   const { data, error, status } = (loaderData || {}) as LoaderData;

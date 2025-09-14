@@ -39,3 +39,9 @@ export interface LoaderData {
   error: string | null;
   status?: number | null;
 }
+
+export interface KeyValue {
+  id: number;
+  key: string;
+  value: string;
+}

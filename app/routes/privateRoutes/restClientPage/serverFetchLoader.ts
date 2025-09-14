@@ -5,7 +5,7 @@ import { errors as errorMessages } from '@/sources/messages/errors';
 import fetchData from '@/utils/fetchData/fetchData';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
-import type { Route } from '../+types/index.lazy';
+import type { Route } from './+types/index.lazy';
 
 export async function serverFetchLoader({
   request,
@@ -25,6 +25,8 @@ export async function serverFetchLoader({
     : `${protocol}${targetUrl}`;
 
   const { response, error } = await fetchData(fullUrl, method);
+
+  console.log(targetUrl, method, protocol);
 
   if (error) {
     return {

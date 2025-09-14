@@ -5,3 +5,8 @@
   width: 80%;
   gap: var(--spacing-4);
 }
+
+.urlInputContainer {
+  width: 40%;
+  justify-content: center;
+}

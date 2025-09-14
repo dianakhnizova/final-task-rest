@@ -2,20 +2,14 @@ import { Outlet } from 'react-router';
 
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
+import { pageMeta } from '@/utils/metaHelpers.ts';
+
 import styles from './RestClientPage.module.css';
 import { Body } from './components/body';
 import { Headers } from './components/headers';
 import { UrlBox } from './components/urlBox';
 
-export function meta() {
-  return [
-    { title: restClientMessages.metaTitle },
-    {
-      name: restClientMessages.metaName,
-      content: restClientMessages.metaContent,
-    },
-  ];
-}
+export const meta = pageMeta(restClientMessages);
 
 export default function RestClientPage() {
   return (

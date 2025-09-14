@@ -13,8 +13,10 @@ export default [
     route(
       AppRoutes.REST_CLIENT,
       'routes/privateRoutes/restClientPage/index.lazy.tsx',
-      [route('', 'routes/privateRoutes/restClientPage/serverFetchPanel.tsx')]
+      [route('', 'routes/privateRoutes/restClientPage/ServerFetchPanel.tsx')]
     ),
+    route(AppRoutes.VARIABLES, 'routes/privateRoutes/variablesPage/index.tsx'),
+    route(AppRoutes.HISTORY, 'routes/privateRoutes/historyPage/index.tsx'),
   ]),
 
   route(AppRoutes.NOT_FOUND, 'routes/notFoundPage/index.tsx'),

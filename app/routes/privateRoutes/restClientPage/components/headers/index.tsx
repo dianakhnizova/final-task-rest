@@ -49,7 +49,7 @@ export const Headers = () => {
                       updateHeader({ index, key: value, value: header.value })
                     }
                     placeholder={inputMessages.placeholder.key}
-                    isHeader
+                    renderErrorMessage={false}
                   />
                 </td>
                 <td>
@@ -61,7 +61,7 @@ export const Headers = () => {
                       updateHeader({ index, key: header.key, value })
                     }
                     placeholder={inputMessages.placeholder.value}
-                    isHeader
+                    renderErrorMessage={false}
                   />
                 </td>
                 <td>

@@ -55,6 +55,7 @@ export const UrlBox = () => {
         id={InputID.ID_URL}
         type={InputType.TEXT}
         setInput={value => handleUrl(value, setUrl)}
+        containerClassName={styles.urlInputContainer}
       />
 
       <Button
