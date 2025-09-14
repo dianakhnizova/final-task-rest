@@ -4,6 +4,7 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
+import { RequestSender } from './RequestSender';
 import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
 import { Headers } from './components/headers';
@@ -14,11 +15,15 @@ export const meta = pageMeta(restClientMessages);
 export default function RestClientPage() {
   return (
     <div className={styles.container}>
-      <UrlBox />
+      <div className={styles.restRequestContainer}>
+        <UrlBox />
 
-      <Headers />
+        <Headers />
 
-      <BodyEditor />
+        <BodyEditor />
+
+        <RequestSender />
+      </div>
 
       <Outlet />
     </div>

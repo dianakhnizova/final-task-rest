@@ -7,12 +7,24 @@
   gap: var(--spacing-5);
 }
 
+.restRequestContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: var(--spacing-4);
+  border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+}
+
 .response {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-5);
   align-items: center;
   width: 80%;
+  margin-top: var(--spacing-6);
 }
 
 .title {
