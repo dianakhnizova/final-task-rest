@@ -13,7 +13,7 @@ export default [
     route(
       AppRoutes.REST_CLIENT,
       'routes/privateRoutes/restClientPage/index.lazy.tsx',
-      [route('', 'routes/privateRoutes/restClientPage/serverFetch.tsx')]
+      [route('', 'routes/privateRoutes/restClientPage/serverFetchPanel.tsx')]
     ),
   ]),
 

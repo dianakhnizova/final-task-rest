@@ -1,4 +1,4 @@
-import { type HttpMethods, Protocols } from '@/sources/enums';
+import { type HttpMethods, Protocols, SearchParams } from '@/sources/enums';
 
 export const handleMethod = (
   value: HttpMethods | null,
@@ -16,4 +16,24 @@ export const handleProtocol = (
 
 export const handleUrl = (value: string, setUrl: (url: string) => void) => {
   setUrl(value);
+};
+
+export const handleServerFetch = async (
+  url: string,
+  method: HttpMethods,
+  protocol: Protocols,
+  setSearchParams: (url: URLSearchParams) => void
+) => {
+  if (!url) return;
+
+  try {
+    const newSearchParams = new URLSearchParams();
+    newSearchParams.set(SearchParams.URL, url);
+    newSearchParams.set(SearchParams.METHOD, method);
+    newSearchParams.set(SearchParams.PROTOCOL, protocol);
+
+    setSearchParams(newSearchParams);
+  } catch (error) {
+    console.log('Error:', error);
+  }
 };

@@ -14,3 +14,8 @@
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
 }
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+}

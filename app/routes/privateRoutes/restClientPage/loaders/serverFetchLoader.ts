@@ -5,7 +5,7 @@ import { errors as errorMessages } from '@/sources/messages/errors';
 import fetchData from '@/utils/fetchData/fetchData';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
-import type { Route } from './+types/index.lazy';
+import type { Route } from '../+types/index.lazy';
 
 export async function serverFetchLoader({
   request,
