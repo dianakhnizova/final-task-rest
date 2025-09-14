@@ -13,6 +13,7 @@ export enum AppRoutes {
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
   VARIABLES = '/variables',
+  HISTORY = '/history',
   REST_CLIENT = '/restClient',
 }
 

@@ -1,0 +1,30 @@
+.header {
+  margin-bottom: var(--spacing-4);
+}
+
+.container {
+  background-color: var(--color-surface);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-standard);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    padding: var(--spacing-4);
+    text-align: left;
+  }
+
+  thead {
+    border-bottom: var(--border-width-sm) solid var(--color-border-variant);
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-surface-variant);
+    }
+  }
+}

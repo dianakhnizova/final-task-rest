@@ -15,6 +15,7 @@ export default [
       'routes/privateRoutes/restClientPage/index.lazy.tsx'
     ),
     route(AppRoutes.VARIABLES, 'routes/privateRoutes/variablesPage/index.tsx'),
+    route(AppRoutes.HISTORY, 'routes/privateRoutes/historyPage/index.tsx'),
   ]),
 
   route(AppRoutes.NOT_FOUND, 'routes/notFoundPage/index.tsx'),
