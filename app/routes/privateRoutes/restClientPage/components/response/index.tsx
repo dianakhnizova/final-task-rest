@@ -18,6 +18,7 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 import { Button } from '@/components/ui/button';
 
 import { formatResponse } from '@/utils/formatResponse';
+import { getStatusText } from '@/utils/getStatusText';
 
 import styles from './Response.module.css';
 import { languageMap } from './languageMap';
@@ -58,20 +59,22 @@ export const Response: FC<Props> = ({ data, status }) => {
         <div className={styles.headers}>
           <p>{restClientMessages.response.headerTitle}</p>
 
-          {headers.map(header => (
-            <>
+          {headers.map((header, index) => (
+            <div key={index} className={styles.headersResponse}>
               <p>{restClientMessages.response.key}</p>
               <p className={styles.title}>{header.key} </p>
               <p>{restClientMessages.response.value}</p>
               <p className={styles.title}>{header.value}</p>
-            </>
+            </div>
           ))}
         </div>
       )}
 
       <div className={styles.status}>
         <p>{restClientMessages.response.statusTitle}</p>
-        <p className={styles.title}>{status ? status : ''}</p>
+        <p className={styles.title}>
+          {status ? `${status} ${getStatusText(status)}` : ''}
+        </p>
       </div>
 
       <div className={styles.body}>
