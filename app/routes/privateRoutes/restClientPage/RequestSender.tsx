@@ -1,5 +1,6 @@
 import {
   selectBody,
+  selectHeaders,
   selectMethod,
   selectProtocol,
   selectUrl,
@@ -19,13 +20,14 @@ export const RequestSender = () => {
   const url = useSelector(selectUrl);
   const protocol = useSelector(selectProtocol);
   const body = useSelector(selectBody);
+  const headers = useSelector(selectHeaders);
 
   const setSearchParams = useSearchParams()[1];
 
   return (
     <Button
       onClick={() =>
-        handleServerFetch(url, method, protocol, body, setSearchParams)
+        handleServerFetch(url, method, protocol, body, headers, setSearchParams)
       }
       disabled={!url}
     >

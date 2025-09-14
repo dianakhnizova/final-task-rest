@@ -1,9 +1,5 @@
-import {
-  ContentType,
-  HttpMethods,
-  Protocols,
-  SearchParams,
-} from '@/sources/enums';
+import { HttpMethods, Protocols, SearchParams } from '@/sources/enums';
+import type { Header } from '@/sources/interfaces';
 
 import { getUrl } from '@/utils/getUrl';
 
@@ -30,6 +26,7 @@ export const handleServerFetch = async (
   method: HttpMethods,
   protocol: Protocols,
   body: string,
+  headers: Header[],
   setSearchParams: (url: URLSearchParams) => void
 ) => {
   if (!url) return;
@@ -44,11 +41,17 @@ export const handleServerFetch = async (
 
     const fullUrl = getUrl(url, protocol);
 
+    const mergedHeaders = headers.reduce(
+      (acc, { key, value }) => {
+        if (key && value) acc[key] = value;
+        return acc;
+      },
+      {} as Record<string, string>
+    );
+
     const response = await fetch(fullUrl, {
       method,
-      headers: {
-        'Content-Type': ContentType.JSON,
-      },
+      headers: mergedHeaders,
       body: method !== HttpMethods.GET ? body : undefined,
     });
 

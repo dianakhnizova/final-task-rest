@@ -1,4 +1,8 @@
-import { selectBody, selectParser } from '@/store/slices/restClient/selectors';
+import {
+  selectBody,
+  selectHeaders,
+  selectParser,
+} from '@/store/slices/restClient/selectors';
 
 import { type FC, useState } from 'react';
 
@@ -27,6 +31,7 @@ interface Props {
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
   const requestBody = useSelector(selectBody);
+  const headers = useSelector(selectHeaders);
   const [prettified, setPrettified] = useState(false);
 
   const handlePrettify = () => {
@@ -49,6 +54,21 @@ export const Response: FC<Props> = ({ data, status }) => {
 
   return (
     <div className={styles.container}>
+      {headers && (
+        <div className={styles.headers}>
+          <p>{restClientMessages.response.headerTitle}</p>
+
+          {headers.map(header => (
+            <>
+              <p>{restClientMessages.response.key}</p>
+              <p className={styles.title}>{header.key} </p>
+              <p>{restClientMessages.response.value}</p>
+              <p className={styles.title}>{header.value}</p>
+            </>
+          ))}
+        </div>
+      )}
+
       <div className={styles.status}>
         <p>{restClientMessages.response.statusTitle}</p>
         <p className={styles.title}>{status ? status : ''}</p>
@@ -56,9 +76,11 @@ export const Response: FC<Props> = ({ data, status }) => {
 
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
+
         <Button onClick={handlePrettify}>
           {prettified ? buttonsMessages.raw : buttonsMessages.prettify}
         </Button>
+
         {prettified ? (
           <>
             <SyntaxHighlighter

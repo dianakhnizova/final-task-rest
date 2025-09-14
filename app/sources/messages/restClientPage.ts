@@ -16,6 +16,9 @@ export const restClientPage = {
   },
 
   response: {
+    headerTitle: 'Header: ',
+    key: 'key: ',
+    value: 'value: ',
     statusTitle: 'Status: ',
     bodyTitle: 'Body: ',
     emptyData: 'No data yet',
