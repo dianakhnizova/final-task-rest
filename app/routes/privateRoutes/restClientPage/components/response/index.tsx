@@ -1,4 +1,4 @@
-import { selectParser } from '@/store/slices/restClient/selectors';
+import { selectBody, selectParser } from '@/store/slices/restClient/selectors';
 
 import { type FC, useState } from 'react';
 
@@ -26,6 +26,7 @@ interface Props {
 
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
+  const requestBody = useSelector(selectBody);
   const [prettified, setPrettified] = useState(false);
 
   const handlePrettify = () => {
@@ -36,7 +37,15 @@ export const Response: FC<Props> = ({ data, status }) => {
     }
   };
 
-  const formatted = formatResponse(data, parser);
+  const formattedResponse = prettified
+    ? formatResponse(data, parser)
+    : typeof data === 'string'
+      ? data
+      : JSON.stringify(data);
+
+  const formattedBody = prettified
+    ? formatResponse(requestBody, parser)
+    : requestBody;
 
   return (
     <div className={styles.container}>
@@ -47,22 +56,41 @@ export const Response: FC<Props> = ({ data, status }) => {
 
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
-
         <Button onClick={handlePrettify}>
           {prettified ? buttonsMessages.raw : buttonsMessages.prettify}
         </Button>
-
         {prettified ? (
-          <SyntaxHighlighter
-            language={languageMap[parser] || Parsers.TEXT}
-            style={vscDarkPlus}
-            showLineNumbers={parser === Parsers.JSON}
-            wrapLongLines
-          >
-            {formatted}
-          </SyntaxHighlighter>
+          <>
+            <SyntaxHighlighter
+              language={languageMap[parser] || Parsers.TEXT}
+              style={vscDarkPlus}
+              showLineNumbers={parser === Parsers.JSON}
+              wrapLongLines
+            >
+              {formattedResponse}
+            </SyntaxHighlighter>
+          </>
         ) : (
-          <p className={styles.raw}>{formatted}</p>
+          <p className={styles.raw}>{formattedResponse}</p>
+        )}
+
+        {requestBody && (
+          <>
+            <p>{restClientMessages.response.requestBodyTitle}</p>
+
+            {prettified ? (
+              <SyntaxHighlighter
+                language={languageMap[parser] || Parsers.TEXT}
+                style={vscDarkPlus}
+                showLineNumbers={parser === Parsers.JSON}
+                wrapLongLines
+              >
+                {formattedBody}
+              </SyntaxHighlighter>
+            ) : (
+              <pre>{formattedBody}</pre>
+            )}
+          </>
         )}
       </div>
     </div>

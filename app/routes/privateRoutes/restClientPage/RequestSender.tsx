@@ -1,4 +1,5 @@
 import {
+  selectBody,
   selectMethod,
   selectProtocol,
   selectUrl,
@@ -17,11 +18,15 @@ export const RequestSender = () => {
   const method = useSelector(selectMethod);
   const url = useSelector(selectUrl);
   const protocol = useSelector(selectProtocol);
+  const body = useSelector(selectBody);
+
   const setSearchParams = useSearchParams()[1];
 
   return (
     <Button
-      onClick={() => handleServerFetch(url, method, protocol, setSearchParams)}
+      onClick={() =>
+        handleServerFetch(url, method, protocol, body, setSearchParams)
+      }
       disabled={!url}
     >
       {buttonMessages.send}

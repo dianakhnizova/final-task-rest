@@ -1,4 +1,9 @@
-import { type HttpMethods, Protocols, SearchParams } from '@/sources/enums';
+import {
+  ContentType,
+  HttpMethods,
+  Protocols,
+  SearchParams,
+} from '@/sources/enums';
 
 export const handleMethod = (
   value: HttpMethods | null,
@@ -22,6 +27,7 @@ export const handleServerFetch = async (
   url: string,
   method: HttpMethods,
   protocol: Protocols,
+  body: string,
   setSearchParams: (url: URLSearchParams) => void
 ) => {
   if (!url) return;
@@ -33,6 +39,23 @@ export const handleServerFetch = async (
     newSearchParams.set(SearchParams.PROTOCOL, protocol);
 
     setSearchParams(newSearchParams);
+
+    const fullUrl = url.match(/^https?:\/\//) ? url : `${protocol}${url}`;
+
+    const response = await fetch(fullUrl, {
+      method,
+      headers: {
+        'Content-Type': ContentType.JSON,
+      },
+      body: method !== HttpMethods.GET ? body : undefined,
+    });
+
+    const responseData = await response.text();
+
+    return {
+      data: responseData,
+      status: response.status,
+    };
   } catch (error) {
     console.log('Error:', error);
   }
