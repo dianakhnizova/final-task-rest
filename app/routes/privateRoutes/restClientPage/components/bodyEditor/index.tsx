@@ -19,6 +19,7 @@ export const BodyEditor = () => {
   return (
     <div className={styles.container}>
       <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+
       <p className={styles.title}>{restClientPage.bodyEditor.bodyTitle}</p>
       <textarea
         value={body}

@@ -22,6 +22,7 @@ export const RequestSender = () => {
   return (
     <Button
       onClick={() => handleServerFetch(url, method, protocol, setSearchParams)}
+      disabled={!url}
     >
       {buttonMessages.send}
     </Button>
