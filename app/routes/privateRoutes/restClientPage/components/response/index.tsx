@@ -10,9 +10,10 @@ import styles from './Response.module.css';
 interface Props {
   data: unknown;
   error?: string | null;
+  status?: number | null;
 }
 
-export const Response: FC<Props> = ({ data, error }) => {
+export const Response: FC<Props> = ({ data, error, status }) => {
   if (error) {
     return (
       <div>
@@ -36,7 +37,9 @@ export const Response: FC<Props> = ({ data, error }) => {
   return (
     <div className={styles.container}>
       <div className={styles.status}>
-        <p>{restClientPage.response.statusTitle}</p>
+        <p>
+          {restClientPage.response.statusTitle} {status !== null ? status : '—'}
+        </p>
       </div>
 
       <div className={styles.body}>

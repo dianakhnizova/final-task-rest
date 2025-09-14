@@ -9,12 +9,12 @@ import { Response } from './components/response';
 export { serverFetchLoader as loader } from './serverFetchLoader';
 
 export default function ServerFetch({ loaderData }: Route.ComponentProps) {
-  const { data, error } = (loaderData || {}) as LoaderData;
+  const { data, error, status } = (loaderData || {}) as LoaderData;
 
   return (
     <div className={styles.response}>
       <h3>{serverFetch.title}</h3>
-      <Response data={data} error={error} />
+      <Response data={data} error={error} status={status} />
     </div>
   );
 }

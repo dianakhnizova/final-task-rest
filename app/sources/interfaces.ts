@@ -37,4 +37,5 @@ export interface Header {
 export interface LoaderData {
   data: string | null;
   error: string | null;
+  status?: number | null;
 }

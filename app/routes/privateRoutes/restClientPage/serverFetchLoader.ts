@@ -19,6 +19,7 @@ export async function serverFetchLoader({
     return {
       data: null,
       error: 'Enter URL and click "Server Fetch"',
+      status: null,
     };
   }
 
@@ -34,11 +35,13 @@ export async function serverFetchLoader({
     return {
       data: data,
       error: null,
+      status: response?.status ?? null,
     };
   } catch (error) {
     return {
       data: null,
       error: error instanceof Error ? error.message : 'Unknown error',
+      status: null,
     };
   }
 }
