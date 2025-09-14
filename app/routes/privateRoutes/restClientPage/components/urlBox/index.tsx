@@ -10,6 +10,7 @@ import { useSearchParams } from 'react-router';
 import { HttpMethods, InputID, InputType, Protocols } from '@/sources/enums';
 
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
+import { input as inputMessages } from '@/sources/messages/input';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -54,6 +55,7 @@ export const UrlBox = () => {
       <Input
         id={InputID.ID_URL}
         type={InputType.TEXT}
+        placeholder={inputMessages.placeholder.url}
         setInput={value => handleUrl(value, setUrl)}
         containerClassName={styles.urlInputContainer}
       />

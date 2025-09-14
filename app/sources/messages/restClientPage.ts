@@ -12,6 +12,7 @@ export const restClientPage = {
   bodyEditor: {
     codeTitle: 'Code: ',
     bodyTitle: 'Body: ',
+    placeholder: '{ "key": "value" }',
   },
 
   response: {

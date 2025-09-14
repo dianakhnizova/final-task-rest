@@ -13,5 +13,6 @@ export const input = {
     confirmPassword: 'Confirm password',
     key: 'key',
     value: 'value',
+    url: 'Enter url or paste text',
   },
 };

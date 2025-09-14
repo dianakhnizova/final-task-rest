@@ -23,9 +23,9 @@ export const BodyEditor = () => {
       <textarea
         value={body}
         onChange={handleBodyEditor}
-        placeholder='{ "key": "value" }'
+        placeholder={restClientPage.bodyEditor.placeholder}
         className={styles.bodyEditor}
-      ></textarea>
+      />
     </div>
   );
 };
