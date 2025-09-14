@@ -1,0 +1,24 @@
+.header {
+  margin-bottom: var(--spacing-4);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    padding: var(--spacing-4);
+    text-align: left;
+  }
+
+  thead {
+    border-bottom: var(--border-width-sm) solid var(--color-border-variant);
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-surface-variant);
+    }
+  }
+}
