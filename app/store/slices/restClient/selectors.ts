@@ -4,4 +4,5 @@ export const selectMethod = (state: TypeRootState) => state.restClient.method;
 export const selectProtocol = (state: TypeRootState) =>
   state.restClient.protocol;
 export const selectUrl = (state: TypeRootState) => state.restClient.url;
+export const selectParser = (state: TypeRootState) => state.restClient.parser;
 export const selectHeaders = (state: TypeRootState) => state.restClient.headers;

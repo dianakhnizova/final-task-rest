@@ -1,6 +1,6 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { HttpMethods, Protocols } from '@/sources/enums';
+import { HttpMethods, Parsers, Protocols } from '@/sources/enums';
 import type { Header } from '@/sources/interfaces';
 
 interface RestClientState {
@@ -8,6 +8,7 @@ interface RestClientState {
   protocol: Protocols;
   url: string;
   headers: Header[];
+  parser: Parsers;
 }
 
 const initialState: RestClientState = {
@@ -15,6 +16,7 @@ const initialState: RestClientState = {
   protocol: Protocols.HTTP,
   url: '',
   headers: [],
+  parser: Parsers.JSON,
 };
 
 const restClientSlice = createSlice({
@@ -29,6 +31,9 @@ const restClientSlice = createSlice({
     },
     setUrl(state, action: PayloadAction<string>) {
       state.url = action.payload;
+    },
+    setParser(state, action: PayloadAction<Parsers>) {
+      state.parser = action.payload;
     },
     addHeader(state) {
       state.headers.push({ key: '', value: '' });

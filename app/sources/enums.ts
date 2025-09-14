@@ -120,3 +120,11 @@ export enum Protocols {
   HTTP = 'http://',
   HTTPS = 'https://',
 }
+
+export enum Parsers {
+  JSON = 'json',
+  TEXT = 'text',
+  RAW = 'raw',
+  HTML = 'html',
+  XML = 'xml',
+}

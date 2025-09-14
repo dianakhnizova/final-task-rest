@@ -1,13 +1,19 @@
+import { selectParser } from '@/store/slices/restClient/selectors';
+
 import type { FC } from 'react';
 
+import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
-import { errors as errorMessages } from '@/sources/messages/errors';
+import { Parsers } from '@/sources/enums';
+
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
-import { serverFetch as serverMessages } from '@/sources/messages/serverFetch';
+
+import { formatResponse } from '@/utils/formatResponse';
 
 import styles from './Response.module.css';
+import { languageMap } from './languageMap';
 
 interface Props {
   data: unknown;
@@ -15,43 +21,24 @@ interface Props {
   status?: number | null;
 }
 
-export const Response: FC<Props> = ({ data, error, status }) => {
-  if (error) {
-    return (
-      <div>
-        <h3>{errorMessages.serverError}</h3>
-        <p>
-          {errorMessages.errorTitle} {error}
-        </p>
-      </div>
-    );
-  }
-
-  if (!data) {
-    return (
-      <div>
-        <p className={styles.emptyTitle}>{serverMessages.emptyRequestHint}</p>
-      </div>
-    );
-  }
-
-  const formatted =
-    typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+export const Response: FC<Props> = ({ data, status }) => {
+  const parser = useSelector(selectParser);
+  const formatted = formatResponse(data, parser);
 
   return (
     <div className={styles.container}>
       <div className={styles.status}>
         <p>{restClientMessages.response.statusTitle}</p>
-        <p className={styles.emptyTitle}>{status ? status : ''}</p>
+        <p className={styles.title}>{status ? status : ''}</p>
       </div>
 
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
 
         <SyntaxHighlighter
-          language="json"
+          language={languageMap[parser] || Parsers.TEXT}
           style={vscDarkPlus}
-          showLineNumbers
+          showLineNumbers={parser === Parsers.JSON}
           wrapLongLines
         >
           {formatted}
