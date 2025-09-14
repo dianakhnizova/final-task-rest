@@ -4,4 +4,6 @@ export const buttons = {
   headers: 'Headers',
   send: 'Send request',
   delete: 'Delete',
+  prettify: 'Prettify',
+  raw: 'Raw',
 };

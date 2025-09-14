@@ -1,6 +1,6 @@
 import { selectParser } from '@/store/slices/restClient/selectors';
 
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -8,7 +8,10 @@ import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark
 
 import { Parsers } from '@/sources/enums';
 
+import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
+
+import { Button } from '@/components/ui/button';
 
 import { formatResponse } from '@/utils/formatResponse';
 
@@ -23,6 +26,16 @@ interface Props {
 
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
+  const [prettified, setPrettified] = useState(false);
+
+  const handlePrettify = () => {
+    if (prettified) {
+      setPrettified(false);
+    } else {
+      setPrettified(true);
+    }
+  };
+
   const formatted = formatResponse(data, parser);
 
   return (
@@ -35,14 +48,22 @@ export const Response: FC<Props> = ({ data, status }) => {
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
 
-        <SyntaxHighlighter
-          language={languageMap[parser] || Parsers.TEXT}
-          style={vscDarkPlus}
-          showLineNumbers={parser === Parsers.JSON}
-          wrapLongLines
-        >
-          {formatted}
-        </SyntaxHighlighter>
+        <Button onClick={handlePrettify}>
+          {prettified ? buttonsMessages.raw : buttonsMessages.prettify}
+        </Button>
+
+        {prettified ? (
+          <SyntaxHighlighter
+            language={languageMap[parser] || Parsers.TEXT}
+            style={vscDarkPlus}
+            showLineNumbers={parser === Parsers.JSON}
+            wrapLongLines
+          >
+            {formatted}
+          </SyntaxHighlighter>
+        ) : (
+          <p className={styles.raw}>{formatted}</p>
+        )}
       </div>
     </div>
   );
