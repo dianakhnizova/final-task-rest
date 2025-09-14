@@ -109,3 +109,8 @@ export enum ContentType {
   MP4 = 'video/mp4',
   MPEG_VIDEO = 'video/mpeg',
 }
+
+export enum SearchParams {
+  URL = 'url',
+  METHOD = 'method',
+}

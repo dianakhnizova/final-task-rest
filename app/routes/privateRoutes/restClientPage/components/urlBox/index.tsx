@@ -3,7 +3,7 @@ import { selectMethod, selectUrl } from '@/store/slices/restClient/selectors';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router';
 
-import { HttpMethods, InputID, InputType } from '@/sources/enums';
+import { HttpMethods, InputID, InputType, SearchParams } from '@/sources/enums';
 
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
 
@@ -14,13 +14,13 @@ import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
 
 import styles from './UrlBox.module.css';
-import { handleMethod, handleSend, handleUrl } from './handlers';
+import { handleMethod, handleUrl } from './handlers';
 import { methodList } from './methodList';
 
 export const UrlBox = () => {
   const method = useSelector(selectMethod);
   const url = useSelector(selectUrl);
-  const { setMethod, setUrl, setResponse } = useActions();
+  const { setMethod, setUrl } = useActions();
 
   const setSearchParams = useSearchParams()[1];
 
@@ -29,12 +29,12 @@ export const UrlBox = () => {
 
     try {
       const newSearchParams = new URLSearchParams();
-      newSearchParams.set('url', url);
-      newSearchParams.set('method', method);
+      newSearchParams.set(SearchParams.URL, url);
+      newSearchParams.set(SearchParams.METHOD, method);
 
       setSearchParams(newSearchParams);
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
     }
   };
 
@@ -53,11 +53,7 @@ export const UrlBox = () => {
         setInput={value => handleUrl(value, setUrl)}
       />
 
-      <Button onClick={() => handleSend(url, method, setResponse)}>
-        {buttonMessages.send}
-      </Button>
-
-      <Button onClick={handleServerFetch}>Server Fetch</Button>
+      <Button onClick={handleServerFetch}>{buttonMessages.send}</Button>
     </div>
   );
 };

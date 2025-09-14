@@ -5,7 +5,6 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 import styles from './RestClientPage.module.css';
 import { Body } from './components/body';
 import { Headers } from './components/headers';
-import { Response } from './components/response';
 import { UrlBox } from './components/urlBox';
 
 export function meta() {
@@ -26,8 +25,6 @@ export default function RestClientPage() {
       <Headers />
 
       <Body />
-
-      <Response />
 
       <Outlet />
     </div>
