@@ -1,6 +1,7 @@
 import { ContentType, HttpMethods } from '@/sources/enums';
+import type { FetchResponse } from '@/sources/interfaces';
 
-import fetchParsed from './fetchParsed';
+// import fetchParsed from './fetchParsed';
 import fetchPrepare from './fetchPrepare';
 import fetchWithErrorHandling from './fetchWithErrorHandling';
 
@@ -10,7 +11,7 @@ export default async function fetchData(
   headers?: HeadersInit | null,
   body?: BodyInit | object | null,
   contentType: ContentType = ContentType.JSON
-) {
+): Promise<FetchResponse> {
   const { url: preparedUrl, options } = fetchPrepare(
     url,
     method,
@@ -25,9 +26,9 @@ export default async function fetchData(
   );
 
   if (error) {
-    return { error, data: null };
+    return { response: null, error };
   }
 
-  const data = await fetchParsed(response!);
-  return { error: null, data };
+  // const data = await fetchParsed(response!);
+  return { response, error: null };
 }

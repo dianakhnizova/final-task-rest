@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router';
+
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import styles from './RestClientPage.module.css';
@@ -26,6 +28,8 @@ export default function RestClientPage() {
       <Body />
 
       <Response />
+
+      <Outlet />
     </div>
   );
 }

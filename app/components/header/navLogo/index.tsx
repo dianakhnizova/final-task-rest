@@ -1,8 +1,12 @@
-import { Logo } from '@/components/icons/';
-import styles from '../Header.module.css';
-import { AppRoutes } from '@/sources/enums';
 import { Link } from 'react-router';
+
+import { AppRoutes } from '@/sources/enums';
+
 import { header as messages } from '@/sources/messages/header';
+
+import { Logo } from '@/components/icons/';
+
+import styles from '../Header.module.css';
 
 export const NavLogo = () => {
   return (

@@ -1,6 +1,7 @@
 import { selectMethod, selectUrl } from '@/store/slices/restClient/selectors';
 
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router';
 
 import { HttpMethods, InputID, InputType } from '@/sources/enums';
 
@@ -21,6 +22,22 @@ export const UrlBox = () => {
   const url = useSelector(selectUrl);
   const { setMethod, setUrl, setResponse } = useActions();
 
+  const setSearchParams = useSearchParams()[1];
+
+  const handleServerFetch = async () => {
+    if (!url) return;
+
+    try {
+      const newSearchParams = new URLSearchParams();
+      newSearchParams.set('url', url);
+      newSearchParams.set('method', method);
+
+      setSearchParams(newSearchParams);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Select
@@ -39,6 +56,8 @@ export const UrlBox = () => {
       <Button onClick={() => handleSend(url, method, setResponse)}>
         {buttonMessages.send}
       </Button>
+
+      <Button onClick={handleServerFetch}>Server Fetch</Button>
     </div>
   );
 };

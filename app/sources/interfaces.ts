@@ -33,3 +33,8 @@ export interface Header {
   key: string;
   value: string;
 }
+
+export interface LoaderData {
+  data: string | null;
+  error: string | null;
+}
