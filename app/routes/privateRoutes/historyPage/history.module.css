@@ -2,6 +2,12 @@
   margin-bottom: var(--spacing-4);
 }
 
+.container {
+  background-color: var(--color-surface);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-standard);
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

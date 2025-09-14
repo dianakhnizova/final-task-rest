@@ -73,39 +73,41 @@ export default function HistoryPage() {
   return (
     <div>
       <h1 className={styles.header}>{messages.header}</h1>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>{messages.table.headers.latency}</th>
-            <th>{messages.table.headers.status}</th>
-            <th>{messages.table.headers.timestamp}</th>
-            <th>{messages.table.headers.method}</th>
-            <th>{messages.table.headers.requestSize}</th>
-            <th>{messages.table.headers.responseSize}</th>
-            <th>{messages.table.headers.error}</th>
-            <th>{messages.table.headers.url}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.length === 0 && (
+      <div className={styles.container}>
+        <table className={styles.table}>
+          <thead>
             <tr>
-              <td colSpan={8}>{messages.table.emptyMessage}</td>
+              <th>{messages.table.headers.latency}</th>
+              <th>{messages.table.headers.status}</th>
+              <th>{messages.table.headers.timestamp}</th>
+              <th>{messages.table.headers.method}</th>
+              <th>{messages.table.headers.requestSize}</th>
+              <th>{messages.table.headers.responseSize}</th>
+              <th>{messages.table.headers.error}</th>
+              <th>{messages.table.headers.url}</th>
             </tr>
-          )}
-          {data.map(record => (
-            <tr key={record.timestamp.getTime()}>
-              <td>{record.latencyMs}</td>
-              <td>{record.status}</td>
-              <td>{record.timestamp.toLocaleString()}</td>
-              <td>{record.method}</td>
-              <td>{record.requestSize}</td>
-              <td>{record.responseSize}</td>
-              <td>{record.error}</td>
-              <td>{record.url}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.length === 0 && (
+              <tr>
+                <td colSpan={8}>{messages.table.emptyMessage}</td>
+              </tr>
+            )}
+            {data.map(record => (
+              <tr key={record.timestamp.getTime()}>
+                <td>{record.latencyMs}</td>
+                <td>{record.status}</td>
+                <td>{record.timestamp.toLocaleString()}</td>
+                <td>{record.method}</td>
+                <td>{record.requestSize}</td>
+                <td>{record.responseSize}</td>
+                <td>{record.error}</td>
+                <td>{record.url}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
