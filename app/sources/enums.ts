@@ -31,10 +31,23 @@ export enum InputID {
   ID_PASSWORD = 'password',
   ID_CONFIRM_PASSWORD = 'confirmPassword',
   ID_URL = 'url',
+  ID_HEADER_KEY = 'header_key',
+  ID_HEADER_VALUE = 'header_value',
 }
 
-export enum errorCode {
+export enum ErrorCode {
+  OK = 200,
+  CREATED = 201,
+  NO_CONTENT = 204,
+
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  FORBIDDEN = 403,
   NOT_FOUND = 404,
+
+  INTERNAL_SERVER_ERROR = 500,
+  BAD_GATEWAY = 502,
+  SERVICE_UNAVAILABLE = 503,
 }
 
 export enum ButtonType {
@@ -57,16 +70,87 @@ export enum AuthErrors {
   NOT_CONFIRMED = 'email_not_confirmed',
 }
 
-export enum Methods {
+export enum WrapperId {
+  default = 'wrapper',
+  header = 'wrapperHeader',
+  footer = 'wrapperFooter',
+}
+
+export enum Theme {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+
+export enum Language {
+  EN = 'en',
+  RU = 'ru',
+}
+
+export enum HttpMethods {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
   PATCH = 'PATCH',
   DELETE = 'DELETE',
+  HEAD = 'HEAD',
+  OPTIONS = 'OPTIONS',
+  TRACE = 'TRACE',
+  CONNECT = 'CONNECT',
 }
 
-export enum WrapperId {
-  default = 'wrapper',
-  header = 'wrapperHeader',
-  footer = 'wrapperFooter',
+export enum ContentType {
+  JSON = 'application/json',
+  XML = 'application/xml',
+  FORM_URLENCODED = 'application/x-www-form-urlencoded',
+  OCTET_STREAM = 'application/octet-stream',
+  PDF = 'application/pdf',
+  ZIP = 'application/zip',
+  FORM_DATA = 'multipart/form-data',
+  PLAIN_TEXT = 'text/plain',
+  HTML = 'text/html',
+  CSS = 'text/css',
+  CSV = 'text/csv',
+  JAVASCRIPT = 'text/javascript',
+  JPEG = 'image/jpeg',
+  PNG = 'image/png',
+  GIF = 'image/gif',
+  SVG = 'image/svg+xml',
+  WEBP = 'image/webp',
+  MPEG_AUDIO = 'audio/mpeg',
+  WAV = 'audio/wav',
+  MP4 = 'video/mp4',
+  MPEG_VIDEO = 'video/mpeg',
+}
+
+export enum SearchParams {
+  URL = 'url',
+  METHOD = 'method',
+  PROTOCOL = 'protocol',
+}
+
+export enum Protocols {
+  HTTP = 'http://',
+  HTTPS = 'https://',
+}
+
+export enum Parsers {
+  JSON = 'json',
+  TEXT = 'text',
+  RAW = 'raw',
+  HTML = 'html',
+  XML = 'xml',
+}
+
+export enum HttpStatusText {
+  OK = 'OK',
+  CREATED = 'Created',
+  NO_CONTENT = 'No Content',
+  BAD_REQUEST = 'Bad Request',
+  UNAUTHORIZED = 'Unauthorized',
+  FORBIDDEN = 'Forbidden',
+  NOT_FOUND = 'Not Found',
+  INTERNAL_SERVER_ERROR = 'Internal Server Error',
+  BAD_GATEWAY = 'Bad Gateway',
+  SERVICE_UNAVAILABLE = 'Service Unavailable',
+  UNKNOWN = 'Unknown',
 }

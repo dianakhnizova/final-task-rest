@@ -6,15 +6,22 @@ export const restClientPage = {
   table: {
     headerKey: 'Header key',
     headerValue: 'Header value',
+    headerDelete: 'Delete',
   },
 
-  body: {
+  bodyEditor: {
     codeTitle: 'Code: ',
     bodyTitle: 'Body: ',
+    placeholder: '{ "key": "value" }',
   },
 
   response: {
+    headerTitle: 'Header: ',
+    key: 'key: ',
+    value: 'value: ',
     statusTitle: 'Status: ',
     bodyTitle: 'Body: ',
+    emptyData: 'No data yet',
+    requestBodyTitle: 'Request Body:',
   },
 };

@@ -1,6 +1,6 @@
 import { isRouteErrorResponse } from 'react-router';
 
-import { errorCode } from '@/sources/enums';
+import { ErrorCode } from '@/sources/enums';
 import { messages } from '@/sources/messages';
 
 export const getErrorData = (error: unknown) => {
@@ -9,7 +9,7 @@ export const getErrorData = (error: unknown) => {
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    if (error.status === errorCode.NOT_FOUND) {
+    if (error.status === ErrorCode.NOT_FOUND) {
       message = messages.errorBoundary.notFound;
       details = messages.errorBoundary.notFound;
     } else {

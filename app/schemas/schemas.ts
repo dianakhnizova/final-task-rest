@@ -1,10 +1,12 @@
+import { z } from 'zod';
+
 import {
   EMAIL_REGEX,
   NAME_REGEX,
   PASSWORD_UNICODE_REGEX,
 } from '@/sources/constants';
+
 import { validation } from '@/sources/messages/validation';
-import { z } from 'zod';
 
 export const nameSchema = z
   .string()

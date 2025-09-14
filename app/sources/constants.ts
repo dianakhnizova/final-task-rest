@@ -12,3 +12,6 @@ export const NAME_REGEX = /^[A-ZА-ЯЁ]/;
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const LOGO_URL = './snake.svg';
+export const TOAST_DURATION = 4000;
+
+export const FETCH_ABORT_TIMEOUT_MS = 10000;

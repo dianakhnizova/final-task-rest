@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 import { Loader } from '@/components/ui/loader';
 
 const RestClientPage = lazy(
-  () => import('@/routes//privateRoutes/restClientPage')
+  () => import('@/routes/privateRoutes/restClientPage')
 );
 
 export default function RestClientPageLazy() {
@@ -14,4 +14,4 @@ export default function RestClientPageLazy() {
   );
 }
 
-export { meta } from '@/routes//privateRoutes/restClientPage';
+export { meta } from '@/routes/privateRoutes/restClientPage';

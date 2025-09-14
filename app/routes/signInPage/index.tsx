@@ -33,7 +33,7 @@ export default function SignInPage() {
 
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const filteredFields = inputFields.filter(

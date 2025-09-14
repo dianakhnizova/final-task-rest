@@ -1,12 +1,15 @@
 import { z } from 'zod';
+
+import { InputID } from '@/sources/enums';
+
+import { validation } from '@/sources/messages/validation';
+
 import {
   confirmPasswordSchema,
   emailSchema,
   nameSchema,
   passwordSchema,
 } from './schemas';
-import { validation } from '@/sources/messages/validation';
-import { InputID } from '@/sources/enums';
 
 export const signUpSchema = z
   .object({

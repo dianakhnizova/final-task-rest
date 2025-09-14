@@ -13,10 +13,12 @@ import Wrapper from '@/components/wrapper';
 
 import type { Route } from './+types/root';
 import { ErrorBoundaryComponent } from './components/errorBoundary';
+import { TOAST_DURATION } from './sources/constants';
+import { Language, Theme } from './sources/enums';
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang={Language.EN} data-theme={Theme.DARK}>
       <Head />
 
       <body>
@@ -29,7 +31,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Footer />
           </div>
 
-          <Toaster position="bottom-right" />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              duration: TOAST_DURATION,
+            }}
+          />
 
           <ScrollRestoration />
           <Scripts />

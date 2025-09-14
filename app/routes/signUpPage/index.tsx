@@ -27,7 +27,7 @@ export const meta = pageMeta(signUpPage);
 export default function SignUpPage() {
   const { register, handleSubmit, formState } = useForm<SignUpForm>({
     resolver: zodResolver(signUpSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
