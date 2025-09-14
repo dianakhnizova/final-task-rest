@@ -9,7 +9,7 @@ export const restClientPage = {
     headerDelete: 'Delete',
   },
 
-  body: {
+  bodyEditor: {
     codeTitle: 'Code: ',
     bodyTitle: 'Body: ',
   },

@@ -9,6 +9,7 @@ interface RestClientState {
   url: string;
   headers: Header[];
   parser: Parsers;
+  body: string;
 }
 
 const initialState: RestClientState = {
@@ -17,6 +18,7 @@ const initialState: RestClientState = {
   url: '',
   headers: [],
   parser: Parsers.JSON,
+  body: '',
 };
 
 const restClientSlice = createSlice({
@@ -34,6 +36,9 @@ const restClientSlice = createSlice({
     },
     setParser(state, action: PayloadAction<Parsers>) {
       state.parser = action.payload;
+    },
+    setBody: (state, action: PayloadAction<string>) => {
+      state.body = action.payload;
     },
     addHeader(state) {
       state.headers.push({ key: '', value: '' });

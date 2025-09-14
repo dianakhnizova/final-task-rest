@@ -5,7 +5,7 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
 import styles from './RestClientPage.module.css';
-import { Body } from './components/body';
+import { BodyEditor } from './components/bodyEditor';
 import { Headers } from './components/headers';
 import { UrlBox } from './components/urlBox';
 
@@ -18,7 +18,7 @@ export default function RestClientPage() {
 
       <Headers />
 
-      <Body />
+      <BodyEditor />
 
       <Outlet />
     </div>
