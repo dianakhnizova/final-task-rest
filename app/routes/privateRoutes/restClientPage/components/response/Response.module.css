@@ -5,8 +5,17 @@
   width: 100%;
 }
 
-.body {
+.body,
+.status {
   display: flex;
   align-items: center;
-  gap: var(--spacing-6);
+  gap: var(--spacing-4);
+  border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.emptyTitle {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
 }

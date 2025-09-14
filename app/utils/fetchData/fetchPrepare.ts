@@ -15,7 +15,11 @@ export default function fetchPrepare(
 
   if (header) {
     options.headers = header;
-  } else if (body && method !== 'GET' && method !== 'HEAD') {
+  } else if (
+    body &&
+    method !== HttpMethods.GET &&
+    method !== HttpMethods.HEAD
+  ) {
     options.headers = {
       'Content-Type': contentType,
     };

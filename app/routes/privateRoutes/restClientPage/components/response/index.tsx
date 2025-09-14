@@ -3,7 +3,9 @@ import type { FC } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
-import { restClientPage } from '@/sources/messages/restClientPage';
+import { errors as errorMessages } from '@/sources/messages/errors';
+import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
+import { serverFetch as serverMessages } from '@/sources/messages/serverFetch';
 
 import styles from './Response.module.css';
 
@@ -17,8 +19,10 @@ export const Response: FC<Props> = ({ data, error, status }) => {
   if (error) {
     return (
       <div>
-        <h3>Error fetching from server</h3>
-        <p>Error: {error}</p>
+        <h3>{errorMessages.serverError}</h3>
+        <p>
+          {errorMessages.errorTitle} {error}
+        </p>
       </div>
     );
   }
@@ -26,7 +30,7 @@ export const Response: FC<Props> = ({ data, error, status }) => {
   if (!data) {
     return (
       <div>
-        <p>Enter URL and click "Server Fetch" to see results</p>
+        <p className={styles.emptyTitle}>{serverMessages.emptyRequestHint}</p>
       </div>
     );
   }
@@ -37,13 +41,12 @@ export const Response: FC<Props> = ({ data, error, status }) => {
   return (
     <div className={styles.container}>
       <div className={styles.status}>
-        <p>
-          {restClientPage.response.statusTitle} {status !== null ? status : '—'}
-        </p>
+        <p>{restClientMessages.response.statusTitle}</p>
+        <p className={styles.emptyTitle}>{status ? status : ''}</p>
       </div>
 
       <div className={styles.body}>
-        <p>{restClientPage.response.bodyTitle}</p>
+        <p>{restClientMessages.response.bodyTitle}</p>
 
         <SyntaxHighlighter
           language="json"

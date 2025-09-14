@@ -1,12 +1,12 @@
 import { FETCH_ABORT_TIMEOUT_MS } from '@/sources/constants';
 import type { FetchResponse } from '@/sources/interfaces';
 
+import { errors as errorMessages } from '@/sources/messages/errors';
+
 export default async function fetchWithErrorHandling(
   url: string,
   options: RequestInit = {}
 ): Promise<FetchResponse> {
-  const { ...fetchOptions } = options;
-
   const controller = new AbortController();
   const timeoutId = setTimeout(
     () => controller.abort(),
@@ -15,36 +15,28 @@ export default async function fetchWithErrorHandling(
 
   try {
     const response = await fetch(url, {
-      ...fetchOptions,
+      ...options,
       signal: controller.signal,
     });
 
     clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      return {
-        response: null,
-        error: `HTTP error! status: ${response.status}`,
-      };
-    }
-
-    return { response, error: null };
+    return response.ok
+      ? { response, error: null }
+      : {
+          response: null,
+          error: `${errorMessages.httpError} ${response.status}`,
+        };
   } catch (error) {
     clearTimeout(timeoutId);
 
-    let errorMsg = 'Unknown error occurred';
-
-    if (controller.signal.aborted) {
-      errorMsg = 'Request timeout';
-    }
-
-    if (error instanceof Error) {
-      errorMsg = `Network error: ${error.message}`;
-    }
-
     return {
       response: null,
-      error: errorMsg,
+      error: controller.signal.aborted
+        ? errorMessages.requestTimeout
+        : error instanceof Error
+          ? `${errorMessages.networkError} ${error.message}`
+          : errorMessages.unknownError,
     };
   }
 }

@@ -1,7 +1,6 @@
 import { ContentType, HttpMethods } from '@/sources/enums';
 import type { FetchResponse } from '@/sources/interfaces';
 
-// import fetchParsed from './fetchParsed';
 import fetchPrepare from './fetchPrepare';
 import fetchWithErrorHandling from './fetchWithErrorHandling';
 
@@ -29,6 +28,5 @@ export default async function fetchData(
     return { response: null, error };
   }
 
-  // const data = await fetchParsed(response!);
   return { response, error: null };
 }
