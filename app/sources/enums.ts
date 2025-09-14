@@ -113,4 +113,10 @@ export enum ContentType {
 export enum SearchParams {
   URL = 'url',
   METHOD = 'method',
+  PROTOCOL = 'protocol',
+}
+
+export enum Protocols {
+  HTTP = 'http://',
+  HTTPS = 'https://',
 }

@@ -1,8 +1,9 @@
-import { HttpMethods, SearchParams } from '@/sources/enums';
+import { HttpMethods, Protocols, SearchParams } from '@/sources/enums';
 
 export function parseQueryParams(request: Request): {
   targetUrl: string | null;
   method: HttpMethods;
+  protocol: Protocols;
 } {
   const url = new URL(request.url);
 
@@ -10,8 +11,11 @@ export function parseQueryParams(request: Request): {
   const method =
     (url.searchParams.get(SearchParams.METHOD) as HttpMethods) ||
     HttpMethods.GET;
+  const protocol =
+    (url.searchParams.get(SearchParams.PROTOCOL) as Protocols) ||
+    HttpMethods.GET;
 
-  console.log('Query params:', { targetUrl, method });
+  console.log('Query params:', { targetUrl, method, protocol });
 
-  return { targetUrl, method };
+  return { targetUrl, method, protocol };
 }

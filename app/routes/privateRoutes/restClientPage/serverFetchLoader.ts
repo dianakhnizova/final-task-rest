@@ -10,7 +10,7 @@ import type { Route } from './+types/index.lazy';
 export async function serverFetchLoader({
   request,
 }: Route.LoaderArgs): Promise<LoaderData> {
-  const { targetUrl, method } = parseQueryParams(request);
+  const { targetUrl, method, protocol } = parseQueryParams(request);
 
   if (!targetUrl) {
     return {
@@ -20,10 +20,18 @@ export async function serverFetchLoader({
     };
   }
 
-  const { response, error } = await fetchData(targetUrl, method);
+  const fullUrl = targetUrl.match(/^https?:\/\//)
+    ? targetUrl
+    : `${protocol}${targetUrl}`;
+
+  const { response, error } = await fetchData(fullUrl, method);
 
   if (error) {
-    throw new Error(`${errorMessages.httpError} ${error}`);
+    return {
+      data: null,
+      error: `${errorMessages.httpError} ${error}`,
+      status: null,
+    };
   }
 
   const data = (await response?.text()) || '';
