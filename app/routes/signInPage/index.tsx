@@ -4,7 +4,7 @@ import { supabase } from '@/supabaseClient';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate, useSearchParams } from 'react-router';
 
 import { AppRoutes, Auth, InputID } from '@/sources/enums';
 import { inputFields } from '@/sources/inputFields';
@@ -28,8 +28,12 @@ export const meta = pageMeta(signInPage);
 
 export default function SignInPage() {
   const navigate = useNavigate();
+
   const { setUser } = useActions();
   const { setUserToStorage } = useSaveUserToLS(Auth.USER, null);
+  const [searchParams] = useSearchParams();
+
+  const redirectTo = searchParams.get('redirect') || AppRoutes.HOME;
 
   const { register, handleSubmit, formState } = useForm<SignInForm>({
     resolver: zodResolver(signInSchema),
@@ -60,7 +64,7 @@ export default function SignInPage() {
       `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`
     );
 
-    navigate(AppRoutes.HOME);
+    navigate(redirectTo);
   };
 
   return (
