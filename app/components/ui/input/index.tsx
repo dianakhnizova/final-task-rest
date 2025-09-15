@@ -24,7 +24,6 @@ export const Input = <T extends FieldValues>({
   name,
   register,
   errorMessage,
-  className,
   containerClassName,
   renderErrorMessage = true,
   ...rest
@@ -57,7 +56,7 @@ export const Input = <T extends FieldValues>({
         {...rest}
         {...restRegister}
         onChange={handleChange}
-        className={clsx(className, styles.input)}
+        className={styles.input}
       />
 
       {errorMessage && renderErrorMessage && (

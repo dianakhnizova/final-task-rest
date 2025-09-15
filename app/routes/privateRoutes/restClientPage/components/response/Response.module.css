@@ -2,5 +2,27 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
-  width: 60%;
+  width: 100%;
+}
+
+.body,
+.status,
+.headers {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.headersResponse {
+  display: flex;
+  gap: var(--spacing-4);
+  align-items: center;
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
 }

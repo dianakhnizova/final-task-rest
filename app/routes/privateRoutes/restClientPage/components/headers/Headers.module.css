@@ -1,10 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  width: 100%;
+  align-items: center;
+}
+
 .table {
-  width: 60%;
+  width: 100%;
   border-collapse: collapse;
 
   th,
   td {
     border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
     padding: var(--spacing-4);
+    text-align: center;
+    vertical-align: middle;
   }
 }

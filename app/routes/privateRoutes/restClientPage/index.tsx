@@ -1,14 +1,14 @@
-import { buttons as buttonMessages } from '@/sources/messages/buttons';
-import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
+import { Outlet } from 'react-router';
 
-import { Button } from '@/components/ui/button';
+import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
+import { RequestSender } from './RequestSender';
 import styles from './RestClientPage.module.css';
-import { Body } from './components/body';
+import { BodyEditor } from './components/bodyEditor';
 import { Headers } from './components/headers';
-import { Response } from './components/response';
+import { Parser } from './components/parser';
 import { UrlBox } from './components/urlBox';
 
 export const meta = pageMeta(restClientMessages);
@@ -16,15 +16,19 @@ export const meta = pageMeta(restClientMessages);
 export default function RestClientPage() {
   return (
     <div className={styles.container}>
-      <UrlBox />
+      <div className={styles.restRequestContainer}>
+        <UrlBox />
 
-      <Button>{buttonMessages.headers}</Button>
+        <Headers />
 
-      <Headers />
+        <BodyEditor />
 
-      <Body />
+        <Parser />
 
-      <Response />
+        <RequestSender />
+      </div>
+
+      <Outlet />
     </div>
   );
 }
