@@ -6,7 +6,7 @@ import fetchData from '@/utils/fetchData/fetchData';
 import { getUrl } from '@/utils/getUrl';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
-import type { Route } from './+types/index.lazy';
+import type { Route } from '../+types/index.lazy';
 
 export async function serverFetchLoader({
   request,

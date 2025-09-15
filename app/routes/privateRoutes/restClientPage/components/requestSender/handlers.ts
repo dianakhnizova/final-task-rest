@@ -5,8 +5,9 @@ import type {
   KeyValue,
 } from '@/sources/interfaces';
 
-import { handleCodeGenerator } from './components/codeGenerator/handleCodeGenerator';
-import { handleServerFetch } from './components/urlBox/handlers';
+import { handleServerFetch } from '@/utils/handleServerFetch';
+
+import { handleCodeGenerator } from '../codeGenerator/handlers';
 
 export const handleSendRequest = async (
   url: string,
@@ -26,24 +27,20 @@ export const handleSendRequest = async (
     {}
   );
 
-  await handleServerFetch(
-    url,
-    method,
-    protocol,
-    body,
-    headers,
-    variables,
-    setSearchParams
-  );
-
-  await handleCodeGenerator(
-    {
+  await Promise.all([
+    handleServerFetch(
       url,
       method,
-      headers: headersObj,
+      protocol,
       body,
-    },
-    language,
-    setCode
-  );
+      headers,
+      variables,
+      setSearchParams
+    ),
+    handleCodeGenerator(
+      { url, method, headers: headersObj, body },
+      language,
+      setCode
+    ),
+  ]);
 };

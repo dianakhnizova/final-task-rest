@@ -1,5 +1,4 @@
-import { LOGO_URL } from '@/sources/constants';
-
+import { LOGO_URL } from '@/sources/constants/constants';
 import { header as messages } from '@/sources/messages/header';
 
 import styles from './icon.module.css';

@@ -13,7 +13,7 @@ import Wrapper from '@/components/wrapper';
 
 import type { Route } from './+types/root';
 import { ErrorBoundaryComponent } from './components/errorBoundary';
-import { TOAST_DURATION } from './sources/constants';
+import { TOAST_DURATION } from './sources/constants/constants';
 import { Language, Theme } from './sources/enums';
 
 export function Layout({ children }: { children: React.ReactNode }) {

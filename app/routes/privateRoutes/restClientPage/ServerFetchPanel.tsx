@@ -8,7 +8,7 @@ import type { Route } from './+types/index.lazy';
 import styles from './RestClientPage.module.css';
 import { Response } from './components/response';
 
-export { serverFetchLoader as loader } from './serverFetchLoader';
+export { serverFetchLoader as loader } from './loaders/serverFetchLoader';
 
 export default function ServerFetchPanel({ loaderData }: Route.ComponentProps) {
   const { data, error, status } = (loaderData || {}) as LoaderData;

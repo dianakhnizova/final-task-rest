@@ -2,8 +2,7 @@ import type { FC } from 'react';
 
 import { Links, Meta } from 'react-router';
 
-import { LOGO_URL } from '@/sources/constants';
-
+import { LOGO_URL } from '@/sources/constants/constants';
 import { root } from '@/sources/messages/root';
 
 export const Head: FC = () => {

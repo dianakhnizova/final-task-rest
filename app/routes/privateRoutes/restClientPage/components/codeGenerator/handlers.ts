@@ -4,6 +4,8 @@ import type {
   CodeRequestData,
 } from '@/sources/interfaces';
 
+import { errors as errorMessages } from '@/sources/messages/errors';
+
 import { generateCode } from '@/utils/generateCode';
 
 export const handleCodeGenerator = async (
@@ -16,7 +18,7 @@ export const handleCodeGenerator = async (
 
     setCode({ generatedCode, error: null });
   } catch (error) {
-    console.log('Error code generation', error);
+    console.log(errorMessages.codeGeneratorError, error);
 
     setCode({ generatedCode: null, error: (error as Error).message });
   }

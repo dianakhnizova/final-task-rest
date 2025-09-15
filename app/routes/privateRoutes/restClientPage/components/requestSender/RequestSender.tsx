@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button';
 
 import { useActions } from '@/utils/hooks/useActions';
 
-import { handleSendRequest } from './handleSendRequest';
+import { handleSendRequest } from './handlers';
 
 export const RequestSender = () => {
   const method = useSelector(selectMethod);
@@ -25,13 +25,11 @@ export const RequestSender = () => {
   const protocol = useSelector(selectProtocol);
   const body = useSelector(selectBody);
   const headers = useSelector(selectHeaders);
+  const variables = useSelector(selectVariables);
   const language = useSelector(selectLanguage);
 
   const { setCode } = useActions();
-
   const setSearchParams = useSearchParams()[1];
-
-  const variables = useSelector(selectVariables);
 
   return (
     <Button

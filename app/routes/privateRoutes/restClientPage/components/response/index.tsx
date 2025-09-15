@@ -8,7 +8,7 @@ import { type FC, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { Parsers } from '@/sources/enums';
 
@@ -88,7 +88,7 @@ export const Response: FC<Props> = ({ data, status }) => {
           <>
             <SyntaxHighlighter
               language={languageMap[parser] || Parsers.TEXT}
-              style={vscDarkPlus}
+              style={atomDark}
               showLineNumbers={parser === Parsers.JSON}
               wrapLongLines
             >
@@ -106,7 +106,7 @@ export const Response: FC<Props> = ({ data, status }) => {
             {prettified ? (
               <SyntaxHighlighter
                 language={languageMap[parser] || Parsers.TEXT}
-                style={vscDarkPlus}
+                style={atomDark}
                 showLineNumbers={parser === Parsers.JSON}
                 wrapLongLines
               >

@@ -6,8 +6,8 @@ import { Select } from '@/components/ui/select';
 
 import { useActions } from '@/utils/hooks/useActions';
 
+import { parserList } from '../../../../../sources/lists/parserList';
 import styles from './Parser.module.css';
-import { parserList } from './parserList';
 
 export const Parser = () => {
   const { setParser } = useActions();

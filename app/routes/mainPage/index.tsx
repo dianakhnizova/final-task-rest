@@ -19,8 +19,8 @@ import { Button } from '@/components/ui/button';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
+import styles from './MainPage.module.css';
 import { handleHistory, handleRestClient, handleVariables } from './handlers';
-import styles from './mainPage.module.css';
 
 export const meta = pageMeta(messages);
 
@@ -52,9 +52,11 @@ export default function MainPage() {
           <Button onClick={() => handleRestClient(navigate)}>
             {messages.btnRestClient}
           </Button>
+
           <Button onClick={() => handleHistory(navigate)}>
             {messages.btnHistory}
           </Button>
+
           <Button onClick={() => handleVariables(navigate)}>
             {messages.btnVariables}
           </Button>
@@ -67,6 +69,7 @@ export default function MainPage() {
       {!hasNestedRoutes && (
         <div className={styles.content}>
           <h2 className={styles.title}>{messages.welcomeNew}</h2>
+
           <SignInUpToggler />
         </div>
       )}

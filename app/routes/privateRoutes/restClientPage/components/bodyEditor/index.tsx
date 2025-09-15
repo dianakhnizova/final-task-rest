@@ -10,8 +10,8 @@ import { Select } from '@/components/ui/select';
 
 import { useActions } from '@/utils/hooks/useActions';
 
+import { languageList } from '../../../../../sources/lists/languageList';
 import { CodeGenerator } from '../codeGenerator';
-import { languageList } from '../codeGenerator/languageList';
 import styles from './BodyEditor.module.css';
 import { handleBodyEditor, handleLanguage } from './handlers';
 
@@ -30,6 +30,7 @@ export const BodyEditor = () => {
     <div className={styles.container}>
       <div className={styles.codeGenerator}>
         <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+
         <Select
           options={languageList}
           setSelectedValue={value =>
