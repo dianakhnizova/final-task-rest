@@ -1,3 +1,7 @@
+import type { CodeGeneratorLoaderData } from '@/routes/privateRoutes/restClientPage/components/codeGenerator/codeGenerator';
+
+import { CodeLanguage, CodeVariant } from './enums';
+
 export interface InputFields {
   id: string;
   label: string;
@@ -38,6 +42,7 @@ export interface LoaderData {
   data: string | null;
   error: string | null;
   status?: number | null;
+  codeGen: CodeGeneratorLoaderData | null;
 }
 
 export interface KeyValue {
@@ -45,3 +50,28 @@ export interface KeyValue {
   key: string;
   value: string;
 }
+
+export interface CodeOptions {
+  indentCount: number;
+  indentType: 'Space' | 'Tab';
+  trimRequestBody: boolean;
+  followRedirect: boolean;
+  includeBoilerplate: boolean;
+}
+
+export interface CodeRequestData {
+  url: string;
+  method: string;
+  headers: Record<string, string>;
+  body?: string;
+  auth?: {
+    type: 'basic' | 'bearer';
+    username?: string;
+    password?: string;
+    token?: string;
+  };
+}
+
+export type CodeLanguageVariants = {
+  [key in CodeLanguage]: CodeVariant[];
+};

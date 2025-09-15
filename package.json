@@ -22,6 +22,8 @@
     "@supabase/supabase-js": "^2.57.2",
     "clsx": "^2.1.1",
     "isbot": "^5",
+    "postman-code-generators": "^2.0.0",
+    "postman-collection": "^5.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.62.0",

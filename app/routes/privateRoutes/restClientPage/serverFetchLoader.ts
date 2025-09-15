@@ -7,31 +7,35 @@ import { getUrl } from '@/utils/getUrl';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
 import type { Route } from './+types/index.lazy';
+import { codeGenerator } from './components/codeGenerator/codeGenerator';
 
 export async function serverFetchLoader({
   request,
 }: Route.LoaderArgs): Promise<LoaderData> {
-  const { targetUrl, method, protocol } = parseQueryParams(request);
+  const parsedRequest = parseQueryParams(request);
+  const { targetUrl, method, protocol } = parsedRequest;
 
   if (!targetUrl) {
     return {
       data: null,
       error: null,
       status: null,
+      codeGen: null,
     };
   }
 
   const fullUrl = getUrl(targetUrl, protocol);
 
-  const { response, error } = await fetchData(fullUrl, method);
+  const codeGen = await codeGenerator(parsedRequest);
 
-  console.log(targetUrl, method, protocol);
+  const { response, error } = await fetchData(fullUrl, method);
 
   if (error) {
     return {
       data: null,
       error: `${errorMessages.httpError} ${error}`,
       status: null,
+      codeGen,
     };
   }
 
@@ -41,5 +45,6 @@ export async function serverFetchLoader({
     data: data,
     error: null,
     status: response?.status ?? null,
+    codeGen,
   };
 }
