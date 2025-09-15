@@ -46,14 +46,16 @@ const restClientSlice = createSlice({
     updateHeader(state, action: PayloadAction<Header>) {
       const updatedHeader = action.payload;
 
-      const index = state.headers.findIndex(kv => kv.id === updatedHeader.id);
+      const index = state.headers.findIndex(
+        header => header.id === updatedHeader.id
+      );
 
       state.headers[index] = updatedHeader;
     },
     removeHeader(state, action: PayloadAction<number>) {
-      let header = [...state.headers];
-      header = header.filter(kv => kv.id !== action.payload);
-      state.headers = header;
+      let headers = [...state.headers];
+      headers = headers.filter(header => header.id !== action.payload);
+      state.headers = headers;
     },
   },
 });

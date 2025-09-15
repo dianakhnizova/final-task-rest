@@ -22,13 +22,15 @@ const settingsSlice = createSlice({
     removeVariable: (state, action: PayloadAction<number>) => {
       let variables = [...state.globalVariables];
 
-      variables = variables.filter(kv => kv.id !== action.payload);
+      variables = variables.filter(variable => variable.id !== action.payload);
 
       state.globalVariables = variables;
     },
     updateVariable: (state, action: PayloadAction<KeyValue>) => {
       const variables = [...state.globalVariables];
-      const index = variables.findIndex(kv => kv.id === action.payload.id);
+      const index = variables.findIndex(
+        variable => variable.id === action.payload.id
+      );
       variables[index] = action.payload;
       state.globalVariables = variables;
     },
