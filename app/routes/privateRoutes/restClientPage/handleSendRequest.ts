@@ -1,5 +1,9 @@
 import type { CodeLanguage, HttpMethods, Protocols } from '@/sources/enums';
-import type { CodeGeneratorLoaderData, Header } from '@/sources/interfaces';
+import type {
+  CodeGeneratorLoaderData,
+  Header,
+  KeyValue,
+} from '@/sources/interfaces';
 
 import { handleCodeGenerator } from './components/codeGenerator/handleCodeGenerator';
 import { handleServerFetch } from './components/urlBox/handlers';
@@ -10,6 +14,7 @@ export const handleSendRequest = async (
   protocol: Protocols,
   body: string,
   headers: Header[],
+  variables: KeyValue[],
   language: CodeLanguage,
   setSearchParams: (params: URLSearchParams) => void,
   setCode: (code: CodeGeneratorLoaderData) => void
@@ -27,6 +32,7 @@ export const handleSendRequest = async (
     protocol,
     body,
     headers,
+    variables,
     setSearchParams
   );
 

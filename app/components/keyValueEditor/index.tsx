@@ -9,8 +9,14 @@ import { Input } from '@/components/ui/input';
 import styles from './KeyValueEditor.module.css';
 
 export interface Props {
+  keyHeader: string;
+  valueHeader: string;
+  keyPlaceholder?: string;
+  valuePlaceholder?: string;
   keyValues: KeyValue[];
-  onChange: (newValues: KeyValue[]) => void;
+  onAdd: (newValue: KeyValue) => void;
+  onDelete: (uid: number) => void;
+  onUpdate: (updatedValue: KeyValue) => void;
 }
 
 const enum EditableField {
@@ -18,30 +24,35 @@ const enum EditableField {
   VALUE = 'value',
 }
 
-export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
+export const KeyValueEditor: FC<Props> = ({
+  keyHeader,
+  valueHeader,
+  keyValues,
+  onAdd,
+  onDelete,
+  onUpdate,
+  keyPlaceholder = messages.keyPlaceholder,
+  valuePlaceholder = messages.valuePlaceholder,
+}) => {
   const id = useId();
 
   const handleAdd = () => {
-    onChange([
-      ...keyValues,
-      {
-        id: Math.max(...keyValues.map(pair => pair.id), 0) + 1,
-        key: '',
-        value: '',
-      },
-    ]);
+    onAdd({
+      id: Math.max(...keyValues.map(pair => pair.id), 0) + 1,
+      key: '',
+      value: '',
+    });
   };
 
   const handleDelete = (uid: number) => {
-    const newValues = keyValues.filter(pair => pair.id !== uid);
-    onChange(newValues);
+    onDelete(uid);
   };
 
   const handleChange = (uid: number, handler: (pair: KeyValue) => KeyValue) => {
-    const newValues = [...keyValues];
-    const index = newValues.findIndex(pair => pair.id === uid);
-    newValues[index] = handler(newValues[index]);
-    onChange(newValues);
+    const index = keyValues.findIndex(pair => pair.id === uid);
+    const updatedValue = handler(keyValues[index]);
+
+    onUpdate(updatedValue);
   };
 
   const getChangeHandler =
@@ -67,8 +78,8 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
         </colgroup>
         <thead>
           <tr>
-            <th>Key</th>
-            <th>Value</th>
+            <th>{keyHeader}</th>
+            <th>{valueHeader}</th>
             <th>
               <Button className={styles.addButton} onClick={handleAdd}>
                 {messages.add}
@@ -86,10 +97,16 @@ export const KeyValueEditor: FC<Props> = ({ keyValues, onChange }) => {
           {keyValues.map(keyValue => (
             <tr key={keyValue.id}>
               <td>
-                <Input {...buildInput(keyValue, EditableField.KEY)} />
+                <Input
+                  {...buildInput(keyValue, EditableField.KEY)}
+                  placeholder={keyPlaceholder}
+                />
               </td>
               <td>
-                <Input {...buildInput(keyValue, EditableField.VALUE)} />
+                <Input
+                  {...buildInput(keyValue, EditableField.VALUE)}
+                  placeholder={valuePlaceholder}
+                />
               </td>
               <td>
                 <Button onClick={() => handleDelete(keyValue.id)}>

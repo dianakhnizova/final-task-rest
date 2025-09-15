@@ -13,7 +13,15 @@ export default function PrivateRoutes() {
 
   useEffect(() => {
     if (!user) {
-      navigate(AppRoutes.SIGN_IN, { replace: true });
+      const currentUrl = window.location.pathname;
+
+      const redirectParams = new URLSearchParams({
+        redirect: currentUrl,
+      });
+
+      const signInUrl = `${AppRoutes.SIGN_IN}?${redirectParams.toString()}`;
+
+      navigate(signInUrl, { replace: true });
     }
   }, [user, navigate]);
 

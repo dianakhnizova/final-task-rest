@@ -1,3 +1,8 @@
+import {
+  clearSettingsLS,
+  loadSettingsFromLS,
+} from '@/store/slices/settings/settingsLS.ts';
+
 import { useEffect } from 'react';
 
 import { Auth } from '@/sources/enums';
@@ -8,7 +13,7 @@ import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export default function AppInitializer() {
-  const { setUser } = useActions();
+  const { setUser, loadSettings } = useActions();
   const { removeUserFromStorage } = useSaveUserToLS(Auth.USER, null);
 
   useEffect(() => {
@@ -20,8 +25,11 @@ export default function AppInitializer() {
     } catch (error) {
       console.log(errors.parseError, error);
       removeUserFromStorage();
+      clearSettingsLS();
     }
-  }, [setUser, removeUserFromStorage]);
+
+    loadSettings(loadSettingsFromLS());
+  }, [setUser, loadSettings, removeUserFromStorage]);
 
   return null;
 }

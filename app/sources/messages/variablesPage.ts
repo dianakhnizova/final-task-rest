@@ -4,4 +4,6 @@ export const variablesPage = {
   metaContent: 'Welcome to Variables',
 
   header: 'Variables',
+  keyHeader: 'Key',
+  valueHeader: 'Value',
 };

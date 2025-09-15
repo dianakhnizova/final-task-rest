@@ -1,7 +1,14 @@
 import { selectAuth } from '@/store/slices/auth/selectors';
 
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
 
@@ -23,6 +30,16 @@ export default function MainPage() {
   const navigate = useNavigate();
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
+
+  const [searchParams] = useSearchParams();
+
+  const redirectBackTo = searchParams.get('redirect');
+
+  useEffect(() => {
+    if (user && redirectBackTo) {
+      navigate(redirectBackTo);
+    }
+  }, [user, navigate, redirectBackTo]);
 
   if (user)
     return (
