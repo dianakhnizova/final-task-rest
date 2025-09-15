@@ -29,10 +29,7 @@ export type FetchResponse = {
   error: string | null;
 };
 
-export interface Header {
-  key: string;
-  value: string;
-}
+export type Header = KeyValue;
 
 export interface LoaderData {
   data: string | null;

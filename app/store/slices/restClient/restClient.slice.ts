@@ -40,18 +40,20 @@ const restClientSlice = createSlice({
     setBody: (state, action: PayloadAction<string>) => {
       state.body = action.payload;
     },
-    addHeader(state) {
-      state.headers.push({ key: '', value: '' });
+    addHeader(state, action: PayloadAction<Header>) {
+      state.headers.push(action.payload);
     },
-    updateHeader(
-      state,
-      action: PayloadAction<{ index: number; key: string; value: string }>
-    ) {
-      const { index, key, value } = action.payload;
-      state.headers[index] = { key, value };
+    updateHeader(state, action: PayloadAction<Header>) {
+      const updatedHeader = action.payload;
+
+      const index = state.headers.findIndex(kv => kv.id === updatedHeader.id);
+
+      state.headers[index] = updatedHeader;
     },
     removeHeader(state, action: PayloadAction<number>) {
-      state.headers.splice(action.payload, 1);
+      let header = [...state.headers];
+      header = header.filter(kv => kv.id !== action.payload);
+      state.headers = header;
     },
   },
 });
