@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import styles from './KeyValueEditor.module.css';
 
 export interface Props {
+  keyHeader: string;
+  valueHeader: string;
   keyValues: KeyValue[];
   onAdd: (newValue: KeyValue) => void;
   onDelete: (uid: number) => void;
@@ -21,6 +23,8 @@ const enum EditableField {
 }
 
 export const KeyValueEditor: FC<Props> = ({
+  keyHeader,
+  valueHeader,
   keyValues,
   onAdd,
   onDelete,
@@ -70,8 +74,8 @@ export const KeyValueEditor: FC<Props> = ({
         </colgroup>
         <thead>
           <tr>
-            <th>Key</th>
-            <th>Value</th>
+            <th>{keyHeader}</th>
+            <th>{valueHeader}</th>
             <th>
               <Button className={styles.addButton} onClick={handleAdd}>
                 {messages.add}

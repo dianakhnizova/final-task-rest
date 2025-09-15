@@ -22,6 +22,8 @@ export default function VariablesPage() {
       <h1 className={styles.header}>{messages.header}</h1>
       <div>
         <KeyValueEditor
+          keyHeader={messages.keyHeader}
+          valueHeader={messages.valueHeader}
           keyValues={variables}
           onAdd={addVariable}
           onUpdate={updateVariable}
