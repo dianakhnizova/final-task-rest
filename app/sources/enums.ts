@@ -154,3 +154,25 @@ export enum HttpStatusText {
   SERVICE_UNAVAILABLE = 'Service Unavailable',
   UNKNOWN = 'Unknown',
 }
+
+export enum CodeLanguage {
+  CURL = 'curl',
+  JAVASCRIPT = 'JavaScript',
+  XHR = 'XHR',
+  NODEJS = 'nodejs',
+  PYTHON = 'python',
+  JAVA = 'java',
+  CSHARP = 'csharp',
+  GO = 'go',
+}
+
+export enum CodeVariant {
+  FETCH = 'fetch',
+  XHR = 'xhr',
+  NATIVE = 'native',
+  REQUEST = 'request',
+  HTTP_CLIENT = 'http-client',
+  CURL = 'curl',
+  HTTP = 'http',
+  NET_HTTP = 'net-http',
+}
