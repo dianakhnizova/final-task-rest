@@ -1,4 +1,3 @@
-import { CodeLanguage } from '@/sources/enums';
 import type { LoaderData } from '@/sources/interfaces';
 
 import { errors as errorMessages } from '@/sources/messages/errors';
@@ -7,13 +6,12 @@ import { serverFetch as serverMessages } from '@/sources/messages/serverFetch';
 
 import type { Route } from './+types/index.lazy';
 import styles from './RestClientPage.module.css';
-import CodeResult from './components/codeGenerator/codeResult';
 import { Response } from './components/response';
 
-export { serverFetchLoader as loader } from './serverFetchLoader';
+export { serverFetchLoader as loader } from './loaders/serverFetchLoader';
 
 export default function ServerFetchPanel({ loaderData }: Route.ComponentProps) {
-  const { data, error, status, codeGen } = (loaderData || {}) as LoaderData;
+  const { data, error, status } = (loaderData || {}) as LoaderData;
 
   return (
     <div className={styles.response}>
@@ -33,8 +31,6 @@ export default function ServerFetchPanel({ loaderData }: Route.ComponentProps) {
       ) : (
         <p className={styles.title}>{serverMessages.emptyRequestHint}</p>
       )}
-
-      <CodeResult code={codeGen} language={CodeLanguage.JAVASCRIPT} />
     </div>
   );
 }

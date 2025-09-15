@@ -6,4 +6,7 @@ export const errors = {
   requestTimeout: 'Request timeout',
   httpError: 'HTTP error! status:',
   serverError: 'Error fetching from server',
+  codeGeneratorError: 'Error code generation',
+  urlError: 'Cannot generate code: URL is required',
+  languageError: 'Code generation for this language is not supported',
 };

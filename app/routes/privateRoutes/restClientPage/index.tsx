@@ -4,11 +4,11 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
-import { RequestSender } from './RequestSender';
 import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
 import { Headers } from './components/headers';
 import { Parser } from './components/parser';
+import { RequestSender } from './components/requestSender/RequestSender';
 import { UrlBox } from './components/urlBox';
 
 export const meta = pageMeta(restClientMessages);

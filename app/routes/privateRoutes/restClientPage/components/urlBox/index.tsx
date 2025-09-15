@@ -7,10 +7,10 @@ import { Select } from '@/components/ui/select';
 
 import { useActions } from '@/utils/hooks/useActions';
 
+import { methodList } from '../../../../../sources/lists/methodList';
+import { protocolList } from '../../../../../sources/lists/protocolList';
 import styles from './UrlBox.module.css';
 import { handleMethod, handleProtocol, handleUrl } from './handlers';
-import { methodList } from './lists/methodList';
-import { protocolList } from './lists/protocolList';
 
 export const UrlBox = () => {
   const { setMethod, setProtocol, setUrl } = useActions();

@@ -9,7 +9,7 @@ import { KeyValueEditor } from '@/components/keyValueEditor';
 import { useActions } from '@/utils/hooks/useActions.ts';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
-import styles from './variables.module.css';
+import styles from './Variables.module.css';
 
 export const meta = pageMeta(messages);
 
@@ -21,16 +21,15 @@ export default function VariablesPage() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.header}>{messages.header}</h1>
-        <div>
-          <KeyValueEditor
-            keyHeader={messages.keyHeader}
-            valueHeader={messages.valueHeader}
-            keyValues={variables}
-            onAdd={addVariable}
-            onUpdate={updateVariable}
-            onDelete={removeVariable}
-          />
-        </div>
+
+        <KeyValueEditor
+          keyHeader={messages.keyHeader}
+          valueHeader={messages.valueHeader}
+          keyValues={variables}
+          onAdd={addVariable}
+          onUpdate={updateVariable}
+          onDelete={removeVariable}
+        />
       </div>
     </div>
   );

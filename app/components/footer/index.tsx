@@ -1,6 +1,9 @@
-import { GITHUB_PROJECT_URL, RSS_COURSE_URL } from '@/sources/constants';
 import { WrapperId } from '@/sources/enums';
 
+import {
+  GITHUB_PROJECT_URL,
+  RSS_COURSE_URL,
+} from '@/sources/constants/constants';
 import { footer } from '@/sources/messages/footer';
 
 import { GithubLogo, RsSchoolLogo } from '@/components/icons';

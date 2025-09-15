@@ -6,8 +6,7 @@ import fetchData from '@/utils/fetchData/fetchData';
 import { getUrl } from '@/utils/getUrl';
 import { parseQueryParams } from '@/utils/parseQueryParams';
 
-import type { Route } from './+types/index.lazy';
-import { codeGenerator } from './components/codeGenerator/codeGenerator';
+import type { Route } from '../+types/index.lazy';
 
 export async function serverFetchLoader({
   request,
@@ -20,13 +19,10 @@ export async function serverFetchLoader({
       data: null,
       error: null,
       status: null,
-      codeGen: null,
     };
   }
 
   const fullUrl = getUrl(targetUrl, protocol);
-
-  const codeGen = await codeGenerator(parsedRequest);
 
   const { response, error } = await fetchData(fullUrl, method);
 
@@ -35,7 +31,6 @@ export async function serverFetchLoader({
       data: null,
       error: `${errorMessages.httpError} ${error}`,
       status: null,
-      codeGen,
     };
   }
 
@@ -45,6 +40,5 @@ export async function serverFetchLoader({
     data: data,
     error: null,
     status: response?.status ?? null,
-    codeGen,
   };
 }

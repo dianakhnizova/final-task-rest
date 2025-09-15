@@ -2,7 +2,7 @@ import styles from './Select.module.css';
 
 interface Props<T extends string | number> {
   setSelectedValue: (value: T | null) => void;
-  options: (number | string)[];
+  options: T[];
   defaultValue?: string | number;
 }
 

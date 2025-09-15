@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
-import { inputFields } from '@/sources/inputFields';
 import type { SignUpForm } from '@/sources/interfaces';
 
 import { buttons as buttonsMessages } from '@/sources/messages/buttons';
@@ -16,6 +15,7 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { inputFields } from '@/components/ui/input/inputFields';
 
 import { authError } from '@/utils/authError';
 import { pageMeta } from '@/utils/metaHelpers.ts';

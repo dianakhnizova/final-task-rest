@@ -2,23 +2,24 @@ import { selectBody, selectMethod } from '@/store/slices/restClient/selectors';
 
 import { useSelector } from 'react-redux';
 
-import { HttpMethods } from '@/sources/enums';
+import { CodeLanguage, HttpMethods } from '@/sources/enums';
 
 import { restClientPage } from '@/sources/messages/restClientPage';
 
+import { Select } from '@/components/ui/select';
+
 import { useActions } from '@/utils/hooks/useActions';
 
+import { languageList } from '../../../../../sources/lists/languageList';
+import { CodeGenerator } from '../codeGenerator';
 import styles from './BodyEditor.module.css';
+import { handleBodyEditor, handleLanguage } from './handlers';
 
 export const BodyEditor = () => {
   const body = useSelector(selectBody);
   const method = useSelector(selectMethod);
 
-  const { setBody } = useActions();
-
-  const handleBodyEditor = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setBody(event.target.value);
-  };
+  const { setBody, setLanguage } = useActions();
 
   const showBodyEditor =
     method !== HttpMethods.GET &&
@@ -27,7 +28,18 @@ export const BodyEditor = () => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+      <div className={styles.codeGenerator}>
+        <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+
+        <Select
+          options={languageList}
+          setSelectedValue={value =>
+            handleLanguage(value as CodeLanguage | null, setLanguage)
+          }
+        />
+      </div>
+
+      <CodeGenerator />
 
       {showBodyEditor && (
         <>
@@ -35,7 +47,7 @@ export const BodyEditor = () => {
 
           <textarea
             value={body}
-            onChange={handleBodyEditor}
+            onChange={value => handleBodyEditor(value, setBody)}
             placeholder={restClientPage.bodyEditor.placeholder}
             className={styles.bodyEditor}
           />

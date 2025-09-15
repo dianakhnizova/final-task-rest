@@ -4,8 +4,7 @@ import {
   EMAIL_REGEX,
   NAME_REGEX,
   PASSWORD_UNICODE_REGEX,
-} from '@/sources/constants';
-
+} from '@/sources/constants/constants';
 import { validation } from '@/sources/messages/validation';
 
 export const nameSchema = z

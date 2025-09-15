@@ -5,6 +5,11 @@
   width: 100%;
 }
 
+.codeGenerator {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
 .bodyEditor {
   border: none;
   border-radius: var(--radius-lg);

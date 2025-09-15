@@ -1,5 +1,5 @@
-import { CodeLanguage, CodeVariant } from './enums';
-import type { CodeLanguageVariants, CodeOptions } from './interfaces';
+import { CodeLanguage, CodeVariant } from '../enums';
+import type { CodeLanguageVariants, CodeOptions } from '../interfaces';
 
 export const WRAPPER_ROOT_PORTAL_ID = 'root-portal';
 export const GITHUB_PROJECT_URL =

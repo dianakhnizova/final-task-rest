@@ -10,7 +10,7 @@ import { Auth } from '@/sources/enums';
 import { errors } from '@/sources/messages/errors';
 
 import { useActions } from '@/utils/hooks/useActions';
-import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
+import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export default function AppInitializer() {
   const { setUser, loadSettings } = useActions();

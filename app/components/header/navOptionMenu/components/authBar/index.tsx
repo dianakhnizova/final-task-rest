@@ -14,7 +14,7 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { Button } from '@/components/ui/button';
 
 import { useActions } from '@/utils/hooks/useActions';
-import { useSaveUserToLS } from '@/utils/useSaveUserToLS';
+import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export const AuthBar = () => {
   const navigate = useNavigate();

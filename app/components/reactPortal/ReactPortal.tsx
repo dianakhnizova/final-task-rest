@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 
 import { createPortal } from 'react-dom';
 
-import { WRAPPER_ROOT_PORTAL_ID } from '@/sources/constants';
 import { DisplayName } from '@/sources/enums';
+
+import { WRAPPER_ROOT_PORTAL_ID } from '@/sources/constants/constants';
 
 import { createWrapperPortal } from '@/utils/createWrapperPortal';
 

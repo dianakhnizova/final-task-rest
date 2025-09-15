@@ -1,6 +1,6 @@
-import { FETCH_ABORT_TIMEOUT_MS } from '@/sources/constants';
 import type { FetchResponse } from '@/sources/interfaces';
 
+import { FETCH_ABORT_TIMEOUT_MS } from '@/sources/constants/constants';
 import { errors as errorMessages } from '@/sources/messages/errors';
 
 export default async function fetchWithErrorHandling(

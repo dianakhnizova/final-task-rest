@@ -6,7 +6,7 @@ import { Auth } from '@/sources/enums';
 
 import { errors } from '@/sources/messages/errors';
 
-import { useActions } from './hooks/useActions';
+import { useActions } from './useActions';
 
 export const useSaveUserToLS = (key: string, initialValue: User | null) => {
   const { setUser } = useActions();

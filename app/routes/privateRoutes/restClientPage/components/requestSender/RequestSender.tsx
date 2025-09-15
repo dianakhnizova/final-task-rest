@@ -1,6 +1,7 @@
 import {
   selectBody,
   selectHeaders,
+  selectLanguage,
   selectMethod,
   selectProtocol,
   selectUrl,
@@ -14,7 +15,9 @@ import { buttons as buttonMessages } from '@/sources/messages/buttons';
 
 import { Button } from '@/components/ui/button';
 
-import { handleServerFetch } from './components/urlBox/handlers';
+import { useActions } from '@/utils/hooks/useActions';
+
+import { handleSendRequest } from './handlers';
 
 export const RequestSender = () => {
   const method = useSelector(selectMethod);
@@ -22,22 +25,25 @@ export const RequestSender = () => {
   const protocol = useSelector(selectProtocol);
   const body = useSelector(selectBody);
   const headers = useSelector(selectHeaders);
-
-  const setSearchParams = useSearchParams()[1];
-
   const variables = useSelector(selectVariables);
+  const language = useSelector(selectLanguage);
+
+  const { setCode } = useActions();
+  const setSearchParams = useSearchParams()[1];
 
   return (
     <Button
       onClick={() =>
-        handleServerFetch(
+        handleSendRequest(
           url,
           method,
           protocol,
           body,
           headers,
+          variables,
+          language,
           setSearchParams,
-          variables
+          setCode
         )
       }
       disabled={!url}
