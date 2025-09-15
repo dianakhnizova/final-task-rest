@@ -1,3 +1,4 @@
+import type { CodeLanguage } from '@/sources/enums';
 import type {
   CodeGeneratorLoaderData,
   CodeRequestData,
@@ -5,20 +6,15 @@ import type {
 
 import { generateCode } from '@/utils/generateCode';
 
-import { languageList } from './languageList';
-
 export const handleCodeGenerator = async (
   requestData: CodeRequestData,
+  language: CodeLanguage,
   setCode: (code: CodeGeneratorLoaderData) => void
 ) => {
   try {
-    const generated: Record<string, string> = {};
+    const generatedCode = generateCode(language, requestData);
 
-    languageList.forEach(lang => {
-      generated[lang] = generateCode(lang, requestData);
-    });
-
-    setCode({ generatedCode: JSON.stringify(generated, null, 2), error: null });
+    setCode({ generatedCode, error: null });
   } catch (error) {
     console.log('Error code generation', error);
 

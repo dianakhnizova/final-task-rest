@@ -1,6 +1,7 @@
 import {
   selectBody,
   selectHeaders,
+  selectLanguage,
   selectMethod,
   selectProtocol,
   selectUrl,
@@ -23,6 +24,7 @@ export const RequestSender = () => {
   const protocol = useSelector(selectProtocol);
   const body = useSelector(selectBody);
   const headers = useSelector(selectHeaders);
+  const language = useSelector(selectLanguage);
 
   const { setCode } = useActions();
 
@@ -37,6 +39,7 @@ export const RequestSender = () => {
           protocol,
           body,
           headers,
+          language,
           setSearchParams,
           setCode
         )

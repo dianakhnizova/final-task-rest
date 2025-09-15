@@ -1,4 +1,4 @@
-import type { HttpMethods, Protocols } from '@/sources/enums';
+import type { CodeLanguage, HttpMethods, Protocols } from '@/sources/enums';
 import type { CodeGeneratorLoaderData, Header } from '@/sources/interfaces';
 
 import { handleCodeGenerator } from './components/codeGenerator/handleCodeGenerator';
@@ -10,10 +10,16 @@ export const handleSendRequest = async (
   protocol: Protocols,
   body: string,
   headers: Header[],
+  language: CodeLanguage,
   setSearchParams: (params: URLSearchParams) => void,
   setCode: (code: CodeGeneratorLoaderData) => void
 ) => {
   if (!url) return;
+
+  const headersObj = headers.reduce(
+    (acc, header) => ({ ...acc, [header.key]: header.value }),
+    {}
+  );
 
   await handleServerFetch(
     url,
@@ -28,12 +34,10 @@ export const handleSendRequest = async (
     {
       url,
       method,
-      headers: headers.reduce(
-        (acc, header) => ({ ...acc, [header.key]: header.value }),
-        {}
-      ),
+      headers: headersObj,
       body,
     },
+    language,
     setCode
   );
 };
