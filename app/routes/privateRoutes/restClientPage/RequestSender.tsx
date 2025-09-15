@@ -5,6 +5,7 @@ import {
   selectProtocol,
   selectUrl,
 } from '@/store/slices/restClient/selectors';
+import { selectVariables } from '@/store/slices/settings/selectors.ts';
 
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router';
@@ -24,10 +25,20 @@ export const RequestSender = () => {
 
   const setSearchParams = useSearchParams()[1];
 
+  const variables = useSelector(selectVariables);
+
   return (
     <Button
       onClick={() =>
-        handleServerFetch(url, method, protocol, body, headers, setSearchParams)
+        handleServerFetch(
+          url,
+          method,
+          protocol,
+          body,
+          headers,
+          setSearchParams,
+          variables
+        )
       }
       disabled={!url}
     >
