@@ -1,4 +1,5 @@
 import { selectAuth } from '@/store/slices/auth/selectors';
+import { clearSettingsLS } from '@/store/slices/settings/settingsLS.ts';
 import { supabase } from '@/supabaseClient';
 
 import toast from 'react-hot-toast';
@@ -29,6 +30,7 @@ export const AuthBar = () => {
   const handleLogOut = async () => {
     await supabase.auth.signOut();
     removeUserFromStorage();
+    clearSettingsLS();
     toast.success(`${user?.user_metadata.name} ${toastMessages.logOut}`);
 
     clearUser();
