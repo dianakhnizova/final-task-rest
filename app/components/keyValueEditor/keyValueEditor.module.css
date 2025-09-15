@@ -10,7 +10,6 @@
   border-radius: var(--radius-standard);
   border: var(--border-width-sm) solid var(--color-border-variant);
   padding: var(--spacing-4);
-  background-color: var(--color-surface);
   width: 100%;
 }
 

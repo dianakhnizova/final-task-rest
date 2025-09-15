@@ -11,6 +11,8 @@ import styles from './KeyValueEditor.module.css';
 export interface Props {
   keyHeader: string;
   valueHeader: string;
+  keyPlaceholder?: string;
+  valuePlaceholder?: string;
   keyValues: KeyValue[];
   onAdd: (newValue: KeyValue) => void;
   onDelete: (uid: number) => void;
@@ -29,6 +31,8 @@ export const KeyValueEditor: FC<Props> = ({
   onAdd,
   onDelete,
   onUpdate,
+  keyPlaceholder = messages.keyPlaceholder,
+  valuePlaceholder = messages.valuePlaceholder,
 }) => {
   const id = useId();
 
@@ -93,10 +97,16 @@ export const KeyValueEditor: FC<Props> = ({
           {keyValues.map(keyValue => (
             <tr key={keyValue.id}>
               <td>
-                <Input {...buildInput(keyValue, EditableField.KEY)} />
+                <Input
+                  {...buildInput(keyValue, EditableField.KEY)}
+                  placeholder={keyPlaceholder}
+                />
               </td>
               <td>
-                <Input {...buildInput(keyValue, EditableField.VALUE)} />
+                <Input
+                  {...buildInput(keyValue, EditableField.VALUE)}
+                  placeholder={valuePlaceholder}
+                />
               </td>
               <td>
                 <Button onClick={() => handleDelete(keyValue.id)}>

@@ -15,20 +15,22 @@ export const meta = pageMeta(restClientMessages);
 
 export default function RestClientPage() {
   return (
-    <div className={styles.container}>
-      <div className={styles.restRequestContainer}>
-        <UrlBox />
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.restRequestContainer}>
+          <UrlBox />
 
-        <Headers />
+          <Headers />
 
-        <BodyEditor />
+          <BodyEditor />
 
-        <Parser />
+          <Parser />
 
-        <RequestSender />
+          <RequestSender />
+        </div>
+
+        <Outlet />
       </div>
-
-      <Outlet />
     </div>
   );
 }
