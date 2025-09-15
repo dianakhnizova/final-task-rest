@@ -7,7 +7,7 @@ import { KeyValueEditor } from '@/components/keyValueEditor';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
-import styles from './variables.module.css';
+import styles from './Variables.module.css';
 
 export const meta = pageMeta(messages);
 

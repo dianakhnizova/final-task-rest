@@ -1,6 +1,6 @@
-import { InputID, InputType } from './enums';
-import type { InputFields } from './interfaces';
-import { input } from './messages/input';
+import { InputID, InputType } from '../../../sources/enums';
+import type { InputFields } from '../../../sources/interfaces';
+import { input } from '../../../sources/messages/input';
 
 export const inputFields: InputFields[] = [
   {

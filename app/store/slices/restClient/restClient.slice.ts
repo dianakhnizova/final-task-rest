@@ -1,6 +1,8 @@
+import type { CodeGeneratorLoaderData } from '@/routes/privateRoutes/restClientPage/components/codeGenerator/codeGenerator';
+
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { HttpMethods, Parsers, Protocols } from '@/sources/enums';
+import { CodeLanguage, HttpMethods, Parsers, Protocols } from '@/sources/enums';
 import type { Header } from '@/sources/interfaces';
 
 interface RestClientState {
@@ -10,6 +12,8 @@ interface RestClientState {
   headers: Header[];
   parser: Parsers;
   body: string;
+  code: CodeGeneratorLoaderData | null;
+  language: CodeLanguage;
 }
 
 const initialState: RestClientState = {
@@ -19,6 +23,8 @@ const initialState: RestClientState = {
   headers: [],
   parser: Parsers.JSON,
   body: '',
+  code: null,
+  language: CodeLanguage.JAVASCRIPT,
 };
 
 const restClientSlice = createSlice({
@@ -39,6 +45,12 @@ const restClientSlice = createSlice({
     },
     setBody: (state, action: PayloadAction<string>) => {
       state.body = action.payload;
+    },
+    setCode(state, action: PayloadAction<CodeGeneratorLoaderData | null>) {
+      state.code = action.payload;
+    },
+    setLanguage(state, action: PayloadAction<CodeLanguage>) {
+      state.language = action.payload;
     },
     addHeader(state) {
       state.headers.push({ key: '', value: '' });

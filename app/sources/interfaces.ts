@@ -1,5 +1,3 @@
-import type { CodeGeneratorLoaderData } from '@/routes/privateRoutes/restClientPage/components/codeGenerator/codeGenerator';
-
 import { CodeLanguage, CodeVariant } from './enums';
 
 export interface InputFields {
@@ -42,7 +40,7 @@ export interface LoaderData {
   data: string | null;
   error: string | null;
   status?: number | null;
-  codeGen: CodeGeneratorLoaderData | null;
+  codeGen?: CodeGeneratorLoaderData | null;
 }
 
 export interface KeyValue {
@@ -75,3 +73,8 @@ export interface CodeRequestData {
 export type CodeLanguageVariants = {
   [key in CodeLanguage]: CodeVariant[];
 };
+
+export interface CodeGeneratorLoaderData {
+  generatedCode: string | null;
+  error: string | null;
+}
