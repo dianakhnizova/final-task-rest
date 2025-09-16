@@ -1,4 +1,9 @@
-import { HttpMethods, Protocols, SearchParams } from '@/sources/enums';
+import {
+  ContentType,
+  HttpMethods,
+  Protocols,
+  SearchParams,
+} from '@/sources/enums';
 import type { Header, KeyValue } from '@/sources/interfaces';
 
 import { getUrl } from './getUrl';
@@ -39,13 +44,31 @@ export const handleServerFetch = async (
       {} as Record<string, string>
     );
 
+    let preparedBody: string | undefined = undefined;
+
+    if (body && method !== HttpMethods.GET) {
+      const interpolatedBody = interpolate(body, variablesMap);
+
+      try {
+        const parsed = JSON.parse(interpolatedBody);
+        preparedBody = JSON.stringify(parsed);
+
+        if (
+          !Object.keys(mergedHeaders).some(
+            h => h.toLowerCase() === 'content-type'
+          )
+        ) {
+          mergedHeaders['Content-Type'] = ContentType.JSON;
+        }
+      } catch {
+        preparedBody = interpolatedBody;
+      }
+    }
+
     const response = await fetch(fullUrl, {
       method,
       headers: mergedHeaders,
-      body:
-        method !== HttpMethods.GET
-          ? interpolate(body, variablesMap)
-          : undefined,
+      body: preparedBody,
     });
 
     const responseData = await response.text();

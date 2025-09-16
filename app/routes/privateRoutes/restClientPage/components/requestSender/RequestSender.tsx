@@ -1,7 +1,6 @@
 import {
   selectBody,
   selectHeaders,
-  selectLanguage,
   selectMethod,
   selectProtocol,
   selectUrl,
@@ -9,15 +8,17 @@ import {
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router';
+import { useFetcher } from 'react-router';
+
+import { ButtonType, CodeVariant, HttpMethods } from '@/sources/enums';
 
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
+import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { Button } from '@/components/ui/button';
+import { inputFetchFields } from '@/components/ui/input/inputFetchFields';
 
-import { useActions } from '@/utils/hooks/useActions';
-
-import { handleSendRequest } from './handlers';
+import { Response } from '../response';
 
 export const RequestSender = () => {
   const method = useSelector(selectMethod);
@@ -26,29 +27,44 @@ export const RequestSender = () => {
   const body = useSelector(selectBody);
   const headers = useSelector(selectHeaders);
   const variables = useSelector(selectVariables);
-  const language = useSelector(selectLanguage);
 
-  const { setCode } = useActions();
-  const setSearchParams = useSearchParams()[1];
+  const fetcher = useFetcher();
+  const fields = inputFetchFields({
+    url,
+    method,
+    protocol,
+    body,
+    headers,
+    variables,
+  });
 
   return (
-    <Button
-      onClick={() =>
-        handleSendRequest(
-          url,
-          method,
-          protocol,
-          body,
-          headers,
-          variables,
-          language,
-          setSearchParams,
-          setCode
-        )
-      }
-      disabled={!url}
-    >
-      {buttonMessages.send}
-    </Button>
+    <>
+      <fetcher.Form action={CodeVariant.FETCH} method={HttpMethods.POST}>
+        {fields.map(field => (
+          <input
+            key={field.id}
+            id={field.id}
+            type={field.type}
+            name={field.name}
+            value={field.value}
+          />
+        ))}
+
+        <Button type={ButtonType.SUBMIT} disabled={!url}>
+          {buttonMessages.send}
+        </Button>
+      </fetcher.Form>
+
+      {fetcher.data ? (
+        <>
+          <p>{restClientMessages.response.title}</p>
+
+          <Response data={fetcher.data.received} status={fetcher.data.status} />
+        </>
+      ) : (
+        <p>{restClientMessages.response.emptyRequestHint}</p>
+      )}
+    </>
   );
 };

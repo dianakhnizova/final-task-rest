@@ -30,7 +30,6 @@
 .raw {
   display: block;
   align-items: center;
-  width: 80%;
   white-space: pre;
   overflow: auto hidden;
 }

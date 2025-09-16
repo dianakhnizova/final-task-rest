@@ -23,3 +23,10 @@ export const handleCodeGenerator = async (
     setCode({ generatedCode: null, error: (error as Error).message });
   }
 };
+
+export const handleLanguage = (
+  value: CodeLanguage | null,
+  setLanguage: (method: CodeLanguage) => void
+) => {
+  if (value) setLanguage(value);
+};

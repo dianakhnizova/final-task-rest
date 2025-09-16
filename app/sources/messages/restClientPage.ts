@@ -16,6 +16,7 @@ export const restClientPage = {
   },
 
   response: {
+    title: 'Response',
     headerTitle: 'Header: ',
     key: 'key: ',
     value: 'value: ',
@@ -23,5 +24,7 @@ export const restClientPage = {
     bodyTitle: 'Body: ',
     emptyData: 'No data yet',
     requestBodyTitle: 'Request Body:',
+    emptyRequestHint: 'Enter URL and click "Send request"',
+    selectParser: 'Select parser',
   },
 };

@@ -1,5 +1,4 @@
 import {
-  selectBody,
   selectHeaders,
   selectParser,
 } from '@/store/slices/restClient/selectors';
@@ -31,7 +30,6 @@ interface Props {
 
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
-  const requestBody = useSelector(selectBody);
   const headers = useSelector(selectHeaders);
   const [prettified, setPrettified] = useState(false);
 
@@ -48,10 +46,6 @@ export const Response: FC<Props> = ({ data, status }) => {
     : typeof data === 'string'
       ? data
       : JSON.stringify(data);
-
-  const formattedBody = prettified
-    ? formatResponse(requestBody, parser)
-    : requestBody;
 
   return (
     <div className={styles.container}>
@@ -72,6 +66,7 @@ export const Response: FC<Props> = ({ data, status }) => {
 
       <div className={styles.status}>
         <p>{restClientMessages.response.statusTitle}</p>
+
         <p className={styles.title}>
           {status ? `${status} ${getStatusText(status)}` : ''}
         </p>
@@ -97,25 +92,6 @@ export const Response: FC<Props> = ({ data, status }) => {
           </>
         ) : (
           <p className={styles.raw}>{formattedResponse}</p>
-        )}
-
-        {requestBody && (
-          <>
-            <p>{restClientMessages.response.requestBodyTitle}</p>
-
-            {prettified ? (
-              <SyntaxHighlighter
-                language={languageMap[parser] || Parsers.TEXT}
-                style={atomDark}
-                showLineNumbers={parser === Parsers.JSON}
-                wrapLongLines
-              >
-                {formattedBody}
-              </SyntaxHighlighter>
-            ) : (
-              <pre>{formattedBody}</pre>
-            )}
-          </>
         )}
       </div>
     </div>

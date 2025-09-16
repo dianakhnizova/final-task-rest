@@ -15,6 +15,7 @@ export enum AppRoutes {
   VARIABLES = '/variables',
   HISTORY = '/history',
   REST_CLIENT = '/restClient',
+  FETCH = 'fetch',
 }
 
 export enum InputType {
@@ -23,6 +24,7 @@ export enum InputType {
   RADIO = 'radio',
   PASSWORD = 'password',
   E_MAIL = 'email',
+  HIDDEN = 'hidden',
 }
 
 export enum InputID {
@@ -33,6 +35,11 @@ export enum InputID {
   ID_URL = 'url',
   ID_HEADER_KEY = 'header_key',
   ID_HEADER_VALUE = 'header_value',
+  ID_METHOD = 'method',
+  ID_PROTOCOL = 'protocol',
+  ID_BODY = 'body',
+  ID_HEADERS = 'headers',
+  ID_VARIABLES = 'variables',
 }
 
 export enum ErrorCode {
@@ -122,10 +129,13 @@ export enum ContentType {
   MPEG_VIDEO = 'video/mpeg',
 }
 
-export enum SearchParams {
+export enum InputName {
   URL = 'url',
   METHOD = 'method',
   PROTOCOL = 'protocol',
+  BODY = 'body',
+  HEADERS = 'headers',
+  VARIABLES = 'variables',
 }
 
 export enum Protocols {
