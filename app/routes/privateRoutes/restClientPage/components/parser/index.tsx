@@ -1,6 +1,6 @@
 import type { Parsers } from '@/sources/enums';
 
-import { serverFetch as serverMessages } from '@/sources/messages/serverFetch';
+import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { Select } from '@/components/ui/select';
 
@@ -18,7 +18,7 @@ export const Parser = () => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>{serverMessages.selectParser}</p>
+      <p className={styles.title}>{restClientMessages.response.selectParser}</p>
 
       <Select options={parserList} setSelectedValue={handleParser} />
     </div>

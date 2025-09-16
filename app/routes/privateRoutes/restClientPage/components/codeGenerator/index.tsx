@@ -1,6 +1,10 @@
 import {
+  selectBody,
   selectCode,
+  selectHeaders,
   selectLanguage,
+  selectMethod,
+  selectUrl,
 } from '@/store/slices/restClient/selectors';
 
 import type { FC } from 'react';
@@ -9,13 +13,64 @@ import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
+import { type CodeLanguage } from '@/sources/enums';
+
+import { languageList } from '@/sources/lists/languageList';
+import { buttons as buttonMessages } from '@/sources/messages/buttons';
+import { restClientPage } from '@/sources/messages/restClientPage';
+
+import { Button } from '@/components/ui/button';
+import { Select } from '@/components/ui/select';
+
+import { useActions } from '@/utils/hooks/useActions';
+
+import styles from './CodeGenerator.module.css';
+import { handleCodeGenerator, handleLanguage } from './handlers';
+
 export const CodeGenerator: FC = () => {
   const code = useSelector(selectCode);
+  const body = useSelector(selectBody);
+  const method = useSelector(selectMethod);
   const language = useSelector(selectLanguage);
+  const headers = useSelector(selectHeaders);
+  const url = useSelector(selectUrl);
+
+  const { setCode, setLanguage } = useActions();
+
+  const headersObj = headers.reduce(
+    (acc, header) => ({ ...acc, [header.key]: header.value }),
+    {}
+  );
 
   return (
-    <SyntaxHighlighter language={language?.toLowerCase()} style={atomDark}>
-      {code?.generatedCode || ''}
-    </SyntaxHighlighter>
+    <div className={styles.container}>
+      <div className={styles.codeGenerator}>
+        <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+
+        <Select
+          options={languageList}
+          setSelectedValue={value =>
+            handleLanguage(value as CodeLanguage | null, setLanguage)
+          }
+        />
+
+        <Button
+          onClick={() =>
+            handleCodeGenerator(
+              { url, method, headers: headersObj, body },
+              language,
+              setCode
+            )
+          }
+          disabled={!url}
+        >
+          {buttonMessages.generate}
+        </Button>
+      </div>
+
+      <SyntaxHighlighter language={language?.toLowerCase()} style={atomDark}>
+        {code?.generatedCode || ''}
+      </SyntaxHighlighter>
+    </div>
   );
 };

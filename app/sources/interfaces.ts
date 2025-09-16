@@ -2,9 +2,11 @@ import { CodeLanguage, CodeVariant } from './enums';
 
 export interface InputFields {
   id: string;
-  label: string;
+  label?: string;
+  name?: string;
+  value?: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
@@ -74,4 +76,13 @@ export type CodeLanguageVariants = {
 export interface CodeGeneratorLoaderData {
   generatedCode: string | null;
   error: string | null;
+}
+
+export interface FetchValues {
+  url?: string;
+  method?: string;
+  protocol?: string;
+  body?: string | object;
+  headers?: Header[];
+  variables?: KeyValue[];
 }

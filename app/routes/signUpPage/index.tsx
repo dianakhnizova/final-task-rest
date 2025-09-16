@@ -15,7 +15,7 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { inputFields } from '@/components/ui/input/inputFields';
+import { inputFormFields } from '@/components/ui/input/inputFormFields';
 
 import { authError } from '@/utils/authError';
 import { pageMeta } from '@/utils/metaHelpers.ts';
@@ -65,7 +65,7 @@ export default function SignUpPage() {
         isDisabled={!formState.isValid}
         buttonLabel={buttonsMessages.signUp}
       >
-        {inputFields.map(field => (
+        {inputFormFields.map(field => (
           <Input
             key={field.id}
             {...field}

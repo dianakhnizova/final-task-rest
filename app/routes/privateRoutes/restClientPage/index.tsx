@@ -1,11 +1,10 @@
-import { Outlet } from 'react-router';
-
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
 import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
+import { CodeGenerator } from './components/codeGenerator';
 import { Headers } from './components/headers';
 import { Parser } from './components/parser';
 import { RequestSender } from './components/requestSender/RequestSender';
@@ -17,19 +16,17 @@ export default function RestClientPage() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <div className={styles.restRequestContainer}>
-          <UrlBox />
+        <UrlBox />
 
-          <Headers />
+        <Headers />
 
-          <BodyEditor />
+        <CodeGenerator />
 
-          <Parser />
+        <BodyEditor />
 
-          <RequestSender />
-        </div>
+        <Parser />
 
-        <Outlet />
+        <RequestSender />
       </div>
     </div>
   );

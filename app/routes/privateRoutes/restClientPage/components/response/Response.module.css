@@ -26,3 +26,10 @@
   color: var(--color-primary);
   font-size: var(--font-size-xs);
 }
+
+.raw {
+  display: block;
+  align-items: center;
+  white-space: pre;
+  overflow: auto hidden;
+}

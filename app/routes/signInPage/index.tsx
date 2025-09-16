@@ -15,7 +15,7 @@ import { toasts as toastMessages } from '@/sources/messages/toasts';
 
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { inputFields } from '@/components/ui/input/inputFields';
+import { inputFormFields } from '@/components/ui/input/inputFormFields';
 
 import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
@@ -40,7 +40,7 @@ export default function SignInPage() {
     mode: 'onChange',
   });
 
-  const filteredFields = inputFields.filter(
+  const filteredFields = inputFormFields.filter(
     ({ id }) => id === InputID.ID_EMAIL || id === InputID.ID_PASSWORD
   );
 

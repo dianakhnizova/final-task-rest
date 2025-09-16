@@ -6,28 +6,14 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 80%;
   padding: var(--spacing-5);
-  gap: var(--spacing-5);
+  gap: var(--spacing-6);
   background-color: var(--color-surface);
   border: var(--border-width-sm) solid var(--color-border-variant);
   border-radius: var(--radius-standard);
   box-shadow: var(--elevation-level3);
-}
-
-.restRequestContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: var(--spacing-5);
-}
-
-.response {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-5);
-  align-items: center;
-  width: 100%;
-  margin-top: var(--spacing-5);
 }

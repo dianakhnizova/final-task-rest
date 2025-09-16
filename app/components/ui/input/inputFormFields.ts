@@ -2,7 +2,7 @@ import { InputID, InputType } from '../../../sources/enums';
 import type { InputFields } from '../../../sources/interfaces';
 import { input } from '../../../sources/messages/input';
 
-export const inputFields: InputFields[] = [
+export const inputFormFields: InputFields[] = [
   {
     id: InputID.ID_EMAIL,
     label: input.label.email,
