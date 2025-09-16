@@ -1,12 +1,12 @@
 import type { Parsers } from '@/sources/enums';
 
+import { parserList } from '@/sources/lists/parserList';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { Select } from '@/components/ui/select';
 
 import { useActions } from '@/utils/hooks/useActions';
 
-import { parserList } from '../../../../../sources/lists/parserList';
 import styles from './Parser.module.css';
 
 export const Parser = () => {
