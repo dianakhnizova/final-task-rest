@@ -21,11 +21,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       body: method !== HttpMethods.GET ? JSON.stringify(body) : undefined,
       headers,
     });
-    const json = await res.json();
+
+    const responseText = await res.text();
 
     return {
       ok: true,
-      received: json,
+      received: responseText,
       status: res.status,
     };
   } catch (error) {

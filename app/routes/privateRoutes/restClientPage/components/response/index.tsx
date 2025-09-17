@@ -3,7 +3,7 @@ import {
   selectParser,
 } from '@/store/slices/restClient/selectors';
 
-import { type FC, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
 
+import { Parser } from '../parser';
 import styles from './Response.module.css';
 import { languageMap } from './languageMap';
 
@@ -31,7 +32,8 @@ interface Props {
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
   const headers = useSelector(selectHeaders);
-  const [prettified, setPrettified] = useState(false);
+  const [prettified, setPrettified] = useState(true);
+  const [formattedResponse, setFormattedResponse] = useState<unknown>();
 
   const handlePrettify = () => {
     if (prettified) {
@@ -41,14 +43,14 @@ export const Response: FC<Props> = ({ data, status }) => {
     }
   };
 
-  const formattedResponse = prettified
-    ? formatResponse(data, parser)
-    : typeof data === 'string'
-      ? data
-      : JSON.stringify(data);
+  useEffect(() => {
+    setFormattedResponse(prettified ? formatResponse(data, parser) : data);
+  }, [data, parser]);
 
   return (
     <div className={styles.container}>
+      <Parser />
+
       {headers && (
         <div className={styles.headers}>
           <p>{restClientMessages.response.headerTitle}</p>
