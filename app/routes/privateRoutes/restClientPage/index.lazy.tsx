@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 
-import { Loader } from '@/components/ui/loader';
+import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 const RestClientPage = lazy(
   () => import('@/routes/privateRoutes/restClientPage')
@@ -8,7 +8,7 @@ const RestClientPage = lazy(
 
 export default function RestClientPageLazy() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<WaitingLoader />}>
       <RestClientPage />
     </Suspense>
   );

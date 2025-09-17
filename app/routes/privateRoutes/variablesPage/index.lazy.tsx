@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 
-import { Loader } from '@/components/ui/loader';
+import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 const VariablesPage = lazy(
   () => import('@/routes//privateRoutes/variablesPage')
@@ -8,7 +8,7 @@ const VariablesPage = lazy(
 
 export default function VariablesPageLazy() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<WaitingLoader />}>
       <VariablesPage />
     </Suspense>
   );

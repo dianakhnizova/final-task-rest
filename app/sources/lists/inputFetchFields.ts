@@ -1,5 +1,5 @@
-import { InputID, InputName, InputType } from '../../../sources/enums';
-import type { FetchValues, InputFields } from '../../../sources/interfaces';
+import { InputID, InputName, InputType } from '../enums';
+import type { FetchValues, InputFields } from '../interfaces';
 
 export const inputFetchFields = (values: FetchValues): InputFields[] => [
   {
