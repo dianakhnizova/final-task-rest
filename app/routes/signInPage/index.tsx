@@ -9,6 +9,10 @@ import { Link, useNavigate, useSearchParams } from 'react-router';
 import { AppRoutes, Auth, InputID } from '@/sources/enums';
 import type { SignInForm } from '@/sources/interfaces';
 
+import {
+  TOAST_DURATION,
+  TOAST_DURATION_LONG,
+} from '@/sources/constants/constants';
 import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { signInPage } from '@/sources/messages/signInPage';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
@@ -47,6 +51,11 @@ export default function SignInPage() {
   const onSubmit: SubmitHandler<SignInForm> = async formData => {
     const { email, password } = formData;
 
+    toast.success(toastMessages.signCheck, {
+      id: toastMessages.signInId,
+      duration: TOAST_DURATION_LONG,
+    });
+
     const { data: authData, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -61,7 +70,8 @@ export default function SignInPage() {
     setUserToStorage(authData.user);
 
     toast.success(
-      `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`
+      `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`,
+      { id: toastMessages.signInId, duration: TOAST_DURATION }
     );
 
     navigate(redirectTo);

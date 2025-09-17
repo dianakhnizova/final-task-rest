@@ -2,6 +2,17 @@ import { type ActionFunctionArgs } from 'react-router';
 
 import { AppRoutes, HttpMethods, Protocols } from '@/sources/enums';
 
+import { CACHE_TTL } from '@/sources/constants/constants';
+
+const responseCache = new Map<
+  string,
+  {
+    data: unknown;
+    timestamp: number;
+    expires: number;
+  }
+>();
+
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -39,6 +50,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
   const finalUrl = `/${basePath}/${AppRoutes.FETCH}?${queryParams.toString()}`;
 
+  const cacheKey = JSON.stringify({
+    url,
+    method,
+    body,
+    headers,
+  });
+
+  const cached = responseCache.get(cacheKey);
+  const now = Date.now();
+
+  if (cached && now - cached.timestamp < cached.expires) {
+    return cached.data;
+  }
+
   try {
     const res = await fetch(url, {
       method,
@@ -48,12 +73,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     const responseText = await res.text();
 
-    return {
+    const result = {
       ok: true,
       received: responseText,
       status: res.status,
       finalUrl,
     };
+
+    responseCache.set(cacheKey, {
+      data: result,
+      timestamp: now,
+      expires: CACHE_TTL,
+    });
+
+    return result;
   } catch (error) {
     return {
       ok: false,
