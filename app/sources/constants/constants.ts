@@ -16,6 +16,7 @@ export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 export const LOGO_URL = './snake.svg';
 export const TOAST_DURATION = 4000;
+export const TOAST_DURATION_LONG = 20000;
 
 export const FETCH_ABORT_TIMEOUT_MS = 10000;
 
@@ -37,3 +38,5 @@ export const CodeDefaultOptions: CodeOptions = {
   followRedirect: false,
   includeBoilerplate: false,
 };
+
+export const CACHE_TTL = 60000;

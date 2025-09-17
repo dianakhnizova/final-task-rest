@@ -1,0 +1,23 @@
+.loaderContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-height: 200px;
+  min-height: 10px;
+}
+
+.loader {
+  max-height: 50px;
+  margin: 3px;
+  border-radius: 50%;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.loading {
+  color: #fff;
+  background-color: #000;
+}
