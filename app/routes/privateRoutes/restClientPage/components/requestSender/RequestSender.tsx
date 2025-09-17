@@ -59,7 +59,11 @@ export const RequestSender = () => {
 
   return (
     <>
-      <fetcher.Form action={AppRoutes.FETCH} method={HttpMethods.POST}>
+      <fetcher.Form
+        action={AppRoutes.FETCH}
+        method={HttpMethods.POST}
+        onSubmit={() => {}}
+      >
         {fields.map(field => (
           <input
             key={field.id}

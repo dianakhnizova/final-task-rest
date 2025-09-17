@@ -3,7 +3,7 @@ import {
   selectParser,
 } from '@/store/slices/restClient/selectors';
 
-import { type FC, useEffect, useState } from 'react';
+import { type FC } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -11,15 +11,10 @@ import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { Parsers } from '@/sources/enums';
 
-import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
-import { Button } from '@/components/ui/button';
-
-import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
 
-import { Parser } from '../parser';
 import styles from './Response.module.css';
 import { languageMap } from './languageMap';
 
@@ -32,27 +27,9 @@ interface Props {
 export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
   const headers = useSelector(selectHeaders);
-  const [prettified, setPrettified] = useState(true);
-  const [formattedResponse, setFormattedResponse] = useState('');
-
-  const handlePrettify = () => {
-    if (prettified) {
-      setPrettified(false);
-    } else {
-      setPrettified(true);
-    }
-  };
-
-  useEffect(() => {
-    setFormattedResponse(
-      formatResponse(data, prettified ? parser : Parsers.RAW)
-    );
-  }, [data, parser, prettified]);
 
   return (
     <div className={styles.container}>
-      <Parser />
-
       {headers && (
         <div className={styles.headers}>
           <p>{restClientMessages.response.headerTitle}</p>
@@ -79,24 +56,14 @@ export const Response: FC<Props> = ({ data, status }) => {
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
 
-        <Button onClick={handlePrettify}>
-          {prettified ? buttonsMessages.raw : buttonsMessages.prettify}
-        </Button>
-
-        {prettified ? (
-          <>
-            <SyntaxHighlighter
-              language={languageMap[parser] || Parsers.TEXT}
-              style={atomDark}
-              showLineNumbers={parser === Parsers.JSON}
-              wrapLongLines
-            >
-              {formattedResponse}
-            </SyntaxHighlighter>
-          </>
-        ) : (
-          <p className={styles.raw}>{formattedResponse}</p>
-        )}
+        <SyntaxHighlighter
+          language={languageMap[parser] || Parsers.TEXT}
+          style={atomDark}
+          showLineNumbers={parser === Parsers.JSON}
+          wrapLongLines
+        >
+          {JSON.stringify(data, null, 2)}
+        </SyntaxHighlighter>
       </div>
     </div>
   );

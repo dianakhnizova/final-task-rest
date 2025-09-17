@@ -34,6 +34,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     : rawHeaders;
 
+  console.log(body);
+
   const queryParams = new URLSearchParams({
     method,
     url: btoa(url),
@@ -49,8 +51,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
   const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
-
-  console.log(finalUrl);
 
   const cacheKey = JSON.stringify({
     url,
@@ -69,15 +69,32 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   try {
     const res = await fetch(url, {
       method,
-      body: method !== HttpMethods.GET ? JSON.stringify(body) : undefined,
+      body: method !== HttpMethods.GET ? body : undefined,
       headers,
     });
 
     const responseText = await res.text();
+    console.log('Server response:', responseText);
+
+    let parsedResponse;
+
+    try {
+      parsedResponse = JSON.parse(responseText);
+    } catch {
+      parsedResponse = responseText;
+    }
+
+    let mergedData: unknown;
+
+    if (body && parsedResponse && typeof parsedResponse === 'object') {
+      mergedData = { ...body, ...parsedResponse };
+    } else {
+      mergedData = parsedResponse ?? body;
+    }
 
     const result = {
       ok: true,
-      received: responseText,
+      received: mergedData,
       status: res.status,
       finalUrl,
     };

@@ -20,6 +20,12 @@
   }
 }
 
+.bodyTitleContainer {
+  display: flex;
+  gap: var(--spacing-5);
+  align-items: center;
+}
+
 .title {
   color: var(--color-primary);
 }
