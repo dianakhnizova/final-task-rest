@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
 
 import {
+  AppRoutes,
   ButtonType,
-  CodeVariant,
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
@@ -59,7 +59,7 @@ export const RequestSender = () => {
 
   return (
     <>
-      <fetcher.Form action={CodeVariant.FETCH} method={HttpMethods.POST}>
+      <fetcher.Form action={AppRoutes.FETCH} method={HttpMethods.POST}>
         {fields.map(field => (
           <input
             key={field.id}

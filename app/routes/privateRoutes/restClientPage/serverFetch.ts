@@ -48,7 +48,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   });
 
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
-  const finalUrl = `/${basePath}/${AppRoutes.FETCH}?${queryParams.toString()}`;
+  const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
+
+  console.log(finalUrl);
 
   const cacheKey = JSON.stringify({
     url,

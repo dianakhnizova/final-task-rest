@@ -14,7 +14,7 @@ export enum AppRoutes {
   VARIABLES = '/variables',
   HISTORY = '/history',
   REST_CLIENT = '/restClient',
-  FETCH = 'fetch',
+  FETCH = '/api/fetch',
 }
 
 export enum InputType {
