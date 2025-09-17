@@ -17,12 +17,22 @@ export const Footer = () => {
       <div className={styles.separator}></div>
 
       <Wrapper id={WrapperId.footer} className={styles.content}>
-        <a href={GITHUB_PROJECT_URL} className={styles.link}>
+        <a
+          href={GITHUB_PROJECT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <GithubLogo />
           <span>{footer.githubProject}</span>
         </a>
 
-        <a href={RSS_COURSE_URL} className={styles.link}>
+        <a
+          href={RSS_COURSE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
           <RsSchoolLogo />
           <span>{footer.rsSchoolCourse}</span>
         </a>

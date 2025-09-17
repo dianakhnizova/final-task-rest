@@ -14,6 +14,7 @@ import { AppRoutes } from '@/sources/enums';
 
 import { mainPage as messages } from '@/sources/messages/mainPage';
 
+import { AboutUs } from '@/components/aboutUs';
 import { SignInUpToggler } from '@/components/signInUpToggler';
 import { Button } from '@/components/ui/button';
 
@@ -44,8 +45,9 @@ export default function MainPage() {
   if (user)
     return (
       <main className={styles.container}>
-        <h2>
-          {messages.welcomeOld} {user.user_metadata.name}
+        <h2 className={styles.welcome}>
+          {messages.welcomeOld}
+          <p className={styles.name}>{user.user_metadata.name}</p>
         </h2>
 
         <section className={styles.btnSection}>
@@ -61,17 +63,23 @@ export default function MainPage() {
             {messages.btnVariables}
           </Button>
         </section>
+
+        <AboutUs />
       </main>
     );
 
   return (
     <main className={styles.container}>
       {!hasNestedRoutes && (
-        <div className={styles.content}>
-          <h2 className={styles.title}>{messages.welcomeNew}</h2>
+        <>
+          <div className={styles.content}>
+            <h2 className={styles.title}>{messages.welcomeNew}</h2>
 
-          <SignInUpToggler />
-        </div>
+            <SignInUpToggler />
+          </div>
+
+          <AboutUs />
+        </>
       )}
 
       <Outlet />
