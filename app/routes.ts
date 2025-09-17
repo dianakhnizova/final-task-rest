@@ -16,7 +16,7 @@ export default [
       [
         route(
           AppRoutes.FETCH,
-          'routes/privateRoutes/restClientPage/serverFetch.tsx'
+          'routes/privateRoutes/restClientPage/serverFetch.ts'
         ),
       ]
     ),

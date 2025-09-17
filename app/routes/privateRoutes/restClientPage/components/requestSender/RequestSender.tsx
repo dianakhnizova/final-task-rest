@@ -7,6 +7,8 @@ import {
 } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
 
@@ -29,6 +31,7 @@ export const RequestSender = () => {
   const variables = useSelector(selectVariables);
 
   const fetcher = useFetcher();
+
   const fields = inputFetchFields({
     url,
     method,
@@ -37,6 +40,12 @@ export const RequestSender = () => {
     headers,
     variables,
   });
+
+  useEffect(() => {
+    if (fetcher.data?.ok && fetcher.data.finalUrl) {
+      window.history.replaceState(null, '', fetcher.data.finalUrl);
+    }
+  }, [fetcher.data]);
 
   return (
     <>

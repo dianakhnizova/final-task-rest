@@ -1,6 +1,6 @@
 import { type ActionFunctionArgs } from 'react-router';
 
-import { HttpMethods, Protocols } from '@/sources/enums';
+import { AppRoutes, HttpMethods, Protocols } from '@/sources/enums';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
@@ -23,6 +23,22 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     : rawHeaders;
 
+  const queryParams = new URLSearchParams({
+    method,
+    url: btoa(url),
+  });
+
+  if (body) {
+    queryParams.set('body', btoa(JSON.stringify(body)));
+  }
+
+  Object.entries(headers).forEach(([k, v]) => {
+    queryParams.set(`h_${k}`, encodeURIComponent(v as string));
+  });
+
+  const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
+  const finalUrl = `/${basePath}/${AppRoutes.FETCH}?${queryParams.toString()}`;
+
   try {
     const res = await fetch(url, {
       method,
@@ -36,6 +52,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       ok: true,
       received: responseText,
       status: res.status,
+      finalUrl,
     };
   } catch (error) {
     return {
