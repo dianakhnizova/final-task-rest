@@ -1,4 +1,4 @@
-import { aboutPage } from './aboutPage';
+import { aboutUs } from './aboutUs';
 import { buttons } from './buttons';
 import { errorBoundary } from './errorBoundary';
 import { signInPage } from './signInPage';
@@ -8,7 +8,7 @@ import { toasts } from './toasts';
 export const messages = {
   buttons,
   errorBoundary,
-  aboutPage,
+  aboutUs,
   signInPage,
   signUpPage,
   toasts,

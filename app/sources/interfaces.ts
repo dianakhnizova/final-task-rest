@@ -86,3 +86,9 @@ export interface FetchValues {
   headers?: Header[];
   variables?: KeyValue[];
 }
+
+export interface Developer {
+  name: string;
+  photo: string;
+  gitHub: string;
+}

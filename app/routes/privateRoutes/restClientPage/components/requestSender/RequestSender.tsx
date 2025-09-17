@@ -19,11 +19,11 @@ import {
   LoaderStatus,
 } from '@/sources/enums';
 
+import { inputFetchFields } from '@/sources/lists/inputFetchFields';
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { Button } from '@/components/ui/button';
-import { inputFetchFields } from '@/components/ui/input/inputFetchFields';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 import { Response } from '../response';

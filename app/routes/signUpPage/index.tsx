@@ -13,13 +13,13 @@ import {
   TOAST_DURATION,
   TOAST_DURATION_LONG,
 } from '@/sources/constants/constants';
+import { inputFormFields } from '@/sources/lists/inputFormFields';
 import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { signUpPage } from '@/sources/messages/signUpPage';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
 
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { inputFormFields } from '@/components/ui/input/inputFormFields';
 
 import { authError } from '@/utils/authError';
 import { pageMeta } from '@/utils/metaHelpers.ts';
