@@ -1,26 +1,25 @@
 import { useState } from 'react';
 
-import type { User } from '@supabase/supabase-js';
-
 import { Auth } from '@/sources/enums';
+import type { AuthUser } from '@/sources/interfaces';
 
 import { errors } from '@/sources/messages/errors';
 
 import { useActions } from './useActions';
 
-export const useSaveUserToLS = (key: string, initialValue: User | null) => {
+export const useSaveUserToLS = (key: string, initialValue: AuthUser | null) => {
   const { setUser } = useActions();
 
-  const [storedValue, setStoredValue] = useState<User | null>(() => {
+  const [storedValue, setStoredValue] = useState<AuthUser | null>(() => {
     try {
       const saved = localStorage.getItem(key);
-      return saved ? (JSON.parse(saved) as User) : initialValue;
+      return saved ? (JSON.parse(saved) as AuthUser) : initialValue;
     } catch {
       return initialValue;
     }
   });
 
-  const setUserToStorage = (value: User) => {
+  const setUserToStorage = (value: AuthUser) => {
     try {
       setStoredValue(value);
       localStorage.setItem(key, JSON.stringify(value));

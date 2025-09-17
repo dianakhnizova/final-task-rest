@@ -1,3 +1,5 @@
+import type { User } from '@supabase/supabase-js';
+
 import { CodeLanguage, CodeVariant } from './enums';
 
 export interface InputFields {
@@ -85,4 +87,10 @@ export interface FetchValues {
   body?: string | object;
   headers?: Header[];
   variables?: KeyValue[];
+}
+
+export interface AuthUser {
+  user: User;
+  accessToken: string;
+  expiresAt: number | null;
 }

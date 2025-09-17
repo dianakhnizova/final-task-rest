@@ -1,14 +1,7 @@
 import { selectAuth } from '@/store/slices/auth/selectors';
 
-import { useEffect } from 'react';
-
 import { useSelector } from 'react-redux';
-import {
-  Outlet,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
 
@@ -31,21 +24,12 @@ export default function MainPage() {
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
-  const [searchParams] = useSearchParams();
-
-  const redirectBackTo = searchParams.get('redirect');
-
-  useEffect(() => {
-    if (user && redirectBackTo) {
-      navigate(redirectBackTo);
-    }
-  }, [user, navigate, redirectBackTo]);
-
   if (user)
     return (
       <main className={styles.container}>
-        <h2>
-          {messages.welcomeOld} {user.user_metadata.name}
+        <h2 className={styles.welcome}>
+          {messages.welcomeOld}
+          <p className={styles.name}>{user.user_metadata.name}</p>
         </h2>
 
         <section className={styles.btnSection}>
@@ -67,11 +51,13 @@ export default function MainPage() {
   return (
     <main className={styles.container}>
       {!hasNestedRoutes && (
-        <div className={styles.content}>
-          <h2 className={styles.title}>{messages.welcomeNew}</h2>
+        <>
+          <div className={styles.content}>
+            <h2 className={styles.title}>{messages.welcomeNew}</h2>
 
-          <SignInUpToggler />
-        </div>
+            <SignInUpToggler />
+          </div>
+        </>
       )}
 
       <Outlet />
