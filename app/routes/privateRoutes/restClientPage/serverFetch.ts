@@ -1,6 +1,6 @@
 import { type ActionFunctionArgs } from 'react-router';
 
-import { HttpMethods, Protocols } from '@/sources/enums';
+import { AppRoutes, HttpMethods, Protocols } from '@/sources/enums';
 
 import { CACHE_TTL } from '@/sources/constants/constants';
 
@@ -24,7 +24,31 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     data.body && data.body !== '""'
       ? JSON.parse(data.body as string)
       : undefined;
-  const headers = data.headers ? JSON.parse(data.headers as string) : {};
+  const rawHeaders = data.headers ? JSON.parse(data.headers as string) : [];
+  const headers = Array.isArray(rawHeaders)
+    ? Object.fromEntries(
+        rawHeaders.map((header: { key: string; value: string }) => [
+          header.key,
+          header.value,
+        ])
+      )
+    : rawHeaders;
+
+  const queryParams = new URLSearchParams({
+    method,
+    url: btoa(url),
+  });
+
+  if (body) {
+    queryParams.set('body', btoa(JSON.stringify(body)));
+  }
+
+  Object.entries(headers).forEach(([k, v]) => {
+    queryParams.set(`h_${k}`, encodeURIComponent(v as string));
+  });
+
+  const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
+  const finalUrl = `/${basePath}/${AppRoutes.FETCH}?${queryParams.toString()}`;
 
   const cacheKey = JSON.stringify({
     url,
@@ -53,6 +77,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       ok: true,
       received: responseText,
       status: res.status,
+      finalUrl,
     };
 
     responseCache.set(cacheKey, {

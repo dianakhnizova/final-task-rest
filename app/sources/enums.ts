@@ -186,3 +186,8 @@ export enum CodeVariant {
   HTTP = 'http',
   NET_HTTP = 'net-http',
 }
+
+export enum LoaderStatus {
+  LOADING = 'loading',
+  SUBMITTING = 'submitting',
+}

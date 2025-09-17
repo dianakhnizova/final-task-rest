@@ -6,7 +6,6 @@ import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
 import { CodeGenerator } from './components/codeGenerator';
 import { Headers } from './components/headers';
-// import { Parser } from './components/parser';
 import { RequestSender } from './components/requestSender/RequestSender';
 import { UrlBox } from './components/urlBox';
 

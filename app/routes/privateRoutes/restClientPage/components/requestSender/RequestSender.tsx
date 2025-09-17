@@ -7,10 +7,17 @@ import {
 } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
 
-import { ButtonType, CodeVariant, HttpMethods } from '@/sources/enums';
+import {
+  ButtonType,
+  CodeVariant,
+  HttpMethods,
+  LoaderStatus,
+} from '@/sources/enums';
 
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
@@ -30,6 +37,7 @@ export const RequestSender = () => {
   const variables = useSelector(selectVariables);
 
   const fetcher = useFetcher();
+
   const fields = inputFetchFields({
     url,
     method,
@@ -40,7 +48,14 @@ export const RequestSender = () => {
   });
 
   const isLoading =
-    fetcher.state === 'submitting' || fetcher.state === 'loading';
+    fetcher.state === LoaderStatus.SUBMITTING ||
+    fetcher.state === LoaderStatus.LOADING;
+
+  useEffect(() => {
+    if (fetcher.data?.ok && fetcher.data.finalUrl) {
+      window.history.replaceState(null, '', fetcher.data.finalUrl);
+    }
+  }, [fetcher.data]);
 
   return (
     <>
