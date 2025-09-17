@@ -24,8 +24,6 @@ export default function RestClientPage() {
 
         <BodyEditor />
 
-        {/* <Parser /> */}
-
         <RequestSender />
       </div>
     </div>

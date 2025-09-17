@@ -17,6 +17,7 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 
 import { Button } from '@/components/ui/button';
 import { inputFetchFields } from '@/components/ui/input/inputFetchFields';
+import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 import { Response } from '../response';
 
@@ -38,6 +39,9 @@ export const RequestSender = () => {
     variables,
   });
 
+  const isLoading =
+    fetcher.state === 'submitting' || fetcher.state === 'loading';
+
   return (
     <>
       <fetcher.Form action={CodeVariant.FETCH} method={HttpMethods.POST}>
@@ -56,10 +60,11 @@ export const RequestSender = () => {
         </Button>
       </fetcher.Form>
 
-      {fetcher.data ? (
+      {isLoading ? (
+        <WaitingLoader />
+      ) : fetcher.data ? (
         <>
           <p>{restClientMessages.response.title}</p>
-
           <Response data={fetcher.data.received} status={fetcher.data.status} />
         </>
       ) : (
