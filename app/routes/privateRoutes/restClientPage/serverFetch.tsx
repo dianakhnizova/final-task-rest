@@ -13,7 +13,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     data.body && data.body !== '""'
       ? JSON.parse(data.body as string)
       : undefined;
-  const headers = data.headers ? JSON.parse(data.headers as string) : {};
+  const rawHeaders = data.headers ? JSON.parse(data.headers as string) : [];
+  const headers = Array.isArray(rawHeaders)
+    ? Object.fromEntries(
+        rawHeaders.map((header: { key: string; value: string }) => [
+          header.key,
+          header.value,
+        ])
+      )
+    : rawHeaders;
 
   try {
     const res = await fetch(url, {
