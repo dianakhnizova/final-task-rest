@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { AppRoutes, Auth } from '@/sources/enums';
+import { AppRoutes, LS_KEY } from '@/sources/enums';
 
 import { header as headerMessages } from '@/sources/messages/header';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
@@ -21,7 +21,7 @@ export const AuthBar = () => {
   const user = useSelector(selectAuth);
   const { clearUser } = useActions();
 
-  const { removeUserFromStorage } = useSaveUserToLS(Auth.USER, null);
+  const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
 
   const handleSignIn = () => {
     navigate(AppRoutes.SIGN_IN);

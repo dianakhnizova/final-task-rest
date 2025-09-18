@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 import toast from 'react-hot-toast';
 
-import { Auth } from '@/sources/enums';
+import { LS_KEY } from '@/sources/enums';
 
 import { errors } from '@/sources/messages/errors';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
@@ -17,14 +17,14 @@ import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export default function AppInitializer() {
   const { setUser, loadSettings } = useActions();
-  const { removeUserFromStorage } = useSaveUserToLS(Auth.USER, null);
+  const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
 
   useEffect(() => {
     toast.success(toastMessages.appInitializing, {
       id: toastMessages.appInitializingId,
     });
     try {
-      const savedUser = localStorage.getItem(Auth.USER);
+      const savedUser = localStorage.getItem(LS_KEY.USER);
       if (savedUser) {
         setUser(JSON.parse(savedUser));
       }
