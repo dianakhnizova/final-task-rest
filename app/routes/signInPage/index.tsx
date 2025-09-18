@@ -1,13 +1,17 @@
 import { signInSchema } from '@/schemas/signInSchema';
+import { selectAuth } from '@/store/slices/auth/selectors';
 import { supabase } from '@/supabaseClient';
+
+import { useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 
 import { AppRoutes, Auth, InputID } from '@/sources/enums';
-import type { SignInForm } from '@/sources/interfaces';
+import type { AuthUser, SignInForm } from '@/sources/interfaces';
 
 import {
   TOAST_DURATION,
@@ -32,6 +36,7 @@ export const meta = pageMeta(signInPage);
 
 export default function SignInPage() {
   const navigate = useNavigate();
+  const user = useSelector(selectAuth);
 
   const { setUser } = useActions();
   const { setUserToStorage } = useSaveUserToLS(Auth.USER, null);
@@ -66,16 +71,31 @@ export default function SignInPage() {
       return null;
     }
 
-    setUser(authData.user);
-    setUserToStorage(authData.user);
+    const user = authData.user;
+    const session = authData.session;
+
+    if (!user || !session) return;
+
+    const authUser: AuthUser = {
+      user,
+      accessToken: session.access_token,
+      expiresAt: session.expires_at ?? null,
+    };
+
+    setUser(authUser);
+    setUserToStorage(authUser);
 
     toast.success(
       `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`,
       { id: toastMessages.signInId, duration: TOAST_DURATION }
     );
-
-    navigate(redirectTo);
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [user, navigate, redirectTo]);
 
   return (
     <div className={styles.container}>
