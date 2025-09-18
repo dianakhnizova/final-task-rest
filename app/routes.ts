@@ -1,5 +1,4 @@
 import { type RouteConfig, route } from '@react-router/dev/routes';
-
 import { AppRoutes } from './sources/enums';
 
 export default [
@@ -21,6 +20,6 @@ export default [
   ]),
 
   route(AppRoutes.FETCH, 'routes/privateRoutes/restClientPage/serverFetch.ts'),
-  route('/set-language', 'routes/set-language.ts'),
+  route(AppRoutes.LANGUAGE, 'routes/set-language.ts'),
   route(AppRoutes.NOT_FOUND, 'routes/notFoundPage/index.tsx'),
 ] satisfies RouteConfig;

@@ -1,23 +1,17 @@
 import { type ActionFunctionArgs, redirect } from 'react-router';
-
+import { AppRoutes, InputName, Language } from '@/sources/enums';
 import { languageCookie } from '../cookies.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  let lng = formData.get('lng')?.toString() || 'en';
-  console.log('Language from form:', lng);
+  let lng: Language =
+    (formData.get(InputName.LANGUAGE)?.toString() as Language) || Language.EN;
 
-  if (!['en', 'ru'].includes(lng)) {
-    lng = 'en';
+  if (![Language.EN, Language.RU].includes(lng)) {
+    lng = Language.EN;
   }
-  const headers = {
-    'Set-Cookie': await languageCookie.serialize(lng),
-  };
-  console.log('Setting cookie:', headers);
 
-  return redirect(request.headers.get('Referer') ?? '/', {
-    headers: {
-      'Set-Cookie': await languageCookie.serialize(lng),
-    },
+  return redirect(request.headers.get('Referer') ?? AppRoutes.HOME, {
+    headers: { 'Set-Cookie': await languageCookie.serialize(lng) },
   });
 }

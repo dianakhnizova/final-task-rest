@@ -1,24 +1,20 @@
 import { clsx } from 'clsx';
-
+import { useTranslation } from 'react-i18next';
 import { WrapperId } from '@/sources/enums';
-
-import { header as messages } from '@/sources/messages/header.ts';
-
 import Wrapper from '@/components/wrapper';
-
 import useInView from '@/utils/hooks/useInView.ts';
-
 import styles from './Header.module.css';
 import { NavLogo } from './navLogo';
 import { NavOptionMenu } from './navOptionMenu';
 
 export const Header = () => {
+  const { t } = useTranslation();
   const [triggerRef, inView] = useInView();
 
   return (
     <>
       <div className={styles.banner}>
-        <h3>{messages.banner}</h3>
+        <h3>{t('header.banner')}</h3>
       </div>
 
       <div ref={triggerRef} />

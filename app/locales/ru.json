@@ -1,4 +1,46 @@
 {
   "hello": "Привет",
-  "about": "О нас"
+  "about": "О нас",
+  "mainPage": {
+    "metaTitle": "REST клиент приложение",
+    "metaName": "description",
+    "metaContent": "Добро пожаловать в REST клиент приложение!",
+    "btnRestClient": "REST Клиент",
+    "btnHistory": "История",
+    "btnVariables": "Переменные",
+    "btnSignIn": "Войти",
+    "btnSignUp": "Регистрация",
+    "welcomeNew": "Добро пожаловать!",
+    "welcomeOld": "Добро пожаловать обратно,",
+    "mainPage": "Главная страница"
+  },
+  "header": {
+    "banner": "REST клиент приложение",
+    "signIn": "Войти",
+    "logOut": "Выйти",
+    "textForLogo": "Главная",
+    "textInsteadLogo": "Логотип змеи команды \"Studio team\""
+  },
+  "buttons": {
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "headers": "Заголовки",
+    "generate": "Генерировать код",
+    "send": "Отправить запрос",
+    "delete": "Удалить",
+    "prettify": "Форматировать",
+    "raw": "Исходный код"
+  },
+  "language": {
+    "switchTo": "Переключить на",
+    "current": "Текущий язык"
+  },
+  "aboutUs": {
+    "title": "О курсе",
+    "name": "React Курс",
+    "year": "2025"
+  },
+  "images": {
+    "developer": "Фото разработчика"
+  }
 }

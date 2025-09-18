@@ -1,4 +1,46 @@
 {
   "hello": "Hello",
-  "about": "About us"
+  "about": "About us",
+  "mainPage": {
+    "metaTitle": "REST client App",
+    "metaName": "description",
+    "metaContent": "Welcome to REST client App!",
+    "btnRestClient": "REST Client",
+    "btnHistory": "History",
+    "btnVariables": "Variables",
+    "btnSignIn": "Sign In",
+    "btnSignUp": "Sign Up",
+    "welcomeNew": "Welcome!",
+    "welcomeOld": "Welcome Back,",
+    "mainPage": "Main Page"
+  },
+  "header": {
+    "banner": "REST client App",
+    "signIn": "Sign In",
+    "logOut": "Log out",
+    "textForLogo": "Home",
+    "textInsteadLogo": "Snake logo of the \"Studio team\""
+  },
+  "buttons": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "headers": "Headers",
+    "generate": "Generate code",
+    "send": "Send request",
+    "delete": "Delete",
+    "prettify": "Prettify",
+    "raw": "Raw"
+  },
+  "language": {
+    "switchTo": "Switch to",
+    "current": "Current language"
+  },
+  "aboutUs": {
+    "title": "About course",
+    "name": "React Course",
+    "year": "2025"
+  },
+  "images": {
+    "developer": "Developer photo"
+  }
 }

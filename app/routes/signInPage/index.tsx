@@ -1,18 +1,14 @@
 import { signInSchema } from '@/schemas/signInSchema';
 import { selectAuth } from '@/store/slices/auth/selectors';
 import { supabase } from '@/supabaseClient';
-
 import { useEffect } from 'react';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router';
-
-import { AppRoutes, Auth, InputID } from '@/sources/enums';
+import { AppRoutes, InputID, LS_KEY } from '@/sources/enums';
 import type { AuthUser, SignInForm } from '@/sources/interfaces';
-
 import {
   TOAST_DURATION,
   TOAST_DURATION_LONG,
@@ -21,15 +17,12 @@ import { inputFormFields } from '@/sources/lists/inputFormFields';
 import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { signInPage } from '@/sources/messages/signInPage';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
-
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
 import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-
 import styles from './SignInPage.module.css';
 
 export const meta = pageMeta(signInPage);
@@ -39,7 +32,7 @@ export default function SignInPage() {
   const user = useSelector(selectAuth);
 
   const { setUser } = useActions();
-  const { setUserToStorage } = useSaveUserToLS(Auth.USER, null);
+  const { setUserToStorage } = useSaveUserToLS(LS_KEY.USER, null);
   const [searchParams] = useSearchParams();
 
   const redirectTo = searchParams.get('redirect') || AppRoutes.HOME;
