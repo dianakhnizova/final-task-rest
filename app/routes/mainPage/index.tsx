@@ -1,27 +1,30 @@
-import { selectAuth } from '@/store/slices/auth/selectors';
+import {
+  selectAuth,
+  selectIsAuthenticated,
+} from '@/store/slices/auth/selectors';
 
 import { useSelector } from 'react-redux';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { Link, Outlet, useLocation } from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
 
-import { mainPage as messages } from '@/sources/messages/mainPage';
+import { mainPage as mainPageMessages } from '@/sources/messages/mainPage';
 
 import { AboutUs } from '@/components/aboutUs';
+import { Navigation } from '@/components/navigation';
 import { SignInUpToggler } from '@/components/signInUpToggler';
-import { Button } from '@/components/ui/button';
 
 import { pageMeta } from '@/utils/metaHelpers.ts';
 
 import styles from './MainPage.module.css';
-import { handleHistory, handleRestClient, handleVariables } from './handlers';
 
-export const meta = pageMeta(messages);
+export const meta = pageMeta(mainPageMessages);
 
 export default function MainPage() {
   const user = useSelector(selectAuth);
+  const token = useSelector(selectIsAuthenticated);
+
   const location = useLocation();
-  const navigate = useNavigate();
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
@@ -29,23 +32,15 @@ export default function MainPage() {
     return (
       <main className={styles.container}>
         <h2 className={styles.welcome}>
-          {messages.welcomeOld}
+          {mainPageMessages.welcomeOld}
           <p className={styles.name}>{user.user_metadata.name}</p>
         </h2>
 
-        <section className={styles.btnSection}>
-          <Button onClick={() => handleRestClient(navigate)}>
-            {messages.btnRestClient}
-          </Button>
+        <Navigation />
 
-          <Button onClick={() => handleHistory(navigate)}>
-            {messages.btnHistory}
-          </Button>
-
-          <Button onClick={() => handleVariables(navigate)}>
-            {messages.btnVariables}
-          </Button>
-        </section>
+        <Link to={AppRoutes.HOME} className={styles.link}>
+          {mainPageMessages.mainPage}
+        </Link>
 
         <AboutUs />
       </main>
@@ -56,9 +51,15 @@ export default function MainPage() {
       {!hasNestedRoutes && (
         <>
           <div className={styles.content}>
-            <h2 className={styles.title}>{messages.welcomeNew}</h2>
+            <h2>{mainPageMessages.welcomeNew}</h2>
 
-            <SignInUpToggler />
+            {token ? (
+              <Link to={AppRoutes.HOME} className={styles.link}>
+                {mainPageMessages.mainPage}
+              </Link>
+            ) : (
+              <SignInUpToggler />
+            )}
           </div>
 
           <AboutUs />

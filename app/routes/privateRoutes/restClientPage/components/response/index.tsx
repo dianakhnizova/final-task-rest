@@ -3,7 +3,7 @@ import {
   selectParser,
 } from '@/store/slices/restClient/selectors';
 
-import { type FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -13,6 +13,7 @@ import { Parsers } from '@/sources/enums';
 
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
+import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
 
 import styles from './Response.module.css';
@@ -25,23 +26,31 @@ interface Props {
 }
 
 export const Response: FC<Props> = ({ data, status }) => {
+  const [formattedData, setFormattedData] = useState('');
+
   const parser = useSelector(selectParser);
   const headers = useSelector(selectHeaders);
 
+  useEffect(() => {
+    setFormattedData(formatResponse(data, parser));
+  }, [data, parser]);
+
   return (
     <div className={styles.container}>
-      {headers && (
+      {headers.length > 0 && (
         <div className={styles.headers}>
           <p>{restClientMessages.response.headerTitle}</p>
 
-          {headers.map((header, index) => (
-            <div key={index} className={styles.headersResponse}>
-              <p>{restClientMessages.response.key}</p>
-              <p className={styles.title}>{header.key} </p>
-              <p>{restClientMessages.response.value}</p>
-              <p className={styles.title}>{header.value}</p>
-            </div>
-          ))}
+          <div className={styles.headerValueContainer}>
+            {headers.map((header, index) => (
+              <div key={index} className={styles.headersResponse}>
+                <p>{restClientMessages.response.key}</p>
+                <p className={styles.title}>{header.key} </p>
+                <p>{restClientMessages.response.value}</p>
+                <p className={styles.title}>{header.value}</p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -61,8 +70,9 @@ export const Response: FC<Props> = ({ data, status }) => {
           style={atomDark}
           showLineNumbers={parser === Parsers.JSON}
           wrapLongLines
+          className={styles.syntax}
         >
-          {JSON.stringify(data, null, 2)}
+          {formattedData}
         </SyntaxHighlighter>
       </div>
     </div>

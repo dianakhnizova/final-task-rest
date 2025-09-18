@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   gap: var(--spacing-4);
+  margin-top: var(--spacing-5);
 }
 
 .codeGenerator {
@@ -10,6 +11,8 @@
   gap: var(--spacing-4);
 }
 
-.title {
-  color: var(--color-primary);
+.syntax {
+  border-radius: var(--radius-lg) !important;
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface) !important;
 }

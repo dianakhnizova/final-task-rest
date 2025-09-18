@@ -9,4 +9,5 @@ export const mainPage = {
   btnSignUp: 'Sign Up',
   welcomeNew: 'Welcome!',
   welcomeOld: 'Welcome Back,',
+  mainPage: 'Main Page',
 };

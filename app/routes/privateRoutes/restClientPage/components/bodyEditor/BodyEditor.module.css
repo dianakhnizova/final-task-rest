@@ -5,27 +5,9 @@
   width: 100%;
 }
 
-.bodyEditor {
-  border: none;
+.editor {
+  min-height: 85px;
   border-radius: var(--radius-lg);
-  background-color: var(--md-sys-color-surface-bright);
-  color: var(--color-on-primary);
-  padding: var(--spacing-4);
-  width: 100%;
-  height: 150px;
-  resize: none;
-
-  &::placeholder {
-    color: var(--md-sys-color-outline);
-  }
-}
-
-.bodyTitleContainer {
-  display: flex;
-  gap: var(--spacing-5);
-  align-items: center;
-}
-
-.title {
-  color: var(--color-primary);
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface);
 }

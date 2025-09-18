@@ -12,12 +12,11 @@ export const restClientPage = {
   bodyEditor: {
     codeTitle: 'Code: ',
     bodyTitle: 'Body: ',
-    placeholder: '{ "key": "value" }',
   },
 
   response: {
     title: 'Response',
-    headerTitle: 'Header: ',
+    headerTitle: 'Headers',
     key: 'key: ',
     value: 'value: ',
     statusTitle: 'Status: ',

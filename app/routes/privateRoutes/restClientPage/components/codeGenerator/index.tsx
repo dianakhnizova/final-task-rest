@@ -49,7 +49,7 @@ export const CodeGenerator: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.codeGenerator}>
-        <p className={styles.title}>{restClientPage.bodyEditor.codeTitle}</p>
+        <p>{restClientPage.bodyEditor.codeTitle}</p>
 
         <Select
           options={languageList}
@@ -72,9 +72,15 @@ export const CodeGenerator: FC = () => {
         </Button>
       </div>
 
-      <SyntaxHighlighter language={language?.toLowerCase()} style={atomDark}>
-        {code?.generatedCode || ''}
-      </SyntaxHighlighter>
+      {code?.generatedCode && (
+        <SyntaxHighlighter
+          language={language?.toLowerCase()}
+          style={atomDark}
+          className={styles.syntax}
+        >
+          {code.generatedCode}
+        </SyntaxHighlighter>
+      )}
     </div>
   );
 };

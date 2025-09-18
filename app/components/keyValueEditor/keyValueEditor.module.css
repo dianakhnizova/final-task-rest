@@ -7,10 +7,11 @@
 }
 
 .container {
-  border-radius: var(--radius-standard);
-  border: var(--border-width-sm) solid var(--color-border-variant);
-  padding: var(--spacing-4);
   width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
+  background-color: var(--color-surface);
 }
 
 .table {
@@ -26,4 +27,9 @@
   thead {
     border-bottom: var(--border-width-sm) solid var(--color-border-variant);
   }
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
 }

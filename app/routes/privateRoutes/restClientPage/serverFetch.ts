@@ -2,7 +2,6 @@ import { type ActionFunctionArgs } from 'react-router';
 
 import { HttpMethods, Protocols } from '@/sources/enums';
 
-import { cacheResponse } from '@/utils/fetch/cacheResponse';
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
 
@@ -34,7 +33,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     });
 
     const responseText = await res.text();
-
     const mergedData = mergedDataResponse(responseText, body);
 
     const result = {
@@ -44,7 +42,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       finalUrl,
     };
 
-    return cacheResponse(body, method, headers, url, result);
+    return result;
   } catch (error) {
     return {
       ok: false,

@@ -1,15 +1,15 @@
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: var(--spacing-4);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--elevation-level3);
-  background-color: var(--color-surface);
+.form {
+  margin-top: var(--spacing-5);
 }
 
-.urlInputContainer {
-  width: 40%;
-  justify-content: center;
+.response {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-5);
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
+  background-color: var(--color-surface);
 }

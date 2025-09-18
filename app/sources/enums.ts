@@ -190,3 +190,8 @@ export enum LoaderStatus {
   LOADING = 'loading',
   SUBMITTING = 'submitting',
 }
+
+export const enum EditableField {
+  KEY = 'key',
+  VALUE = 'value',
+}

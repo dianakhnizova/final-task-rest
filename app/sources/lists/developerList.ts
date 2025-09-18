@@ -17,8 +17,8 @@ export const developerList: Developer[] = [
     gitHub: GITHUB_DIANA,
   },
   {
-    name: 'Vavilov Alex',
-    photo: '/alexandr.png',
+    name: 'Vavilov Olexandr',
+    photo: '/alex.jpg',
     gitHub: GITHUB_ALEX,
   },
 ];

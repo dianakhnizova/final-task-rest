@@ -21,8 +21,10 @@
     box-shadow var(--duration-fast) var(--ease-out);
 
   &.stuck {
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface);
+    box-shadow: var(--elevation-level3);
     padding: var(--spacing-4);
-    box-shadow: var(--elevation-level2);
   }
 
   .left,

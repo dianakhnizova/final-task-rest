@@ -27,6 +27,7 @@ import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 import { Response } from '../response';
+import styles from './RequestSender.module.css';
 
 export const RequestSender = () => {
   const method = useSelector(selectMethod);
@@ -62,7 +63,7 @@ export const RequestSender = () => {
       <fetcher.Form
         action={AppRoutes.FETCH}
         method={HttpMethods.POST}
-        onSubmit={() => {}}
+        className={styles.form}
       >
         {fields.map(field => (
           <input
@@ -82,10 +83,11 @@ export const RequestSender = () => {
       {isLoading ? (
         <WaitingLoader />
       ) : fetcher.data ? (
-        <>
+        <div className={styles.response}>
           <p>{restClientMessages.response.title}</p>
+
           <Response data={fetcher.data.received} status={fetcher.data.status} />
-        </>
+        </div>
       ) : (
         <p>{restClientMessages.response.emptyRequestHint}</p>
       )}

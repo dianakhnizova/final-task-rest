@@ -9,10 +9,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  padding: var(--spacing-5);
+  width: 95%;
+  padding: var(--spacing-6);
   gap: var(--spacing-6);
-  background-color: var(--color-surface);
   border: var(--border-width-sm) solid var(--color-border-variant);
   border-radius: var(--radius-standard);
   box-shadow: var(--elevation-level3);
