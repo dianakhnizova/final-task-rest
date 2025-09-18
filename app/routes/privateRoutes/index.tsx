@@ -1,4 +1,7 @@
-import { selectAuth } from '@/store/slices/auth/selectors';
+import {
+  selectAuth,
+  selectIsAuthenticated,
+} from '@/store/slices/auth/selectors';
 
 import { Suspense, useEffect } from 'react';
 
@@ -11,10 +14,12 @@ import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 export default function PrivateRoutes() {
   const user = useSelector(selectAuth);
+  const isTokenValid = useSelector(selectIsAuthenticated);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !isTokenValid) {
       const currentUrl = window.location.pathname;
 
       const redirectParams = new URLSearchParams({
@@ -25,7 +30,9 @@ export default function PrivateRoutes() {
 
       navigate(signInUrl, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, navigate, isTokenValid]);
+
+  if (!user || !isTokenValid) return null;
 
   return (
     <Suspense fallback={<WaitingLoader />}>
