@@ -33,7 +33,7 @@ export const Response: FC<Props> = ({ data, status }) => {
   const parser = useSelector(selectParser);
   const headers = useSelector(selectHeaders);
   const [prettified, setPrettified] = useState(true);
-  const [formattedResponse, setFormattedResponse] = useState<unknown>();
+  const [formattedResponse, setFormattedResponse] = useState('');
 
   const handlePrettify = () => {
     if (prettified) {
@@ -44,8 +44,10 @@ export const Response: FC<Props> = ({ data, status }) => {
   };
 
   useEffect(() => {
-    setFormattedResponse(prettified ? formatResponse(data, parser) : data);
-  }, [data, parser]);
+    setFormattedResponse(
+      formatResponse(data, prettified ? parser : Parsers.RAW)
+    );
+  }, [data, parser, prettified]);
 
   return (
     <div className={styles.container}>

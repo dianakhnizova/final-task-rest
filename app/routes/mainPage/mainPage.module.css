@@ -1,17 +1,32 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: var(--spacing-7);
-  gap: var(--spacing-5);
   width: 100%;
   flex: 1;
   align-items: center;
 }
 
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-5) var(--spacing-6);
+  box-shadow: var(--elevation-level3);
+  border-radius: var(--radius-lg);
+}
+
+.name {
+  color: var(--color-primary);
+}
+
 .btnSection {
   display: flex;
   gap: var(--spacing-5);
-  margin: var(--spacing-5);
+  background: var(--color-surface-container-high);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
 }
 
 .content {

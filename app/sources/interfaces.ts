@@ -94,3 +94,9 @@ export interface AuthUser {
   accessToken: string;
   expiresAt: number | null;
 }
+
+export interface Developer {
+  name: string;
+  photo: string;
+  gitHub: string;
+}

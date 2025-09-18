@@ -3,12 +3,14 @@ import {
   selectIsAuthenticated,
 } from '@/store/slices/auth/selectors';
 
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
 
 import { AppRoutes } from '@/sources/enums';
+
+import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 export default function PrivateRoutes() {
   const user = useSelector(selectAuth);
@@ -32,5 +34,9 @@ export default function PrivateRoutes() {
 
   if (!user || !isTokenValid) return null;
 
-  return <Outlet />;
+  return (
+    <Suspense fallback={<WaitingLoader />}>
+      {user ? <Outlet /> : <WaitingLoader />}
+    </Suspense>
+  );
 }

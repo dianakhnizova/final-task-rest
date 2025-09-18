@@ -7,7 +7,7 @@ import {
   selectUrl,
 } from '@/store/slices/restClient/selectors';
 
-import type { FC } from 'react';
+import { type FC, useMemo } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -37,9 +37,13 @@ export const CodeGenerator: FC = () => {
 
   const { setCode, setLanguage } = useActions();
 
-  const headersObj = headers.reduce(
-    (acc, header) => ({ ...acc, [header.key]: header.value }),
-    {}
+  const headersObj = useMemo(
+    () =>
+      headers.reduce(
+        (acc, header) => ({ ...acc, [header.key]: header.value }),
+        {}
+      ),
+    [headers]
   );
 
   return (

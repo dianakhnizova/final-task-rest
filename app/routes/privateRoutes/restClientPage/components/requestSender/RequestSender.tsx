@@ -7,16 +7,24 @@ import {
 } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 
+import { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
 
-import { ButtonType, CodeVariant, HttpMethods } from '@/sources/enums';
+import {
+  ButtonType,
+  CodeVariant,
+  HttpMethods,
+  LoaderStatus,
+} from '@/sources/enums';
 
+import { inputFetchFields } from '@/sources/lists/inputFetchFields';
 import { buttons as buttonMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 
 import { Button } from '@/components/ui/button';
-import { inputFetchFields } from '@/components/ui/input/inputFetchFields';
+import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 import { Response } from '../response';
 
@@ -29,6 +37,7 @@ export const RequestSender = () => {
   const variables = useSelector(selectVariables);
 
   const fetcher = useFetcher();
+
   const fields = inputFetchFields({
     url,
     method,
@@ -37,6 +46,16 @@ export const RequestSender = () => {
     headers,
     variables,
   });
+
+  const isLoading =
+    fetcher.state === LoaderStatus.SUBMITTING ||
+    fetcher.state === LoaderStatus.LOADING;
+
+  useEffect(() => {
+    if (fetcher.data?.ok && fetcher.data.finalUrl) {
+      window.history.replaceState(null, '', fetcher.data.finalUrl);
+    }
+  }, [fetcher.data]);
 
   return (
     <>
@@ -56,10 +75,11 @@ export const RequestSender = () => {
         </Button>
       </fetcher.Form>
 
-      {fetcher.data ? (
+      {isLoading ? (
+        <WaitingLoader />
+      ) : fetcher.data ? (
         <>
           <p>{restClientMessages.response.title}</p>
-
           <Response data={fetcher.data.received} status={fetcher.data.status} />
         </>
       ) : (

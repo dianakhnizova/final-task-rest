@@ -7,6 +7,7 @@ import { AppRoutes } from '@/sources/enums';
 
 import { mainPage as messages } from '@/sources/messages/mainPage';
 
+import { AboutUs } from '@/components/aboutUs';
 import { SignInUpToggler } from '@/components/signInUpToggler';
 import { Button } from '@/components/ui/button';
 
@@ -45,6 +46,8 @@ export default function MainPage() {
             {messages.btnVariables}
           </Button>
         </section>
+
+        <AboutUs />
       </main>
     );
 
@@ -57,6 +60,8 @@ export default function MainPage() {
 
             <SignInUpToggler />
           </div>
+
+          <AboutUs />
         </>
       )}
 

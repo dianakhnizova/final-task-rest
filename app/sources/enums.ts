@@ -8,7 +8,6 @@ export enum Variant {
 export enum AppRoutes {
   HOME = '/',
   PRIVATE = '',
-  ABOUT = '/about',
   NOT_FOUND = '*',
   SIGN_IN = '/signIn',
   SIGN_UP = '/signUp',
@@ -64,7 +63,7 @@ export enum ButtonType {
 export enum DisplayName {
   PORTAL = 'Portal',
   BUTTON = 'Button',
-  LOADER = 'Loader',
+  LOADER = 'Waiting Loader',
 }
 
 export enum Auth {
@@ -185,4 +184,9 @@ export enum CodeVariant {
   CURL = 'curl',
   HTTP = 'http',
   NET_HTTP = 'net-http',
+}
+
+export enum LoaderStatus {
+  LOADING = 'loading',
+  SUBMITTING = 'submitting',
 }

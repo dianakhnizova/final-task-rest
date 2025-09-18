@@ -7,7 +7,6 @@ export default [
     route(AppRoutes.SIGN_IN, 'routes/signInPage/index.tsx'),
     route(AppRoutes.SIGN_UP, 'routes/signUpPage/index.tsx'),
   ]),
-  route(AppRoutes.ABOUT, 'routes/aboutPage/index.tsx'),
 
   route(AppRoutes.PRIVATE, 'routes/privateRoutes/index.tsx', [
     route(
@@ -16,7 +15,7 @@ export default [
       [
         route(
           AppRoutes.FETCH,
-          'routes/privateRoutes/restClientPage/serverFetch.tsx'
+          'routes/privateRoutes/restClientPage/serverFetch.ts'
         ),
       ]
     ),
