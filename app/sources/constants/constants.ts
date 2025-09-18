@@ -46,4 +46,6 @@ export const GITHUB_ALEX = 'https://github.com/VavilovAlex';
 export const ABOUT_PROJECT =
   'Our project is a browser-based REST client that allows you to send HTTP requests, view responses, and save request history. We designed it to be developer-friendly: it supports variables, multiple methods (GET, POST, etc.), code generation for requests, and a flexible interface. The goal of the project is to simplify API testing and exploration directly in the browser without additional tools.';
 
-export const CACHE_TTL = 60000;
+export const DEFAULT_BODY = `{
+	"name": "Add your name in the body"
+}`;

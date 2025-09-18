@@ -10,10 +10,15 @@
 .headers {
   display: flex;
   align-items: center;
-  gap: var(--spacing-4);
+  gap: var(--spacing-5);
   border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
+}
+
+.headerValueContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .headersResponse {
@@ -27,9 +32,10 @@
   font-size: var(--font-size-xs);
 }
 
-.raw {
-  display: block;
-  align-items: center;
-  white-space: pre;
-  overflow: auto hidden;
+.syntax {
+  width: 100%;
+  overflow: auto;
+  border-radius: var(--radius-lg) !important;
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface) !important;
 }

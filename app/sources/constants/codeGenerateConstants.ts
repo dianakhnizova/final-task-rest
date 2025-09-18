@@ -25,7 +25,7 @@ export const FETCH_TEMPLATE = (
 fetch("${url}", {
   method: "${method}",
   ${Object.keys(headers).length ? `headers: ${JSON.stringify(headers, null, 2)},` : ''}
-  ${bodyString ? `body: ${JSON.stringify(bodyString)},` : ''}
+  ${bodyString ? `body: ${bodyString},` : ''}
 })
   .then(response => response.json())
   .then(data => console.log(data))
@@ -68,7 +68,7 @@ const req = https.request('${url}', options, res => {
 });
 
 req.on('error', err => console.error(err));
-${bodyString ? `req.write(${JSON.stringify(bodyString)});` : ''}
+${bodyString ? `req.write(${bodyString});` : ''}
 req.end();`.trim();
 
 export const PYTHON_TEMPLATE = (
@@ -84,7 +84,7 @@ response = requests.request(
   method='${method}',
   url='${url}',
   headers=${JSON.stringify(headers, null, 2)},
-  ${bodyString ? `data=${JSON.stringify(bodyString)}` : ''}
+  ${bodyString ? `data=${bodyString}` : ''}
 )
 print(response.text)`.trim();
 
@@ -108,7 +108,7 @@ ${
   bodyString
     ? `con.setDoOutput(true);
 try(OutputStream os = con.getOutputStream()) {
-  byte[] input = ${JSON.stringify(bodyString)}.getBytes("utf-8");
+  byte[] input = ${bodyString}.getBytes("utf-8");
   os.write(input, 0, input.length);
 }`
     : ''
@@ -137,7 +137,7 @@ var request = new HttpRequestMessage(HttpMethod.${method}, "${url}");
 ${Object.entries(headers)
   .map(([k, v]) => `request.Headers.Add("${k}", "${v}");`)
   .join('\n')}
-${bodyString ? `request.Content = new StringContent(${JSON.stringify(bodyString)});` : ''}
+${bodyString ? `request.Content = new StringContent(${bodyString});` : ''}
 var response = await client.SendAsync(request);
 var content = await response.Content.ReadAsStringAsync();
 Console.WriteLine(content);`.trim();
@@ -160,7 +160,7 @@ import (
 
 func main() {
   client := &http.Client{}
-  req, _ := http.NewRequest("${method}", "${url}", strings.NewReader(${bodyString ? JSON.stringify(bodyString) : '""'}))
+  req, _ := http.NewRequest("${method}", "${url}", strings.NewReader(${bodyString}))
 ${Object.entries(headers)
   .map(([k, v]) => `  req.Header.Set("${k}", "${v}")`)
   .join('\n')}

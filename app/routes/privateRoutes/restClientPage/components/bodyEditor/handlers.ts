@@ -1,6 +1,6 @@
 export const handleBodyEditor = (
-  event: React.ChangeEvent<HTMLTextAreaElement>,
+  value: string,
   setBody: (value: string) => void
 ) => {
-  setBody(event.target.value);
+  setBody(value);
 };

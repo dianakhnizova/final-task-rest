@@ -11,13 +11,7 @@ export default [
   route(AppRoutes.PRIVATE, 'routes/privateRoutes/index.tsx', [
     route(
       AppRoutes.REST_CLIENT,
-      'routes/privateRoutes/restClientPage/index.lazy.tsx',
-      [
-        route(
-          AppRoutes.FETCH,
-          'routes/privateRoutes/restClientPage/serverFetch.ts'
-        ),
-      ]
+      'routes/privateRoutes/restClientPage/index.lazy.tsx'
     ),
     route(
       AppRoutes.VARIABLES,
@@ -26,5 +20,6 @@ export default [
     route(AppRoutes.HISTORY, 'routes/privateRoutes/historyPage/index.tsx'),
   ]),
 
+  route(AppRoutes.FETCH, 'routes/privateRoutes/restClientPage/serverFetch.ts'),
   route(AppRoutes.NOT_FOUND, 'routes/notFoundPage/index.tsx'),
 ] satisfies RouteConfig;

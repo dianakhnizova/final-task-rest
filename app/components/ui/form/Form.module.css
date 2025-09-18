@@ -4,9 +4,10 @@
   align-items: flex-start;
   width: 70%;
   gap: var(--spacing-5);
-  padding: var(--spacing-5) var(--spacing-6);
-  box-shadow: var(--color-shadow);
   border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-6);
 }
 
 .container {

@@ -14,7 +14,7 @@ export function formatResponse(data: unknown, parser: Parsers | null): string {
       }
 
     case Parsers.TEXT:
-      return typeof data === 'string' ? data : String(data);
+      return typeof data === 'string' ? data : JSON.stringify(data, null, 2);
 
     case Parsers.RAW:
       return typeof data === 'string' ? data : JSON.stringify(data);

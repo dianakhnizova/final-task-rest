@@ -1,32 +1,25 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: var(--spacing-7);
   width: 100%;
   flex: 1;
   align-items: center;
+  gap: var(--spacing-7);
 }
 
 .welcome {
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
-  padding: var(--spacing-5) var(--spacing-6);
-  box-shadow: var(--elevation-level3);
   border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
 }
 
 .name {
   color: var(--color-primary);
-}
-
-.btnSection {
-  display: flex;
-  gap: var(--spacing-5);
-  background: var(--color-surface-container-high);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-5);
 }
 
 .content {
@@ -35,12 +28,12 @@
   align-items: center;
   width: 60%;
   gap: var(--spacing-6);
-  box-shadow: var(--color-shadow);
-  padding: var(--spacing-5);
   border-radius: var(--radius-lg);
-  background: var(--color-surface-container-high);
+  background-color: var(--color-surface);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
 }
 
-.title {
-  font-weight: var(--font-weight-light);
+.link {
+  color: var(--color-primary);
 }

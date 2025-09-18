@@ -1,5 +1,7 @@
 import { type FC, useId } from 'react';
 
+import { EditableField } from '@/sources/enums';
+
 import type { KeyValue } from '@/sources/interfaces.ts';
 import { keyValueEditor as messages } from '@/sources/messages/keyValueEditor.ts';
 
@@ -17,11 +19,6 @@ export interface Props {
   onAdd: (newValue: KeyValue) => void;
   onDelete: (uid: number) => void;
   onUpdate: (updatedValue: KeyValue) => void;
-}
-
-const enum EditableField {
-  KEY = 'key',
-  VALUE = 'value',
 }
 
 export const KeyValueEditor: FC<Props> = ({
@@ -76,6 +73,7 @@ export const KeyValueEditor: FC<Props> = ({
           <col />
           <col width={0} />
         </colgroup>
+
         <thead>
           <tr>
             <th>{keyHeader}</th>
@@ -87,10 +85,13 @@ export const KeyValueEditor: FC<Props> = ({
             </th>
           </tr>
         </thead>
+
         <tbody>
           {keyValues.length === 0 && (
             <tr>
-              <td colSpan={3}>{messages.emptyMessage}</td>
+              <td colSpan={3} className={styles.title}>
+                {messages.emptyMessage}
+              </td>
             </tr>
           )}
 

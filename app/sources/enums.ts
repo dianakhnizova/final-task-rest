@@ -14,7 +14,7 @@ export enum AppRoutes {
   VARIABLES = '/variables',
   HISTORY = '/history',
   REST_CLIENT = '/restClient',
-  FETCH = 'fetch',
+  FETCH = '/api/fetch',
 }
 
 export enum InputType {
@@ -189,4 +189,9 @@ export enum CodeVariant {
 export enum LoaderStatus {
   LOADING = 'loading',
   SUBMITTING = 'submitting',
+}
+
+export const enum EditableField {
+  KEY = 'key',
+  VALUE = 'value',
 }

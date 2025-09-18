@@ -13,8 +13,8 @@ import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
 
 import {
+  AppRoutes,
   ButtonType,
-  CodeVariant,
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
@@ -27,6 +27,7 @@ import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 import { Response } from '../response';
+import styles from './RequestSender.module.css';
 
 export const RequestSender = () => {
   const method = useSelector(selectMethod);
@@ -59,7 +60,11 @@ export const RequestSender = () => {
 
   return (
     <>
-      <fetcher.Form action={CodeVariant.FETCH} method={HttpMethods.POST}>
+      <fetcher.Form
+        action={AppRoutes.FETCH}
+        method={HttpMethods.POST}
+        className={styles.form}
+      >
         {fields.map(field => (
           <input
             key={field.id}
@@ -78,10 +83,11 @@ export const RequestSender = () => {
       {isLoading ? (
         <WaitingLoader />
       ) : fetcher.data ? (
-        <>
+        <div className={styles.response}>
           <p>{restClientMessages.response.title}</p>
+
           <Response data={fetcher.data.received} status={fetcher.data.status} />
-        </>
+        </div>
       ) : (
         <p>{restClientMessages.response.emptyRequestHint}</p>
       )}

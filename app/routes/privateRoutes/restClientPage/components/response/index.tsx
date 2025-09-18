@@ -11,15 +11,11 @@ import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { Parsers } from '@/sources/enums';
 
-import { buttons as buttonsMessages } from '@/sources/messages/buttons';
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
-
-import { Button } from '@/components/ui/button';
 
 import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
 
-import { Parser } from '../parser';
 import styles from './Response.module.css';
 import { languageMap } from './languageMap';
 
@@ -30,41 +26,31 @@ interface Props {
 }
 
 export const Response: FC<Props> = ({ data, status }) => {
+  const [formattedData, setFormattedData] = useState('');
+
   const parser = useSelector(selectParser);
   const headers = useSelector(selectHeaders);
-  const [prettified, setPrettified] = useState(true);
-  const [formattedResponse, setFormattedResponse] = useState('');
-
-  const handlePrettify = () => {
-    if (prettified) {
-      setPrettified(false);
-    } else {
-      setPrettified(true);
-    }
-  };
 
   useEffect(() => {
-    setFormattedResponse(
-      formatResponse(data, prettified ? parser : Parsers.RAW)
-    );
-  }, [data, parser, prettified]);
+    setFormattedData(formatResponse(data, parser));
+  }, [data, parser]);
 
   return (
     <div className={styles.container}>
-      <Parser />
-
-      {headers && (
+      {headers.length > 0 && (
         <div className={styles.headers}>
           <p>{restClientMessages.response.headerTitle}</p>
 
-          {headers.map((header, index) => (
-            <div key={index} className={styles.headersResponse}>
-              <p>{restClientMessages.response.key}</p>
-              <p className={styles.title}>{header.key} </p>
-              <p>{restClientMessages.response.value}</p>
-              <p className={styles.title}>{header.value}</p>
-            </div>
-          ))}
+          <div className={styles.headerValueContainer}>
+            {headers.map((header, index) => (
+              <div key={index} className={styles.headersResponse}>
+                <p>{restClientMessages.response.key}</p>
+                <p className={styles.title}>{header.key} </p>
+                <p>{restClientMessages.response.value}</p>
+                <p className={styles.title}>{header.value}</p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -79,24 +65,15 @@ export const Response: FC<Props> = ({ data, status }) => {
       <div className={styles.body}>
         <p>{restClientMessages.response.bodyTitle}</p>
 
-        <Button onClick={handlePrettify}>
-          {prettified ? buttonsMessages.raw : buttonsMessages.prettify}
-        </Button>
-
-        {prettified ? (
-          <>
-            <SyntaxHighlighter
-              language={languageMap[parser] || Parsers.TEXT}
-              style={atomDark}
-              showLineNumbers={parser === Parsers.JSON}
-              wrapLongLines
-            >
-              {formattedResponse}
-            </SyntaxHighlighter>
-          </>
-        ) : (
-          <p className={styles.raw}>{formattedResponse}</p>
-        )}
+        <SyntaxHighlighter
+          language={languageMap[parser] || Parsers.TEXT}
+          style={atomDark}
+          showLineNumbers={parser === Parsers.JSON}
+          wrapLongLines
+          className={styles.syntax}
+        >
+          {formattedData}
+        </SyntaxHighlighter>
       </div>
     </div>
   );
