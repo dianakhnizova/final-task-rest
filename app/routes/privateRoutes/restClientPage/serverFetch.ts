@@ -1,17 +1,10 @@
 import { type ActionFunctionArgs } from 'react-router';
 
-import { AppRoutes, HttpMethods, Protocols } from '@/sources/enums';
+import { HttpMethods, Protocols } from '@/sources/enums';
 
-import { CACHE_TTL } from '@/sources/constants/constants';
-
-const responseCache = new Map<
-  string,
-  {
-    data: unknown;
-    timestamp: number;
-    expires: number;
-  }
->();
+import { cacheResponse } from '@/utils/fetch/cacheResponse';
+import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
+import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
@@ -20,10 +13,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const protocol = data.protocol || Protocols.HTTPS;
   const url = protocol + (data.url as string);
   const method = (data.method as string) || HttpMethods.GET;
-  const body =
-    data.body && data.body !== '""'
-      ? JSON.parse(data.body as string)
-      : undefined;
+  const body = data.body ? JSON.parse(data.body as string) : undefined;
   const rawHeaders = data.headers ? JSON.parse(data.headers as string) : [];
   const headers = Array.isArray(rawHeaders)
     ? Object.fromEntries(
@@ -34,37 +24,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     : rawHeaders;
 
-  console.log(body);
-
-  const queryParams = new URLSearchParams({
-    method,
-    url: btoa(url),
-  });
-
-  if (body) {
-    queryParams.set('body', btoa(JSON.stringify(body)));
-  }
-
-  Object.entries(headers).forEach(([k, v]) => {
-    queryParams.set(`h_${k}`, encodeURIComponent(v as string));
-  });
-
-  const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
-  const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
-
-  const cacheKey = JSON.stringify({
-    url,
-    method,
-    body,
-    headers,
-  });
-
-  const cached = responseCache.get(cacheKey);
-  const now = Date.now();
-
-  if (cached && now - cached.timestamp < cached.expires) {
-    return cached.data;
-  }
+  const finalUrl = getFinalUrlParams(body, method, headers, url);
 
   try {
     const res = await fetch(url, {
@@ -74,23 +34,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     });
 
     const responseText = await res.text();
-    console.log('Server response:', responseText);
 
-    let parsedResponse;
-
-    try {
-      parsedResponse = JSON.parse(responseText);
-    } catch {
-      parsedResponse = responseText;
-    }
-
-    let mergedData: unknown;
-
-    if (body && parsedResponse && typeof parsedResponse === 'object') {
-      mergedData = { ...body, ...parsedResponse };
-    } else {
-      mergedData = parsedResponse ?? body;
-    }
+    const mergedData = mergedDataResponse(responseText, body);
 
     const result = {
       ok: true,
@@ -99,13 +44,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       finalUrl,
     };
 
-    responseCache.set(cacheKey, {
-      data: result,
-      timestamp: now,
-      expires: CACHE_TTL,
-    });
-
-    return result;
+    return cacheResponse(body, method, headers, url, result);
   } catch (error) {
     return {
       ok: false,
