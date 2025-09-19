@@ -27,7 +27,7 @@
   --md-sys-color-shadow:
     rgb(180 180 180 / 31.6%) 0 1px 3px 0, rgb(180 180 180 / 31.6%) 0 0 0 1px;
   --md-sys-color-shadow-rgb: 0, 0, 0;
-  --md-sys-color-scrim: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0 / 36.2%);
   --md-sys-color-inverse-surface: rgb(227 229 235);
   --md-sys-color-inverse-on-surface: rgb(47 49 54);
   --md-sys-color-inverse-primary: rgb(0 95 190);
@@ -68,7 +68,7 @@
   --md-sys-color-outline-variant: rgb(196 198 207);
   --md-sys-color-shadow: rgb(var(--md-sys-color-shadow-rgb));
   --md-sys-color-shadow-rgb: 0 0 0;
-  --md-sys-color-scrim: rgb(0 0 0);
+  --md-sys-color-scrim: rgb(0 0 0 / 42.6%);
   --md-sys-color-inverse-surface: rgb(46 48 53);
   --md-sys-color-inverse-on-surface: rgb(239 240 247);
   --md-sys-color-inverse-primary: rgb(130 211 226);

@@ -3,7 +3,7 @@ export const toasts = {
   signIn: 'Login successful!',
   signInId: 'signInId',
   signUp:
-    'Registration successful! Please check your email to confirm your account.',
+    'Registration successful! Please check your email to confirm your account',
   signUpProcess: 'The user registration process is in progress...',
   signUpProcessId: 'signUpProcessId',
   errorConfirmEmail:
