@@ -1,13 +1,16 @@
 import { AppRoutes } from '@/sources/enums';
 
-export const handleRestClient = (navigate: (path: string) => void) => {
-  navigate(AppRoutes.REST_CLIENT);
-};
-
-export const handleHistory = (navigate: (path: string) => void) => {
-  navigate(AppRoutes.HISTORY);
-};
-
-export const handleVariables = (navigate: (path: string) => void) => {
-  navigate(AppRoutes.VARIABLES);
-};
+export const buttonsConfig = (
+  t: (key: string) => string,
+  isRestClientPage?: boolean
+) =>
+  isRestClientPage
+    ? [
+        { path: AppRoutes.HISTORY, label: t('mainPage.btnHistory') },
+        { path: AppRoutes.VARIABLES, label: t('mainPage.btnVariables') },
+      ]
+    : [
+        { path: AppRoutes.REST_CLIENT, label: t('mainPage.btnRestClient') },
+        { path: AppRoutes.HISTORY, label: t('mainPage.btnHistory') },
+        { path: AppRoutes.VARIABLES, label: t('mainPage.btnVariables') },
+      ];

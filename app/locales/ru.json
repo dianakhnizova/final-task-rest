@@ -1,0 +1,131 @@
+{
+  "root": {
+    "appTitle": "REST клиент"
+  },
+  "mainPage": {
+    "metaTitle": "REST клиент приложение",
+    "metaName": "description",
+    "metaContent": "Добро пожаловать в REST клиент приложение!",
+    "btnRestClient": "REST Клиент",
+    "btnHistory": "История",
+    "btnVariables": "Переменные",
+    "btnSignIn": "Войти",
+    "btnSignUp": "Регистрация",
+    "welcomeNew": "Добро пожаловать!",
+    "welcomeOld": "Добро пожаловать обратно,",
+    "mainPage": "Главная страница"
+  },
+  "header": {
+    "banner": "REST клиент приложение",
+    "signIn": "Войти",
+    "logOut": "Выйти",
+    "textForLogo": "Главная",
+    "textInsteadLogo": "Логотип змеи команды \"Studio team\""
+  },
+  "buttons": {
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "headers": "Заголовки",
+    "generate": "Генерировать код",
+    "send": "Отправить запрос",
+    "delete": "Удалить"
+  },
+  "language": {
+    "switchTo": "Переключить на",
+    "current": "Текущий язык"
+  },
+  "aboutUs": {
+    "title": "О курсе",
+    "name": "React Курс",
+    "year": "2025",
+    "project": "Наш проект — это браузерный REST клиент, который позволяет отправлять HTTP-запросы, просматривать ответы и сохранять историю запросов. Мы сделали его удобным для разработчиков: поддерживаются переменные, несколько методов (GET, POST и др.), генерация кода для запросов и гибкий интерфейс. Цель проекта — упростить тестирование и изучение API прямо в браузере без дополнительных инструментов."
+  },
+  "images": {
+    "developer": "Фото разработчика"
+  },
+  "keyValueEditor": {
+    "delete": "Удалить",
+    "emptyMessage": "Нажмите кнопку «Добавить», чтобы добавить значение",
+    "add": "Добавить",
+    "keyPlaceholder": "Ключ",
+    "valuePlaceholder": "Значение"
+  },
+  "footer": {
+    "copyright": "© 2025",
+    "rsSchoolCourse": "Курс RS School",
+    "githubProject": "Проект на Github"
+  },
+  "errorBoundary": {
+    "oops": "Упс!",
+    "details": "Произошла непредвиденная ошибка.",
+    "notFound": "Запрошенная страница не найдена.",
+    "error": "Ошибка",
+    "params": "Параметры:"
+  },
+  "loader": {
+    "title": "Загрузка данных..."
+  },
+   "notFoundPage": {
+    "metaTitle": "REST client App / Ошибка 404",
+    "metaName": "description",
+    "metaContent": "Ошибка 404 / Страница не найдена",
+    "title": "Страница не найдена",
+    "btnBack": "Вернуться на главную"
+  },
+  "bodyEditor": {
+    "codeTitle": "Код: ",
+    "bodyTitle": "Тело: "
+  },
+    "response": {
+    "title": "Ответ",
+    "headerTitle": "Заголовки",
+    "key": "ключ: ",
+    "value": "значение: ",
+    "statusTitle": "Статус: ",
+    "bodyTitle": "Тело: ",
+    "emptyData": "Данных пока нет",
+    "requestBodyTitle": "Тело запроса:",
+    "emptyRequestHint": "Введите URL и нажмите \"Отправить запрос\"",
+    "selectParser": "Выберите парсер"
+  },
+    "label": {
+    "name": "Имя",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль"
+  },
+  "placeholder": {
+    "name": "Введите ваше имя",
+    "email": "Введите электронную почту",
+    "password": "Введите пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "key": "ключ",
+    "value": "значение",
+    "url": "Введите URL или вставьте текст"
+  },
+   "variablesPage": {
+    "metaTitle": "REST client App / Переменные",
+    "metaName": "description",
+    "metaContent": "Добро пожаловать на страницу переменных",
+    "header": "Переменные",
+    "keyHeader": "Ключ",
+    "valueHeader": "Значение"
+  },
+   "signInPage": {
+    "metaTitle": "REST client App / Вход",
+    "metaName": "description",
+    "metaContent": "Добро пожаловать на страницу входа",
+    "infoTitle": "Нет аккаунта?"
+  },
+  "signUpPage": {
+    "metaTitle": "REST client App / Регистрация",
+    "metaName": "description",
+    "metaContent": "Добро пожаловать на страницу регистрации",
+    "infoTitle": "Уже есть аккаунт?"
+  },
+  "table": {
+    "headerKey": "Ключ заголовка",
+    "headerValue": "Значение заголовка",
+    "headerDelete": "Удалить"
+  }
+}

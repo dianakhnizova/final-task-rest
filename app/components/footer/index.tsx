@@ -1,17 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import { WrapperId } from '@/sources/enums';
-
 import {
   GITHUB_PROJECT_URL,
   RSS_COURSE_URL,
 } from '@/sources/constants/constants';
-import { footer } from '@/sources/messages/footer';
-
 import { GithubLogo, RsSchoolLogo } from '@/components/icons';
 import Wrapper from '@/components/wrapper';
-
 import styles from './Footer.module.css';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.container}>
       <div className={styles.separator}></div>
@@ -24,7 +23,7 @@ export const Footer = () => {
           className={styles.link}
         >
           <GithubLogo />
-          <span>{footer.githubProject}</span>
+          <span>{t('footer.githubProject')}</span>
         </a>
 
         <a
@@ -34,10 +33,10 @@ export const Footer = () => {
           className={styles.link}
         >
           <RsSchoolLogo />
-          <span>{footer.rsSchoolCourse}</span>
+          <span>{t('footer.rsSchoolCourse')}</span>
         </a>
 
-        <div>{footer.copyright}</div>
+        <div>{t('footer.copyright')}</div>
       </Wrapper>
     </footer>
   );

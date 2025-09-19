@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Auth } from '@/sources/enums';
+import { LS_KEY } from '@/sources/enums';
 import type { AuthUser } from '@/sources/interfaces';
 
 import { errors } from '@/sources/messages/errors';
@@ -24,12 +24,12 @@ export const useSaveUserToLS = (key: string, initialValue: AuthUser | null) => {
       setStoredValue(value);
       localStorage.setItem(key, JSON.stringify(value));
 
-      if (key === Auth.USER) {
+      if (key === LS_KEY.USER) {
         setUser(value);
       }
     } catch (error) {
       console.log(errors.parseError, error);
-      localStorage.removeItem(Auth.USER);
+      localStorage.removeItem(LS_KEY.USER);
     }
   };
 

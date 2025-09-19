@@ -18,6 +18,5 @@
     "^@/utils",
     "^[./]"
   ],
-  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

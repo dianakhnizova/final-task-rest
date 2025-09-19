@@ -15,6 +15,7 @@ export enum AppRoutes {
   HISTORY = '/history',
   REST_CLIENT = '/restClient',
   FETCH = '/api/fetch',
+  LANGUAGE = '/set-language',
 }
 
 export enum InputType {
@@ -66,7 +67,7 @@ export enum DisplayName {
   LOADER = 'Waiting Loader',
 }
 
-export enum Auth {
+export enum LS_KEY {
   USER = 'user',
 }
 
@@ -135,6 +136,7 @@ export enum InputName {
   BODY = 'body',
   HEADERS = 'headers',
   VARIABLES = 'variables',
+  LANGUAGE = 'lng',
 }
 
 export enum Protocols {
@@ -191,7 +193,7 @@ export enum LoaderStatus {
   SUBMITTING = 'submitting',
 }
 
-export const enum EditableField {
+export enum EditableField {
   KEY = 'key',
   VALUE = 'value',
 }

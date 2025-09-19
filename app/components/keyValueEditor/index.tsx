@@ -1,13 +1,9 @@
 import { type FC, useId } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { EditableField } from '@/sources/enums';
-
 import type { KeyValue } from '@/sources/interfaces.ts';
-import { keyValueEditor as messages } from '@/sources/messages/keyValueEditor.ts';
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
 import styles from './KeyValueEditor.module.css';
 
 export interface Props {
@@ -28,9 +24,10 @@ export const KeyValueEditor: FC<Props> = ({
   onAdd,
   onDelete,
   onUpdate,
-  keyPlaceholder = messages.keyPlaceholder,
-  valuePlaceholder = messages.valuePlaceholder,
+  keyPlaceholder,
+  valuePlaceholder,
 }) => {
+  const { t } = useTranslation();
   const id = useId();
 
   const handleAdd = () => {
@@ -80,7 +77,7 @@ export const KeyValueEditor: FC<Props> = ({
             <th>{valueHeader}</th>
             <th>
               <Button className={styles.addButton} onClick={handleAdd}>
-                {messages.add}
+                {t('keyValueEditor.add')}
               </Button>
             </th>
           </tr>
@@ -90,7 +87,7 @@ export const KeyValueEditor: FC<Props> = ({
           {keyValues.length === 0 && (
             <tr>
               <td colSpan={3} className={styles.title}>
-                {messages.emptyMessage}
+                {t('keyValueEditor.emptyMessage')}
               </td>
             </tr>
           )}
@@ -111,7 +108,7 @@ export const KeyValueEditor: FC<Props> = ({
               </td>
               <td>
                 <Button onClick={() => handleDelete(keyValue.id)}>
-                  {messages.delete}
+                  {t('keyValueEditor.delete')}
                 </Button>
               </td>
             </tr>

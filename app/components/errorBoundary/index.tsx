@@ -1,7 +1,5 @@
-import { messages } from '@/sources/messages';
-
+import { useTranslation } from 'react-i18next';
 import { getErrorData } from '@/components/errorBoundary/getErrorData';
-
 import type { Route } from '../../+types/root';
 import styles from './ErrorBoundary.module.css';
 
@@ -9,6 +7,8 @@ export function ErrorBoundaryComponent({
   error,
   params,
 }: Route.ErrorBoundaryProps) {
+  const { t } = useTranslation();
+
   const { message, details, stack } = getErrorData(error);
 
   return (
@@ -24,7 +24,7 @@ export function ErrorBoundaryComponent({
 
       {import.meta.env.DEV && params && (
         <div className={styles.debugParams}>
-          <h3 className={styles.debugTitle}>{messages.errorBoundary.params}</h3>
+          <h3 className={styles.debugTitle}>{t('errorBoundary.params')}</h3>
           <pre className={styles.debugContent}>
             {JSON.stringify(params, null, 2)}
           </pre>

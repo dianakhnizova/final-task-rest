@@ -1,31 +1,28 @@
 import { selectAuth } from '@/store/slices/auth/selectors';
 import { clearSettingsLS } from '@/store/slices/settings/settingsLS.ts';
 import { supabase } from '@/supabaseClient';
-
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-
-import { AppRoutes, Auth } from '@/sources/enums';
-
+import { AppRoutes, LS_KEY } from '@/sources/enums';
 import {
   TOAST_DURATION,
   TOAST_DURATION_LONG,
 } from '@/sources/constants/constants';
-import { header as headerMessages } from '@/sources/messages/header';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
-
 import { Button } from '@/components/ui/button';
-
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export const AuthBar = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const user = useSelector(selectAuth);
   const { clearUser } = useActions();
 
-  const { removeUserFromStorage } = useSaveUserToLS(Auth.USER, null);
+  const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
 
   const handleSignIn = () => {
     navigate(AppRoutes.SIGN_IN);
@@ -51,8 +48,8 @@ export const AuthBar = () => {
   };
 
   return user ? (
-    <Button onClick={handleLogOut}>{headerMessages.logOut}</Button>
+    <Button onClick={handleLogOut}>{t('header.logOut')}</Button>
   ) : (
-    <Button onClick={handleSignIn}>{headerMessages.signIn}</Button>
+    <Button onClick={handleSignIn}>{t('header.signIn')}</Button>
   );
 };

@@ -9,11 +9,6 @@ export const restClientPage = {
     headerDelete: 'Delete',
   },
 
-  bodyEditor: {
-    codeTitle: 'Code: ',
-    bodyTitle: 'Body: ',
-  },
-
   response: {
     title: 'Response',
     headerTitle: 'Headers',
