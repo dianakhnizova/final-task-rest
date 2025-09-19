@@ -21,6 +21,7 @@ export type Database = {
           error: string | null;
           id: number;
           latency_ms: number;
+          method: string;
           requestSize: number;
           responseSize: number;
           status: number;
@@ -34,6 +35,7 @@ export type Database = {
           error?: string | null;
           id?: number;
           latency_ms: number;
+          method: string;
           requestSize: number;
           responseSize: number;
           status: number;
@@ -47,6 +49,7 @@ export type Database = {
           error?: string | null;
           id?: number;
           latency_ms?: number;
+          method?: string;
           requestSize?: number;
           responseSize?: number;
           status?: number;
