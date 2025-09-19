@@ -16,11 +16,11 @@ import {
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
-import { inputFetchFields } from '@/sources/lists/inputFetchFields';
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
+import { HiddenRequestFields } from './hiddenRequestFields';
 
 export const RequestSender = () => {
   const { t } = useTranslation();
@@ -33,15 +33,6 @@ export const RequestSender = () => {
   const variables = useSelector(selectVariables);
 
   const fetcher = useFetcher();
-
-  const fields = inputFetchFields({
-    url,
-    method,
-    protocol,
-    body,
-    headers,
-    variables,
-  });
 
   const isLoading =
     fetcher.state === LoaderStatus.SUBMITTING ||
@@ -60,15 +51,14 @@ export const RequestSender = () => {
         method={HttpMethods.POST}
         className={styles.form}
       >
-        {fields.map(field => (
-          <input
-            key={field.id}
-            id={field.id}
-            type={field.type}
-            name={field.name}
-            value={field.value}
-          />
-        ))}
+        <HiddenRequestFields
+          url={url}
+          method={method}
+          protocol={protocol}
+          body={body}
+          headers={headers}
+          variables={variables}
+        />
 
         <Button type={ButtonType.SUBMIT} disabled={!url}>
           {t('buttons.send')}

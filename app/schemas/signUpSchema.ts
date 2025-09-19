@@ -1,9 +1,6 @@
 import { z } from 'zod';
-
 import { InputID } from '@/sources/enums';
-
 import { validation } from '@/sources/messages/validation';
-
 import {
   confirmPasswordSchema,
   emailSchema,
@@ -20,5 +17,5 @@ export const signUpSchema = z
   })
   .refine(data => data.password === data.confirmPassword, {
     message: validation.error.confirmMessage,
-    path: [InputID.ID_4_CONFIRM_PASSWORD],
+    path: [InputID.ID_CONFIRM_PASSWORD],
   });

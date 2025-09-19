@@ -9,7 +9,7 @@ import { AppRoutes } from '@/sources/enums';
 import { mainPage as mainPageMessages } from '@/sources/messages/mainPage';
 import { AboutUs } from '@/components/aboutUs';
 import { Navigation } from '@/components/navigation';
-import { SignInUpToggler } from '@/components/signInUpToggler';
+import { SignInUpLinks } from '@/components/signInUpLinks';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 import styles from './MainPage.module.css';
 
@@ -54,7 +54,7 @@ export default function MainPage() {
                 {t('mainPage.mainPage')}
               </Link>
             ) : (
-              <SignInUpToggler />
+              <SignInUpLinks />
             )}
           </div>
 

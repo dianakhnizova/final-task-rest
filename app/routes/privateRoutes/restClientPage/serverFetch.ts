@@ -8,7 +8,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const data = Object.fromEntries(formData);
 
   const protocol = data.protocol || Protocols.HTTPS;
-  const url = protocol + (data.url as string);
+  const url = `${protocol}${data.url}`;
   const method = data.method.toString() || HttpMethods.GET;
   const body = data.body ? JSON.parse(data.body as string) : undefined;
   const rawHeaders = data.headers ? JSON.parse(data.headers as string) : [];

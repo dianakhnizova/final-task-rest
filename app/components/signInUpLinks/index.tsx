@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
-import styles from './SignInUpToggler.module.css';
+import styles from './SignInUpLinks.module.css';
 
-export const SignInUpToggler = () => {
+export const SignInUpLinks = () => {
   const { t } = useTranslation();
 
   return (

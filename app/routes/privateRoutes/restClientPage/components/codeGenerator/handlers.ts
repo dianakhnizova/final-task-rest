@@ -3,9 +3,7 @@ import type {
   CodeGeneratorLoaderData,
   CodeRequestData,
 } from '@/sources/interfaces';
-
 import { errors as errorMessages } from '@/sources/messages/errors';
-
 import { generateCode } from '@/utils/generateCode';
 
 export const handleCodeGenerator = async (
@@ -22,11 +20,4 @@ export const handleCodeGenerator = async (
 
     setCode({ generatedCode: null, error: (error as Error).message });
   }
-};
-
-export const handleLanguage = (
-  value: CodeLanguage | null,
-  setLanguage: (method: CodeLanguage) => void
-) => {
-  if (value) setLanguage(value);
 };

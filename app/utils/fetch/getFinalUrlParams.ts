@@ -2,7 +2,7 @@ import { AppRoutes, type HttpMethods } from '@/sources/enums';
 import type { Header } from '@/sources/interfaces';
 
 export const getFinalUrlParams = (
-  body: string,
+  body: string | undefined,
   method: HttpMethods | string,
   headers: Header,
   url: string

@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
 import styles from './CodeGenerator.module.css';
-import { handleCodeGenerator, handleLanguage } from './handlers';
+import { handleCodeGenerator } from './handlers';
 
 export const CodeGenerator: FC = () => {
   const { t } = useTranslation();
@@ -44,10 +44,7 @@ export const CodeGenerator: FC = () => {
       <div className={styles.codeGenerator}>
         <p>{t('bodyEditor.codeTitle')}</p>
 
-        <Select
-          options={languageList}
-          setSelectedValue={value => handleLanguage(value, setLanguage)}
-        />
+        <Select options={languageList} setSelectedValue={setLanguage} />
 
         <Button
           onClick={() =>
