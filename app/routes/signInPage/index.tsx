@@ -61,13 +61,12 @@ export default function SignInPage() {
       password,
     });
 
+    const { user, session } = authData;
+
     if (error) {
       authError(error);
       return null;
     }
-
-    const user = authData.user;
-    const session = authData.session;
 
     if (!user || !session) return;
 
