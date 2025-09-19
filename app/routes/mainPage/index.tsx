@@ -17,10 +17,10 @@ export const meta = pageMeta(mainPageMessages);
 
 export default function MainPage() {
   const { t } = useTranslation();
+  const location = useLocation();
+
   const user = useSelector(selectAuth);
   const token = useSelector(selectIsAuthenticated);
-
-  const location = useLocation();
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 

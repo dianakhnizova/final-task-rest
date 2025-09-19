@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { ABOUT_PROJECT } from '@/sources/constants/constants';
 import { developerList } from '@/sources/lists/developerList';
 import { images as altMessages } from '@/sources/messages/images';
 import styles from './AboutUs.module.css';
@@ -32,7 +31,7 @@ export const AboutUs = () => {
         ))}
       </div>
 
-      <p className={styles.project}>{ABOUT_PROJECT}</p>
+      <p className={styles.project}>{t('aboutUs.project')}</p>
 
       <div className={styles.course}>
         <p className={styles.title}>{t('aboutUs.title')}</p>

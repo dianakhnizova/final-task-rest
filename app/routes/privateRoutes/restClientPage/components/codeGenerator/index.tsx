@@ -6,28 +6,22 @@ import {
   selectMethod,
   selectUrl,
 } from '@/store/slices/restClient/selectors';
-
 import { type FC, useMemo } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-
 import { type CodeLanguage } from '@/sources/enums';
-
 import { languageList } from '@/sources/lists/languageList';
-import { buttons as buttonMessages } from '@/sources/messages/buttons';
-import { restClientPage } from '@/sources/messages/restClientPage';
-
 import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
-
 import { useActions } from '@/utils/hooks/useActions';
-
 import styles from './CodeGenerator.module.css';
 import { handleCodeGenerator, handleLanguage } from './handlers';
 
 export const CodeGenerator: FC = () => {
+  const { t } = useTranslation();
+
   const code = useSelector(selectCode);
   const body = useSelector(selectBody);
   const method = useSelector(selectMethod);
@@ -49,7 +43,7 @@ export const CodeGenerator: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.codeGenerator}>
-        <p>{restClientPage.bodyEditor.codeTitle}</p>
+        <p>{t('bodyEditor.codeTitle')}</p>
 
         <Select
           options={languageList}
@@ -68,7 +62,7 @@ export const CodeGenerator: FC = () => {
           }
           disabled={!url}
         >
-          {buttonMessages.generate}
+          {t('buttons.generate')}
         </Button>
       </div>
 

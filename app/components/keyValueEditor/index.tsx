@@ -2,7 +2,6 @@ import { type FC, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EditableField } from '@/sources/enums';
 import type { KeyValue } from '@/sources/interfaces.ts';
-import { keyValueEditor as messages } from '@/sources/messages/keyValueEditor.ts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import styles from './KeyValueEditor.module.css';
@@ -25,8 +24,8 @@ export const KeyValueEditor: FC<Props> = ({
   onAdd,
   onDelete,
   onUpdate,
-  keyPlaceholder = messages.keyPlaceholder,
-  valuePlaceholder = messages.valuePlaceholder,
+  keyPlaceholder,
+  valuePlaceholder,
 }) => {
   const { t } = useTranslation();
   const id = useId();

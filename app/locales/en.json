@@ -1,6 +1,7 @@
 {
-  "hello": "Hello",
-  "about": "About us",
+  "root": {
+    "appTitle": "REST client"
+  },
   "mainPage": {
     "metaTitle": "REST client App",
     "metaName": "description",
@@ -27,9 +28,7 @@
     "headers": "Headers",
     "generate": "Generate code",
     "send": "Send request",
-    "delete": "Delete",
-    "prettify": "Prettify",
-    "raw": "Raw"
+    "delete": "Delete"
   },
 
   "language": {
@@ -40,7 +39,8 @@
   "aboutUs": {
     "title": "About course",
     "name": "React Course",
-    "year": "2025"
+    "year": "2025",
+    "project": "Our project is a browser-based REST client that allows you to send HTTP requests, view responses, and save request history. We designed it to be developer-friendly: it supports variables, multiple methods (GET, POST, etc.), code generation for requests, and a flexible interface. The goal of the project is to simplify API testing and exploration directly in the browser without additional tools."
   },
 
   "images": {
@@ -53,5 +53,85 @@
     "add": "Add",
     "keyPlaceholder": "Key",
     "valuePlaceholder": "Value"
+  },
+  "footer": {
+    "copyright": "© 2025",
+    "rsSchoolCourse": "Rs School Course",
+    "githubProject": "Github Project"
+  },
+
+  "errorBoundary": {
+    "oops": "Oops!",
+    "details": "An unexpected error occurred.",
+    "notFound": "The requested page could not be found.",
+    "error": "Error",
+    "params": "Params:"
+  },
+  "loader": {
+    "title": "Loading data..."
+  },
+  "notFoundPage": {
+    "metaTitle": "REST client App / Error 404",
+    "metaName": "description",
+    "metaContent": "Error 404 / Page not Found",
+    "title": "Page not Found",
+    "btnBack": "Back to Home Page"
+  },
+  "bodyEditor": {
+    "codeTitle": "Code: ",
+    "bodyTitle": "Body: "
+  },
+  "response": {
+    "title": "Response",
+    "headerTitle": "Headers",
+    "key": "key: ",
+    "value": "value: ",
+    "statusTitle": "Status: ",
+    "bodyTitle": "Body: ",
+    "emptyData": "No data yet",
+    "requestBodyTitle": "Request Body:",
+    "emptyRequestHint": "Enter URL and click \"Send request\"",
+    "selectParser": "Select parser"
+  },
+  "label": {
+    "name": "Name",
+    "email": "E-mail",
+    "password": "Password",
+    "confirmPassword": "Confirm password"
+  },
+
+  "placeholder": {
+    "name": "Enter your name",
+    "email": "Enter your e-mail",
+    "password": "Enter your password",
+    "confirmPassword": "Confirm password",
+    "key": "key",
+    "value": "value",
+    "url": "Enter url or paste text"
+  },
+  "variablesPage": {
+    "metaTitle": "REST client App / Variables",
+    "metaName": "description",
+    "metaContent": "Welcome to Variables",
+    "header": "Variables",
+    "keyHeader": "Key",
+    "valueHeader": "Value"
+  },
+  "signInPage": {
+    "metaTitle": "REST client App / Sign in",
+    "metaName": "description",
+    "metaContent": "Welcome to Sigh in",
+    "infoTitle": "Don't have an account?"
+  },
+  "signUpPage": {
+    "metaTitle": "REST client App / Sign up",
+    "metaName": "description",
+    "metaContent": "Welcome to Sigh up",
+    "infoTitle": "Already have an account?"
+  },
+  "table": {
+    "headerKey": "Header key",
+    "headerValue": "Header value",
+    "headerDelete": "Delete"
   }
 }

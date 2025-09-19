@@ -6,30 +6,25 @@ import {
   selectUrl,
 } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
-
 import { useEffect } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
-
 import {
   AppRoutes,
   ButtonType,
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
-
 import { inputFetchFields } from '@/sources/lists/inputFetchFields';
-import { buttons as buttonMessages } from '@/sources/messages/buttons';
-import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
-
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
-
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
 
 export const RequestSender = () => {
+  const { t } = useTranslation();
+
   const method = useSelector(selectMethod);
   const url = useSelector(selectUrl);
   const protocol = useSelector(selectProtocol);
@@ -76,7 +71,7 @@ export const RequestSender = () => {
         ))}
 
         <Button type={ButtonType.SUBMIT} disabled={!url}>
-          {buttonMessages.send}
+          {t('buttons.send')}
         </Button>
       </fetcher.Form>
 
@@ -84,12 +79,12 @@ export const RequestSender = () => {
         <WaitingLoader />
       ) : fetcher.data ? (
         <div className={styles.response}>
-          <p>{restClientMessages.response.title}</p>
+          <p>{t('response.title')}</p>
 
           <Response data={fetcher.data.received} status={fetcher.data.status} />
         </div>
       ) : (
-        <p>{restClientMessages.response.emptyRequestHint}</p>
+        <p>{t('response.emptyRequestHint')}</p>
       )}
     </>
   );

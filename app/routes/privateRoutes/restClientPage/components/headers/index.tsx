@@ -1,22 +1,22 @@
 import { selectHeaders } from '@/store/slices/restClient/selectors';
-
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-
-import { restClientPage as messages } from '@/sources/messages/restClientPage.ts';
-
 import { KeyValueEditor } from '@/components/keyValueEditor';
-
 import { useActions } from '@/utils/hooks/useActions';
 
 export const Headers = () => {
-  const headers = useSelector(selectHeaders);
+  const { t } = useTranslation();
   const { addHeader, updateHeader, removeHeader } = useActions();
+
+  const headers = useSelector(selectHeaders);
 
   return (
     <KeyValueEditor
-      keyHeader={messages.table.headerKey}
-      valueHeader={messages.table.headerValue}
+      keyHeader={t('table.headerKey')}
+      valueHeader={t('table.headerValue')}
       keyValues={headers}
+      keyPlaceholder={t('keyValueEditor.keyPlaceholder')}
+      valuePlaceholder={t('keyValueEditor.valuePlaceholder')}
       onAdd={addHeader}
       onDelete={removeHeader}
       onUpdate={updateHeader}

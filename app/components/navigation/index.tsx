@@ -1,15 +1,11 @@
 import type { FC } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-
-import { mainPage as mainPageMessages } from '@/sources/messages/mainPage';
-
 import {
   handleHistory,
   handleRestClient,
   handleVariables,
 } from '@/components/navigation/handlers';
-
 import { Button } from '../ui/button';
 import styles from './Navigation.module.css';
 
@@ -18,31 +14,33 @@ interface Props {
 }
 
 export const Navigation: FC<Props> = ({ isRestClientPage }) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const buttons = isRestClientPage
     ? [
         {
           handler: () => handleHistory(navigate),
-          label: mainPageMessages.btnHistory,
+          label: t('mainPage.btnHistory'),
         },
         {
           handler: () => handleVariables(navigate),
-          label: mainPageMessages.btnVariables,
+          label: t('mainPage.btnVariables'),
         },
       ]
     : [
         {
           handler: () => handleRestClient(navigate),
-          label: mainPageMessages.btnRestClient,
+          label: t('mainPage.btnRestClient'),
         },
         {
           handler: () => handleHistory(navigate),
-          label: mainPageMessages.btnHistory,
+          label: t('mainPage.btnHistory'),
         },
         {
           handler: () => handleVariables(navigate),
-          label: mainPageMessages.btnVariables,
+          label: t('mainPage.btnVariables'),
         },
       ];
 
