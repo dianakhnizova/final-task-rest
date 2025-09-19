@@ -1,5 +1,4 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-
 import { CodeLanguage, HttpMethods, Parsers, Protocols } from '@/sources/enums';
 import type { CodeGeneratorLoaderData, Header } from '@/sources/interfaces';
 
@@ -10,7 +9,7 @@ interface RestClientState {
   headers: Header[];
   parser: Parsers;
   body: string;
-  code: CodeGeneratorLoaderData | null;
+  code: CodeGeneratorLoaderData;
   language: CodeLanguage;
 }
 
@@ -21,7 +20,10 @@ const initialState: RestClientState = {
   headers: [],
   parser: Parsers.JSON,
   body: '',
-  code: null,
+  code: {
+    generatedCode: null,
+    error: null,
+  },
   language: CodeLanguage.JAVASCRIPT,
 };
 
@@ -44,7 +46,7 @@ const restClientSlice = createSlice({
     setBody: (state, action: PayloadAction<string>) => {
       state.body = action.payload;
     },
-    setCode(state, action: PayloadAction<CodeGeneratorLoaderData | null>) {
+    setCode(state, action: PayloadAction<CodeGeneratorLoaderData>) {
       state.code = action.payload;
     },
     setLanguage(state, action: PayloadAction<CodeLanguage>) {

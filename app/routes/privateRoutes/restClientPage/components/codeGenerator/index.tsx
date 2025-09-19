@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { type CodeLanguage } from '@/sources/enums';
 import { languageList } from '@/sources/lists/languageList';
 import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
@@ -47,9 +46,7 @@ export const CodeGenerator: FC = () => {
 
         <Select
           options={languageList}
-          setSelectedValue={value =>
-            handleLanguage(value as CodeLanguage | null, setLanguage)
-          }
+          setSelectedValue={value => handleLanguage(value, setLanguage)}
         />
 
         <Button

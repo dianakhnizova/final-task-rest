@@ -11,7 +11,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from 'react-router';
-import AppInitializer from '@/components/appInitializer';
+import AppInitWrapper from '@/components/appInitWrapper';
 import { Footer } from '@/components/footer';
 import Head from '@/components/head';
 import { Header } from '@/components/header';
@@ -46,23 +46,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
-            <AppInitializer />
+            <AppInitWrapper>
+              <div id="root">
+                <Header />
+                <Wrapper>{children}</Wrapper>
+                <Footer />
+              </div>
 
-            <div id="root">
-              <Header />
-              <Wrapper>{children}</Wrapper>
-              <Footer />
-            </div>
+              <Toaster
+                position="bottom-right"
+                toastOptions={{
+                  duration: TOAST_DURATION,
+                }}
+              />
 
-            <Toaster
-              position="bottom-right"
-              toastOptions={{
-                duration: TOAST_DURATION,
-              }}
-            />
-
-            <ScrollRestoration />
-            <Scripts />
+              <ScrollRestoration />
+              <Scripts />
+            </AppInitWrapper>
           </I18nextProvider>
         </Provider>
       </body>

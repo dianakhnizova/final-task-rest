@@ -15,7 +15,6 @@ import { HttpMethods, Parsers } from '@/sources/enums';
 import { DEFAULT_BODY } from '@/sources/constants/constants';
 import { useActions } from '@/utils/hooks/useActions';
 import styles from './BodyEditor.module.css';
-import { handleBodyEditor } from './handlers';
 
 const { highlight, languages } = Prism;
 
@@ -44,7 +43,7 @@ export const BodyEditor = () => {
 
       <Editor
         value={body}
-        onValueChange={value => handleBodyEditor(value, setBody)}
+        onValueChange={setBody}
         highlight={code =>
           parser === Parsers.RAW
             ? code
