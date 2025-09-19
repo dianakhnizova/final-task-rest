@@ -1,9 +1,16 @@
 import '@/global.css';
 import { store } from '@/store/store';
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
-import { Outlet, Scripts, ScrollRestoration } from 'react-router';
+import {
+  type LoaderFunction,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from 'react-router';
 import AppInitializer from '@/components/appInitializer';
 import { Footer } from '@/components/footer';
 import Head from '@/components/head';
@@ -11,25 +18,27 @@ import { Header } from '@/components/header';
 import Wrapper from '@/components/wrapper';
 import type { Route } from './+types/root';
 import { ErrorBoundaryComponent } from './components/errorBoundary';
-import i18n, { getLocale } from './i18n.server';
+import i18n from './i18n.client';
+import { getLocale } from './i18n.server';
 import { TOAST_DURATION } from './sources/constants/constants';
 import { Theme } from './sources/enums';
 
-export async function loader({ request }: { request: Request }) {
+export const loader: LoaderFunction = async ({ request }) => {
   const locale = await getLocale(request);
+  return { locale };
+};
 
-  await i18n.changeLanguage(locale);
+export function Layout({ children }: { children: React.ReactNode }) {
+  const { locale } = useLoaderData<{ locale: string }>();
 
-  return Response.json({ locale });
-}
+  useEffect(() => {
+    if (i18n && typeof i18n.changeLanguage === 'function') {
+      i18n.changeLanguage(locale);
+    } else {
+      console.log('i18n is not properly initialized:', i18n);
+    }
+  }, [locale]);
 
-export function Layout({
-  children,
-  locale,
-}: {
-  children: React.ReactNode;
-  locale: string;
-}) {
   return (
     <html lang={locale} data-theme={Theme.DARK}>
       <Head />

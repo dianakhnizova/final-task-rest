@@ -42,5 +42,12 @@
   },
   "images": {
     "developer": "Фото разработчика"
+  },
+  "keyValueEditor": {
+    "delete": "Удалить",
+    "emptyMessage": "Нажмите кнопку «Добавить», чтобы добавить значение",
+    "add": "Добавить",
+    "keyPlaceholder": "Ключ",
+    "valuePlaceholder": "Значение"
   }
 }

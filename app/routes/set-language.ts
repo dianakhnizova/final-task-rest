@@ -4,14 +4,16 @@ import { languageCookie } from '../cookies.server';
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  let lng: Language =
+  const lng: Language =
     (formData.get(InputName.LANGUAGE)?.toString() as Language) || Language.EN;
 
-  if (![Language.EN, Language.RU].includes(lng)) {
-    lng = Language.EN;
-  }
+  const finalLng: Language = [Language.EN, Language.RU].includes(
+    lng as Language
+  )
+    ? (lng as Language)
+    : Language.EN;
 
   return redirect(request.headers.get('Referer') ?? AppRoutes.HOME, {
-    headers: { 'Set-Cookie': await languageCookie.serialize(lng) },
+    headers: { 'Set-Cookie': await languageCookie.serialize(finalLng) },
   });
 }

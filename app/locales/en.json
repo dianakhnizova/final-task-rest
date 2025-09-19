@@ -31,16 +31,27 @@
     "prettify": "Prettify",
     "raw": "Raw"
   },
+
   "language": {
     "switchTo": "Switch to",
     "current": "Current language"
   },
+
   "aboutUs": {
     "title": "About course",
     "name": "React Course",
     "year": "2025"
   },
+
   "images": {
     "developer": "Developer photo"
+  },
+
+  "keyValueEditor": {
+    "delete": "Delete",
+    "emptyMessage": "Click the \"Add\" button to add a value",
+    "add": "Add",
+    "keyPlaceholder": "Key",
+    "valuePlaceholder": "Value"
   }
 }

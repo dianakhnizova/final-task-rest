@@ -7,11 +7,8 @@ export const languageMiddleware: unstable_MiddlewareFunction = async ({
   request,
 }) => {
   const cookieHeader = request.headers.get('Cookie');
-
   const lng = (await languageCookie.parse(cookieHeader)) || Language.EN;
-
   const finalLng = [Language.EN, Language.RU].includes(lng) ? lng : Language.EN;
   await i18n.changeLanguage(finalLng);
-
   return null;
 };
