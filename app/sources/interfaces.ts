@@ -1,5 +1,4 @@
 import type { User } from '@supabase/supabase-js';
-
 import { CodeLanguage, CodeVariant } from './enums';
 
 export interface InputFields {
@@ -96,7 +95,7 @@ export interface AuthUser {
 }
 
 export interface Developer {
-  name: string;
+  nameKey: string;
   photo: string;
   gitHub: string;
 }

@@ -14,13 +14,13 @@ import {
   TOAST_DURATION,
   TOAST_DURATION_LONG,
 } from '@/sources/constants/constants';
+import { inputFormFields } from '@/sources/lists/inputFormFields';
 import { signInPage } from '@/sources/messages/signInPage';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
-import { useInputFormFields } from '@/utils/hooks/useInputFormFields';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 import styles from './SignInPage.module.css';
@@ -33,7 +33,6 @@ export default function SignInPage() {
   const { setUser } = useActions();
   const { setUserToStorage } = useSaveUserToLS(LS_KEY.USER, null);
   const [searchParams] = useSearchParams();
-  const inputFormFields = useInputFormFields();
 
   const user = useSelector(selectAuth);
 
@@ -101,7 +100,10 @@ export default function SignInPage() {
         {filteredFields.map(field => (
           <Input
             key={field.id}
-            {...field}
+            id={field.id}
+            label={field.label ? t(field.label) : undefined}
+            type={field.type}
+            placeholder={field.placeholder ? t(field.placeholder) : undefined}
             name={field.id as keyof SignInForm}
             register={register}
             errorMessage={

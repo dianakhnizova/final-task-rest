@@ -7,17 +7,17 @@ import type { Developer } from '../interfaces';
 
 export const developerList: Developer[] = [
   {
-    name: 'Vavilov Alexandr',
+    nameKey: 'developers.alexandr',
     photo: '/alexandr.png',
     gitHub: GITHUB_ALEXANDR,
   },
   {
-    name: 'Khnizova Diana',
+    nameKey: 'developers.diana',
     photo: '/diana.jpg',
     gitHub: GITHUB_DIANA,
   },
   {
-    name: 'Vavilov Olexandr',
+    nameKey: 'developers.olexandr',
     photo: '/alex.jpg',
     gitHub: GITHUB_ALEX,
   },
