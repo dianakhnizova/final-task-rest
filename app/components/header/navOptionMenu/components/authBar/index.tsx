@@ -8,6 +8,10 @@ import { useNavigate } from 'react-router';
 
 import { AppRoutes, Auth } from '@/sources/enums';
 
+import {
+  TOAST_DURATION,
+  TOAST_DURATION_LONG,
+} from '@/sources/constants/constants';
 import { header as headerMessages } from '@/sources/messages/header';
 import { toasts as toastMessages } from '@/sources/messages/toasts';
 
@@ -28,10 +32,19 @@ export const AuthBar = () => {
   };
 
   const handleLogOut = async () => {
+    toast.success(toastMessages.logOutInit, {
+      id: toastMessages.logOutId,
+      duration: TOAST_DURATION_LONG,
+    });
+
     await supabase.auth.signOut();
     removeUserFromStorage();
     clearSettingsLS();
-    toast.success(`${user?.user_metadata.name} ${toastMessages.logOut}`);
+
+    toast.success(`${user?.user_metadata.name} ${toastMessages.logOut}`, {
+      id: toastMessages.logOutId,
+      duration: TOAST_DURATION,
+    });
 
     clearUser();
     navigate(AppRoutes.HOME);
