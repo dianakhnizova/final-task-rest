@@ -4,7 +4,7 @@
   padding: var(--spacing-3) var(--spacing-5);
   cursor: pointer;
   background: var(--md-sys-color-surface-bright);
-  color: var(--color-on-primary);
+  color: var(-color-text-default);
   border: none;
   outline: none;
 }
