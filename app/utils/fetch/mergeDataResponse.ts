@@ -2,8 +2,8 @@ export const mergedDataResponse = (
   responseText: string,
   body: string | null
 ) => {
-  let parsedResponse: object;
-  let parsedBody: object;
+  let parsedResponse: unknown;
+  let parsedBody: unknown;
   let mergedData: unknown;
 
   try {
@@ -15,7 +15,10 @@ export const mergedDataResponse = (
   }
 
   if (body && parsedResponse && typeof parsedResponse === 'object') {
-    mergedData = { ...parsedBody, ...parsedResponse };
+    mergedData = {
+      ...(parsedBody as Record<string, unknown>),
+      ...(parsedResponse as Record<string, unknown>),
+    };
   } else {
     mergedData = parsedResponse ?? body;
   }

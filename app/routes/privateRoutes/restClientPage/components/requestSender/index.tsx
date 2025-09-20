@@ -1,6 +1,12 @@
-import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
 import { addHistoryForCurrentUser } from '@/services/historyService.ts';
-import { selectClientState } from '@/store/slices/restClient/selectors';
+import {
+  selectBody,
+  selectClientState,
+  selectHeaders,
+  selectMethod,
+  selectProtocol,
+  selectUrl,
+} from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 import { supabase } from '@/supabaseClient.ts';
 import type { RequestData, ServerFetchResponse } from '@/types/requestData.ts';
@@ -16,22 +22,33 @@ import {
 } from '@/sources/enums';
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
+import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
+import { HiddenRequestFields } from './hiddenRequestFields';
 
 export const RequestSender = () => {
   const { t } = useTranslation();
 
-  const clientState = useSelector(selectClientState);
+  const method = useSelector(selectMethod);
+  const url = useSelector(selectUrl);
+  const protocol = useSelector(selectProtocol);
+  const body = useSelector(selectBody);
+  const headers = useSelector(selectHeaders);
   const variables = useSelector(selectVariables);
+  const clientState = useSelector(selectClientState);
   const clientStateRef = useRef(clientState);
+
+  useEffect(() => {
+    clientStateRef.current = clientState;
+  }, [clientState]);
 
   const requestData: RequestData = {
     clientState,
     globalVariables: variables,
   };
 
-  const json = JSON.stringify(requestData);
+  const requestDataJson = JSON.stringify(requestData);
 
   const fetcher = useFetcher<ServerFetchResponse>();
 
@@ -39,18 +56,40 @@ export const RequestSender = () => {
     fetcher.state === LoaderStatus.SUBMITTING ||
     fetcher.state === LoaderStatus.LOADING;
 
-  const canSend = clientState.url;
+  const canSend = !!clientState.url && !!method;
+
+  useEffect(() => {
+    if (fetcher.state === LoaderStatus.SUBMITTING) {
+      const fullUrl = `${protocol}${url}`;
+      const bodyString =
+        body && typeof body === 'object'
+          ? JSON.stringify(body)
+          : (body ?? null);
+      const headersForUrl =
+        headers?.map((header, index) => ({
+          id: index,
+          key: header.key,
+          value: header.value,
+        })) ?? [];
+      const finalUrl = getFinalUrlParams(
+        bodyString,
+        method,
+        headersForUrl,
+        fullUrl
+      );
+      window.history.replaceState(null, '', finalUrl);
+    }
+  }, [fetcher.state, body, method, headers, protocol, url]);
 
   useEffect(() => {
     if (fetcher.data?.ok && fetcher.data.finalUrl) {
       const { responseMetrics, requestDetails, status } = fetcher.data;
-
-      const clientState = clientStateRef.current;
+      const currentClientState = clientStateRef.current;
 
       addHistoryForCurrentUser(supabase, {
-        clientState: JSON.stringify(clientState),
-        method: requestDetails.method ?? clientState.method,
-        url: requestDetails.url ?? clientState.url,
+        clientState: JSON.stringify(currentClientState),
+        method: requestDetails.method ?? currentClientState.method,
+        url: requestDetails.url ?? currentClientState.url,
         user_id: '',
         status: status,
         timestamp: requestDetails.timestamp.toISOString(),
@@ -70,13 +109,14 @@ export const RequestSender = () => {
         method={HttpMethods.POST}
         className={styles.form}
       >
-        <input
-          id={REQUEST_DATA_NAME}
-          name={REQUEST_DATA_NAME}
-          type="hidden"
-          value={json}
-          readOnly
-          hidden
+        <HiddenRequestFields
+          url={url}
+          method={method}
+          protocol={protocol}
+          body={body}
+          headers={headers}
+          variables={variables}
+          requestDataJson={requestDataJson}
         />
 
         <Button type={ButtonType.SUBMIT} disabled={!canSend}>

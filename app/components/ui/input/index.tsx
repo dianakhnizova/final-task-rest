@@ -1,8 +1,6 @@
 import type { ChangeEvent, InputHTMLAttributes } from 'react';
-
 import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-
 import styles from './Input.module.css';
 
 interface Props<T extends FieldValues>
@@ -28,9 +26,7 @@ export const Input = <T extends FieldValues>({
   renderErrorMessage = true,
   ...rest
 }: Props<T>) => {
-  const { onChange, ...restRegister } = register
-    ? register(name as Path<T>)
-    : {};
+  const { onChange, ...restRegister } = register && name ? register(name) : {};
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInput?.(event.target.value);

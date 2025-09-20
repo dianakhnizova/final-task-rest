@@ -46,3 +46,4 @@ export const GITHUB_ALEX = 'https://github.com/VavilovAlex';
 export const DEFAULT_BODY = `{
 	"name": "Add your name in the body"
 }`;
+export const REQUEST_DATA_NAME = 'requestData';

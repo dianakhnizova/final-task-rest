@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { notFoundPage as messages } from '@/sources/messages/notFoundPage';
 import type { Route } from '../../+types/root';
@@ -28,9 +28,9 @@ export default function NotFoundPage() {
           {t('notFoundPage.metaContent')} - {location.pathname}
         </p>
 
-        <a className={styles.notFoundBtnBack} href={AppRoutes.HOME}>
+        <Link to={AppRoutes.HOME} className={styles.link}>
           {t('notFoundPage.btnBack')}
-        </a>
+        </Link>
       </section>
     </main>
   );

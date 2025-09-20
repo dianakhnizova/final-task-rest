@@ -86,6 +86,7 @@ export interface FetchValues {
   body?: string | object;
   headers?: Header[];
   variables?: KeyValue[];
+  requestDataJson?: string;
 }
 
 export interface AuthUser {
@@ -95,7 +96,7 @@ export interface AuthUser {
 }
 
 export interface Developer {
-  name: string;
+  nameKey: string;
   photo: string;
   gitHub: string;
 }
@@ -103,4 +104,12 @@ export interface Developer {
 export interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
+}
+
+export interface ActionResult {
+  ok: boolean;
+  received: unknown;
+  status: number | null;
+  finalUrl?: string;
+  error?: string;
 }

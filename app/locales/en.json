@@ -133,5 +133,10 @@
     "headerKey": "Header key",
     "headerValue": "Header value",
     "headerDelete": "Delete"
+  },
+  "developers": {
+    "alexandr": "Vavilov Alexandr",
+    "diana": "Khnizova Diana",
+    "olexandr": "Vavilov Olexandr"
   }
 }

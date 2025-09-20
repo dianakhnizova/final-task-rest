@@ -1,4 +1,3 @@
-import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
 import type {
   FetchBuilderParams,
   RequestData,
@@ -8,6 +7,7 @@ import type {
 } from '@/types/requestData.ts';
 import { type ActionFunctionArgs } from 'react-router';
 import { HttpMethods } from '@/sources/enums';
+import { REQUEST_DATA_NAME } from '@/sources/constants/constants';
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
 import { interpolate } from '@/utils/interpolate.ts';
@@ -21,7 +21,7 @@ export const action = async ({
   const jsonDataString = formData.get(REQUEST_DATA_NAME);
 
   if (!jsonDataString || typeof jsonDataString != 'string') {
-    console.error(
+    console.log(
       `'${REQUEST_DATA_NAME}' not found in FormData or is not a string.`
     );
 
@@ -58,7 +58,8 @@ export const action = async ({
     method !== HttpMethods.DELETE
       ? interpolate(rawBody, variablesMap)
       : null;
-  const headers = rawHeaders.map(header => ({
+  const headers = rawHeaders.map((header, index) => ({
+    id: index,
     key: interpolate(header.key, variablesMap),
     value: interpolate(header.value, variablesMap),
   }));

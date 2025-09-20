@@ -16,4 +16,5 @@ export const toasts = {
   invalidPasswordEmail: 'Invalid password or e-mail',
   appInitializing: 'Initializing the application',
   appInitializingId: 'appInitializingId',
+  tokenExpires: 'Token expires',
 };
