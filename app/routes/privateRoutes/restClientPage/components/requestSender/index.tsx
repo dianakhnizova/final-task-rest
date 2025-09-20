@@ -2,33 +2,25 @@ import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/compone
 import { selectClientState } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
 import type { RequestData } from '@/types/requestData.ts';
-
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
-
 import {
   AppRoutes,
   ButtonType,
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
-
-import { buttons as buttonMessages } from '@/sources/messages/buttons';
-import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
-
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
-
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
 
 export const RequestSender = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
-
-    const clientState = useSelector(selectClientState);
+  const clientState = useSelector(selectClientState);
   const variables = useSelector(selectVariables);
 
   const requestData: RequestData = {
@@ -69,7 +61,7 @@ export const RequestSender = () => {
         />
 
         <Button type={ButtonType.SUBMIT} disabled={!canSend}>
-            {t('buttons.send')}
+          {t('buttons.send')}
         </Button>
       </fetcher.Form>
 
