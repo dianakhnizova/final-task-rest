@@ -1,13 +1,14 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-
 import type { AuthUser } from '@/sources/interfaces';
 
 interface AuthState {
   currentUser: AuthUser | null;
+  error: string | null;
 }
 
 const initialState: AuthState = {
   currentUser: null,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -19,6 +20,12 @@ const authSlice = createSlice({
     },
     clearUser: state => {
       state.currentUser = null;
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
+    clearError: state => {
+      state.error = null;
     },
   },
 });

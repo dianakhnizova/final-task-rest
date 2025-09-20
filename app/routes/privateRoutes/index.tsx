@@ -2,35 +2,51 @@ import {
   selectAuth,
   selectIsAuthenticated,
 } from '@/store/slices/auth/selectors';
-
 import { Suspense, useEffect } from 'react';
-
+import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
-
-import { AppRoutes } from '@/sources/enums';
-
+import { AppRoutes, LS_KEY } from '@/sources/enums';
+import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
+import { useActions } from '@/utils/hooks/useActions';
+import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export default function PrivateRoutes() {
   const user = useSelector(selectAuth);
   const isTokenValid = useSelector(selectIsAuthenticated);
 
+  const { setError, clearUser } = useActions();
+  const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user || !isTokenValid) {
-      const currentUrl = window.location.pathname;
+    if (user && !isTokenValid) {
+      clearUser();
+      removeUserFromStorage();
 
-      const redirectParams = new URLSearchParams({
-        redirect: currentUrl,
+      setError(toastMessages.tokenExpires);
+      toast.error(toastMessages.tokenExpires, {
+        id: toastMessages.tokenExpires,
       });
 
-      const signInUrl = `${AppRoutes.SIGN_IN}?${redirectParams.toString()}`;
+      navigate(AppRoutes.HOME, { replace: true });
+    } else if (!user) {
+      const currentUrl = window.location.pathname;
+      const redirectParams = new URLSearchParams({ redirect: currentUrl });
 
-      navigate(signInUrl, { replace: true });
+      navigate(`${AppRoutes.SIGN_IN}?${redirectParams.toString()}`, {
+        replace: true,
+      });
     }
-  }, [user, navigate, isTokenValid]);
+  }, [
+    user,
+    navigate,
+    isTokenValid,
+    setError,
+    clearUser,
+    removeUserFromStorage,
+  ]);
 
   if (!user || !isTokenValid) return null;
 

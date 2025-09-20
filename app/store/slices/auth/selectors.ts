@@ -13,3 +13,5 @@ export const selectIsAuthenticated = (state: TypeRootState) => {
     state.auth.currentUser.expiresAt > now
   );
 };
+
+export const selectError = (state: TypeRootState) => state.auth.error;

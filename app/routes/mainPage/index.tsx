@@ -1,7 +1,4 @@
-import {
-  selectAuth,
-  selectIsAuthenticated,
-} from '@/store/slices/auth/selectors';
+import { selectAuth } from '@/store/slices/auth/selectors';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link, Outlet, useLocation } from 'react-router';
@@ -20,7 +17,6 @@ export default function MainPage() {
   const location = useLocation();
 
   const user = useSelector(selectAuth);
-  const token = useSelector(selectIsAuthenticated);
 
   const hasNestedRoutes = location.pathname !== AppRoutes.HOME;
 
@@ -49,13 +45,7 @@ export default function MainPage() {
           <div className={styles.content}>
             <h2>{t('mainPage.welcomeNew')}</h2>
 
-            {token ? (
-              <Link to={AppRoutes.HOME} className={styles.link}>
-                {t('mainPage.mainPage')}
-              </Link>
-            ) : (
-              <SignInUpLinks />
-            )}
+            <SignInUpLinks />
           </div>
 
           <AboutUs />
