@@ -69,6 +69,7 @@ export enum DisplayName {
 
 export enum LS_KEY {
   USER = 'user',
+  THEME = 'theme',
 }
 
 export enum AuthErrors {
