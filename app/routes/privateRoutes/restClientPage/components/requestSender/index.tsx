@@ -1,51 +1,50 @@
-import {
-  selectBody,
-  selectHeaders,
-  selectMethod,
-  selectProtocol,
-  selectUrl,
-} from '@/store/slices/restClient/selectors';
+import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
+import { selectClientState } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
+import type { RequestData } from '@/types/requestData.ts';
+
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
+
 import {
   AppRoutes,
   ButtonType,
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
-import { inputFetchFields } from '@/sources/lists/inputFetchFields';
+
+import { buttons as buttonMessages } from '@/sources/messages/buttons';
+import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
+
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
+
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
 
 export const RequestSender = () => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
-  const method = useSelector(selectMethod);
-  const url = useSelector(selectUrl);
-  const protocol = useSelector(selectProtocol);
-  const body = useSelector(selectBody);
-  const headers = useSelector(selectHeaders);
+
+    const clientState = useSelector(selectClientState);
   const variables = useSelector(selectVariables);
 
-  const fetcher = useFetcher();
+  const requestData: RequestData = {
+    clientState,
+    globalVariables: variables,
+  };
 
-  const fields = inputFetchFields({
-    url,
-    method,
-    protocol,
-    body,
-    headers,
-    variables,
-  });
+  const json = JSON.stringify(requestData);
+
+  const fetcher = useFetcher();
 
   const isLoading =
     fetcher.state === LoaderStatus.SUBMITTING ||
     fetcher.state === LoaderStatus.LOADING;
+
+  const canSend = clientState.url;
 
   useEffect(() => {
     if (fetcher.data?.ok && fetcher.data.finalUrl) {
@@ -60,18 +59,17 @@ export const RequestSender = () => {
         method={HttpMethods.POST}
         className={styles.form}
       >
-        {fields.map(field => (
-          <input
-            key={field.id}
-            id={field.id}
-            type={field.type}
-            name={field.name}
-            value={field.value}
-          />
-        ))}
+        <input
+          id={REQUEST_DATA_NAME}
+          name={REQUEST_DATA_NAME}
+          type="hidden"
+          value={json}
+          readOnly
+          hidden
+        />
 
-        <Button type={ButtonType.SUBMIT} disabled={!url}>
-          {t('buttons.send')}
+        <Button type={ButtonType.SUBMIT} disabled={!canSend}>
+            {t('buttons.send')}
         </Button>
       </fetcher.Form>
 

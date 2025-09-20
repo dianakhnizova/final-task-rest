@@ -2,7 +2,7 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { CodeLanguage, HttpMethods, Parsers, Protocols } from '@/sources/enums';
 import type { CodeGeneratorLoaderData, Header } from '@/sources/interfaces';
 
-interface RestClientState {
+export interface RestClientState {
   method: HttpMethods;
   protocol: Protocols;
   url: string;

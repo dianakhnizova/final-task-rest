@@ -10,3 +10,4 @@ export const selectHeaders = (state: TypeRootState) => state.restClient.headers;
 export const selectCode = (state: TypeRootState) => state.restClient.code;
 export const selectLanguage = (state: TypeRootState) =>
   state.restClient.language;
+export const selectClientState = (state: TypeRootState) => state.restClient;
