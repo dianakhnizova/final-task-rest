@@ -6,6 +6,7 @@
   background-color: var(--color-surface);
   padding: var(--spacing-4);
   border-radius: var(--radius-standard);
+  overflow: auto;
 }
 
 .table {

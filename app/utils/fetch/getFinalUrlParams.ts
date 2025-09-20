@@ -25,7 +25,6 @@ export const getFinalUrlParams = (
   }
 
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
-  const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 
-  return finalUrl;
+  return `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 };

@@ -25,7 +25,8 @@
     "rootDirs": [".", "./.react-router/types"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["app/*"]
+      "@/*": ["app/*"],
+      "@routes/*": [".react-router/types/app/routes/*"]
     }
   },
   "include": [

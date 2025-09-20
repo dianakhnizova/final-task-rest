@@ -5,6 +5,7 @@ export const historyPageMessages = {
   header: 'History',
   table: {
     headers: {
+      action: 'Action',
       latency: 'Latency (ms)',
       status: 'Status',
       timestamp: 'Time',

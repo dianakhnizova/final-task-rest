@@ -86,6 +86,7 @@ export interface FetchValues {
   body?: string | object;
   headers?: Header[];
   variables?: KeyValue[];
+  requestDataJson?: string;
 }
 
 export interface AuthUser {

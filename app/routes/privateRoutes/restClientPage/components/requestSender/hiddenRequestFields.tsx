@@ -1,7 +1,14 @@
 import type { FetchValues } from '@/sources/interfaces';
 import { inputFetchFields } from '@/sources/lists/inputFetchFields';
 
-export const HiddenRequestFields = (props: FetchValues) => {
+interface HiddenFieldsProps extends FetchValues {
+  requestDataJson: string;
+}
+
+export const HiddenRequestFields = ({
+  requestDataJson,
+  ...props
+}: HiddenFieldsProps) => {
   const fields = inputFetchFields(props);
 
   return (
@@ -12,9 +19,13 @@ export const HiddenRequestFields = (props: FetchValues) => {
           id={field.id}
           type={field.type}
           name={field.name}
-          value={field.value}
+          value={field.value ?? ''}
+          readOnly
+          hidden
         />
       ))}
+
+      <input type="hidden" name="requestData" value={requestDataJson} />
     </>
   );
 };
