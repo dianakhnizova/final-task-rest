@@ -3,11 +3,8 @@ import { addHistoryForCurrentUser } from '@/services/historyService.ts';
 import { getServerSupabaseClient } from '@/supabaseClient.ts';
 import type { RequestData } from '@/types/requestData.ts';
 import type { Database } from '@/types/supabase.ts';
-
 import { type ActionFunctionArgs } from 'react-router';
-
 import { HttpMethods } from '@/sources/enums';
-
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
 import { interpolate } from '@/utils/interpolate.ts';
@@ -47,7 +44,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   } = clientState;
 
   const url = interpolate(`${protocol}${rawUrl}`, variablesMap);
-  const body = interpolate(rawBody, variablesMap);
+  const body =
+    method !== HttpMethods.GET &&
+    method !== HttpMethods.HEAD &&
+    method !== HttpMethods.OPTIONS &&
+    method !== HttpMethods.DELETE
+      ? interpolate(rawBody, variablesMap)
+      : null;
   const headers = rawHeaders.map(header => ({
     key: interpolate(header.key, variablesMap),
     value: interpolate(header.value, variablesMap),
@@ -105,7 +108,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 interface FetchParams {
-  body: string;
+  body: string | null;
   method: HttpMethods;
   headers: { key: string; value: string }[];
   url: string;
@@ -124,11 +127,9 @@ const buildFetchWithMetrics = (fetchParams: FetchParams) => {
   return async () => {
     const startTime = performance.now();
 
-    const fetchBody = method !== HttpMethods.GET ? body : undefined;
-
     const response = await fetch(url, {
       method,
-      body: fetchBody,
+      body: body,
       headers: headersObject,
     });
 
@@ -136,7 +137,7 @@ const buildFetchWithMetrics = (fetchParams: FetchParams) => {
 
     const latencyMs = Math.trunc(endTime - startTime);
 
-    const requestSizeBytes = fetchBody ? new Blob([body]).size : 0;
+    const requestSizeBytes = body ? new Blob([body]).size : 0;
 
     let responseSizeBytes;
 

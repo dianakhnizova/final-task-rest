@@ -1,7 +1,7 @@
 import { AppRoutes, type HttpMethods } from '@/sources/enums';
 
 export const getFinalUrlParams = (
-  body: string,
+  body: string | null,
   method: HttpMethods | string,
   headers: { key: string; value: string }[],
   url: string
