@@ -31,6 +31,9 @@ const restClientSlice = createSlice({
   name: 'restClient',
   initialState,
   reducers: {
+    setState: (_state, action: PayloadAction<RestClientState>) => {
+      return action.payload;
+    },
     setMethod(state, action: PayloadAction<HttpMethods>) {
       state.method = action.payload;
     },

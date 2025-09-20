@@ -1,21 +1,36 @@
+import type { RestClientState } from '@/store/slices/restClient/restClient.slice.ts';
+import type { Json } from '@/types/supabase.ts';
+import { useNavigate } from 'react-router';
+import { AppRoutes } from '@/sources/enums.ts';
 import { historyPageMessages as messages } from '@/sources/messages/historyPage.ts';
+import { Button } from '@/components/ui/button';
+import { useActions } from '@/utils/hooks/useActions.ts';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 import styles from './History.module.css';
 
 export const meta = pageMeta(messages);
 
 export interface HistoryRecord {
-  latencyMs: number;
-  status: number;
+  latencyMs: number | null;
+  status: number | null;
   timestamp: Date;
   method: string;
-  requestSize: number;
-  responseSize: number;
+  requestSize: number | null;
+  responseSize: number | null;
   error: string | null;
   url: string;
+  clientState: Json;
 }
 
 export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
+  const { setState } = useActions();
+  const navigate = useNavigate();
+
+  function handleOpen(record: HistoryRecord) {
+    setState(JSON.parse(record.clientState as string) as RestClientState);
+    navigate(AppRoutes.REST_CLIENT);
+  }
+
   return (
     <div>
       <h1 className={styles.header}>{messages.header}</h1>
@@ -23,6 +38,7 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
         <table className={styles.table}>
           <thead>
             <tr>
+              <th>{messages.table.headers.action}</th>
               <th>{messages.table.headers.timestamp}</th>
               <th>{messages.table.headers.url}</th>
               <th>{messages.table.headers.latency}</th>
@@ -45,6 +61,9 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
               })
               .map(record => (
                 <tr key={record.timestamp.getTime()}>
+                  <td>
+                    <Button onClick={() => handleOpen(record)}>Open</Button>
+                  </td>
                   <td>{record.timestamp.toLocaleString()}</td>
                   <td>{record.url}</td>
                   <td>{record.latencyMs}</td>
