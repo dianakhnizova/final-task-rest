@@ -4,7 +4,7 @@ import type { Header } from '@/sources/interfaces';
 export const getFinalUrlParams = (
   body: string,
   method: HttpMethods | string,
-  headers: Header,
+  headers: Header[],
   url: string
 ) => {
   const queryParams = new URLSearchParams({
@@ -16,12 +16,11 @@ export const getFinalUrlParams = (
     queryParams.set('body', btoa(JSON.stringify(body)));
   }
 
-  Object.entries(headers).forEach(([k, v]) => {
-    queryParams.set(`h_${k}`, encodeURIComponent(v as string));
+  headers.forEach(({ key, value }) => {
+    queryParams.set(`h_${key}`, encodeURIComponent(value as string));
   });
 
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
-  const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 
-  return finalUrl;
+  return `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 };

@@ -13,7 +13,7 @@ export interface HistoryRecord {
   method: string;
   requestSize: number;
   responseSize: number;
-  error?: string;
+  error: string | null;
   url: string;
 }
 

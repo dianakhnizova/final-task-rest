@@ -1,79 +1,31 @@
-import type { HistoryRecord } from '@/routes/privateRoutes/historyPage/index.tsx';
+import { mapHistoryFromRow } from '@/mappers/historyMapper.ts';
+import { getHistoryForCurrentUser } from '@/services/historyService.ts';
+import { getServerSupabaseClient } from '@/supabaseClient.ts';
 
 import { Suspense, lazy } from 'react';
+
+import type { Route } from '@routes/privateRoutes/historyPage/+types/index.lazy.ts';
+import type { LoaderFunctionArgs } from 'react-router';
 
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 
 const HistoryPage = lazy(() => import('@/routes/privateRoutes/historyPage'));
 
-type LoaderData = {
-  history: HistoryRecord[];
-};
-
-export async function loader(): Promise<LoaderData> {
-  await new Promise(resolve => setTimeout(resolve, 500));
+export async function loader({ request }: LoaderFunctionArgs) {
+  const { client, headers } = getServerSupabaseClient(request);
 
   return {
-    history: [
-      {
-        latencyMs: 245,
-        status: 200,
-        timestamp: new Date('2025-09-14T10:30:00'),
-        method: 'GET',
-        requestSize: 128,
-        responseSize: 1024,
-        url: 'https://api.example.com/users',
-      },
-      {
-        latencyMs: 567,
-        status: 404,
-        timestamp: new Date('2025-09-14T10:29:00'),
-        method: 'POST',
-        requestSize: 512,
-        responseSize: 89,
-        error: 'Resource not found',
-        url: 'https://api.example.com/invalid',
-      },
-      {
-        latencyMs: 123,
-        status: 201,
-        timestamp: new Date('2025-09-14T10:28:00'),
-        method: 'PUT',
-        requestSize: 768,
-        responseSize: 256,
-        url: 'https://api.example.com/users/1',
-      },
-      {
-        latencyMs: 890,
-        status: 500,
-        timestamp: new Date('2025-09-14T10:27:00'),
-        method: 'DELETE',
-        requestSize: 64,
-        responseSize: 128,
-        error: 'Internal server error',
-        url: 'https://api.example.com/posts/5',
-      },
-      {
-        latencyMs: 345,
-        status: 200,
-        timestamp: new Date('2025-09-14T10:26:00'),
-        method: 'PATCH',
-        requestSize: 256,
-        responseSize: 512,
-        url: 'https://api.example.com/comments/3',
-      },
-    ],
+    headers,
+    history: (await getHistoryForCurrentUser(client)).map(mapHistoryFromRow),
   };
 }
 
 export default function HistoryPageLazy({
-  loaderData,
-}: {
-  loaderData: LoaderData;
-}) {
+  loaderData: { history },
+}: Route.ComponentProps) {
   return (
     <Suspense fallback={<WaitingLoader />}>
-      <HistoryPage data={loaderData.history} />
+      <HistoryPage data={history} />
     </Suspense>
   );
 }
