@@ -10,8 +10,8 @@ export const AboutUs = () => {
     <div className={styles.container}>
       <div className={styles.developersContainer}>
         {developerList.map(developer => (
-          <div key={developer.name} className={styles.developers}>
-            <p>{developer.name}</p>
+          <div key={developer.nameKey} className={styles.developers}>
+            <p>{t(developer.nameKey)}</p>
 
             <img
               src={developer.photo}

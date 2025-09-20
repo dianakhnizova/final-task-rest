@@ -127,5 +127,10 @@
     "headerKey": "Ключ заголовка",
     "headerValue": "Значение заголовка",
     "headerDelete": "Удалить"
+  },
+   "developers": {
+    "alexandr": "Вавилов Александр",
+    "diana": "Хнизова Диана",
+    "olexandr": "Вавилов Олександр"
   }
 }

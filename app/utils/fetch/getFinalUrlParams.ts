@@ -1,10 +1,10 @@
 import { AppRoutes, type HttpMethods } from '@/sources/enums';
-import type { Header } from '@/sources/interfaces';
+import type { KeyValue } from '@/sources/interfaces';
 
 export const getFinalUrlParams = (
-  body: string,
+  body: unknown | undefined,
   method: HttpMethods | string,
-  headers: Header,
+  headers: KeyValue[] | undefined,
   url: string
 ) => {
   const queryParams = new URLSearchParams({
@@ -16,12 +16,15 @@ export const getFinalUrlParams = (
     queryParams.set('body', btoa(JSON.stringify(body)));
   }
 
-  Object.entries(headers).forEach(([k, v]) => {
-    queryParams.set(`h_${k}`, encodeURIComponent(v as string));
-  });
+  if (Array.isArray(headers)) {
+    headers.forEach(({ key, value }) => {
+      if (key) {
+        queryParams.set(`h_${key}`, encodeURIComponent(value));
+      }
+    });
+  }
 
   const basePath = AppRoutes.REST_CLIENT.replace(/^\/+/, '');
-  const finalUrl = `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 
-  return finalUrl;
+  return `/${basePath}${AppRoutes.FETCH}?${queryParams.toString()}`;
 };

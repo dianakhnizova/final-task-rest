@@ -2,20 +2,15 @@ import {
   selectHeaders,
   selectParser,
 } from '@/store/slices/restClient/selectors';
-
 import { type FC, useEffect, useState } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-
 import { Parsers } from '@/sources/enums';
-
 import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
-
 import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
-
 import styles from './Response.module.css';
 import { languageMap } from './languageMap';
 
@@ -26,6 +21,7 @@ interface Props {
 }
 
 export const Response: FC<Props> = ({ data, status }) => {
+  const { t } = useTranslation();
   const [formattedData, setFormattedData] = useState('');
 
   const parser = useSelector(selectParser);
@@ -55,7 +51,7 @@ export const Response: FC<Props> = ({ data, status }) => {
       )}
 
       <div className={styles.status}>
-        <p>{restClientMessages.response.statusTitle}</p>
+        <p>{t('response.statusTitle')}</p>
 
         <p className={styles.title}>
           {status ? `${status} ${getStatusText(status)}` : ''}

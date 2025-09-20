@@ -1,7 +1,7 @@
 import styles from './Select.module.css';
 
 interface Props<T extends string | number> {
-  setSelectedValue: (value: T | null) => void;
+  setSelectedValue: (value: T) => void;
   options: T[];
   defaultValue?: string | number;
 }
@@ -14,7 +14,7 @@ export const Select = <T extends string | number>({
   const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as T;
 
-    setSelectedValue(value || null);
+    setSelectedValue(value);
   };
 
   return (
