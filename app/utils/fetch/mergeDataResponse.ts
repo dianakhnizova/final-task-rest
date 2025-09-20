@@ -1,11 +1,14 @@
-export const mergedDataResponse = (responseText: string, body: string) => {
+export const mergedDataResponse = (
+  responseText: string,
+  body: string | null
+) => {
   let parsedResponse: object;
   let parsedBody: object;
   let mergedData: unknown;
 
   try {
     parsedResponse = JSON.parse(responseText);
-    parsedBody = JSON.parse(body);
+    parsedBody = body ? JSON.parse(body) : null;
   } catch {
     parsedResponse = responseText;
     parsedBody = body;
