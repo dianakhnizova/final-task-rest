@@ -14,8 +14,8 @@ export interface ServerFetchResponse {
   headers: Headers;
   error?: string;
   finalUrl?: string;
-  metrics?: Metrics;
-  timestamp: Date;
+  requestDetails: RequestDetails;
+  responseMetrics?: ResponseMetrics;
 }
 
 export interface FetchBuilderParams {
@@ -25,8 +25,14 @@ export interface FetchBuilderParams {
   url: string;
 }
 
-export interface Metrics {
+export interface ResponseMetrics {
   latencyMs: number;
   requestSize: number;
   responseSize: number;
+}
+
+export interface RequestDetails {
+  timestamp: Date;
+  url?: string;
+  method?: HttpMethods;
 }

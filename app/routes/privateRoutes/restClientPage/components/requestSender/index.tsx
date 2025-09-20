@@ -43,20 +43,20 @@ export const RequestSender = () => {
 
   useEffect(() => {
     if (fetcher.data?.ok && fetcher.data.finalUrl) {
-      const { metrics, timestamp, status } = fetcher.data;
+      const { responseMetrics, requestDetails, status } = fetcher.data;
 
       const clientState = clientStateRef.current;
 
       addHistoryForCurrentUser(supabase, {
         clientState: JSON.stringify(clientState),
-        method: clientState.method,
-        url: clientState.url,
+        method: requestDetails.method ?? clientState.method,
+        url: requestDetails.url ?? clientState.url,
         user_id: '',
         status: status,
-        timestamp: timestamp.toISOString(),
-        latency_ms: metrics?.latencyMs,
-        requestSize: metrics?.requestSize,
-        responseSize: metrics?.responseSize,
+        timestamp: requestDetails.timestamp.toISOString(),
+        latency_ms: responseMetrics?.latencyMs,
+        requestSize: responseMetrics?.requestSize,
+        responseSize: responseMetrics?.responseSize,
       }).catch(console.error);
 
       window.history.replaceState(null, '', fetcher.data.finalUrl);

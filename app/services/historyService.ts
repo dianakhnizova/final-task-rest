@@ -1,9 +1,8 @@
 import type { Database } from '@/types/supabase.ts';
-
-import supabaseJs from '@supabase/supabase-js';
+import { type SupabaseClient } from '@supabase/supabase-js';
 
 export async function getHistoryForCurrentUser(
-  supabaseClient: supabaseJs.SupabaseClient<Database>
+  supabaseClient: SupabaseClient<Database>
 ) {
   const supabase = supabaseClient;
 
@@ -21,7 +20,7 @@ export async function getHistoryForCurrentUser(
 }
 
 export async function addHistoryForCurrentUser(
-  supabaseClient: supabaseJs.SupabaseClient<Database>,
+  supabaseClient: SupabaseClient<Database>,
   data: Database['public']['Tables']['history']['Insert']
 ) {
   const supabase = supabaseClient;
@@ -35,9 +34,7 @@ export async function addHistoryForCurrentUser(
   if (error) throw error;
 }
 
-async function getRequiredUser(
-  supabaseClient: supabaseJs.SupabaseClient<Database>
-) {
+async function getRequiredUser(supabaseClient: SupabaseClient<Database>) {
   const {
     data: { user },
   } = await supabaseClient.auth.getUser();

@@ -1,8 +1,9 @@
 import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
 import type {
   FetchBuilderParams,
-  Metrics,
   RequestData,
+  RequestDetails,
+  ResponseMetrics,
   ServerFetchResponse,
 } from '@/types/requestData.ts';
 import { type ActionFunctionArgs } from 'react-router';
@@ -30,7 +31,9 @@ export const action = async ({
       status: null,
       error: 'Request data not found',
       headers: actionRequestHeaders,
-      timestamp: new Date(),
+      requestDetails: {
+        timestamp: new Date(),
+      },
     };
   }
   const requestData = JSON.parse(jsonDataString) as RequestData;
@@ -68,7 +71,11 @@ export const action = async ({
     url,
   });
 
-  const timestamp = new Date();
+  const requestDetails: RequestDetails = {
+    timestamp: new Date(),
+    method,
+    url,
+  };
 
   try {
     const { response: res, metrics } = await fetchWithMetrics();
@@ -82,8 +89,8 @@ export const action = async ({
       status: res.status,
       headers: actionRequestHeaders,
       finalUrl,
-      metrics,
-      timestamp: timestamp,
+      responseMetrics: metrics,
+      requestDetails,
     };
   } catch (error) {
     const errorMessage = (error as Error).message;
@@ -94,7 +101,7 @@ export const action = async ({
       status: null,
       error: errorMessage,
       headers: actionRequestHeaders,
-      timestamp: timestamp,
+      requestDetails,
     };
   }
 };
@@ -142,7 +149,7 @@ const buildFetchWithMetrics = (fetchParams: FetchBuilderParams) => {
         latencyMs,
         requestSize: requestSizeBytes,
         responseSize: responseSizeBytes,
-      } as Metrics,
+      } as ResponseMetrics,
     };
   };
 };
