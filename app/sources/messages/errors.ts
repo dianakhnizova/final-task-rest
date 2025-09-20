@@ -9,4 +9,5 @@ export const errors = {
   codeGeneratorError: 'Error code generation',
   urlError: 'Cannot generate code: URL is required',
   languageError: 'Code generation for this language is not supported',
+  themeError: 'useTheme must be used within ThemeProvider',
 };

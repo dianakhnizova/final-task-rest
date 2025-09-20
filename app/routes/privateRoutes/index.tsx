@@ -21,7 +21,9 @@ export default function PrivateRoutes() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && !isTokenValid) {
+    console.log({ user, isTokenValid });
+
+    if (!isTokenValid) {
       clearUser();
       removeUserFromStorage();
 
@@ -29,26 +31,9 @@ export default function PrivateRoutes() {
       toast.error(toastMessages.tokenExpires, {
         id: toastMessages.tokenExpires,
       });
-
       navigate(AppRoutes.HOME, { replace: true });
-    } else if (!user) {
-      const currentUrl = window.location.pathname;
-      const redirectParams = new URLSearchParams({ redirect: currentUrl });
-
-      navigate(`${AppRoutes.SIGN_IN}?${redirectParams.toString()}`, {
-        replace: true,
-      });
     }
-  }, [
-    user,
-    navigate,
-    isTokenValid,
-    setError,
-    clearUser,
-    removeUserFromStorage,
-  ]);
-
-  if (!user || !isTokenValid) return null;
+  }, [navigate, isTokenValid, setError]);
 
   return (
     <Suspense fallback={<WaitingLoader />}>

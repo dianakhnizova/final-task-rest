@@ -1,5 +1,5 @@
 import type { User } from '@supabase/supabase-js';
-import { CodeLanguage, CodeVariant } from './enums';
+import { CodeLanguage, CodeVariant, Theme } from './enums';
 
 export interface InputFields {
   id: string;
@@ -98,4 +98,17 @@ export interface Developer {
   nameKey: string;
   photo: string;
   gitHub: string;
+}
+
+export interface ThemeContextValue {
+  theme: Theme;
+  toggleTheme: () => void;
+}
+
+export interface ActionResult {
+  ok: boolean;
+  received: unknown;
+  status: number | null;
+  finalUrl?: string;
+  error?: string;
 }

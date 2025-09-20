@@ -21,15 +21,17 @@ export const useAppInitializer = () => {
 
     try {
       const savedUser = localStorage.getItem(LS_KEY.USER);
+
       if (savedUser) {
         setUser(JSON.parse(savedUser));
       }
     } catch (error) {
       console.log(errors.parseError, error);
+
       removeUserFromStorage();
       clearSettingsLS();
     }
 
     loadSettings(loadSettingsFromLS());
-  }, [setUser, loadSettings, removeUserFromStorage]);
+  }, []);
 };

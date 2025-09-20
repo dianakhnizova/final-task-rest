@@ -18,6 +18,7 @@ import { Header } from '@/components/header';
 import Wrapper from '@/components/wrapper';
 import type { Route } from './+types/root';
 import { ErrorBoundaryComponent } from './components/errorBoundary';
+import { ThemeProvider } from './contexts/ThemeContext';
 import i18n from './i18n.client';
 import { getLocale } from './i18n.server';
 import { TOAST_DURATION } from './sources/constants/constants';
@@ -45,25 +46,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <body>
         <Provider store={store}>
-          <I18nextProvider i18n={i18n}>
-            <AppInitWrapper>
-              <div id="root">
-                <Header />
-                <Wrapper>{children}</Wrapper>
-                <Footer />
-              </div>
+          <ThemeProvider>
+            <I18nextProvider i18n={i18n}>
+              <AppInitWrapper>
+                <div id="root">
+                  <Header />
+                  <Wrapper>{children}</Wrapper>
+                  <Footer />
+                </div>
 
-              <Toaster
-                position="bottom-right"
-                toastOptions={{
-                  duration: TOAST_DURATION,
-                }}
-              />
+                <Toaster
+                  position="bottom-right"
+                  toastOptions={{
+                    duration: TOAST_DURATION,
+                  }}
+                />
 
-              <ScrollRestoration />
-              <Scripts />
-            </AppInitWrapper>
-          </I18nextProvider>
+                <ScrollRestoration />
+                <Scripts />
+              </AppInitWrapper>
+            </I18nextProvider>
+          </ThemeProvider>
         </Provider>
       </body>
     </html>

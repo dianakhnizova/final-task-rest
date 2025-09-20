@@ -16,8 +16,10 @@ import {
   HttpMethods,
   LoaderStatus,
 } from '@/sources/enums';
+import type { ActionResult } from '@/sources/interfaces';
 import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
+import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { Response } from '../response';
 import styles from './RequestSender.module.css';
 import { HiddenRequestFields } from './hiddenRequestFields';
@@ -32,17 +34,19 @@ export const RequestSender = () => {
   const headers = useSelector(selectHeaders);
   const variables = useSelector(selectVariables);
 
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<ActionResult>();
 
   const isLoading =
     fetcher.state === LoaderStatus.SUBMITTING ||
     fetcher.state === LoaderStatus.LOADING;
 
   useEffect(() => {
-    if (fetcher.data?.ok && fetcher.data.finalUrl) {
-      window.history.replaceState(null, '', fetcher.data.finalUrl);
+    if (fetcher.state === LoaderStatus.SUBMITTING) {
+      const fullUrl = `${protocol}${url}`;
+      const finalUrl = getFinalUrlParams(body, method, headers, fullUrl);
+      window.history.replaceState(null, '', finalUrl);
     }
-  }, [fetcher.data]);
+  }, [fetcher.state, body, method, headers, protocol, url]);
 
   return (
     <>

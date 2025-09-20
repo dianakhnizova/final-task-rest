@@ -8,6 +8,7 @@ export const selectIsAuthenticated = (state: TypeRootState) => {
     return false;
 
   const now = Math.floor(Date.now() / 1000);
+
   return (
     state.auth.currentUser.expiresAt !== null &&
     state.auth.currentUser.expiresAt > now
@@ -15,3 +16,5 @@ export const selectIsAuthenticated = (state: TypeRootState) => {
 };
 
 export const selectError = (state: TypeRootState) => state.auth.error;
+export const selectIsAuthLoading = (state: TypeRootState) =>
+  state.auth.isLoading;
