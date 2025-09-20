@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WaitingLoader > matches snapshot 1`] = `
+<div>
+  <div
+    class="_loaderContainer_ca322a"
+  >
+    <img
+      alt="Loading..."
+      class="_loader_ca322a"
+      src="loader.gif"
+    />
+    <div
+      class="_loading_ca322a"
+    >
+      Loading, please wait...
+    </div>
+  </div>
+</div>
+`;
