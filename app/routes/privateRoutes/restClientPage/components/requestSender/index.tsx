@@ -1,8 +1,10 @@
 import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
+import { addHistoryForCurrentUser } from '@/services/historyService.ts';
 import { selectClientState } from '@/store/slices/restClient/selectors';
 import { selectVariables } from '@/store/slices/settings/selectors.ts';
-import type { RequestData } from '@/types/requestData.ts';
-import { useEffect } from 'react';
+import { supabase } from '@/supabaseClient.ts';
+import type { RequestData, ServerFetchResponse } from '@/types/requestData.ts';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useFetcher } from 'react-router';
@@ -22,6 +24,7 @@ export const RequestSender = () => {
 
   const clientState = useSelector(selectClientState);
   const variables = useSelector(selectVariables);
+  const clientStateRef = useRef(clientState);
 
   const requestData: RequestData = {
     clientState,
@@ -30,7 +33,7 @@ export const RequestSender = () => {
 
   const json = JSON.stringify(requestData);
 
-  const fetcher = useFetcher();
+  const fetcher = useFetcher<ServerFetchResponse>();
 
   const isLoading =
     fetcher.state === LoaderStatus.SUBMITTING ||
@@ -40,6 +43,22 @@ export const RequestSender = () => {
 
   useEffect(() => {
     if (fetcher.data?.ok && fetcher.data.finalUrl) {
+      const { metrics, timestamp, status } = fetcher.data;
+
+      const clientState = clientStateRef.current;
+
+      addHistoryForCurrentUser(supabase, {
+        clientState: JSON.stringify(clientState),
+        method: clientState.method,
+        url: clientState.url,
+        user_id: '',
+        status: status,
+        timestamp: timestamp.toISOString(),
+        latency_ms: metrics?.latencyMs,
+        requestSize: metrics?.requestSize,
+        responseSize: metrics?.responseSize,
+      }).catch(console.error);
+
       window.history.replaceState(null, '', fetcher.data.finalUrl);
     }
   }, [fetcher.data]);

@@ -1,17 +1,20 @@
 import { REQUEST_DATA_NAME } from '@/routes/privateRoutes/restClientPage/components/requestSender/RequestSender.constants.ts';
-import { addHistoryForCurrentUser } from '@/services/historyService.ts';
-import { getServerSupabaseClient } from '@/supabaseClient.ts';
-import type { RequestData } from '@/types/requestData.ts';
-import type { Database } from '@/types/supabase.ts';
+import type {
+  FetchBuilderParams,
+  Metrics,
+  RequestData,
+  ServerFetchResponse,
+} from '@/types/requestData.ts';
 import { type ActionFunctionArgs } from 'react-router';
 import { HttpMethods } from '@/sources/enums';
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
 import { interpolate } from '@/utils/interpolate.ts';
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const { client: supabase, headers: actionRequestHeaders } =
-    getServerSupabaseClient(request);
+export const action = async ({
+  request,
+}: ActionFunctionArgs): Promise<ServerFetchResponse> => {
+  const actionRequestHeaders = request.headers;
 
   const formData = await request.formData();
   const jsonDataString = formData.get(REQUEST_DATA_NAME);
@@ -27,6 +30,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       status: null,
       error: 'Request data not found',
       headers: actionRequestHeaders,
+      timestamp: new Date(),
     };
   }
   const requestData = JSON.parse(jsonDataString) as RequestData;
@@ -64,21 +68,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     url,
   });
 
-  const history: Database['public']['Tables']['history']['Insert'] = {
-    clientState: JSON.stringify(clientState),
-    method: method,
-    url: url,
-    timestamp: new Date().toISOString(),
-    user_id: '',
-  };
+  const timestamp = new Date();
 
   try {
     const { response: res, metrics } = await fetchWithMetrics();
-
-    history.status = res.status;
-    history.latency_ms = metrics.latencyMs;
-    history.requestSize = metrics.requestSize;
-    history.responseSize = metrics.responseSize;
 
     const responseText = await res.text();
     const mergedData = mergedDataResponse(responseText, body);
@@ -89,11 +82,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       status: res.status,
       headers: actionRequestHeaders,
       finalUrl,
+      metrics,
+      timestamp: timestamp,
     };
   } catch (error) {
     const errorMessage = (error as Error).message;
-
-    history.error = errorMessage;
 
     return {
       ok: false,
@@ -101,20 +94,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       status: null,
       error: errorMessage,
       headers: actionRequestHeaders,
+      timestamp: timestamp,
     };
-  } finally {
-    await addHistoryForCurrentUser(supabase, history);
   }
 };
 
-interface FetchParams {
-  body: string | null;
-  method: HttpMethods;
-  headers: { key: string; value: string }[];
-  url: string;
-}
-
-const buildFetchWithMetrics = (fetchParams: FetchParams) => {
+const buildFetchWithMetrics = (fetchParams: FetchBuilderParams) => {
   const { body, method, headers, url } = fetchParams;
 
   const headersObject = Object.fromEntries(
@@ -157,7 +142,7 @@ const buildFetchWithMetrics = (fetchParams: FetchParams) => {
         latencyMs,
         requestSize: requestSizeBytes,
         responseSize: responseSizeBytes,
-      },
+      } as Metrics,
     };
   };
 };
