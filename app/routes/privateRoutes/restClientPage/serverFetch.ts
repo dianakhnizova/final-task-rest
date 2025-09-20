@@ -10,6 +10,7 @@ import { HttpMethods } from '@/sources/enums';
 
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { mergedDataResponse } from '@/utils/fetch/mergeDataResponse';
+import { interpolate } from '@/utils/interpolate.ts';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { client: supabase, headers: actionRequestHeaders } =
@@ -32,23 +33,36 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     };
   }
   const requestData = JSON.parse(jsonDataString) as RequestData;
+  const { clientState, globalVariables } = requestData;
+  const variablesMap = new Map(
+    globalVariables.map(item => [item.key, item.value])
+  );
 
   const {
+    body: rawBody,
+    method,
+    headers: rawHeaders,
+    protocol,
+    url: rawUrl,
+  } = clientState;
+
+  const url = interpolate(`${protocol}${rawUrl}`, variablesMap);
+  const body = interpolate(rawBody, variablesMap);
+  const headers = rawHeaders.map(header => ({
+    key: interpolate(header.key, variablesMap),
+    value: interpolate(header.value, variablesMap),
+  }));
+  const finalUrl = getFinalUrlParams(body, method, headers, url);
+
+  const fetchWithMetrics = buildFetchWithMetrics({
     body,
     method,
     headers,
-    protocol,
-    url: rawUrl,
-  } = requestData.clientState;
-
-  const url = `${protocol}${rawUrl}`;
-
-  const finalUrl = getFinalUrlParams(body, method, headers, url);
-
-  const fetchWithMetrics = buildFetchWithMetrics(requestData);
+    url,
+  });
 
   const history: Database['public']['Tables']['history']['Insert'] = {
-    clientState: JSON.stringify(requestData.clientState),
+    clientState: JSON.stringify(clientState),
     method: method,
     url: url,
     timestamp: new Date().toISOString(),
@@ -90,16 +104,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
 };
 
-const buildFetchWithMetrics = (requestData: RequestData) => {
-  const {
-    body,
-    method,
-    headers,
-    protocol,
-    url: rawUrl,
-  } = requestData.clientState;
+interface FetchParams {
+  body: string;
+  method: HttpMethods;
+  headers: { key: string; value: string }[];
+  url: string;
+}
 
-  const url = `${protocol}${rawUrl}`;
+const buildFetchWithMetrics = (fetchParams: FetchParams) => {
+  const { body, method, headers, url } = fetchParams;
 
   const headersObject = Object.fromEntries(
     headers.map((header: { key: string; value: string }) => [

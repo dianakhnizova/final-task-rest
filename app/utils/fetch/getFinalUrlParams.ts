@@ -1,10 +1,9 @@
 import { AppRoutes, type HttpMethods } from '@/sources/enums';
-import type { Header } from '@/sources/interfaces';
 
 export const getFinalUrlParams = (
   body: string,
   method: HttpMethods | string,
-  headers: Header[],
+  headers: { key: string; value: string }[],
   url: string
 ) => {
   const queryParams = new URLSearchParams({
