@@ -11,11 +11,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { HttpMethods } from '@/sources/enums';
 import { languageList } from '@/sources/lists/languageList';
 import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './CodeGenerator.module.css';
+import styles from './codeGenerator.module.css';
 import { handleCodeGenerator } from './handlers';
 
 export const CodeGenerator: FC = () => {
@@ -39,6 +40,17 @@ export const CodeGenerator: FC = () => {
     [headers]
   );
 
+  const methodSupportsBody = (method: string | undefined) => {
+    switch (method) {
+      case HttpMethods.POST:
+      case HttpMethods.PUT:
+      case HttpMethods.PATCH:
+        return true;
+      default:
+        return false;
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.codeGenerator}>
@@ -49,7 +61,12 @@ export const CodeGenerator: FC = () => {
         <Button
           onClick={() =>
             handleCodeGenerator(
-              { url, method, headers: headersObj, body },
+              {
+                url,
+                method,
+                headers: headersObj,
+                body: methodSupportsBody(method) ? body : undefined,
+              },
               language,
               setCode
             )

@@ -14,7 +14,7 @@ import Editor from 'react-simple-code-editor';
 import { HttpMethods, Parsers } from '@/sources/enums';
 import { DEFAULT_BODY } from '@/sources/constants/constants';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './BodyEditor.module.css';
+import styles from './bodyEditor.module.css';
 
 const { highlight, languages } = Prism;
 

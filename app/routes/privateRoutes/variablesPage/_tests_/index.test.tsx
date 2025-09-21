@@ -2,6 +2,7 @@ import { selectVariables } from '@/store/slices/settings/selectors';
 import { type TypeRootState, store } from '@/store/store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router';
 import { describe, it, vi } from 'vitest';
 import VariablesPage from '..';
 
@@ -38,7 +39,9 @@ describe('VariablesPage', () => {
   it('renders correctly', () => {
     render(
       <Provider store={store}>
-        <VariablesPage />
+        <MemoryRouter>
+          <VariablesPage />
+        </MemoryRouter>
       </Provider>
     );
 

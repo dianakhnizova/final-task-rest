@@ -3,15 +3,15 @@
 exports[`Navigation > matches snapshot with buttons 1`] = `
 <div>
   <section
-    class="_btnSection_4cea59"
+    class="_btnSection_a8d47b"
   >
     <button
-      class="_button_334a0c _primary_334a0c"
+      class="_button_aa3514 _primary_aa3514"
     >
       Home
     </button>
     <button
-      class="_button_334a0c _primary_334a0c"
+      class="_button_aa3514 _primary_aa3514"
     >
       About
     </button>
@@ -22,10 +22,10 @@ exports[`Navigation > matches snapshot with buttons 1`] = `
 exports[`Navigation > matches snapshot with isRestClientPage prop 1`] = `
 <div>
   <section
-    class="_btnSection_4cea59"
+    class="_btnSection_a8d47b"
   >
     <button
-      class="_button_334a0c _primary_334a0c"
+      class="_button_aa3514 _primary_aa3514"
     >
       Home
     </button>
@@ -36,7 +36,7 @@ exports[`Navigation > matches snapshot with isRestClientPage prop 1`] = `
 exports[`Navigation > matches snapshot without buttons 1`] = `
 <div>
   <section
-    class="_btnSection_4cea59"
+    class="_btnSection_a8d47b"
   />
 </div>
 `;

@@ -16,5 +16,3 @@ export const selectIsAuthenticated = (state: TypeRootState) => {
 };
 
 export const selectError = (state: TypeRootState) => state.auth.error;
-export const selectIsAuthLoading = (state: TypeRootState) =>
-  state.auth.isLoading;

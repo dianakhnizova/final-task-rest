@@ -148,8 +148,28 @@
     "userExist": "This email is already registered. Please try another one.",
     "userExistId": "userExistId",
     "invalidPasswordEmail": "Invalid password or e-mail",
-    "appInitializing": "Initializing the application",
-    "appInitializingId": "appInitializingId",
     "tokenExpires": "Token expires"
+  },
+
+  "history": {
+    "metaTitle": "REST client App / History",
+    "metaName": "description",
+    "metaContent": "Welcome to History",
+    "header": "History",
+    "table": {
+      "headers": {
+        "action": "Action",
+        "latency": "Latency (ms)",
+        "status": "Status",
+        "timestamp": "Time",
+        "method": "Method",
+        "requestSize": "Request Size",
+        "responseSize": "Response Size",
+        "error": "Error",
+        "url": "URL"
+      },
+      "emptyMessage": "No requests in history",
+      "openLink": "Open"
+    }
   }
 }

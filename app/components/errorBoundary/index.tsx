@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { getErrorData } from '@/components/errorBoundary/getErrorData';
 import type { Route } from '../../+types/root';
-import styles from './ErrorBoundary.module.css';
+import styles from './errorBoundary.module.css';
 
 export function ErrorBoundaryComponent({
   error,

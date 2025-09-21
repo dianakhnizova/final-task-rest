@@ -20,7 +20,7 @@ import { authError } from '@/utils/authError';
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './SignInPage.module.css';
+import styles from './signInPage.module.css';
 
 export const meta = pageMeta(signInPage);
 

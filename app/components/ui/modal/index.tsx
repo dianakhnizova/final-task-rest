@@ -1,16 +1,11 @@
 import type { FC, ReactNode } from 'react';
 import { useLayoutEffect } from 'react';
-
 import { Variant } from '@/sources/enums';
-
 import { images } from '@/sources/messages/images';
-
 import ReactPortal from '@/components/reactPortal/ReactPortal';
-
 import { useEscapeKey } from '@/utils/hooks/useEscapeKey';
-
 import { Button } from '../button';
-import styles from './Modal.module.css';
+import styles from './modal.module.css';
 
 interface Props {
   isOpen: boolean;

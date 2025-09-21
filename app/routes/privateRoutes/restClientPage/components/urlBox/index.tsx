@@ -5,13 +5,13 @@ import {
 } from '@/store/slices/restClient/selectors';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { InputID, InputType } from '@/sources/enums';
+import { InputID, InputType, Protocols } from '@/sources/enums';
 import { methodList } from '@/sources/lists/methodList';
 import { protocolList } from '@/sources/lists/protocolList';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './UrlBox.module.css';
+import styles from './urlBox.module.css';
 
 export const UrlBox = () => {
   const { t } = useTranslation();
@@ -22,13 +22,21 @@ export const UrlBox = () => {
   const protocol = useSelector(selectProtocol);
   const url = useSelector(selectUrl);
 
-  const clearUrl = (value: string): string => {
-    if (value.length < protocol.length) return '';
-    const protocolIndex = value.indexOf(protocol);
-    if (protocolIndex !== -1) {
-      return value.substring(protocolIndex + protocol.length);
+  const handleInputChange = (value: string) => {
+    const match = value.match(/^(https?:\/\/)(.*)$/i);
+
+    if (match) {
+      const [, detectedProtocol, restUrl] = match;
+      if (
+        detectedProtocol === Protocols.HTTP ||
+        detectedProtocol === Protocols.HTTPS
+      ) {
+        setProtocol(detectedProtocol);
+      }
+      setUrl(restUrl);
+    } else {
+      setUrl(value);
     }
-    return value;
   };
 
   return (
@@ -49,8 +57,8 @@ export const UrlBox = () => {
         id={InputID.ID_URL}
         type={InputType.TEXT}
         placeholder={t('placeholder.url')}
-        value={`${protocol}${url}`}
-        setInput={value => setUrl(clearUrl(value))}
+        value={`${url}`}
+        setInput={handleInputChange}
         containerClassName={styles.urlInputContainer}
       />
     </div>

@@ -152,8 +152,28 @@
     "userExist": "Этот email уже зарегистрирован. Попробуйте другой.",
     "userExistId": "userExistId",
     "invalidPasswordEmail": "Неверный пароль или e-mail",
-    "appInitializing": "Инициализация приложения",
-    "appInitializingId": "appInitializingId",
     "tokenExpires": "Срок действия токена истёк"
+  },
+
+   "history": {
+    "metaTitle": "REST клиент / История",
+    "metaName": "описание",
+    "metaContent": "Добро пожаловать в Историю",
+    "header": "История",
+    "table": {
+      "headers": {
+        "action": "Действие",
+        "latency": "Задержка (мс)",
+        "status": "Статус",
+        "timestamp": "Время",
+        "method": "Метод",
+        "requestSize": "Размер запроса",
+        "responseSize": "Размер ответа",
+        "error": "Ошибка",
+        "url": "URL"
+      },
+      "emptyMessage": "История запросов пуста",
+      "openLink": "Открыть"
+    }
   }
 }

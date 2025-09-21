@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { DisplayName } from '@/sources/enums';
 import { images as imageMessages } from '@/sources/messages/images';
 import LoaderIcon from '@/components/icons/loader.gif';
-import styles from './WaitingLoader.module.css';
+import styles from './waitingLoader.module.css';
 
 export const WaitingLoader: FC = () => {
   const { t } = useTranslation();

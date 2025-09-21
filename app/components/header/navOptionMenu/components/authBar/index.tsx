@@ -51,7 +51,12 @@ export const AuthBar = () => {
   };
 
   return user ? (
-    <Button onClick={handleLogOut}>{t('buttons.logOut')}</Button>
+    <>
+      <Button onClick={handleLogOut}>{t('buttons.logOut')}</Button>
+      <Button onClick={() => navigate(AppRoutes.HOME)}>
+        {t('mainPage.mainPage')}
+      </Button>
+    </>
   ) : (
     <>
       <Button onClick={handleSignIn}>{t('buttons.signIn')}</Button>

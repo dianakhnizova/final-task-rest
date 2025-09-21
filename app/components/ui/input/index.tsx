@@ -1,7 +1,7 @@
 import type { ChangeEvent, InputHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import type { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import styles from './Input.module.css';
+import styles from './input.module.css';
 
 interface Props<T extends FieldValues>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'name'> {

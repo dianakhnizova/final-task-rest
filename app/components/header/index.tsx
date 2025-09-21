@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { WrapperId } from '@/sources/enums';
 import Wrapper from '@/components/wrapper';
 import useInView from '@/utils/hooks/useInView.ts';
-import styles from './Header.module.css';
+import styles from './header.module.css';
 import { NavLogo } from './navLogo';
 import { NavOptionMenu } from './navOptionMenu';
 

@@ -48,10 +48,10 @@ exports[`Footer > matches snapshot 1`] = `
         </div>
       </div>
       <div
-        class="_container_185085"
+        class="_container_d3d4ee"
       >
         <a
-          class="_link_185085"
+          class="_link_d3d4ee"
           href="https://github.com/alvi0avcc"
           rel="noopener noreferrer"
           target="_blank"
@@ -59,7 +59,7 @@ exports[`Footer > matches snapshot 1`] = `
           https://github.com/alvi0avcc
         </a>
         <a
-          class="_link_185085"
+          class="_link_d3d4ee"
           href="https://github.com/dianakhnizova"
           rel="noopener noreferrer"
           target="_blank"
@@ -67,7 +67,7 @@ exports[`Footer > matches snapshot 1`] = `
           https://github.com/dianakhnizova
         </a>
         <a
-          class="_link_185085"
+          class="_link_d3d4ee"
           href="https://github.com/VavilovAlex"
           rel="noopener noreferrer"
           target="_blank"

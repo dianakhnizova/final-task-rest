@@ -5,6 +5,9 @@ exports[`AuthBar > matches snapshot for authenticated user 1`] = `
   <button>
     Log Out
   </button>
+  <button>
+    mainPage.mainPage
+  </button>
 </div>
 `;
 

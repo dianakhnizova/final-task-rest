@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
-import styles from './SignInUpLinks.module.css';
+import styles from './signInUpLinks.module.css';
 
 export const SignInUpLinks = () => {
   const { t } = useTranslation();
