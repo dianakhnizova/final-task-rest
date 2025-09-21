@@ -2,7 +2,7 @@ import * as selectors from '@/store/slices/restClient/selectors';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, it, vi } from 'vitest';
 import { CodeLanguage, HttpMethods } from '@/sources/enums';
-import { CodeGenerator } from '.';
+import { CodeGenerator } from '..';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { AppRoutes } from '@/sources/enums';
-import { buttonsConfig } from './handlers';
+import { buttonsConfig } from '../handlers';
 
 vi.mock('@/sources/enums', () => ({
   AppRoutes: {
@@ -17,9 +17,9 @@ describe('buttonsConfig', () => {
     vi.clearAllMocks();
     mockT.mockImplementation((key: string) => {
       const translations: Record<string, string> = {
-        'mainPage.btnHistory': 'History',
-        'mainPage.btnVariables': 'Variables',
-        'mainPage.btnRestClient': 'REST Client',
+        'buttons.btnHistory': 'History',
+        'buttons.btnVariables': 'Variables',
+        'buttons.btnRestClient': 'REST Client',
       };
       return translations[key] || key;
     });
@@ -57,18 +57,18 @@ describe('buttonsConfig', () => {
   it('calls translation function with correct keys for non-REST client page', () => {
     buttonsConfig(mockT, false);
 
-    expect(mockT).toHaveBeenCalledWith('mainPage.btnRestClient');
-    expect(mockT).toHaveBeenCalledWith('mainPage.btnHistory');
-    expect(mockT).toHaveBeenCalledWith('mainPage.btnVariables');
+    expect(mockT).toHaveBeenCalledWith('buttons.btnRestClient');
+    expect(mockT).toHaveBeenCalledWith('buttons.btnHistory');
+    expect(mockT).toHaveBeenCalledWith('buttons.btnVariables');
     expect(mockT).toHaveBeenCalledTimes(3);
   });
 
   it('calls translation function with correct keys for REST client page', () => {
     buttonsConfig(mockT, true);
 
-    expect(mockT).toHaveBeenCalledWith('mainPage.btnHistory');
-    expect(mockT).toHaveBeenCalledWith('mainPage.btnVariables');
-    expect(mockT).not.toHaveBeenCalledWith('mainPage.btnRestClient');
+    expect(mockT).toHaveBeenCalledWith('buttons.btnHistory');
+    expect(mockT).toHaveBeenCalledWith('buttons.btnVariables');
+    expect(mockT).not.toHaveBeenCalledWith('buttons.btnRestClient');
     expect(mockT).toHaveBeenCalledTimes(2);
   });
 
@@ -117,10 +117,10 @@ describe('buttonsConfig', () => {
     expect(result).toEqual([
       {
         path: AppRoutes.REST_CLIENT,
-        label: 'translated_mainPage.btnRestClient',
+        label: 'translated_buttons.btnRestClient',
       },
-      { path: AppRoutes.HISTORY, label: 'translated_mainPage.btnHistory' },
-      { path: AppRoutes.VARIABLES, label: 'translated_mainPage.btnVariables' },
+      { path: AppRoutes.HISTORY, label: 'translated_buttons.btnHistory' },
+      { path: AppRoutes.VARIABLES, label: 'translated_buttons.btnVariables' },
     ]);
   });
 });

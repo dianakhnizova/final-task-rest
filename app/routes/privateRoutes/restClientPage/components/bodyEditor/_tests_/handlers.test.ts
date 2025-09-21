@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Parsers } from '@/sources/enums';
-import { getHighlightedCode } from './handlers';
+import { getHighlightedCode } from '../handlers';
 
 describe('getHighlightedCode', () => {
   const code = `{"name": "Diana"}`;

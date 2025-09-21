@@ -29,7 +29,7 @@ export default function NotFoundPage() {
         </p>
 
         <Link to={AppRoutes.HOME} className={styles.link}>
-          {t('notFoundPage.btnBack')}
+          {t('buttons.btnBack')}
         </Link>
       </section>
     </main>

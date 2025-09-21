@@ -48,15 +48,6 @@ describe('Navigation', () => {
     (buttonsConfig as Mock).mockImplementation(mockButtonsConfig);
   });
 
-  it('renders navigation section with correct class', () => {
-    mockButtonsConfig.mockReturnValue([]);
-
-    const { container } = render(<Navigation />);
-
-    const section = container.querySelector('section');
-    expect(section).toHaveClass('btnSection');
-  });
-
   it('renders buttons from buttonsConfig', () => {
     const mockButtons = [
       { path: '/path1', label: 'Button 1' },

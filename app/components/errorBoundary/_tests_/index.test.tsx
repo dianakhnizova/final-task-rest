@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, it, vi } from 'vitest';
-import { ErrorBoundaryComponent } from '.';
-import * as getErrorDataModule from './getErrorData';
+import * as getErrorDataModule from '@/components/errorBoundary/getErrorData';
+import { ErrorBoundaryComponent } from '..';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),

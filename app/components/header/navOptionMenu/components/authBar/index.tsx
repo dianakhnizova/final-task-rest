@@ -10,7 +10,6 @@ import {
   TOAST_DURATION,
   TOAST_DURATION_LONG,
 } from '@/sources/constants/constants';
-import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { Button } from '@/components/ui/button';
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
@@ -33,8 +32,8 @@ export const AuthBar = () => {
   };
 
   const handleLogOut = async () => {
-    toast.success(toastMessages.logOutInit, {
-      id: toastMessages.logOutId,
+    toast.success(t('toasts.logOutInit'), {
+      id: 'logOutId',
       duration: TOAST_DURATION_LONG,
     });
 
@@ -42,8 +41,8 @@ export const AuthBar = () => {
     removeUserFromStorage();
     clearSettingsLS();
 
-    toast.success(`${user?.user_metadata.name} ${toastMessages.logOut}`, {
-      id: toastMessages.logOutId,
+    toast.success(`${user?.user_metadata.name} ${t('toasts.logOut')}`, {
+      id: 'logOutId',
       duration: TOAST_DURATION,
     });
 
@@ -52,7 +51,7 @@ export const AuthBar = () => {
   };
 
   return user ? (
-    <Button onClick={handleLogOut}>{t('header.logOut')}</Button>
+    <Button onClick={handleLogOut}>{t('buttons.logOut')}</Button>
   ) : (
     <>
       <Button onClick={handleSignIn}>{t('buttons.signIn')}</Button>

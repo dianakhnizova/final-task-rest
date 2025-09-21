@@ -1,8 +1,8 @@
+import type { TFunction } from 'i18next';
 import { isRouteErrorResponse } from 'react-router';
 import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ErrorCode } from '@/sources/enums';
-import { messages } from '@/sources/messages';
-import { getErrorData } from './getErrorData';
+import { getErrorData } from '../getErrorData';
 
 vi.mock('react-router', () => ({
   isRouteErrorResponse: vi.fn(),
@@ -11,6 +11,8 @@ vi.mock('react-router', () => ({
 const mockedIsRouteErrorResponse = isRouteErrorResponse as unknown as Mock;
 
 describe('getErrorData', () => {
+  const t = ((key: string) => key) as unknown as TFunction;
+
   beforeEach(() => {
     vi.resetAllMocks();
   });
@@ -19,11 +21,11 @@ describe('getErrorData', () => {
     mockedIsRouteErrorResponse.mockReturnValue(true);
 
     const error = { status: ErrorCode.NOT_FOUND, statusText: 'Not Found' };
-    const result = getErrorData(error);
+    const result = getErrorData(error, t);
 
     expect(result).toEqual({
-      message: messages.errorBoundary.notFound,
-      details: messages.errorBoundary.notFound,
+      message: t('errorBoundary.notFound'),
+      details: t('errorBoundary.notFound'),
     });
   });
 
@@ -31,11 +33,24 @@ describe('getErrorData', () => {
     mockedIsRouteErrorResponse.mockReturnValue(true);
 
     const error = { status: 500, statusText: 'Internal Server Error' };
-    const result = getErrorData(error);
+    const result = getErrorData(error, t);
 
     expect(result).toEqual({
-      message: messages.errorBoundary.error,
+      message: t('errorBoundary.error'),
       details: 'Internal Server Error',
+    });
+  });
+
+  it('returns oops for non-route errors', () => {
+    mockedIsRouteErrorResponse.mockReturnValue(false);
+
+    const error = new Error('Something went wrong');
+    const result = getErrorData(error, t);
+
+    expect(result).toEqual({
+      message: t('errorBoundary.oops'),
+      details: 'Something went wrong',
+      stack: error.stack,
     });
   });
 });

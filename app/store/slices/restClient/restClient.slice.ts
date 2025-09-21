@@ -52,6 +52,9 @@ const restClientSlice = createSlice({
     setCode(state, action: PayloadAction<CodeGeneratorLoaderData>) {
       state.code = action.payload;
     },
+    clearCode(state) {
+      state.code = { generatedCode: null, error: null };
+    },
     setLanguage(state, action: PayloadAction<CodeLanguage>) {
       state.language = action.payload;
     },

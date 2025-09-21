@@ -6,11 +6,11 @@ export const buttonsConfig = (
 ) =>
   isRestClientPage
     ? [
-        { path: AppRoutes.HISTORY, label: t('mainPage.btnHistory') },
-        { path: AppRoutes.VARIABLES, label: t('mainPage.btnVariables') },
+        { path: AppRoutes.HISTORY, label: t('buttons.btnHistory') },
+        { path: AppRoutes.VARIABLES, label: t('buttons.btnVariables') },
       ]
     : [
-        { path: AppRoutes.REST_CLIENT, label: t('mainPage.btnRestClient') },
-        { path: AppRoutes.HISTORY, label: t('mainPage.btnHistory') },
-        { path: AppRoutes.VARIABLES, label: t('mainPage.btnVariables') },
+        { path: AppRoutes.REST_CLIENT, label: t('buttons.btnRestClient') },
+        { path: AppRoutes.HISTORY, label: t('buttons.btnHistory') },
+        { path: AppRoutes.VARIABLES, label: t('buttons.btnVariables') },
       ];

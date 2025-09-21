@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { Parsers } from '@/sources/enums';
-import { restClientPage as restClientMessages } from '@/sources/messages/restClientPage';
 import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
 import styles from './Response.module.css';
@@ -35,14 +34,14 @@ export const Response: FC<Props> = ({ data, status }) => {
     <div className={styles.container}>
       {headers.length > 0 && (
         <div className={styles.headers}>
-          <p>{restClientMessages.response.headerTitle}</p>
+          <p>{t('response.headerTitle')}</p>
 
           <div className={styles.headerValueContainer}>
             {headers.map((header, index) => (
               <div key={index} className={styles.headersResponse}>
-                <p>{restClientMessages.response.key}</p>
+                <p>{t('response.key')}</p>
                 <p className={styles.title}>{header.key} </p>
-                <p>{restClientMessages.response.value}</p>
+                <p>{t('response.value')}</p>
                 <p className={styles.title}>{header.value}</p>
               </div>
             ))}
@@ -59,7 +58,7 @@ export const Response: FC<Props> = ({ data, status }) => {
       </div>
 
       <div className={styles.body}>
-        <p>{restClientMessages.response.bodyTitle}</p>
+        <p>{t('response.bodyTitle')}</p>
 
         <SyntaxHighlighter
           language={languageMap[parser] || Parsers.TEXT}

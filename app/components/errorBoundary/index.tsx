@@ -9,7 +9,7 @@ export function ErrorBoundaryComponent({
 }: Route.ErrorBoundaryProps) {
   const { t } = useTranslation();
 
-  const { message, details, stack } = getErrorData(error);
+  const { message, details, stack } = getErrorData(error, t);
 
   return (
     <main className={styles.errorBoundary}>

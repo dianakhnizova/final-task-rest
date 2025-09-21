@@ -6,7 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { vi } from 'vitest';
-import { BodyEditor } from '.';
+import { BodyEditor } from '..';
 
 const mockSetBody = vi.fn();
 vi.mock('@/utils/hooks/useActions', () => ({

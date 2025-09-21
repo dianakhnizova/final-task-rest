@@ -13,3 +13,7 @@
   padding: var(--spacing-5);
   background-color: var(--color-surface);
 }
+
+.error {
+  color: var(--color-error);
+}
