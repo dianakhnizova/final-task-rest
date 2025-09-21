@@ -1,10 +1,7 @@
-import type { RestClientState } from '@/store/slices/restClient/restClient.slice.ts';
 import type { Json } from '@/types/supabase.ts';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums.ts';
 import { historyPageMessages as messages } from '@/sources/messages/historyPage.ts';
-import { Button } from '@/components/ui/button';
-import { useActions } from '@/utils/hooks/useActions.ts';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 import styles from './History.module.css';
 
@@ -23,13 +20,7 @@ export interface HistoryRecord {
 }
 
 export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
-  const { setState } = useActions();
-  const navigate = useNavigate();
-
-  function handleOpen(record: HistoryRecord) {
-    setState(JSON.parse(record.clientState as string) as RestClientState);
-    navigate(AppRoutes.REST_CLIENT);
-  }
+  const headerMessages = messages.table.headers;
 
   return (
     <div>
@@ -38,15 +29,15 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>{messages.table.headers.action}</th>
-              <th>{messages.table.headers.timestamp}</th>
-              <th>{messages.table.headers.url}</th>
-              <th>{messages.table.headers.latency}</th>
-              <th>{messages.table.headers.status}</th>
-              <th>{messages.table.headers.method}</th>
-              <th>{messages.table.headers.requestSize}</th>
-              <th>{messages.table.headers.responseSize}</th>
-              <th>{messages.table.headers.error}</th>
+              <th>{headerMessages.action}</th>
+              <th>{headerMessages.timestamp}</th>
+              <th>{headerMessages.url}</th>
+              <th>{headerMessages.latency}</th>
+              <th>{headerMessages.status}</th>
+              <th>{headerMessages.method}</th>
+              <th>{headerMessages.requestSize}</th>
+              <th>{headerMessages.responseSize}</th>
+              <th>{headerMessages.error}</th>
             </tr>
           </thead>
           <tbody>
@@ -62,7 +53,12 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
               .map(record => (
                 <tr key={record.timestamp.getTime()}>
                   <td>
-                    <Button onClick={() => handleOpen(record)}>Open</Button>
+                    <Link
+                      to={AppRoutes.REST_CLIENT}
+                      state={{ history: record }}
+                    >
+                      Open
+                    </Link>
                   </td>
                   <td>{record.timestamp.toLocaleString()}</td>
                   <td>{record.url}</td>
