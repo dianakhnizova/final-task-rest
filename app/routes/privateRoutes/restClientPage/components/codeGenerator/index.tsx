@@ -16,7 +16,7 @@ import { languageList } from '@/sources/lists/languageList';
 import { Button } from '@/components/ui/button';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './CodeGenerator.module.css';
+import styles from './codeGenerator.module.css';
 import { handleCodeGenerator } from './handlers';
 
 export const CodeGenerator: FC = () => {

@@ -1,9 +1,7 @@
 import type { FC, ReactNode } from 'react';
-
 import { ButtonType } from '@/sources/enums';
-
 import { Button } from '../button';
-import styles from './Form.module.css';
+import styles from './form.module.css';
 
 interface Props {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;

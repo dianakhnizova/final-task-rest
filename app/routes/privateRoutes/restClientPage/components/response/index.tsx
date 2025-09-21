@@ -10,8 +10,8 @@ import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { Parsers } from '@/sources/enums';
 import { formatResponse } from '@/utils/formatResponse';
 import { getStatusText } from '@/utils/getStatusText';
-import styles from './Response.module.css';
 import { languageMap } from './languageMap';
+import styles from './response.module.css';
 
 interface Props {
   data: unknown;

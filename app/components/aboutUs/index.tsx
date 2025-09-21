@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { developerList } from '@/sources/lists/developerList';
 import { images as altMessages } from '@/sources/messages/images';
-import styles from './AboutUs.module.css';
+import styles from './aboutUs.module.css';
 
 export const AboutUs = () => {
   const { t } = useTranslation();

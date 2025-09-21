@@ -1,10 +1,7 @@
 import { type ButtonHTMLAttributes, type FC, type ReactNode } from 'react';
-
 import clsx from 'clsx';
-
 import { DisplayName, Variant } from '@/sources/enums.ts';
-
-import styles from './Button.module.css';
+import styles from './button.module.css';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;

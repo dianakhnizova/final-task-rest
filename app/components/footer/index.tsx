@@ -7,7 +7,7 @@ import {
 import { GithubLogo, RsSchoolLogo } from '@/components/icons';
 import Wrapper from '@/components/wrapper';
 import { Developerlink } from '../aboutUs/developerLink';
-import styles from './Footer.module.css';
+import styles from './footer.module.css';
 
 export const Footer = () => {
   const { t } = useTranslation();

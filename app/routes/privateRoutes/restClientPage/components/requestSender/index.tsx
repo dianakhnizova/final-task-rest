@@ -24,8 +24,8 @@ import { Button } from '@/components/ui/button';
 import { WaitingLoader } from '@/components/ui/waitingLoader';
 import { getFinalUrlParams } from '@/utils/fetch/getFinalUrlParams';
 import { Response } from '../response';
-import styles from './RequestSender.module.css';
 import { HiddenRequestFields } from './hiddenRequestFields';
+import styles from './requestSender.module.css';
 
 export const RequestSender = () => {
   const { t } = useTranslation();

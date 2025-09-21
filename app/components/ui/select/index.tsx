@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react';
-import styles from './Select.module.css';
+import styles from './select.module.css';
 
 interface Props<T extends string | number> {
   setSelectedValue: (value: T) => void;

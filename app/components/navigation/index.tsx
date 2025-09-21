@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { buttonsConfig } from '@/components/navigation/handlers';
 import { Button } from '../ui/button';
-import styles from './Navigation.module.css';
+import styles from './navigation.module.css';
 
 interface Props {
   isRestClientPage?: boolean;

@@ -11,7 +11,7 @@ import { protocolList } from '@/sources/lists/protocolList';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './UrlBox.module.css';
+import styles from './urlBox.module.css';
 
 export const UrlBox = () => {
   const { t } = useTranslation();

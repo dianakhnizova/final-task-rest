@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Modal } from '@/components/ui/modal';
 import { authError } from '@/utils/authError';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './SignUpPage.module.css';
+import styles from './signUpPage.module.css';
 
 export const meta = pageMeta(signUpPage);
 

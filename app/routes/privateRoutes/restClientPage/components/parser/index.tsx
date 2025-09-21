@@ -3,7 +3,7 @@ import type { Parsers } from '@/sources/enums';
 import { parserList } from '@/sources/lists/parserList';
 import { Select } from '@/components/ui/select';
 import { useActions } from '@/utils/hooks/useActions';
-import styles from './Parser.module.css';
+import styles from './parser.module.css';
 
 export const Parser = () => {
   const { t } = useTranslation();

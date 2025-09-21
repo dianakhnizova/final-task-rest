@@ -6,13 +6,13 @@ import { restClientPage as restClientMessages } from '@/sources/messages/restCli
 import { Navigation } from '@/components/navigation';
 import { useActions } from '@/utils/hooks/useActions.ts';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './RestClientPage.module.css';
 import { BodyEditor } from './components/bodyEditor';
 import { CodeGenerator } from './components/codeGenerator';
 import { Headers } from './components/headers';
 import { Parser } from './components/parser';
 import { RequestSender } from './components/requestSender';
 import { UrlBox } from './components/urlBox';
+import styles from './restClientPage.module.css';
 
 export const meta = pageMeta(restClientMessages);
 

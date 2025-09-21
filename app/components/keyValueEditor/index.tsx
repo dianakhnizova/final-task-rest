@@ -4,7 +4,7 @@ import { EditableField } from '@/sources/enums';
 import type { KeyValue } from '@/sources/interfaces.ts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import styles from './KeyValueEditor.module.css';
+import styles from './keyValueEditor.module.css';
 
 export interface Props {
   keyHeader: string;
