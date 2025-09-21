@@ -2,7 +2,6 @@ import type { AuthError } from '@supabase/supabase-js';
 import toast from 'react-hot-toast';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AuthErrors } from '@/sources/enums';
-import { toasts as toastMessages } from '@/sources/messages/toasts';
 import { authError } from '../authError';
 
 vi.mock('react-hot-toast', () => ({
@@ -12,50 +11,54 @@ vi.mock('react-hot-toast', () => ({
 }));
 
 describe('authError', () => {
+  const t = (key: string) => key;
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('calls toast.error with userExist message', () => {
-    const error: Partial<AuthError> = {
+  it('should show USER_EXIST toast', () => {
+    const error = {
       code: AuthErrors.USER_EXIST,
       message: 'User exists',
-    };
-    authError(error as AuthError);
-    expect(toast.error).toHaveBeenCalledWith(toastMessages.userExist);
+    } as unknown as AuthError;
+
+    authError(error, t);
+    expect(toast.error).toHaveBeenCalledWith('toasts.userExist');
   });
 
-  it('calls toast.error with invalidPasswordEmail message', () => {
-    const error: Partial<AuthError> = {
+  it('should show CREDENTIALS_INVALID toast', () => {
+    const error = {
       code: AuthErrors.CREDENTIALS_INVALID,
       message: 'Invalid credentials',
-    };
-    authError(error as AuthError);
-    expect(toast.error).toHaveBeenCalledWith(
-      toastMessages.invalidPasswordEmail
-    );
+    } as unknown as AuthError;
+
+    authError(error, t);
+    expect(toast.error).toHaveBeenCalledWith('toasts.invalidPasswordEmail');
   });
 
-  it('calls toast.error with errorConfirmEmail message', () => {
-    const error: Partial<AuthError> = {
+  it('should show NOT_CONFIRMED toast', () => {
+    const error = {
       code: AuthErrors.NOT_CONFIRMED,
       message: 'Not confirmed',
-    };
-    authError(error as AuthError);
-    expect(toast.error).toHaveBeenCalledWith(toastMessages.errorConfirmEmail);
+    } as unknown as AuthError;
+
+    authError(error, t);
+    expect(toast.error).toHaveBeenCalledWith('toasts.errorConfirmEmail');
   });
 
-  it('calls toast.error with default message for unknown code', () => {
-    const error: Partial<AuthError> = {
+  it('should show default toast for unknown errors', () => {
+    const error = {
       code: 'UNKNOWN_ERROR',
-      message: 'Some error',
-    };
-    authError(error as AuthError);
-    expect(toast.error).toHaveBeenCalledWith('Some error');
+      message: 'Something went wrong',
+    } as unknown as AuthError;
+
+    authError(error, t);
+    expect(toast.error).toHaveBeenCalledWith('Something went wrong');
   });
 
-  it('returns null if error is null', () => {
-    const result = authError(null);
+  it('should return null if no error', () => {
+    const result = authError(null, t);
     expect(result).toBeNull();
     expect(toast.error).not.toHaveBeenCalled();
   });

@@ -55,7 +55,7 @@ describe('NotFoundPage', () => {
       </MemoryRouter>
     );
 
-    const backLink = screen.getByText('notFoundPage.btnBack');
+    const backLink = screen.getByText('buttons.btnBack');
     expect(backLink).toBeInTheDocument();
     expect(backLink.closest('a')).toHaveAttribute('href', '/');
 

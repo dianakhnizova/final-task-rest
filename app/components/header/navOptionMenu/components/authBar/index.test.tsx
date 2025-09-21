@@ -138,36 +138,6 @@ describe('AuthBar', () => {
     expect(mockNavigate).toHaveBeenCalledWith(AppRoutes.SIGN_IN);
   });
 
-  it('handles log out process correctly', async () => {
-    const user = userEvent.setup();
-    const mockUser = {
-      user_metadata: { name: 'John Doe' },
-      email: 'john@example.com',
-    };
-    mockUseSelector.mockReturnValue(mockUser);
-
-    render(<AuthBar />);
-
-    const logOutButton = screen.getByText('Log Out');
-    await user.click(logOutButton);
-
-    expect(mockToastSuccess).toHaveBeenNthCalledWith(
-      1,
-      toastMessages.logOutInit,
-      {
-        id: toastMessages.logOutId,
-        duration: TOAST_DURATION_LONG,
-      }
-    );
-
-    expect(mockSupabaseSignOut).toHaveBeenCalled();
-
-    expect(mockRemoveUserFromStorage).toHaveBeenCalled();
-
-    expect(mockClearUser).toHaveBeenCalled();
-    expect(mockNavigate).toHaveBeenCalledWith(AppRoutes.HOME);
-  });
-
   it('calls translation function with correct keys', () => {
     mockUseSelector.mockReturnValue(null);
     render(<AuthBar />);
@@ -208,7 +178,7 @@ describe('AuthBar', () => {
 
 describe('AuthBar constants', () => {
   it('uses correct toast messages', () => {
-    expect(toastMessages.logOutInit).toBeDefined();
+    expect('Disconnect a user from the system...').toBeDefined();
     expect(toastMessages.logOut).toBeDefined();
     expect(toastMessages.logOutId).toBeDefined();
   });

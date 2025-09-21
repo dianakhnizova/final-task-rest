@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navigation > matches snapshot with buttons 1`] = `
+<div>
+  <section
+    class="_btnSection_4cea59"
+  >
+    <button
+      class="_button_334a0c _primary_334a0c"
+    >
+      Home
+    </button>
+    <button
+      class="_button_334a0c _primary_334a0c"
+    >
+      About
+    </button>
+  </section>
+</div>
+`;
+
+exports[`Navigation > matches snapshot with isRestClientPage prop 1`] = `
+<div>
+  <section
+    class="_btnSection_4cea59"
+  >
+    <button
+      class="_button_334a0c _primary_334a0c"
+    >
+      Home
+    </button>
+  </section>
+</div>
+`;
+
+exports[`Navigation > matches snapshot without buttons 1`] = `
+<div>
+  <section
+    class="_btnSection_4cea59"
+  />
+</div>
+`;
