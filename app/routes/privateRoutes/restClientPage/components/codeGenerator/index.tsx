@@ -28,7 +28,7 @@ export const CodeGenerator: FC = () => {
   const headers = useSelector(selectHeaders);
   const url = useSelector(selectUrl);
 
-  const { setCode, setLanguage } = useActions();
+  const { setCode, setLanguage, clearCode } = useActions();
 
   const headersObj = useMemo(
     () =>
@@ -58,6 +58,10 @@ export const CodeGenerator: FC = () => {
         >
           {t('buttons.generate')}
         </Button>
+
+        {code.generatedCode && (
+          <Button onClick={() => clearCode()}> {t('buttons.clear')}</Button>
+        )}
       </div>
 
       {code?.generatedCode && (

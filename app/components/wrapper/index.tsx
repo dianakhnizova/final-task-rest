@@ -1,9 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
-
 import { clsx } from 'clsx';
-
 import { WrapperId } from '@/sources/enums';
-
 import styles from './wrapper.module.css';
 
 interface WrapperProps extends PropsWithChildren {
@@ -11,7 +8,7 @@ interface WrapperProps extends PropsWithChildren {
   className?: string;
 }
 
-export const Wrapper: FC<WrapperProps> = ({
+export const Wrapper: FC<PropsWithChildren<WrapperProps>> = ({
   children,
   id = WrapperId.default,
   className = '',

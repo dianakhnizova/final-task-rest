@@ -6,6 +6,7 @@ export const Developerlink = () => {
     <div className={styles.container}>
       {developerLinkList.map(link => (
         <a
+          key={link.gitHub}
           href={link.gitHub}
           target="_blank"
           rel="noopener noreferrer"

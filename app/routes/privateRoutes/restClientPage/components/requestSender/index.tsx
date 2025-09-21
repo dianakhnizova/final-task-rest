@@ -71,6 +71,7 @@ export const RequestSender = () => {
           key: header.key,
           value: header.value,
         })) ?? [];
+
       const finalUrl = getFinalUrlParams(
         bodyString,
         method,
@@ -127,11 +128,22 @@ export const RequestSender = () => {
       {isLoading ? (
         <WaitingLoader />
       ) : fetcher.data ? (
-        <div className={styles.response}>
-          <p>{t('response.title')}</p>
-
-          <Response data={fetcher.data.received} status={fetcher.data.status} />
-        </div>
+        fetcher.data.ok ? (
+          <div className={styles.response}>
+            <p>{t('response.title')}</p>
+            <Response
+              data={fetcher.data.received}
+              status={fetcher.data.status}
+            />
+          </div>
+        ) : (
+          <div className={styles.error}>
+            <p className={styles.error}>
+              {t('response.errorTitle', { defaultValue: 'Error' })}
+            </p>
+            <pre>{fetcher.data.error}</pre>
+          </div>
+        )
       ) : (
         <p>{t('response.emptyRequestHint')}</p>
       )}

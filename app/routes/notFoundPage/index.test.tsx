@@ -22,9 +22,9 @@ describe('NotFoundPage', () => {
 
     expect(screen.getByText('notFoundPage.title')).toBeInTheDocument();
     expect(screen.getByText(/notFoundPage.metaContent -/)).toBeInTheDocument();
-    expect(screen.getByText('notFoundPage.btnBack')).toBeInTheDocument();
+    expect(screen.getByText('buttons.btnBack')).toBeInTheDocument();
 
-    const link = screen.getByText('notFoundPage.btnBack');
+    const link = screen.getByText('buttons.btnBack');
     expect(link.closest('a')).toHaveAttribute('href', '/');
   });
 

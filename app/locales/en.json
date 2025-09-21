@@ -2,32 +2,32 @@
   "root": {
     "appTitle": "REST client"
   },
+
   "mainPage": {
-    "metaTitle": "REST client App",
-    "metaName": "description",
-    "metaContent": "Welcome to REST client App!",
-    "btnRestClient": "REST Client",
-    "btnHistory": "History",
-    "btnVariables": "Variables",
-    "btnSignIn": "Sign In",
-    "btnSignUp": "Sign Up",
     "welcomeNew": "Welcome!",
     "welcomeOld": "Welcome Back,",
     "mainPage": "Main Page"
   },
+
   "header": {
     "banner": "REST client App",
-    "logOut": "Log out",
     "textForLogo": "Home",
     "textInsteadLogo": "Snake logo of the \"Studio team\""
   },
+
   "buttons": {
     "signIn": "Sign in",
     "signUp": "Sign up",
     "headers": "Headers",
     "generate": "Generate code",
     "send": "Send request",
-    "delete": "Delete"
+    "delete": "Delete",
+    "logOut": "Log out",
+    "btnRestClient": "REST Client",
+    "btnHistory": "History",
+    "btnVariables": "Variables",
+    "btnBack": "Back to Home Page",
+    "clear": "Clear code"
   },
 
   "language": {
@@ -42,10 +42,6 @@
     "project": "Our project is a browser-based REST client that allows you to send HTTP requests, view responses, and save request history. We designed it to be developer-friendly: it supports variables, multiple methods (GET, POST, etc.), code generation for requests, and a flexible interface. The goal of the project is to simplify API testing and exploration directly in the browser without additional tools."
   },
 
-  "images": {
-    "developer": "Developer photo"
-  },
-
   "keyValueEditor": {
     "delete": "Delete",
     "emptyMessage": "Click the \"Add\" button to add a value",
@@ -53,6 +49,7 @@
     "keyPlaceholder": "Key",
     "valuePlaceholder": "Value"
   },
+
   "footer": {
     "copyright": "© 2025",
     "rsSchoolCourse": "Rs School Course",
@@ -66,20 +63,20 @@
     "error": "Error",
     "params": "Params:"
   },
+
   "loader": {
     "title": "Loading data..."
   },
+
   "notFoundPage": {
-    "metaTitle": "REST client App / Error 404",
-    "metaName": "description",
-    "metaContent": "Error 404 / Page not Found",
-    "title": "Page not Found",
-    "btnBack": "Back to Home Page"
+    "title": "Page not Found"
   },
+
   "bodyEditor": {
     "codeTitle": "Code: ",
     "bodyTitle": "Body: "
   },
+
   "response": {
     "title": "Response",
     "headerTitle": "Headers",
@@ -92,6 +89,7 @@
     "emptyRequestHint": "Enter URL and click \"Send request\"",
     "selectParser": "Select parser"
   },
+
   "label": {
     "name": "Name",
     "email": "E-mail",
@@ -108,34 +106,49 @@
     "value": "value",
     "url": "Enter url or paste text"
   },
+
   "variablesPage": {
-    "metaTitle": "REST client App / Variables",
-    "metaName": "description",
-    "metaContent": "Welcome to Variables",
     "header": "Variables",
     "keyHeader": "Key",
     "valueHeader": "Value"
   },
+
   "signInPage": {
-    "metaTitle": "REST client App / Sign in",
-    "metaName": "description",
-    "metaContent": "Welcome to Sigh in",
     "infoTitle": "Don't have an account?"
   },
+
   "signUpPage": {
-    "metaTitle": "REST client App / Sign up",
-    "metaName": "description",
-    "metaContent": "Welcome to Sigh up",
     "infoTitle": "Already have an account?"
   },
+
   "table": {
     "headerKey": "Header key",
     "headerValue": "Header value",
     "headerDelete": "Delete"
   },
+
   "developers": {
     "alexandr": "Vavilov Alexandr",
     "diana": "Khnizova Diana",
     "olexandr": "Vavilov Olexandr"
+  },
+
+  "toasts": {
+    "signCheck": "Checking the user...",
+    "signIn": "Login successful!",
+    "signInId": "signInId",
+    "signUp": "Registration successful! Please check your email to confirm your account",
+    "signUpProcess": "The user registration process is in progress...",
+    "signUpProcessId": "signUpProcessId",
+    "errorConfirmEmail": "Please confirm your email from your inbox before signing in.",
+    "logOutInit": "Disconnect a user from the system...",
+    "logOut": "have been logged out.",
+    "logOutId": "logOutId",
+    "userExist": "This email is already registered. Please try another one.",
+    "userExistId": "userExistId",
+    "invalidPasswordEmail": "Invalid password or e-mail",
+    "appInitializing": "Initializing the application",
+    "appInitializingId": "appInitializingId",
+    "tokenExpires": "Token expires"
   }
 }

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { CodeLanguage } from '@/sources/enums';
 import * as generateModule from '@/utils/generateCode';
-import { handleCodeGenerator } from './handlers';
+import { handleCodeGenerator } from '../handlers';
 
 describe('handleCodeGenerator', () => {
   const mockRequestData = { url: '', method: 'GET', headers: {} };

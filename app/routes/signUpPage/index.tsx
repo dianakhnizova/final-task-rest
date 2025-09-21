@@ -34,8 +34,8 @@ export default function SignUpPage() {
   const onSubmit: SubmitHandler<SignUpForm> = async data => {
     const { email, password, name } = data;
 
-    toast.success(toastMessages.signUpProcess, {
-      id: toastMessages.signUpProcessId,
+    toast.success(t('toasts.signUpProcess'), {
+      id: 'signUpProcessId',
       duration: TOAST_DURATION_LONG,
     });
 
@@ -51,13 +51,13 @@ export default function SignUpPage() {
     });
 
     if (error) {
-      authError(error);
+      authError(error, t);
       return null;
     }
 
     if (authData.user?.identities?.length === 0) {
-      toast.dismiss(toastMessages.signUpProcessId);
-      toast.error(toastMessages.userExist, { id: toastMessages.userExistId });
+      toast.dismiss('signUpProcessId');
+      toast.error(t('toasts.userExist'), { id: 'userExistId' });
       return;
     }
 

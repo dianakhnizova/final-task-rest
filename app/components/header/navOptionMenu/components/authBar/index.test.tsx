@@ -92,7 +92,7 @@ describe('AuthBar', () => {
 
     mockT.mockImplementation((key: string) => {
       const translations: Record<string, string> = {
-        'header.logOut': 'Log Out',
+        'buttons.logOut': 'Log Out',
         'buttons.signIn': 'Sign In',
         'buttons.signUp': 'Sign Up',
       };
@@ -177,7 +177,7 @@ describe('AuthBar', () => {
     mockUseSelector.mockReturnValue({ user_metadata: { name: 'Test' } });
     render(<AuthBar />);
 
-    expect(mockT).toHaveBeenCalledWith('header.logOut');
+    expect(mockT).toHaveBeenCalledWith('buttons.logOut');
   });
 
   it('uses correct LS_KEY for user storage', () => {
