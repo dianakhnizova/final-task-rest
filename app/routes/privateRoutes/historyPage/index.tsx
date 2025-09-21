@@ -1,7 +1,6 @@
-import { clearAllHistoryForCurrentUser } from '@/services/historyService.ts';
-import { supabase } from '@/supabaseClient.ts';
 import type { Json } from '@/types/supabase.ts';
-import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router';
 import { AppRoutes } from '@/sources/enums.ts';
 import { historyPageMessages as messages } from '@/sources/messages/historyPage.ts';
 import { Button } from '@/components/ui/button';
@@ -23,40 +22,40 @@ export interface HistoryRecord {
 }
 
 export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
-  const headerMessages = messages.table.headers;
-
-  const handleClearHistory = async () => {
-    await clearAllHistoryForCurrentUser(supabase);
-
-    window.location.reload();
-  };
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div>
       <div className={styles.headerContainer}>
-        <h1 className={styles.header}>{messages.header}</h1>
-        <Button onClick={handleClearHistory}>Clear History</Button>
+        <h1 className={styles.header}>{t('history.header')}</h1>
+        <Button onClick={() => navigate(AppRoutes.VARIABLES)}>
+          {t('buttons.btnVariables')}
+        </Button>
+        <Button onClick={() => navigate(AppRoutes.REST_CLIENT)}>
+          {t('buttons.btnRestClient')}
+        </Button>
       </div>
 
       <div className={styles.container}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>{headerMessages.action}</th>
-              <th>{headerMessages.timestamp}</th>
-              <th>{headerMessages.url}</th>
-              <th>{headerMessages.latency}</th>
-              <th>{headerMessages.status}</th>
-              <th>{headerMessages.method}</th>
-              <th>{headerMessages.requestSize}</th>
-              <th>{headerMessages.responseSize}</th>
-              <th>{headerMessages.error}</th>
+              <th>{t('history.table.headers.action')}</th>
+              <th>{t('history.table.headers.timestamp')}</th>
+              <th>{t('history.table.headers.url')}</th>
+              <th>{t('history.table.headers.latency')}</th>
+              <th>{t('history.table.headers.status')}</th>
+              <th>{t('history.table.headers.method')}</th>
+              <th>{t('history.table.headers.requestSize')}</th>
+              <th>{t('history.table.headers.responseSize')}</th>
+              <th>{t('history.table.headers.error')}</th>
             </tr>
           </thead>
           <tbody>
             {data.length === 0 && (
               <tr>
-                <td colSpan={8}>{messages.table.emptyMessage}</td>
+                <td colSpan={8}>{t('history.table.emptyMessage')}</td>
               </tr>
             )}
             {data
@@ -71,7 +70,7 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
                       to={AppRoutes.REST_CLIENT}
                       state={{ history: record }}
                     >
-                      Open
+                      {t('history.table.openLink')}
                     </Link>
                   </td>
                   <td>{record.timestamp.toLocaleString()}</td>

@@ -5,7 +5,7 @@ import {
 } from '@/store/slices/restClient/selectors';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { InputID, InputType } from '@/sources/enums';
+import { InputID, InputType, Protocols } from '@/sources/enums';
 import { methodList } from '@/sources/lists/methodList';
 import { protocolList } from '@/sources/lists/protocolList';
 import { Input } from '@/components/ui/input';
@@ -21,6 +21,23 @@ export const UrlBox = () => {
   const method = useSelector(selectMethod);
   const protocol = useSelector(selectProtocol);
   const url = useSelector(selectUrl);
+
+  const handleInputChange = (value: string) => {
+    const match = value.match(/^(https?:\/\/)(.*)$/i);
+
+    if (match) {
+      const [, detectedProtocol, restUrl] = match;
+      if (
+        detectedProtocol === Protocols.HTTP ||
+        detectedProtocol === Protocols.HTTPS
+      ) {
+        setProtocol(detectedProtocol);
+      }
+      setUrl(restUrl);
+    } else {
+      setUrl(value);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -41,7 +58,7 @@ export const UrlBox = () => {
         type={InputType.TEXT}
         placeholder={t('placeholder.url')}
         value={`${url}`}
-        setInput={value => setUrl(value)}
+        setInput={handleInputChange}
         containerClassName={styles.urlInputContainer}
       />
     </div>

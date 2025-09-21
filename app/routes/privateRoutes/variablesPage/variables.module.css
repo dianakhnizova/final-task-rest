@@ -16,3 +16,9 @@
   border-radius: var(--radius-standard);
   box-shadow: var(--elevation-level3);
 }
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5);
+}

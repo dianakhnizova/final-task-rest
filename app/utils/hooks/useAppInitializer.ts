@@ -34,5 +34,5 @@ export const useAppInitializer = () => {
     }
 
     loadSettings(loadSettingsFromLS());
-  }, []);
+  }, [setUser, removeUserFromStorage, loadSettings]);
 };

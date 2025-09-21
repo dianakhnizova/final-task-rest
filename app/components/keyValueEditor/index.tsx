@@ -20,7 +20,7 @@ export interface Props {
 export const KeyValueEditor: FC<Props> = ({
   keyHeader,
   valueHeader,
-  keyValues,
+  keyValues = [],
   onAdd,
   onDelete,
   onUpdate,
