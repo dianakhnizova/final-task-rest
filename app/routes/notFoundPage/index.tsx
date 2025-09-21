@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { notFoundPage as messages } from '@/sources/messages/notFoundPage';
 import type { Route } from '../../+types/root';
-import styles from './NotFoundPage.module.css';
+import styles from './notFoundPage.module.css';
 
 export function meta({ location }: Route.MetaArgs) {
   return [
