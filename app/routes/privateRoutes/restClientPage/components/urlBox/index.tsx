@@ -1,4 +1,8 @@
-import { selectProtocol, selectUrl } from '@/store/slices/restClient/selectors';
+import {
+  selectMethod,
+  selectProtocol,
+  selectUrl,
+} from '@/store/slices/restClient/selectors';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { InputID, InputType } from '@/sources/enums';
@@ -14,6 +18,7 @@ export const UrlBox = () => {
 
   const { setMethod, setProtocol, setUrl } = useActions();
 
+  const method = useSelector(selectMethod);
   const protocol = useSelector(selectProtocol);
   const url = useSelector(selectUrl);
 
@@ -28,9 +33,17 @@ export const UrlBox = () => {
 
   return (
     <div className={styles.container}>
-      <Select options={methodList} setSelectedValue={setMethod} />
+      <Select
+        options={methodList}
+        value={method}
+        setSelectedValue={setMethod}
+      />
 
-      <Select options={protocolList} setSelectedValue={setProtocol} />
+      <Select
+        options={protocolList}
+        value={protocol}
+        setSelectedValue={setProtocol}
+      />
 
       <Input
         id={InputID.ID_URL}
