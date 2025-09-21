@@ -69,7 +69,8 @@
   },
 
   "notFoundPage": {
-    "title": "Page not Found"
+    "title": "Page not Found",
+    "metaContent": "Error 404 / Page not Found"
   },
 
   "bodyEditor": {
