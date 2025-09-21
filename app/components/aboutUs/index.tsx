@@ -18,15 +18,6 @@ export const AboutUs = () => {
               alt={altMessages.developer}
               className={styles.image}
             />
-
-            <a
-              href={developer.gitHub}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              {developer.gitHub}
-            </a>
           </div>
         ))}
       </div>

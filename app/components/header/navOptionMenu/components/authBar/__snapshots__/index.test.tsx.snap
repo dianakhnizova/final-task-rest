@@ -13,5 +13,8 @@ exports[`AuthBar > matches snapshot for unauthenticated user 1`] = `
   <button>
     Sign In
   </button>
+  <button>
+    Sign Up
+  </button>
 </div>
 `;

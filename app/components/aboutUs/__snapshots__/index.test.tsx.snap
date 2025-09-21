@@ -19,14 +19,6 @@ exports[`AboutUs > matches snapshot 1`] = `
           class="image"
           src="developer1.jpg"
         />
-        <a
-          class="link"
-          href="https://github.com/dev1"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          https://github.com/dev1
-        </a>
       </div>
       <div
         class="developers"
@@ -39,14 +31,6 @@ exports[`AboutUs > matches snapshot 1`] = `
           class="image"
           src="developer2.jpg"
         />
-        <a
-          class="link"
-          href="https://github.com/dev2"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          https://github.com/dev2
-        </a>
       </div>
     </div>
     <p

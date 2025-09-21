@@ -93,7 +93,8 @@ describe('AuthBar', () => {
     mockT.mockImplementation((key: string) => {
       const translations: Record<string, string> = {
         'header.logOut': 'Log Out',
-        'header.signIn': 'Sign In',
+        'buttons.signIn': 'Sign In',
+        'buttons.signUp': 'Sign Up',
       };
       return translations[key] || key;
     });
@@ -107,6 +108,7 @@ describe('AuthBar', () => {
     render(<AuthBar />);
 
     expect(screen.getByText('Sign In')).toBeInTheDocument();
+    expect(screen.getByText('Sign Up')).toBeInTheDocument();
     expect(screen.queryByText('Log Out')).not.toBeInTheDocument();
   });
 
@@ -121,6 +123,7 @@ describe('AuthBar', () => {
 
     expect(screen.getByText('Log Out')).toBeInTheDocument();
     expect(screen.queryByText('Sign In')).not.toBeInTheDocument();
+    expect(screen.queryByText('Sign Up')).not.toBeInTheDocument();
   });
 
   it('navigates to sign in page when sign in button is clicked', async () => {
@@ -169,7 +172,7 @@ describe('AuthBar', () => {
     mockUseSelector.mockReturnValue(null);
     render(<AuthBar />);
 
-    expect(mockT).toHaveBeenCalledWith('header.signIn');
+    expect(mockT).toHaveBeenCalledWith('buttons.signIn');
 
     mockUseSelector.mockReturnValue({ user_metadata: { name: 'Test' } });
     render(<AuthBar />);

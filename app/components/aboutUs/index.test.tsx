@@ -14,12 +14,10 @@ vi.mock('@/sources/lists/developerList', () => ({
     {
       nameKey: 'developer1.name',
       photo: 'developer1.jpg',
-      gitHub: 'https://github.com/dev1',
     },
     {
       nameKey: 'developer2.name',
       photo: 'developer2.jpg',
-      gitHub: 'https://github.com/dev2',
     },
   ],
 }));
@@ -36,7 +34,6 @@ vi.mock('./AboutUs.module.css', () => ({
     developersContainer: 'developersContainer',
     developers: 'developers',
     image: 'image',
-    link: 'link',
     project: 'project',
     course: 'course',
     title: 'title',
@@ -88,21 +85,6 @@ describe('AboutUs', () => {
     });
   });
 
-  it('renders GitHub links with correct attributes', () => {
-    render(<AboutUs />);
-
-    const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(developerList.length);
-
-    links.forEach((link, index) => {
-      expect(link).toHaveAttribute('href', developerList[index].gitHub);
-      expect(link).toHaveAttribute('target', '_blank');
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-      expect(link).toHaveClass('link');
-      expect(link).toHaveTextContent(developerList[index].gitHub);
-    });
-  });
-
   it('renders project description', () => {
     render(<AboutUs />);
 
@@ -146,9 +128,6 @@ describe('AboutUs', () => {
     expect(container.querySelectorAll('.image')).toHaveLength(
       developerList.length
     );
-    expect(container.querySelectorAll('.link')).toHaveLength(
-      developerList.length
-    );
     expect(container.querySelector('.project')).toBeInTheDocument();
     expect(container.querySelector('.course')).toBeInTheDocument();
     expect(container.querySelector('.title')).toBeInTheDocument();
@@ -185,10 +164,8 @@ describe('AboutUs', () => {
     render(<AboutUs />);
 
     const images = screen.queryAllByRole('img');
-    const links = screen.queryAllByRole('link');
 
     expect(images).toHaveLength(0);
-    expect(links).toHaveLength(0);
 
     vi.mocked(developerList).length = 2;
   });
