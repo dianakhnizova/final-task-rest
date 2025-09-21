@@ -37,6 +37,7 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
         <h1 className={styles.header}>{messages.header}</h1>
         <Button onClick={handleClearHistory}>Clear History</Button>
       </div>
+
       <div className={styles.container}>
         <table className={styles.table}>
           <thead>
