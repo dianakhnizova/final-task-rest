@@ -46,7 +46,7 @@ export default function SignUpPage() {
         data: {
           name,
         },
-        emailRedirectTo: `${window.location.origin}/${AppRoutes.SIGN_IN}`,
+        emailRedirectTo: `${window.location.origin}${AppRoutes.SIGN_IN}`,
       },
     });
 
