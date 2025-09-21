@@ -23,6 +23,8 @@ export const useAppInitializer = () => {
     try {
       const savedUser = localStorage.getItem(LS_KEY.USER);
 
+      console.log(savedUser);
+
       if (savedUser) {
         setUser(JSON.parse(savedUser));
       }
@@ -34,5 +36,5 @@ export const useAppInitializer = () => {
     }
 
     loadSettings(loadSettingsFromLS());
-  }, [setUser, removeUserFromStorage, loadSettings]);
+  }, []);
 };

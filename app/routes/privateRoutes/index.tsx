@@ -32,5 +32,5 @@ export default function PrivateRoutes() {
     }
   }, [navigate, isTokenValid, setError]);
 
-  return isTokenValid ? <Outlet /> : null;
+  return <Outlet />;
 }
