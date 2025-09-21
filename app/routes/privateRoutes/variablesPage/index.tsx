@@ -25,8 +25,8 @@ export default function VariablesPage() {
         <div className={styles.headerContainer}>
           <h1 className={styles.header}>{t('variablesPage.header')}</h1>
 
-          <Button onClick={() => navigate(AppRoutes.VARIABLES)}>
-            {t('buttons.btnVariables')}
+          <Button onClick={() => navigate(AppRoutes.HISTORY)}>
+            {t('buttons.btnHistory')}
           </Button>
           <Button onClick={() => navigate(AppRoutes.REST_CLIENT)}>
             {t('buttons.btnRestClient')}
