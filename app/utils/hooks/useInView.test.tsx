@@ -100,6 +100,6 @@ describe('useInView integration', () => {
     const [triggerRef] = result.current;
 
     expect(triggerRef).toHaveProperty('current');
-    expect(triggerRef.current).toBeNull(); // Изначально null
+    expect(triggerRef.current).toBeNull();
   });
 });
