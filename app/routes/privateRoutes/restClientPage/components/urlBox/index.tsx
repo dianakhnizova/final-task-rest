@@ -22,15 +22,6 @@ export const UrlBox = () => {
   const protocol = useSelector(selectProtocol);
   const url = useSelector(selectUrl);
 
-  const clearUrl = (value: string): string => {
-    if (value.length < protocol.length) return '';
-    const protocolIndex = value.indexOf(protocol);
-    if (protocolIndex !== -1) {
-      return value.substring(protocolIndex + protocol.length);
-    }
-    return value;
-  };
-
   return (
     <div className={styles.container}>
       <Select
@@ -49,8 +40,8 @@ export const UrlBox = () => {
         id={InputID.ID_URL}
         type={InputType.TEXT}
         placeholder={t('placeholder.url')}
-        value={`${protocol}${url}`}
-        setInput={value => setUrl(clearUrl(value))}
+        value={`${url}`}
+        setInput={value => setUrl(value)}
         containerClassName={styles.urlInputContainer}
       />
     </div>
