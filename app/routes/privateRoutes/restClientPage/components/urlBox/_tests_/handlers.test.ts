@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Protocols } from '@/sources/enums';
-import { clearUrl } from './handlers';
+import { clearUrl } from '../handlers';
 
 describe('clearUrl', () => {
   it('removes the protocol from the URL', () => {

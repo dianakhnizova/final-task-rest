@@ -2,6 +2,7 @@ import styles from './icon.module.css';
 
 export const GithubLogo = () => (
   <svg
+    data-testid="icon"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="-2 -2 24 24"
     fill="currentColor"

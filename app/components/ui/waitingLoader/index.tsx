@@ -11,6 +11,7 @@ export const WaitingLoader: FC = () => {
   return (
     <div className={styles.loaderContainer}>
       <img
+        data-testid="waiting-loader"
         className={styles.loader}
         src={LoaderIcon}
         alt={imageMessages.loading}
