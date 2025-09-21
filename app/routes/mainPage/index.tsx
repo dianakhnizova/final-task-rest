@@ -8,7 +8,7 @@ import { AboutUs } from '@/components/aboutUs';
 import { Navigation } from '@/components/navigation';
 import { SignInUpLinks } from '@/components/signInUpLinks';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './MainPage.module.css';
+import styles from './mainPage.module.css';
 
 export const meta = pageMeta(mainPageMessages);
 
