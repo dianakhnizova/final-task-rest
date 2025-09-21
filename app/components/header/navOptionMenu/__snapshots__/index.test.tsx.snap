@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavOptionMenu > matches snapshot 1`] = `
+<div>
+  <div
+    class="right"
+  >
+    <div
+      data-testid="language-toggler"
+    >
+      LanguageToggler
+    </div>
+    <div
+      data-testid="theme-toggler"
+    >
+      ThemeToggler
+    </div>
+    <div
+      data-testid="auth-bar"
+    >
+      AuthBar
+    </div>
+  </div>
+</div>
+`;

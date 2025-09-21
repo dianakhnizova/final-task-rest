@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > matches snapshot when in view 1`] = `
+<div>
+  <div
+    class="banner"
+  >
+    <h3>
+      Welcome Banner Text
+    </h3>
+  </div>
+  <div />
+  <header
+    class="header"
+  >
+    <div
+      id="wrapperHeader"
+    >
+      <section
+        class="header stuck"
+      >
+        <div
+          data-testid="nav-logo"
+        >
+          NavLogo
+        </div>
+        <div
+          data-testid="nav-option-menu"
+        >
+          NavOptionMenu
+        </div>
+      </section>
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Header > matches snapshot when not in view 1`] = `
+<div>
+  <div
+    class="banner"
+  >
+    <h3>
+      Welcome Banner Text
+    </h3>
+  </div>
+  <div />
+  <header
+    class="header stuck"
+  >
+    <div
+      id="wrapperHeader"
+    >
+      <section
+        class="header"
+      >
+        <div
+          data-testid="nav-logo"
+        >
+          NavLogo
+        </div>
+        <div
+          data-testid="nav-option-menu"
+        >
+          NavOptionMenu
+        </div>
+      </section>
+    </div>
+  </header>
+</div>
+`;

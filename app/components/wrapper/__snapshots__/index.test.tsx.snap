@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Wrapper > matches snapshot with custom props 1`] = `
+<div>
+  <div
+    class="wrapper custom-class"
+    id="custom-id"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Wrapper > matches snapshot with default props 1`] = `
+<div>
+  <div
+    class="wrapper"
+    id="wrapper"
+  >
+    <div>
+      Content
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SignInUpLinks > matches snapshot 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <a
+      class="link"
+      href="/sign-in"
+    >
+      Sign In
+    </a>
+    <a
+      class="link"
+      href="/sign-up"
+    >
+      Sign Up
+    </a>
+  </div>
+</div>
+`;
