@@ -54,6 +54,7 @@ export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
                 <tr key={record.timestamp.getTime()}>
                   <td>
                     <Link
+                      className={styles.link}
                       to={AppRoutes.REST_CLIENT}
                       state={{ history: record }}
                     >
