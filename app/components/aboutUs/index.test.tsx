@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { useTranslation } from 'react-i18next';
-import { describe, expect, it, vi } from 'vitest';
+import { type Mock, describe, expect, it, vi } from 'vitest';
 import { developerList } from '@/sources/lists/developerList';
 import { images as altMessages } from '@/sources/messages/images';
 import { AboutUs } from '@/components/aboutUs';
@@ -50,7 +50,7 @@ describe('AboutUs', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useTranslation as vi.Mock).mockReturnValue({
+    (useTranslation as Mock).mockReturnValue({
       t: mockT,
     });
 
