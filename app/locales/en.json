@@ -148,8 +148,6 @@
     "userExist": "This email is already registered. Please try another one.",
     "userExistId": "userExistId",
     "invalidPasswordEmail": "Invalid password or e-mail",
-    "appInitializing": "Initializing the application",
-    "appInitializingId": "appInitializingId",
     "tokenExpires": "Token expires"
   },
 

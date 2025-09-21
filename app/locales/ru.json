@@ -152,8 +152,6 @@
     "userExist": "Этот email уже зарегистрирован. Попробуйте другой.",
     "userExistId": "userExistId",
     "invalidPasswordEmail": "Неверный пароль или e-mail",
-    "appInitializing": "Инициализация приложения",
-    "appInitializingId": "appInitializingId",
     "tokenExpires": "Срок действия токена истёк"
   },
 

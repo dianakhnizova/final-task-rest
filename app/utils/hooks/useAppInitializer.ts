@@ -2,28 +2,20 @@ import {
   clearSettingsLS,
   loadSettingsFromLS,
 } from '@/store/slices/settings/settingsLS.ts';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 import { LS_KEY } from '@/sources/enums';
 import { errors } from '@/sources/messages/errors';
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
 
 export const useAppInitializer = () => {
-  const { t } = useTranslation();
   const { setUser, loadSettings } = useActions();
   const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    toast.success(t('toasts.appInitializing'), {
-      id: 'appInitializingId',
-    });
-
     try {
       const savedUser = localStorage.getItem(LS_KEY.USER);
-
-      console.log(savedUser);
 
       if (savedUser) {
         setUser(JSON.parse(savedUser));
@@ -36,5 +28,8 @@ export const useAppInitializer = () => {
     }
 
     loadSettings(loadSettingsFromLS());
+    setIsInitialized(true);
   }, []);
+
+  return isInitialized;
 };
