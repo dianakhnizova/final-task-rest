@@ -6,6 +6,7 @@ import {
 } from '@/sources/constants/constants';
 import { GithubLogo, RsSchoolLogo } from '@/components/icons';
 import Wrapper from '@/components/wrapper';
+import { Developerlink } from '../aboutUs/developerLink';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -16,27 +17,29 @@ export const Footer = () => {
       <div className={styles.separator}></div>
 
       <Wrapper id={WrapperId.footer} className={styles.content}>
-        <a
-          href={GITHUB_PROJECT_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.link}
-        >
-          <GithubLogo />
-          <span>{t('footer.githubProject')}</span>
-        </a>
+        <div className={styles.info}>
+          <a
+            href={GITHUB_PROJECT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            <GithubLogo />
+            <span>{t('footer.githubProject')}</span>
+          </a>
+          <a
+            href={RSS_COURSE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            <RsSchoolLogo />
+            <span>{t('footer.rsSchoolCourse')}</span>
+          </a>
+          <div>{t('footer.copyright')}</div>
+        </div>
 
-        <a
-          href={RSS_COURSE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.link}
-        >
-          <RsSchoolLogo />
-          <span>{t('footer.rsSchoolCourse')}</span>
-        </a>
-
-        <div>{t('footer.copyright')}</div>
+        <Developerlink />
       </Wrapper>
     </footer>
   );

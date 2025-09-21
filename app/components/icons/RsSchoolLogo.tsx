@@ -2,6 +2,7 @@ import styles from './icon.module.css';
 
 export const RsSchoolLogo = () => (
   <svg
+    data-testid="icon"
     viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

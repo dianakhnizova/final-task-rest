@@ -11,7 +11,7 @@ import {
 } from 'vitest';
 import { useActions } from '@/utils/hooks/useActions';
 import { useSaveUserToLS } from '@/utils/hooks/useSaveUserToLS';
-import { useAppInitializer } from './useAppInitializer';
+import { useAppInitializer } from '../useAppInitializer';
 
 vi.mock('react', () => ({
   useEffect: vi.fn(fn => fn()),

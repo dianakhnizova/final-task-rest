@@ -8,6 +8,7 @@ exports[`WaitingLoader > matches snapshot 1`] = `
     <img
       alt="Loading..."
       class="_loader_ca322a"
+      data-testid="waiting-loader"
       src="loader.gif"
     />
     <div

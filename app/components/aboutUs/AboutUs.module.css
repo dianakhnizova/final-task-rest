@@ -32,10 +32,6 @@
   border-radius: var(--radius-lg);
 }
 
-.link {
-  color: var(--color-primary);
-}
-
 .project {
   display: flex;
   text-align: center;

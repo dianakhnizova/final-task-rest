@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import useInView from './useInView';
+import useInView from '../useInView';
 
 vi.mock('react', () => ({
   useEffect: vi.fn(fn => fn()),
@@ -100,6 +100,6 @@ describe('useInView integration', () => {
     const [triggerRef] = result.current;
 
     expect(triggerRef).toHaveProperty('current');
-    expect(triggerRef.current).toBeNull(); // Изначально null
+    expect(triggerRef.current).toBeNull();
   });
 });

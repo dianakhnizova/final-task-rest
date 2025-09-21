@@ -28,6 +28,10 @@ export const AuthBar = () => {
     navigate(AppRoutes.SIGN_IN);
   };
 
+  const handleSignUp = () => {
+    navigate(AppRoutes.SIGN_UP);
+  };
+
   const handleLogOut = async () => {
     toast.success(toastMessages.logOutInit, {
       id: toastMessages.logOutId,
@@ -50,6 +54,9 @@ export const AuthBar = () => {
   return user ? (
     <Button onClick={handleLogOut}>{t('header.logOut')}</Button>
   ) : (
-    <Button onClick={handleSignIn}>{t('header.signIn')}</Button>
+    <>
+      <Button onClick={handleSignIn}>{t('buttons.signIn')}</Button>
+      <Button onClick={handleSignUp}>{t('buttons.signUp')}</Button>
+    </>
   );
 };

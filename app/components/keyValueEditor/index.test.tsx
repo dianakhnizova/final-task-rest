@@ -212,7 +212,7 @@ describe('KeyValueEditor', () => {
     expect(container.querySelector('.container')).toBeInTheDocument();
     expect(container.querySelector('.table')).toBeInTheDocument();
     expect(container.querySelector('.addButton')).toBeInTheDocument();
-    expect(container.querySelectorAll('.input')).toHaveLength(4); // 2 pairs × 2 inputs each
+    expect(container.querySelectorAll('.input')).toHaveLength(4);
   });
 
   it('calls translation function with correct keys', () => {

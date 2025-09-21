@@ -13,7 +13,7 @@ export interface RestClientState {
   language: CodeLanguage;
 }
 
-const initialState: RestClientState = {
+export const initialState: RestClientState = {
   method: HttpMethods.GET,
   protocol: Protocols.HTTP,
   url: '',

@@ -3,6 +3,7 @@ import styles from './icon.module.css';
 export const SunIcon = () => {
   return (
     <svg
+      data-testid="icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
       className={styles.headerIcon}

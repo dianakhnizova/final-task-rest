@@ -9,16 +9,23 @@ export const developerList: Developer[] = [
   {
     nameKey: 'developers.alexandr',
     photo: '/alexandr.png',
-    gitHub: GITHUB_ALEXANDR,
   },
   {
     nameKey: 'developers.diana',
     photo: '/diana.jpg',
-    gitHub: GITHUB_DIANA,
   },
   {
     nameKey: 'developers.olexandr',
     photo: '/alex.jpg',
+  },
+];
+
+export const developerLinkList = [
+  { gitHub: GITHUB_ALEXANDR },
+  {
+    gitHub: GITHUB_DIANA,
+  },
+  {
     gitHub: GITHUB_ALEX,
   },
 ];

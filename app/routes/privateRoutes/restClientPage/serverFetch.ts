@@ -81,6 +81,19 @@ export const action = async ({
   try {
     const { response: res, metrics } = await fetchWithMetrics();
 
+    if (!res.ok) {
+      return {
+        ok: false,
+        received: null,
+        status: res.status,
+        error: `Request failed with status ${res.status}`,
+        headers: actionRequestHeaders,
+        finalUrl,
+        responseMetrics: metrics,
+        requestDetails,
+      };
+    }
+
     const responseText = await res.text();
     const mergedData = mergedDataResponse(responseText, body);
 

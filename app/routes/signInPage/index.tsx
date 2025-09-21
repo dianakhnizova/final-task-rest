@@ -1,12 +1,9 @@
 import { signInSchema } from '@/schemas/signInSchema';
-import { selectAuth } from '@/store/slices/auth/selectors';
 import { supabase } from '@/supabaseClient';
-import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Link, useNavigate, useSearchParams } from 'react-router';
 import { AppRoutes, InputID, LS_KEY } from '@/sources/enums';
 import type { AuthUser, SignInForm } from '@/sources/interfaces';
@@ -33,8 +30,6 @@ export default function SignInPage() {
   const { setUser, setLoading } = useActions();
   const { setUserToStorage } = useSaveUserToLS(LS_KEY.USER, null);
   const [searchParams] = useSearchParams();
-
-  const user = useSelector(selectAuth);
 
   const redirectTo = searchParams.get('redirect') || AppRoutes.HOME;
 
@@ -83,13 +78,9 @@ export default function SignInPage() {
       `${toastMessages.signIn}, ${authData.user?.user_metadata.name}`,
       { id: toastMessages.signInId, duration: TOAST_DURATION }
     );
-  };
 
-  useEffect(() => {
-    if (user) {
-      navigate(redirectTo, { replace: true });
-    }
-  }, [user, navigate, redirectTo]);
+    navigate(redirectTo, { replace: true });
+  };
 
   return (
     <div className={styles.container}>

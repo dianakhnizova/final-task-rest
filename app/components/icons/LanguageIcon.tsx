@@ -3,6 +3,7 @@ import styles from './icon.module.css';
 export const LanguageIcon = () => {
   return (
     <svg
+      data-testid="icon"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       className={styles.headerIcon}

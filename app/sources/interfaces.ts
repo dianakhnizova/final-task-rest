@@ -98,7 +98,6 @@ export interface AuthUser {
 export interface Developer {
   nameKey: string;
   photo: string;
-  gitHub: string;
 }
 
 export interface ThemeContextValue {

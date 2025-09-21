@@ -4,13 +4,11 @@ import type { AuthUser } from '@/sources/interfaces';
 interface AuthState {
   currentUser: AuthUser | null;
   error: string | null;
-  isLoading: boolean;
 }
 
 const initialState: AuthState = {
   currentUser: null,
   error: null,
-  isLoading: false,
 };
 
 const authSlice = createSlice({
@@ -28,9 +26,6 @@ const authSlice = createSlice({
     },
     clearError: state => {
       state.error = null;
-    },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
     },
   },
 });

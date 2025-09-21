@@ -1,4 +1,3 @@
-import type { unstable_RouterContextProvider } from 'react-router';
 import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { languageCookie } from './cookies.server';
 import i18n from './i18n.server';
@@ -24,14 +23,20 @@ vi.mock('./sources/enums', () => ({
   },
 }));
 
+interface MiddlewareContext {
+  request: Request;
+  params: Record<string, string>;
+  context: Record<string, unknown>;
+}
+
 const createMockContext = (
   request: Request,
   params: Record<string, string> = {}
-) => {
+): MiddlewareContext => {
   return {
     request,
     params,
-    context: {} as Readonly<unstable_RouterContextProvider>,
+    context: {},
   };
 };
 
@@ -42,8 +47,8 @@ describe('languageMiddleware', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (languageCookie.parse as Mock) = mockParse;
-    (i18n.changeLanguage as Mock) = mockChangeLanguage;
+    (languageCookie.parse as Mock).mockImplementation(mockParse);
+    (i18n.changeLanguage as Mock).mockImplementation(mockChangeLanguage);
     mockNext.mockResolvedValue('next-result');
   });
 

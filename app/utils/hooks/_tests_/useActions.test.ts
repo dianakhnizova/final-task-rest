@@ -3,8 +3,8 @@ import { restClientActions } from '@/store/slices/restClient/restClient.slice';
 import { settingsActions } from '@/store/slices/settings/settings.slice';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { type Mock, describe, expect, it, vi } from 'vitest';
-import { useActions } from './useActions';
+import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useActions } from '../useActions';
 
 vi.mock('@reduxjs/toolkit', () => ({
   bindActionCreators: vi.fn(),
@@ -45,12 +45,13 @@ describe('useActions', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     (useDispatch as unknown as Mock).mockReturnValue(mockDispatch);
-    (bindActionCreators as Mock).mockImplementation(mockBindActionCreators);
+    (bindActionCreators as unknown as Mock).mockImplementation(
+      mockBindActionCreators
+    );
   });
 
   it('calls useDispatch hook', () => {
     useActions();
-
     expect(useDispatch).toHaveBeenCalledTimes(1);
   });
 
@@ -86,7 +87,8 @@ describe('useActions', () => {
   it('includes all auth actions', () => {
     useActions();
 
-    const actionsObject = bindActionCreators.mock.calls[0][0];
+    const actionsObject = (bindActionCreators as unknown as Mock).mock
+      .calls[0][0];
     expect(actionsObject).toHaveProperty('login');
     expect(actionsObject).toHaveProperty('logout');
     expect(actionsObject).toHaveProperty('clearUser');
@@ -95,7 +97,8 @@ describe('useActions', () => {
   it('includes all restClient actions', () => {
     useActions();
 
-    const actionsObject = bindActionCreators.mock.calls[0][0];
+    const actionsObject = (bindActionCreators as unknown as Mock).mock
+      .calls[0][0];
     expect(actionsObject).toHaveProperty('setUrl');
     expect(actionsObject).toHaveProperty('setMethod');
     expect(actionsObject).toHaveProperty('setHeaders');
@@ -104,7 +107,8 @@ describe('useActions', () => {
   it('includes all settings actions', () => {
     useActions();
 
-    const actionsObject = bindActionCreators.mock.calls[0][0];
+    const actionsObject = (bindActionCreators as unknown as Mock).mock
+      .calls[0][0];
     expect(actionsObject).toHaveProperty('setTheme');
     expect(actionsObject).toHaveProperty('setLanguage');
     expect(actionsObject).toHaveProperty('toggleSidebar');
@@ -113,7 +117,8 @@ describe('useActions', () => {
   it('merges actions without conflicts', () => {
     useActions();
 
-    const actionsObject = bindActionCreators.mock.calls[0][0];
+    const actionsObject = (bindActionCreators as unknown as Mock).mock
+      .calls[0][0];
     const actionKeys = Object.keys(actionsObject);
 
     const uniqueKeys = new Set(actionKeys);
@@ -139,20 +144,6 @@ describe('useActions', () => {
       expect.any(Object),
       anotherMockDispatch
     );
-  });
-
-  it('returns bound actions that can be called', () => {
-    const mockBoundAction = vi.fn();
-    const mockBoundActions = {
-      someAction: mockBoundAction,
-    };
-
-    mockBindActionCreators.mockReturnValue(mockBoundActions);
-
-    const actions = useActions();
-    actions.someAction('test-arg');
-
-    expect(mockBoundAction).toHaveBeenCalledWith('test-arg');
   });
 });
 

@@ -12,38 +12,68 @@ exports[`Footer > matches snapshot 1`] = `
       class="content"
       id="wrapperFooter"
     >
-      <a
-        class="link"
-        href="https://github.com/dianakhnizova/final-task-rest"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <div
-          data-testid="github-logo"
-        >
-          GithubLogo
-        </div>
-        <span>
-          GitHub Project
-        </span>
-      </a>
-      <a
-        class="link"
-        href="https://rs.school/courses/reactjs"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <div
-          data-testid="rsschool-logo"
-        >
-          RsSchoolLogo
-        </div>
-        <span>
-          RS School Course
-        </span>
-      </a>
       <div>
-        © 2024 All rights reserved
+        <a
+          class="link"
+          href="https://github.com/dianakhnizova/final-task-rest"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            data-testid="github-logo"
+          >
+            GithubLogo
+          </div>
+          <span>
+            GitHub Project
+          </span>
+        </a>
+        <a
+          class="link"
+          href="https://rs.school/courses/reactjs"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            data-testid="rsschool-logo"
+          >
+            RsSchoolLogo
+          </div>
+          <span>
+            RS School Course
+          </span>
+        </a>
+        <div>
+          © 2024 All rights reserved
+        </div>
+      </div>
+      <div
+        class="_container_185085"
+      >
+        <a
+          class="_link_185085"
+          href="https://github.com/alvi0avcc"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/alvi0avcc
+        </a>
+        <a
+          class="_link_185085"
+          href="https://github.com/dianakhnizova"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/dianakhnizova
+        </a>
+        <a
+          class="_link_185085"
+          href="https://github.com/VavilovAlex"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/VavilovAlex
+        </a>
       </div>
     </div>
   </footer>
