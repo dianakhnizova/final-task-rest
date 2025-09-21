@@ -4,7 +4,7 @@ import { settingsActions } from '@/store/slices/settings/settings.slice';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
-import { useActions } from './useActions';
+import { useActions } from '../useActions';
 
 vi.mock('@reduxjs/toolkit', () => ({
   bindActionCreators: vi.fn(),

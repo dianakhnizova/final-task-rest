@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import useInView from './useInView';
+import useInView from '../useInView';
 
 vi.mock('react', () => ({
   useEffect: vi.fn(fn => fn()),

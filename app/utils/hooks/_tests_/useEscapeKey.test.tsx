@@ -9,7 +9,7 @@ import {
   it,
   vi,
 } from 'vitest';
-import { useEscapeKey } from './useEscapeKey';
+import { useEscapeKey } from '../useEscapeKey';
 
 vi.mock('react', () => ({
   useEffect: vi.fn(fn => fn()),
