@@ -1,0 +1,1 @@
+const r={parseError:"Failed to parse user data from localStorage:",codeGeneratorError:"Error code generation",urlError:"Cannot generate code: URL is required",languageError:"Code generation for this language is not supported",themeError:"useTheme must be used within ThemeProvider"};export{r as e};

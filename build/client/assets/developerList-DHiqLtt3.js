@@ -1,0 +1,1 @@
+import{G as e,a,b as o}from"./constants-DpNX-Nkr.js";const n=[{nameKey:"developers.alexandr",photo:"/alexandr.png"},{nameKey:"developers.diana",photo:"/diana.jpg"},{nameKey:"developers.olexandr",photo:"/alex.jpg"}],s=[{gitHub:e},{gitHub:a},{gitHub:o}];export{s as a,n as d};

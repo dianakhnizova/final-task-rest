@@ -10,5 +10,6 @@ module.exports = {
       { ignorePseudoClasses: ['global'] },
     ],
   },
-  ignoreFiles: ['**/node_modules/**', '**/dist/**', 'coverage/**'],
+  ignoreFiles: ['**/node_modules/**', '**/dist/**', 'coverage/**',   "**/build/**/*",
+],
 };

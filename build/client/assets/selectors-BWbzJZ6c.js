@@ -1,0 +1,1 @@
+const t=e=>e.auth.currentUser?.user,s=e=>{if(!e.auth.currentUser?.expiresAt||!e.auth.currentUser.accessToken)return!1;const r=Math.floor(Date.now()/1e3);return e.auth.currentUser.expiresAt!==null&&e.auth.currentUser.expiresAt>r};export{t as a,s};
