@@ -27,7 +27,7 @@ export const meta = pageMeta(signInPage);
 export default function SignInPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setUser, setLoading } = useActions();
+  const { setUser } = useActions();
   const { setUserToStorage } = useSaveUserToLS(LS_KEY.USER, null);
   const [searchParams] = useSearchParams();
 
@@ -70,7 +70,6 @@ export default function SignInPage() {
       expiresAt: session.expires_at ?? null,
     };
 
-    setLoading(true);
     setUser(authUser);
     setUserToStorage(authUser);
 
