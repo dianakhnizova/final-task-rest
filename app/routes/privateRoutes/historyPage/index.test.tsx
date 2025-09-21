@@ -2,9 +2,23 @@ import { configureStore } from '@reduxjs/toolkit';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
-import { describe, it } from 'vitest';
-import { historyPageMessages as messages } from '@/sources/messages/historyPage';
+import { describe, it, vi } from 'vitest';
 import HistoryPage, { type HistoryRecord } from '.';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => {
+      const translations: Record<string, string> = {
+        'history.header': 'History',
+        'history.table.emptyMessage': 'No history records',
+        'history.table.openLink': 'Open',
+        'buttons.btnVariables': 'Variables',
+        'buttons.btnRestClient': 'Rest Client',
+      };
+      return translations[key] ?? key;
+    },
+  }),
+}));
 
 const store = configureStore({ reducer: () => ({}) });
 
@@ -18,8 +32,8 @@ describe('HistoryPage', () => {
       </Provider>
     );
 
-    expect(screen.getByText(messages.header)).toBeDefined();
-    expect(screen.getByText(messages.table.emptyMessage)).toBeDefined();
+    expect(screen.getByText('History')).toBeInTheDocument();
+    expect(screen.getByText('No history records')).toBeInTheDocument();
   });
 
   it('renders a list of history records sorted by timestamp descending', () => {
