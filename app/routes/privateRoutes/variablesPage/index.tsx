@@ -5,7 +5,7 @@ import { variablesPage as messages } from '@/sources/messages/variablesPage.ts';
 import { KeyValueEditor } from '@/components/keyValueEditor';
 import { useActions } from '@/utils/hooks/useActions.ts';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './Variables.module.css';
+import styles from './variables.module.css';
 
 export const meta = pageMeta(messages);
 

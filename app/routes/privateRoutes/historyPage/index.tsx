@@ -6,7 +6,7 @@ import { AppRoutes } from '@/sources/enums.ts';
 import { historyPageMessages as messages } from '@/sources/messages/historyPage.ts';
 import { Button } from '@/components/ui/button';
 import { pageMeta } from '@/utils/metaHelpers.ts';
-import styles from './History.module.css';
+import styles from './history.module.css';
 
 export const meta = pageMeta(messages);
 
