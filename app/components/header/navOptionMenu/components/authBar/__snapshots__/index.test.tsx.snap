@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AuthBar > matches snapshot for authenticated user 1`] = `
+<div>
+  <button>
+    Log Out
+  </button>
+  <button>
+    mainPage.mainPage
+  </button>
+</div>
+`;
+
+exports[`AuthBar > matches snapshot for unauthenticated user 1`] = `
+<div>
+  <button>
+    Sign In
+  </button>
+  <button>
+    Sign Up
+  </button>
+</div>
+`;

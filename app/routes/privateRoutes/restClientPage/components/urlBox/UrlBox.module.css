@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: var(--spacing-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-level3);
+  background-color: var(--color-surface);
+}
+
+.urlInputContainer {
+  width: 40%;
+  justify-content: center;
+}

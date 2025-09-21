@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+.editor {
+  min-height: 85px;
+  border-radius: var(--radius-lg);
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface);
+}

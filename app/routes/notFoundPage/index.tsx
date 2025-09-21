@@ -1,0 +1,37 @@
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router';
+import { AppRoutes } from '@/sources/enums';
+import { notFoundPage as messages } from '@/sources/messages/notFoundPage';
+import type { Route } from '../../+types/root';
+import styles from './notFoundPage.module.css';
+
+export function meta({ location }: Route.MetaArgs) {
+  return [
+    { title: messages.metaTitle },
+    {
+      name: messages.metaName,
+      content: `${messages.metaContent} - ${location.pathname}`,
+    },
+  ];
+}
+
+export default function NotFoundPage() {
+  const { t } = useTranslation();
+  const location = useLocation();
+
+  return (
+    <main className={styles.notFoundContainer}>
+      <section className={styles.notFoundSection}>
+        <h1 className={styles.notFoundTitle}>{t('notFoundPage.title')}</h1>
+
+        <p className={styles.notFoundInfo}>
+          {t('notFoundPage.metaContent')} - {location.pathname}
+        </p>
+
+        <Link to={AppRoutes.HOME} className={styles.link}>
+          {t('buttons.btnBack')}
+        </Link>
+      </section>
+    </main>
+  );
+}

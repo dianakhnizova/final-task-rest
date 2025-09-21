@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+.containerWithErrorMessage {
+  height: 70px;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+}
+
+.input {
+  background-color: var(--md-sys-color-surface-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  border: var(--border-width-sm) solid transparent;
+  width: 100%;
+  color: var(--color-text-default);
+  font-size: var(--font-size-xs);
+
+  &::placeholder {
+    color: var(--md-sys-color-outline);
+    opacity: 1;
+    font-size: var(--font-size-xs);
+  }
+}
+
+.input[type='checkbox'],
+.input[type='radio'] {
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.error {
+  color: var(--color-error);
+  font-weight: var(--line-height-loose);
+  font-size: var(--font-size-xs);
+}

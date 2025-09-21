@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`KeyValueEditor > matches snapshot with empty list 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <table
+      class="table"
+    >
+      <colgroup>
+        <col />
+        <col />
+        <col
+          width="0"
+        />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            Key
+          </th>
+          <th>
+            Value
+          </th>
+          <th>
+            <button
+              class="addButton"
+            >
+              Add
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            class="title"
+            colspan="3"
+          >
+            No items
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

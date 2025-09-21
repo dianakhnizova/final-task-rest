@@ -1,0 +1,22 @@
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react$",
+    "^react-dom$",
+    "^@?\\w",
+    "^@/sources/(enums|interfaces|messages|constants|inputFields)$",
+    "^@/sources",
+    "^@/components",
+    "^@/utils",
+    "^[./]"
+  ],
+  "importOrderSortSpecifiers": true
+}

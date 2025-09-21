@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ThemeToggler > matches snapshot 1`] = `
+<div>
+  <button
+    data-variant="icon"
+  >
+    <div
+      data-testid="sun-icon"
+    >
+      SunIcon
+    </div>
+  </button>
+</div>
+`;

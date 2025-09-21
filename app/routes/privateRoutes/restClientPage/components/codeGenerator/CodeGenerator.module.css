@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-5);
+}
+
+.codeGenerator {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.syntax {
+  border-radius: var(--radius-lg) !important;
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface) !important;
+}

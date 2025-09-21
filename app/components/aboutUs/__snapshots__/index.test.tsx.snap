@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AboutUs > matches snapshot 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="developersContainer"
+    >
+      <div
+        class="developers"
+      >
+        <p>
+          Developer One
+        </p>
+        <img
+          alt="Developer photo"
+          class="image"
+          src="developer1.jpg"
+        />
+      </div>
+      <div
+        class="developers"
+      >
+        <p>
+          Developer Two
+        </p>
+        <img
+          alt="Developer photo"
+          class="image"
+          src="developer2.jpg"
+        />
+      </div>
+    </div>
+    <p
+      class="project"
+    >
+      Project description
+    </p>
+    <div
+      class="course"
+    >
+      <p
+        class="title"
+      >
+        Course Title
+      </p>
+      <div
+        class="info"
+      >
+        <p
+          class="courseInfo"
+        >
+          Course Name
+        </p>
+        <p
+          class="courseInfo"
+        >
+          2024
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

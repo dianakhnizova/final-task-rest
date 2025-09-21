@@ -1,0 +1,46 @@
+.banner {
+  width: 100%;
+  background-color: var(--color-surface-container-high);
+  padding: var(--spacing-4);
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: var(--spacing-5);
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: space-between;
+  transition:
+    padding var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+
+  &.stuck {
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface);
+    box-shadow: var(--elevation-level3);
+    padding: var(--spacing-4);
+  }
+
+  .left,
+  .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-3);
+  text-decoration: none;
+  color: var(--color-text-default);
+}

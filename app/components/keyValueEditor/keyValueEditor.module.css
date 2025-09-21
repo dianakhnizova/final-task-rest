@@ -1,0 +1,35 @@
+.input {
+  border-radius: var(--radius-standard);
+}
+
+.addButton {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
+  background-color: var(--color-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td,
+  th {
+    padding: var(--spacing-4);
+    text-align: left;
+  }
+
+  thead {
+    border-bottom: var(--border-width-sm) solid var(--color-border-variant);
+  }
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+}

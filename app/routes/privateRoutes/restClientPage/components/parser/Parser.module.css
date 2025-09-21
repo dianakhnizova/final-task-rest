@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-5);
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+}

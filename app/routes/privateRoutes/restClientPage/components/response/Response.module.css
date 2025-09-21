@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+}
+
+.body,
+.status,
+.headers {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-5);
+  border: var(--spacing-1) solid var(--md-sys-color-surface-bright);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.headerValueContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.headersResponse {
+  display: flex;
+  gap: var(--spacing-4);
+  align-items: center;
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+}
+
+.syntax {
+  width: 100%;
+  overflow: auto;
+  border-radius: var(--radius-lg) !important;
+  border: var(--border-width-sm) solid var(--color-primary);
+  background: var(--color-surface) !important;
+}

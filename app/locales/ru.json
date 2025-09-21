@@ -1,0 +1,179 @@
+{
+  "root": {
+    "appTitle": "REST клиент"
+  },
+
+  "mainPage": {
+    "welcomeNew": "Добро пожаловать!",
+    "welcomeOld": "Добро пожаловать обратно,",
+    "mainPage": "Главная страница"
+  },
+
+  "header": {
+    "banner": "REST клиент приложение",
+    "textForLogo": "Главная",
+    "textInsteadLogo": "Логотип змеи команды \"Studio team\""
+  },
+
+  "buttons": {
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "headers": "Заголовки",
+    "generate": "Генерировать код",
+    "send": "Отправить запрос",
+    "delete": "Удалить",
+    "logOut": "Выйти",
+    "btnRestClient": "REST Клиент",
+    "btnHistory": "История",
+    "btnVariables": "Переменные",
+    "btnBack": "Вернуться на главную",
+    "clear": "Очистить код"
+  },
+
+  "language": {
+    "switchTo": "Переключить на",
+    "current": "Текущий язык"
+  },
+
+  "aboutUs": {
+    "title": "О курсе",
+    "name": "React Курс",
+    "year": "2025",
+    "project": "Наш проект — это браузерный REST клиент, который позволяет отправлять HTTP-запросы, просматривать ответы и сохранять историю запросов. Мы сделали его удобным для разработчиков: поддерживаются переменные, несколько методов (GET, POST и др.), генерация кода для запросов и гибкий интерфейс. Цель проекта — упростить тестирование и изучение API прямо в браузере без дополнительных инструментов."
+  },
+
+  "images": {
+    "developer": "Фото разработчика"
+  },
+
+  "keyValueEditor": {
+    "delete": "Удалить",
+    "emptyMessage": "Нажмите кнопку «Добавить», чтобы добавить значение",
+    "add": "Добавить",
+    "keyPlaceholder": "Ключ",
+    "valuePlaceholder": "Значение"
+  },
+
+  "footer": {
+    "copyright": "© 2025",
+    "rsSchoolCourse": "Курс RS School",
+    "githubProject": "Проект на Github"
+  },
+
+  "errorBoundary": {
+    "oops": "Упс!",
+    "details": "Произошла непредвиденная ошибка.",
+    "notFound": "Запрошенная страница не найдена.",
+    "error": "Ошибка",
+    "params": "Параметры:"
+  },
+
+  "loader": {
+    "title": "Загрузка данных..."
+  },
+
+  "notFoundPage": {
+    "title": "Страница не найдена",
+    "metaContent": "Ошибка 404 / Страница не найдена"
+  },
+
+  "bodyEditor": {
+    "codeTitle": "Код: ",
+    "bodyTitle": "Тело: "
+  },
+
+  "response": {
+    "title": "Ответ",
+    "headerTitle": "Заголовки",
+    "key": "ключ: ",
+    "value": "значение: ",
+    "statusTitle": "Статус: ",
+    "bodyTitle": "Тело: ",
+    "emptyData": "Данных пока нет",
+    "requestBodyTitle": "Тело запроса:",
+    "emptyRequestHint": "Введите URL и нажмите \"Отправить запрос\"",
+    "selectParser": "Выберите парсер"
+  },
+
+  "label": {
+    "name": "Имя",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль"
+  },
+
+  "placeholder": {
+    "name": "Введите ваше имя",
+    "email": "Введите электронную почту",
+    "password": "Введите пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "key": "ключ",
+    "value": "значение",
+    "url": "Введите URL или вставьте текст"
+  },
+
+  "variablesPage": {
+    "header": "Переменные",
+    "keyHeader": "Ключ",
+    "valueHeader": "Значение"
+  },
+
+  "signInPage": {
+    "infoTitle": "Нет аккаунта?"
+  },
+
+  "signUpPage": {
+    "infoTitle": "Уже есть аккаунт?"
+  },
+
+  "table": {
+    "headerKey": "Ключ заголовка",
+    "headerValue": "Значение заголовка",
+    "headerDelete": "Удалить"
+  },
+
+  "developers": {
+    "alexandr": "Вавилов Александр",
+    "diana": "Хнизова Диана",
+    "olexandr": "Вавилов Олександр"
+  },
+
+  "toasts": {
+    "signCheck": "Проверка пользователя...",
+    "signIn": "Вход выполнен успешно!",
+    "signInId": "signInId",
+    "signUp": "Регистрация успешна! Пожалуйста, проверьте вашу почту для подтверждения аккаунта",
+    "signUpProcess": "Процесс регистрации пользователя в процессе...",
+    "signUpProcessId": "signUpProcessId",
+    "errorConfirmEmail": "Пожалуйста, подтвердите вашу почту перед входом.",
+    "logOutInit": "Отключение пользователя из системы...",
+    "logOut": "вышел из системы.",
+    "logOutId": "logOutId",
+    "userExist": "Этот email уже зарегистрирован. Попробуйте другой.",
+    "userExistId": "userExistId",
+    "invalidPasswordEmail": "Неверный пароль или e-mail",
+    "tokenExpires": "Срок действия токена истёк"
+  },
+
+   "history": {
+    "metaTitle": "REST клиент / История",
+    "metaName": "описание",
+    "metaContent": "Добро пожаловать в Историю",
+    "header": "История",
+    "table": {
+      "headers": {
+        "action": "Действие",
+        "latency": "Задержка (мс)",
+        "status": "Статус",
+        "timestamp": "Время",
+        "method": "Метод",
+        "requestSize": "Размер запроса",
+        "responseSize": "Размер ответа",
+        "error": "Ошибка",
+        "url": "URL"
+      },
+      "emptyMessage": "История запросов пуста",
+      "openLink": "Открыть"
+    }
+  }
+}

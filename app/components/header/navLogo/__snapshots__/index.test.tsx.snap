@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavLogo > matches snapshot 1`] = `
+<div>
+  <div
+    class="left"
+  >
+    <a
+      class="home"
+      href="/"
+    >
+      <div
+        data-testid="logo"
+      >
+        Logo
+      </div>
+      <span>
+        GraphiQL App
+      </span>
+    </a>
+  </div>
+</div>
+`;

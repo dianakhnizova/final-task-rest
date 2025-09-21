@@ -1,0 +1,38 @@
+.notFoundContainer {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: var(--spacing-5);
+}
+
+.notFoundSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.notFoundTitle {
+  text-align: center;
+  padding: var(--spacing-5);
+}
+
+.notFoundInfo {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--elevation-level3);
+  padding: var(--spacing-6);
+  color: var(--color-error);
+}
+
+.notFoundBtnBack {
+  margin: var(--spacing-5) auto;
+  text-decoration: none;
+}
+
+.link {
+  color: var(--color-primary);
+  text-align: center;
+}

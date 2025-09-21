@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > matches snapshot 1`] = `
+<div>
+  <footer
+    class="container"
+  >
+    <div
+      class="separator"
+    />
+    <div
+      class="content"
+      id="wrapperFooter"
+    >
+      <div>
+        <a
+          class="link"
+          href="https://github.com/dianakhnizova/final-task-rest"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            data-testid="github-logo"
+          >
+            GithubLogo
+          </div>
+          <span>
+            GitHub Project
+          </span>
+        </a>
+        <a
+          class="link"
+          href="https://rs.school/courses/reactjs"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div
+            data-testid="rsschool-logo"
+          >
+            RsSchoolLogo
+          </div>
+          <span>
+            RS School Course
+          </span>
+        </a>
+        <div>
+          © 2024 All rights reserved
+        </div>
+      </div>
+      <div
+        class="_container_d3d4ee"
+      >
+        <a
+          class="_link_d3d4ee"
+          href="https://github.com/alvi0avcc"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/alvi0avcc
+        </a>
+        <a
+          class="_link_d3d4ee"
+          href="https://github.com/dianakhnizova"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/dianakhnizova
+        </a>
+        <a
+          class="_link_d3d4ee"
+          href="https://github.com/VavilovAlex"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          https://github.com/VavilovAlex
+        </a>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
