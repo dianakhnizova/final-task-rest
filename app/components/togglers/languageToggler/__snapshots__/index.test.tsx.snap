@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LanguageToggler > matches snapshot when language is EN 1`] = `
+<div>
+  <form
+    action="/language"
+    data-testid="language-form"
+    method="POST"
+  >
+    <input
+      name="language"
+      type="hidden"
+      value="ru"
+    />
+    <button
+      type="submit"
+      variant="icon"
+    >
+      <div
+        data-testid="language-icon"
+      >
+        LanguageIcon
+      </div>
+    </button>
+  </form>
+</div>
+`;
+
+exports[`LanguageToggler > matches snapshot when language is RU 1`] = `
+<div>
+  <form
+    action="/language"
+    data-testid="language-form"
+    method="POST"
+  >
+    <input
+      name="language"
+      type="hidden"
+      value="en"
+    />
+    <button
+      type="submit"
+      variant="icon"
+    >
+      <div
+        data-testid="language-icon"
+      >
+        LanguageIcon
+      </div>
+    </button>
+  </form>
+</div>
+`;
