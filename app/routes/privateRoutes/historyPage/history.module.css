@@ -2,6 +2,12 @@
   margin-bottom: var(--spacing-4);
 }
 
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container {
   background-color: var(--color-surface);
   padding: var(--spacing-4);

@@ -1,7 +1,10 @@
+import { clearAllHistoryForCurrentUser } from '@/services/historyService.ts';
+import { supabase } from '@/supabaseClient.ts';
 import type { Json } from '@/types/supabase.ts';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums.ts';
 import { historyPageMessages as messages } from '@/sources/messages/historyPage.ts';
+import { Button } from '@/components/ui/button';
 import { pageMeta } from '@/utils/metaHelpers.ts';
 import styles from './History.module.css';
 
@@ -22,9 +25,18 @@ export interface HistoryRecord {
 export default function HistoryPage({ data }: { data: HistoryRecord[] }) {
   const headerMessages = messages.table.headers;
 
+  const handleClearHistory = async () => {
+    await clearAllHistoryForCurrentUser(supabase);
+
+    window.location.reload();
+  };
+
   return (
     <div>
-      <h1 className={styles.header}>{messages.header}</h1>
+      <div className={styles.headerContainer}>
+        <h1 className={styles.header}>{messages.header}</h1>
+        <Button onClick={handleClearHistory}>Clear History</Button>
+      </div>
       <div className={styles.container}>
         <table className={styles.table}>
           <thead>

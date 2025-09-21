@@ -34,6 +34,21 @@ export async function addHistoryForCurrentUser(
   if (error) throw error;
 }
 
+export async function clearAllHistoryForCurrentUser(
+  supabaseClient: SupabaseClient<Database>
+) {
+  const supabase = supabaseClient;
+
+  const user = await getRequiredUser(supabase);
+
+  const { error } = await supabase
+    .from('history')
+    .delete()
+    .eq('user_id', user.id);
+
+  if (error) throw error;
+}
+
 async function getRequiredUser(supabaseClient: SupabaseClient<Database>) {
   const {
     data: { user },
