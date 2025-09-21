@@ -1,4 +1,6 @@
+import { store } from '@/store/store.ts';
 import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router';
 import { describe, it, vi } from 'vitest';
 import RestClientPage from '.';
@@ -40,9 +42,11 @@ vi.mock('./components/requestSender', () => ({
 describe('RestClientPage', () => {
   const renderWithRouter = () =>
     render(
-      <BrowserRouter>
-        <RestClientPage />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <RestClientPage />
+        </BrowserRouter>
+      </Provider>
     );
 
   it('renders all subcomponents', () => {
