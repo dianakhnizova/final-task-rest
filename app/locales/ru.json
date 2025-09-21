@@ -17,7 +17,6 @@
   },
   "header": {
     "banner": "REST клиент приложение",
-    "signIn": "Войти",
     "logOut": "Выйти",
     "textForLogo": "Главная",
     "textInsteadLogo": "Логотип змеи команды \"Studio team\""
