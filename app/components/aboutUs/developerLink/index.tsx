@@ -1,5 +1,5 @@
 import { developerLinkList } from '@/sources/lists/developerList';
-import styles from './developerlink.module.css';
+import styles from './developerLink.module.css';
 
 export const Developerlink = () => {
   return (

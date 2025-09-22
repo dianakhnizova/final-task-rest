@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Modal } from '@/components/ui/modal';
-import styles from './Modal.module.css';
+import styles from './modal.module.css';
 
 vi.mock('@/components/reactPortal/ReactPortal', () => ({
   default: ({ children }: { children: React.ReactNode }) => (

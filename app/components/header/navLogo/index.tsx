@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { AppRoutes } from '@/sources/enums';
 import { Logo } from '@/components/icons/';
-import styles from '../Header.module.css';
+import styles from '../header.module.css';
 
 export const NavLogo = () => {
   const { t } = useTranslation();

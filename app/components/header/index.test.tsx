@@ -41,7 +41,7 @@ vi.mock('./navOptionMenu', () => ({
   NavOptionMenu: () => <div data-testid="nav-option-menu">NavOptionMenu</div>,
 }));
 
-vi.mock('./Header.module.css', () => ({
+vi.mock('./header.module.css', () => ({
   default: {
     banner: 'banner',
     header: 'header',

@@ -32,7 +32,7 @@ vi.mock('@/components/icons', () => ({
   RsSchoolLogo: () => <div data-testid="rsschool-logo">RsSchoolLogo</div>,
 }));
 
-vi.mock('./Footer.module.css', () => ({
+vi.mock('./footer.module.css', () => ({
   default: {
     container: 'container',
     separator: 'separator',

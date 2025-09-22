@@ -28,7 +28,7 @@ vi.mock('@/sources/messages/images', () => ({
   },
 }));
 
-vi.mock('./AboutUs.module.css', () => ({
+vi.mock('./aboutUs.module.css', () => ({
   default: {
     container: 'container',
     developersContainer: 'developersContainer',

@@ -28,7 +28,7 @@ vi.mock('../ui/button', () => ({
   }) => <button onClick={onClick}>{children}</button>,
 }));
 
-vi.mock('./Navigation.module.css', () => ({
+vi.mock('./navigation.module.css', () => ({
   default: {
     btnSection: 'btnSection',
   },

@@ -16,7 +16,7 @@ vi.mock('./components/authBar', () => ({
   AuthBar: () => <div data-testid="auth-bar">AuthBar</div>,
 }));
 
-vi.mock('../Header.module.css', () => ({
+vi.mock('../header.module.css', () => ({
   default: {
     right: 'right',
   },

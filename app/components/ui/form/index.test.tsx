@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { ButtonType } from '@/sources/enums';
 import { Form } from '@/components/ui/form';
-import styles from './Form.module.css';
+import styles from './form.module.css';
 
 describe('Form', () => {
   it('renders children', () => {
