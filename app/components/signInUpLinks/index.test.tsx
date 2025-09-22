@@ -30,7 +30,7 @@ vi.mock('@/sources/enums', () => ({
   },
 }));
 
-vi.mock('./SignInUpLinks.module.css', () => ({
+vi.mock('./signInUpLinks.module.css', () => ({
   default: {
     container: 'container',
     link: 'link',

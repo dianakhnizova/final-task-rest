@@ -436,13 +436,10 @@ const useSaveUserToLS = (key, initialValue) => {
   return { storedValue, setUserToStorage, removeUserFromStorage };
 };
 const useAppInitializer = () => {
-  const { t } = useTranslation();
   const { setUser, loadSettings } = useActions();
   const { removeUserFromStorage } = useSaveUserToLS(LS_KEY.USER, null);
+  const [isInitialized, setIsInitialized] = useState(false);
   useEffect(() => {
-    toast.success(t("toasts.appInitializing"), {
-      id: "appInitializingId"
-    });
     try {
       const savedUser = localStorage.getItem(LS_KEY.USER);
       if (savedUser) {
@@ -454,7 +451,9 @@ const useAppInitializer = () => {
       clearSettingsLS();
     }
     loadSettings(loadSettingsFromLS());
+    setIsInitialized(true);
   }, []);
+  return isInitialized;
 };
 function AppInitWrapper({ children }) {
   useAppInitializer();
@@ -877,7 +876,10 @@ const AuthBar = () => {
     clearUser();
     navigate(AppRoutes.HOME);
   };
-  return user ? /* @__PURE__ */ jsx(Button, { onClick: handleLogOut, children: t("buttons.logOut") }) : /* @__PURE__ */ jsxs(Fragment, { children: [
+  return user ? /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx(Button, { onClick: handleLogOut, children: t("buttons.logOut") }),
+    /* @__PURE__ */ jsx(Button, { onClick: () => navigate(AppRoutes.HOME), children: t("mainPage.mainPage") })
+  ] }) : /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsx(Button, { onClick: handleSignIn, children: t("buttons.signIn") }),
     /* @__PURE__ */ jsx(Button, { onClick: handleSignUp, children: t("buttons.signUp") })
   ] });
@@ -968,7 +970,8 @@ const signInPage$2 = { "infoTitle": "Don't have an account?" };
 const signUpPage$2 = { "infoTitle": "Already have an account?" };
 const table$3 = { "headerKey": "Header key", "headerValue": "Header value", "headerDelete": "Delete" };
 const developers$2 = { "alexandr": "Vavilov Alexandr", "diana": "Khnizova Diana", "olexandr": "Vavilov Oleksandr" };
-const toasts$2 = { "signCheck": "Checking the user...", "signIn": "Login successful!", "signInId": "signInId", "signUp": "Registration successful! Please check your email to confirm your account", "signUpProcess": "The user registration process is in progress...", "signUpProcessId": "signUpProcessId", "errorConfirmEmail": "Please confirm your email from your inbox before signing in.", "logOutInit": "Disconnect a user from the system...", "logOut": "have been logged out.", "logOutId": "logOutId", "userExist": "This email is already registered. Please try another one.", "userExistId": "userExistId", "invalidPasswordEmail": "Invalid password or e-mail", "appInitializing": "Initializing the application", "appInitializingId": "appInitializingId", "tokenExpires": "Token expires" };
+const toasts$2 = { "signCheck": "Checking the user...", "signIn": "Login successful!", "signInId": "signInId", "signUp": "Registration successful! Please check your email to confirm your account", "signUpProcess": "The user registration process is in progress...", "signUpProcessId": "signUpProcessId", "errorConfirmEmail": "Please confirm your email from your inbox before signing in.", "logOutInit": "Disconnect a user from the system...", "logOut": "have been logged out.", "logOutId": "logOutId", "userExist": "This email is already registered. Please try another one.", "userExistId": "userExistId", "invalidPasswordEmail": "Invalid password or e-mail", "tokenExpires": "Token expires" };
+const history$1 = { "metaTitle": "REST client App / History", "metaName": "description", "metaContent": "Welcome to History", "header": "History", "table": { "headers": { "action": "Action", "latency": "Latency (ms)", "status": "Status", "timestamp": "Time", "method": "Method", "requestSize": "Request Size", "responseSize": "Response Size", "error": "Error", "url": "URL" }, "emptyMessage": "No requests in history", "openLink": "Open" } };
 const en = {
   root: root$2,
   mainPage: mainPage$2,
@@ -990,7 +993,8 @@ const en = {
   signUpPage: signUpPage$2,
   table: table$3,
   developers: developers$2,
-  toasts: toasts$2
+  toasts: toasts$2,
+  history: history$1
 };
 const root$1 = { "appTitle": "REST клиент" };
 const mainPage$1 = { "welcomeNew": "Добро пожаловать!", "welcomeOld": "Добро пожаловать обратно,", "mainPage": "Главная страница" };
@@ -1013,7 +1017,8 @@ const signInPage$1 = { "infoTitle": "Нет аккаунта?" };
 const signUpPage$1 = { "infoTitle": "Уже есть аккаунт?" };
 const table$2 = { "headerKey": "Ключ заголовка", "headerValue": "Значение заголовка", "headerDelete": "Удалить" };
 const developers$1 = { "alexandr": "Вавилов Александр", "diana": "Хнизова Диана", "olexandr": "Вавилов Олександр" };
-const toasts$1 = { "signCheck": "Проверка пользователя...", "signIn": "Вход выполнен успешно!", "signInId": "signInId", "signUp": "Регистрация успешна! Пожалуйста, проверьте вашу почту для подтверждения аккаунта", "signUpProcess": "Процесс регистрации пользователя в процессе...", "signUpProcessId": "signUpProcessId", "errorConfirmEmail": "Пожалуйста, подтвердите вашу почту перед входом.", "logOutInit": "Отключение пользователя из системы...", "logOut": "вышел из системы.", "logOutId": "logOutId", "userExist": "Этот email уже зарегистрирован. Попробуйте другой.", "userExistId": "userExistId", "invalidPasswordEmail": "Неверный пароль или e-mail", "appInitializing": "Инициализация приложения", "appInitializingId": "appInitializingId", "tokenExpires": "Срок действия токена истёк" };
+const toasts$1 = { "signCheck": "Проверка пользователя...", "signIn": "Вход выполнен успешно!", "signInId": "signInId", "signUp": "Регистрация успешна! Пожалуйста, проверьте вашу почту для подтверждения аккаунта", "signUpProcess": "Процесс регистрации пользователя в процессе...", "signUpProcessId": "signUpProcessId", "errorConfirmEmail": "Пожалуйста, подтвердите вашу почту перед входом.", "logOutInit": "Отключение пользователя из системы...", "logOut": "вышел из системы.", "logOutId": "logOutId", "userExist": "Этот email уже зарегистрирован. Попробуйте другой.", "userExistId": "userExistId", "invalidPasswordEmail": "Неверный пароль или e-mail", "tokenExpires": "Срок действия токена истёк" };
+const history = { "metaTitle": "REST клиент / История", "metaName": "описание", "metaContent": "Добро пожаловать в Историю", "header": "История", "table": { "headers": { "action": "Действие", "latency": "Задержка (мс)", "status": "Статус", "timestamp": "Время", "method": "Метод", "requestSize": "Размер запроса", "responseSize": "Размер ответа", "error": "Ошибка", "url": "URL" }, "emptyMessage": "История запросов пуста", "openLink": "Открыть" } };
 const ru = {
   root: root$1,
   mainPage: mainPage$1,
@@ -1036,7 +1041,8 @@ const ru = {
   signUpPage: signUpPage$1,
   table: table$2,
   developers: developers$1,
-  toasts: toasts$1
+  toasts: toasts$1,
+  history
 };
 i18n$1.use(initReactI18next).init({
   resources: {
@@ -1720,39 +1726,6 @@ const route3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: index$5,
   meta: meta$4
 }, Symbol.toStringTag, { value: "Module" }));
-const index$4 = UNSAFE_withComponentProps(function PrivateRoutes() {
-  const {
-    t
-  } = useTranslation();
-  const {
-    setError,
-    clearUser
-  } = useActions();
-  const {
-    removeUserFromStorage
-  } = useSaveUserToLS(LS_KEY.USER, null);
-  const navigate = useNavigate();
-  const isTokenValid = useSelector(selectIsAuthenticated);
-  useEffect(() => {
-    if (!isTokenValid) {
-      clearUser();
-      removeUserFromStorage();
-      const message = t("toasts.tokenExpires");
-      setError(message);
-      toast.error(message, {
-        id: toasts.tokenExpires
-      });
-      navigate(AppRoutes.HOME, {
-        replace: true
-      });
-    }
-  }, [navigate, isTokenValid, setError]);
-  return /* @__PURE__ */ jsx(Outlet, {});
-});
-const route4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: index$4
-}, Symbol.toStringTag, { value: "Module" }));
 const LoaderIcon = "data:image/gif;base64,R0lGODlhlgCWAPf/AAAAAAAAAACAgACA/wCqqgCq/wC22wC/vwC/3wC//wDE2ADGxgDG4wDI2wDJ1wDMzADM2QDM3QDM5gDM/wDO2wDO3gDO4gDO5wDP3wDQ3QDQ4ADQ4wDR0QDR3ADR3gDR3wDR4ADR4ADR4gDR5ADR6ADS3QDS3wDS3wDS4ADS4ADS4QDS4QDS4wDT3ADT3QDT3gDT3wDT3wDT4ADT4ADT4ADT4ADT4ADT4ADT4QDT4QDT4QDT4gDT4gDT4gDT5QDT6QDU1ADU1ADU3ADU3QDU3gDU3gDU3gDU3gDU3wDU3wDU3wDU3wDU3wDU3wDU3wDU3wDU4ADU4ADU4ADU4ADU4ADU4ADU4ADU4ADU4QDU4QDU4QDU4QDU4QDU4QDU4QDU4gDU4gDU4gDU4gDU4gDU4wDU5ADU5ADU5gDU6gDU6gDU/wDV3ADV3QDV3gDV3wDV3wDV3wDV3wDV3wDV4ADV4ADV4ADV4ADV4ADV4ADV4QDV4QDV4QDV4QDV4QDV4QDV4QDV4QDV4QDV4QDV4QDV4gDV4gDV4gDV4wDV4wDV4wDV4wDV5ADV5QDW3ADW3QDW3gDW3wDW3wDW3wDW4ADW4ADW4ADW4ADW4QDW4QDW4QDW4QDW4QDW4gDW4gDW4gDW4gDW4gDW4gDW4gDW4wDW4wDW4wDW5gDX1wDX3QDX3wDX3wDX4ADX4ADX4ADX4QDX4QDX4QDX4QDX4QDX4QDX4QDX4QDX4gDX4gDX4wDX4wDX4wDX4wDX5ADX5ADX5QDX5gDY2ADY4ADY4ADY4QDY4gDY4gDY4wDY4wDY5QDY6wDZ3wDZ4gDZ4gDZ4wDZ5gDa4ADa4QDa5ADa6ADb2wDb2wDb5ADb5wDb7QDc5QDc6ADd3QDd5gDd7gDe5gDf3wDf3wDh4QDj4wDm5gD//wD//wHU4QHU4QHV4QHV4QHV4QHV4QHV4QHV4QHV4QHV4gHW4QHW4QHW4QLV4ALV4QLV4QLW4QLW4gPV4QPV4wPW4QPW4gPX4QTX4gTX4wTY5AD/ACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJAwCJACyVAJUAAQABAIcAAAAAgIAAgP8AqqoAqv8AttsAv78Av98Av/8AxNgAxsYAxuMAyNsAydcAzMwAzNkAzN0AzOYAzP8AztsAzt4AzuIAzucAz98A0N0A0OAA0OMA0dEA0dwA0d4A0d8A0eAA0eIA0eQA0egA0t0A0t8A0uAA0uEA0uMA09wA090A094A098A0+AA0+EA0+IA0+UA0+kA1NQA1NwA1N0A1N4A1N8A1OAA1OEA1OIA1OMA1OQA1OYA1OoA1P8A1dwA1d0A1d4A1d8A1eAA1eEA1eIA1eMA1eQA1eUA1twA1t0A1t4A1t8A1uAA1uEA1uIA1uMA1uYA19cA190A198A1+AA1+EA1+IA1+MA1+QA1+UA1+YA2NgA2OAA2OEA2OIA2OMA2OUA2OsA2d8A2eIA2eMA2eYA2uAA2uEA2uQA2ugA29sA2+QA2+cA2+0A3OUA3OgA3d0A3eYA3e4A3uYA398A4eEA4+MA5uYA//8B1OEB1eEB1eIB1uEC1eAC1eEC1uEC1uID1eED1eMD1uED1uID1+EE1+IE1+ME2OQA/wD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8IBAATBQQAIfkECQQA/wAslQCVAAEAAQAACAQA/wUEACH5BAkDAP8ALJUAlQABAAEAAAgEAP8FBAAh+QQJAwD/ACw7AEcABAAFAAAIFwD/ccLyz1+Jfi/KzYOhD6HBf/rK4QgIACH5BAkEAP8ALDoARgAGAAYAAAghAP/98+BP4D8k9ua8+/fCXwl/Dd0pRDjnH0SH9gRKrBgQACH5BAkDAP8ALDoARQAGAAcAAAgnAP/9g/JC4D98HvxlqIfFhD0Z5UwkzIDQnyuIDmUcnIhPYDkYAgMC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";
 const loaderContainer = "_loaderContainer_1d42f_1";
 const loader$1 = "_loader_1d42f_1";
@@ -1778,16 +1751,47 @@ const WaitingLoader = () => {
   ] });
 };
 WaitingLoader.displayName = DisplayName.LOADER;
+const index$4 = UNSAFE_withComponentProps(function PrivateRoutes() {
+  const {
+    t
+  } = useTranslation();
+  const {
+    setError,
+    clearUser
+  } = useActions();
+  const {
+    removeUserFromStorage
+  } = useSaveUserToLS(LS_KEY.USER, null);
+  const navigate = useNavigate();
+  const isInitialized = useAppInitializer();
+  const isTokenValid = useSelector(selectIsAuthenticated);
+  useEffect(() => {
+    if (isInitialized && !isTokenValid) {
+      clearUser();
+      removeUserFromStorage();
+      const message = t("toasts.tokenExpires");
+      setError(message);
+      toast.error(message, {
+        id: toasts.tokenExpires
+      });
+      navigate(AppRoutes.HOME, {
+        replace: true
+      });
+    }
+  }, [navigate, isTokenValid, setError, isInitialized]);
+  if (!isInitialized) {
+    return /* @__PURE__ */ jsx(WaitingLoader, {});
+  }
+  return /* @__PURE__ */ jsx(Outlet, {});
+});
+const route4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: index$4
+}, Symbol.toStringTag, { value: "Module" }));
 const restClientPage = {
   metaTitle: "REST client App / Rest Client",
   metaName: "description",
   metaContent: "Welcome to Rest Client"
-};
-const wrapper$1 = "_wrapper_19apv_1";
-const container$8 = "_container_19apv_8";
-const styles$b = {
-  wrapper: wrapper$1,
-  container: container$8
 };
 const selectMethod = (state) => state.restClient.method;
 const selectProtocol = (state) => state.restClient.protocol;
@@ -1798,10 +1802,10 @@ const selectHeaders = (state) => state.restClient.headers;
 const selectCode = (state) => state.restClient.code;
 const selectLanguage = (state) => state.restClient.language;
 const selectClientState = (state) => state.restClient;
-const container$7 = "_container_77mnd_1";
+const container$8 = "_container_77mnd_1";
 const editor = "_editor_77mnd_8";
-const styles$a = {
-  container: container$7,
+const styles$b = {
+  container: container$8,
   editor
 };
 const { highlight, languages } = Prism;
@@ -1817,7 +1821,7 @@ const BodyEditor = () => {
       setBody(DEFAULT_BODY);
     }
   }, [method]);
-  return showBodyEditor ? /* @__PURE__ */ jsxs("div", { className: styles$a.container, children: [
+  return showBodyEditor ? /* @__PURE__ */ jsxs("div", { className: styles$b.container, children: [
     /* @__PURE__ */ jsx("p", { children: t("bodyEditor.bodyTitle") }),
     /* @__PURE__ */ jsx(
       Editor,
@@ -1826,7 +1830,7 @@ const BodyEditor = () => {
         onValueChange: setBody,
         highlight: (code) => parser === Parsers.RAW ? code : highlight(code, languages[parser] || languages.json, parser),
         padding: 10,
-        className: styles$a.editor
+        className: styles$b.editor
       }
     )
   ] }) : null;
@@ -1842,7 +1846,7 @@ const languageList = [
   CodeLanguage.XHR
 ];
 const select = "_select_tq6hn_1";
-const styles$9 = {
+const styles$a = {
   select
 };
 const Select = ({
@@ -1859,21 +1863,21 @@ const Select = ({
     "select",
     {
       onChange: onSelect,
-      className: styles$9.select,
+      className: styles$a.select,
       defaultValue,
       value,
       children: [
         defaultValue && /* @__PURE__ */ jsx("option", { value: "", children: defaultValue }),
-        options.map((option) => /* @__PURE__ */ jsx("option", { value: option, className: styles$9.option, children: option }, option))
+        options.map((option) => /* @__PURE__ */ jsx("option", { value: option, className: styles$a.option, children: option }, option))
       ]
     }
   );
 };
-const container$6 = "_container_v7xz9_1";
+const container$7 = "_container_v7xz9_1";
 const codeGenerator = "_codeGenerator_v7xz9_9";
 const syntax$1 = "_syntax_v7xz9_14";
-const styles$8 = {
-  container: container$6,
+const styles$9 = {
+  container: container$7,
   codeGenerator,
   syntax: syntax$1
 };
@@ -2019,15 +2023,30 @@ const CodeGenerator = () => {
     ),
     [headers2]
   );
-  return /* @__PURE__ */ jsxs("div", { className: styles$8.container, children: [
-    /* @__PURE__ */ jsxs("div", { className: styles$8.codeGenerator, children: [
+  const methodSupportsBody = (method2) => {
+    switch (method2) {
+      case HttpMethods.POST:
+      case HttpMethods.PUT:
+      case HttpMethods.PATCH:
+        return true;
+      default:
+        return false;
+    }
+  };
+  return /* @__PURE__ */ jsxs("div", { className: styles$9.container, children: [
+    /* @__PURE__ */ jsxs("div", { className: styles$9.codeGenerator, children: [
       /* @__PURE__ */ jsx("p", { children: t("bodyEditor.codeTitle") }),
       /* @__PURE__ */ jsx(Select, { options: languageList, setSelectedValue: setLanguage }),
       /* @__PURE__ */ jsx(
         Button,
         {
           onClick: () => handleCodeGenerator(
-            { url, method, headers: headersObj, body: body2 },
+            {
+              url,
+              method,
+              headers: headersObj,
+              body: methodSupportsBody(method) ? body2 : void 0
+            },
             language2,
             setCode
           ),
@@ -2045,7 +2064,7 @@ const CodeGenerator = () => {
       {
         language: language2?.toLowerCase(),
         style: atomDark,
-        className: styles$8.syntax,
+        className: styles$9.syntax,
         children: code.generatedCode
       }
     )
@@ -2053,20 +2072,20 @@ const CodeGenerator = () => {
 };
 const input = "_input_1aaej_1";
 const addButton = "_addButton_1aaej_5";
-const container$5 = "_container_1aaej_9";
+const container$6 = "_container_1aaej_9";
 const table$1 = "_table_1aaej_17";
 const title$2 = "_title_1aaej_32";
-const styles$7 = {
+const styles$8 = {
   input,
   addButton,
-  container: container$5,
+  container: container$6,
   table: table$1,
   title: title$2
 };
 const KeyValueEditor = ({
   keyHeader,
   valueHeader,
-  keyValues,
+  keyValues = [],
   onAdd,
   onDelete,
   onUpdate,
@@ -2098,9 +2117,9 @@ const KeyValueEditor = ({
     value: pair[field],
     setInput: getChangeHandler(pair, field),
     renderErrorMessage: false,
-    className: styles$7.input
+    className: styles$8.input
   });
-  return /* @__PURE__ */ jsx("div", { className: styles$7.container, children: /* @__PURE__ */ jsxs("table", { className: styles$7.table, children: [
+  return /* @__PURE__ */ jsx("div", { className: styles$8.container, children: /* @__PURE__ */ jsxs("table", { className: styles$8.table, children: [
     /* @__PURE__ */ jsxs("colgroup", { children: [
       /* @__PURE__ */ jsx("col", {}),
       /* @__PURE__ */ jsx("col", {}),
@@ -2109,10 +2128,10 @@ const KeyValueEditor = ({
     /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
       /* @__PURE__ */ jsx("th", { children: keyHeader }),
       /* @__PURE__ */ jsx("th", { children: valueHeader }),
-      /* @__PURE__ */ jsx("th", { children: /* @__PURE__ */ jsx(Button, { className: styles$7.addButton, onClick: handleAdd, children: t("keyValueEditor.add") }) })
+      /* @__PURE__ */ jsx("th", { children: /* @__PURE__ */ jsx(Button, { className: styles$8.addButton, onClick: handleAdd, children: t("keyValueEditor.add") }) })
     ] }) }),
     /* @__PURE__ */ jsxs("tbody", { children: [
-      keyValues.length === 0 && /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx("td", { colSpan: 3, className: styles$7.title, children: t("keyValueEditor.emptyMessage") }) }),
+      keyValues.length === 0 && /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx("td", { colSpan: 3, className: styles$8.title, children: t("keyValueEditor.emptyMessage") }) }),
       keyValues.map((keyValue) => /* @__PURE__ */ jsxs("tr", { children: [
         /* @__PURE__ */ jsx("td", { children: /* @__PURE__ */ jsx(
           Input,
@@ -2158,10 +2177,10 @@ const parserList = [
   Parsers.HTML,
   Parsers.XML
 ];
-const container$4 = "_container_14vzq_1";
+const container$5 = "_container_14vzq_1";
 const title$1 = "_title_14vzq_11";
-const styles$6 = {
-  container: container$4,
+const styles$7 = {
+  container: container$5,
   title: title$1
 };
 const Parser = () => {
@@ -2170,8 +2189,8 @@ const Parser = () => {
   const handleParser = (value) => {
     if (value) setParser(value);
   };
-  return /* @__PURE__ */ jsxs("div", { className: styles$6.container, children: [
-    /* @__PURE__ */ jsx("p", { className: styles$6.title, children: t("response.selectParser") }),
+  return /* @__PURE__ */ jsxs("div", { className: styles$7.container, children: [
+    /* @__PURE__ */ jsx("p", { className: styles$7.title, children: t("response.selectParser") }),
     /* @__PURE__ */ jsx(Select, { options: parserList, setSelectedValue: handleParser })
   ] });
 };
@@ -2186,12 +2205,6 @@ async function addHistoryForCurrentUser(supabaseClient, data) {
   const supabase2 = supabaseClient;
   const user = await getRequiredUser(supabase2);
   const { error: error2 } = await supabase2.from("history").insert({ ...data, user_id: user.id });
-  if (error2) throw error2;
-}
-async function clearAllHistoryForCurrentUser(supabaseClient) {
-  const supabase2 = supabaseClient;
-  const user = await getRequiredUser(supabase2);
-  const { error: error2 } = await supabase2.from("history").delete().eq("user_id", user.id);
   if (error2) throw error2;
 }
 async function getRequiredUser(supabaseClient) {
@@ -2269,7 +2282,14 @@ function getStatusText(status2) {
       return HttpStatusText.UNKNOWN;
   }
 }
-const container$3 = "_container_kdr8h_1";
+const languageMap = {
+  [Parsers.JSON]: Parsers.JSON,
+  [Parsers.TEXT]: Parsers.TEXT,
+  [Parsers.RAW]: Parsers.TEXT,
+  [Parsers.HTML]: Parsers.HTML,
+  [Parsers.XML]: Parsers.XML
+};
+const container$4 = "_container_kdr8h_1";
 const body = "_body_kdr8h_8";
 const status = "_status_kdr8h_9";
 const headers = "_headers_kdr8h_10";
@@ -2277,8 +2297,8 @@ const headerValueContainer = "_headerValueContainer_kdr8h_19";
 const headersResponse = "_headersResponse_kdr8h_24";
 const title = "_title_kdr8h_30";
 const syntax = "_syntax_kdr8h_35";
-const styles$5 = {
-  container: container$3,
+const styles$6 = {
+  container: container$4,
   body,
   status,
   headers,
@@ -2286,13 +2306,6 @@ const styles$5 = {
   headersResponse,
   title,
   syntax
-};
-const languageMap = {
-  [Parsers.JSON]: Parsers.JSON,
-  [Parsers.TEXT]: Parsers.TEXT,
-  [Parsers.RAW]: Parsers.TEXT,
-  [Parsers.HTML]: Parsers.HTML,
-  [Parsers.XML]: Parsers.XML
 };
 const Response$1 = ({ data, status: status2 }) => {
   const { t } = useTranslation();
@@ -2302,24 +2315,24 @@ const Response$1 = ({ data, status: status2 }) => {
   useEffect(() => {
     setFormattedData(formatResponse(data, parser));
   }, [data, parser]);
-  return /* @__PURE__ */ jsxs("div", { className: styles$5.container, children: [
-    headers2.length > 0 && /* @__PURE__ */ jsxs("div", { className: styles$5.headers, children: [
+  return /* @__PURE__ */ jsxs("div", { className: styles$6.container, children: [
+    headers2.length > 0 && /* @__PURE__ */ jsxs("div", { className: styles$6.headers, children: [
       /* @__PURE__ */ jsx("p", { children: t("response.headerTitle") }),
-      /* @__PURE__ */ jsx("div", { className: styles$5.headerValueContainer, children: headers2.map((header2, index2) => /* @__PURE__ */ jsxs("div", { className: styles$5.headersResponse, children: [
+      /* @__PURE__ */ jsx("div", { className: styles$6.headerValueContainer, children: headers2.map((header2, index2) => /* @__PURE__ */ jsxs("div", { className: styles$6.headersResponse, children: [
         /* @__PURE__ */ jsx("p", { children: t("response.key") }),
-        /* @__PURE__ */ jsxs("p", { className: styles$5.title, children: [
+        /* @__PURE__ */ jsxs("p", { className: styles$6.title, children: [
           header2.key,
           " "
         ] }),
         /* @__PURE__ */ jsx("p", { children: t("response.value") }),
-        /* @__PURE__ */ jsx("p", { className: styles$5.title, children: header2.value })
+        /* @__PURE__ */ jsx("p", { className: styles$6.title, children: header2.value })
       ] }, index2)) })
     ] }),
-    /* @__PURE__ */ jsxs("div", { className: styles$5.status, children: [
+    /* @__PURE__ */ jsxs("div", { className: styles$6.status, children: [
       /* @__PURE__ */ jsx("p", { children: t("response.statusTitle") }),
-      /* @__PURE__ */ jsx("p", { className: styles$5.title, children: status2 ? `${status2} ${getStatusText(status2)}` : "" })
+      /* @__PURE__ */ jsx("p", { className: styles$6.title, children: status2 ? `${status2} ${getStatusText(status2)}` : "" })
     ] }),
-    /* @__PURE__ */ jsxs("div", { className: styles$5.body, children: [
+    /* @__PURE__ */ jsxs("div", { className: styles$6.body, children: [
       /* @__PURE__ */ jsx("p", { children: t("response.bodyTitle") }),
       /* @__PURE__ */ jsx(
         Prism$1,
@@ -2328,20 +2341,12 @@ const Response$1 = ({ data, status: status2 }) => {
           style: atomDark,
           showLineNumbers: parser === Parsers.JSON,
           wrapLongLines: true,
-          className: styles$5.syntax,
+          className: styles$6.syntax,
           children: formattedData
         }
       )
     ] })
   ] });
-};
-const form = "_form_sr92u_1";
-const response = "_response_sr92u_5";
-const error = "_error_sr92u_17";
-const styles$4 = {
-  form,
-  response,
-  error
 };
 const inputFetchFields = (values) => [
   {
@@ -2401,6 +2406,14 @@ const HiddenRequestFields = ({
     )),
     /* @__PURE__ */ jsx("input", { type: "hidden", name: "requestData", value: requestDataJson })
   ] });
+};
+const form = "_form_sr92u_1";
+const response = "_response_sr92u_5";
+const error = "_error_sr92u_17";
+const styles$5 = {
+  form,
+  response,
+  error
 };
 const RequestSender = () => {
   const { t } = useTranslation();
@@ -2465,7 +2478,7 @@ const RequestSender = () => {
       {
         action: AppRoutes.FETCH,
         method: HttpMethods.POST,
-        className: styles$4.form,
+        className: styles$5.form,
         children: [
           /* @__PURE__ */ jsx(
             HiddenRequestFields,
@@ -2483,7 +2496,7 @@ const RequestSender = () => {
         ]
       }
     ),
-    isLoading ? /* @__PURE__ */ jsx(WaitingLoader, {}) : fetcher.data ? fetcher.data.ok ? /* @__PURE__ */ jsxs("div", { className: styles$4.response, children: [
+    isLoading ? /* @__PURE__ */ jsx(WaitingLoader, {}) : fetcher.data ? fetcher.data.ok ? /* @__PURE__ */ jsxs("div", { className: styles$5.response, children: [
       /* @__PURE__ */ jsx("p", { children: t("response.title") }),
       /* @__PURE__ */ jsx(
         Response$1,
@@ -2492,8 +2505,8 @@ const RequestSender = () => {
           status: fetcher.data.status
         }
       )
-    ] }) : /* @__PURE__ */ jsxs("div", { className: styles$4.error, children: [
-      /* @__PURE__ */ jsx("p", { className: styles$4.error, children: t("response.errorTitle", { defaultValue: "Error" }) }),
+    ] }) : /* @__PURE__ */ jsxs("div", { className: styles$5.error, children: [
+      /* @__PURE__ */ jsx("p", { className: styles$5.error, children: t("response.errorTitle", { defaultValue: "Error" }) }),
       /* @__PURE__ */ jsx("pre", { children: fetcher.data.error })
     ] }) : /* @__PURE__ */ jsx("p", { children: t("response.emptyRequestHint") })
   ] });
@@ -2510,10 +2523,10 @@ const methodList = [
   HttpMethods.CONNECT
 ];
 const protocolList = [Protocols.HTTP, Protocols.HTTPS];
-const container$2 = "_container_tm06f_1";
+const container$3 = "_container_tm06f_1";
 const urlInputContainer = "_urlInputContainer_tm06f_12";
-const styles$3 = {
-  container: container$2,
+const styles$4 = {
+  container: container$3,
   urlInputContainer
 };
 const UrlBox = () => {
@@ -2522,15 +2535,19 @@ const UrlBox = () => {
   const method = useSelector(selectMethod);
   const protocol = useSelector(selectProtocol);
   const url = useSelector(selectUrl);
-  const clearUrl = (value) => {
-    if (value.length < protocol.length) return "";
-    const protocolIndex = value.indexOf(protocol);
-    if (protocolIndex !== -1) {
-      return value.substring(protocolIndex + protocol.length);
+  const handleInputChange = (value) => {
+    const match = value.match(/^(https?:\/\/)(.*)$/i);
+    if (match) {
+      const [, detectedProtocol, restUrl] = match;
+      if (detectedProtocol === Protocols.HTTP || detectedProtocol === Protocols.HTTPS) {
+        setProtocol(detectedProtocol);
+      }
+      setUrl(restUrl);
+    } else {
+      setUrl(value);
     }
-    return value;
   };
-  return /* @__PURE__ */ jsxs("div", { className: styles$3.container, children: [
+  return /* @__PURE__ */ jsxs("div", { className: styles$4.container, children: [
     /* @__PURE__ */ jsx(
       Select,
       {
@@ -2553,12 +2570,18 @@ const UrlBox = () => {
         id: InputID.ID_URL,
         type: InputType.TEXT,
         placeholder: t("placeholder.url"),
-        value: `${protocol}${url}`,
-        setInput: (value) => setUrl(clearUrl(value)),
-        containerClassName: styles$3.urlInputContainer
+        value: `${url}`,
+        setInput: handleInputChange,
+        containerClassName: styles$4.urlInputContainer
       }
     )
   ] });
+};
+const wrapper$1 = "_wrapper_19apv_1";
+const container$2 = "_container_19apv_8";
+const styles$3 = {
+  wrapper: wrapper$1,
+  container: container$2
 };
 const meta$3 = pageMeta(restClientPage);
 function RestClientPage$1() {
@@ -2566,14 +2589,14 @@ function RestClientPage$1() {
   const location = useLocation();
   useEffect(() => {
     if (!location.state || !location.state.history) return;
-    const history = location.state.history;
+    const history2 = location.state.history;
     const parsedState = JSON.parse(
-      history.clientState
+      history2.clientState
     );
     console.log(parsedState);
     setState(parsedState);
   }, [location.state, setState]);
-  return /* @__PURE__ */ jsx("div", { className: styles$b.wrapper, children: /* @__PURE__ */ jsxs("div", { className: styles$b.container, children: [
+  return /* @__PURE__ */ jsx("div", { className: styles$3.wrapper, children: /* @__PURE__ */ jsxs("div", { className: styles$3.container, children: [
     /* @__PURE__ */ jsx(Navigation, { isRestClientPage: true }),
     /* @__PURE__ */ jsx(UrlBox, {}),
     /* @__PURE__ */ jsx(Headers$1, {}),
@@ -2605,21 +2628,28 @@ const variablesPage = {
   metaName: "description",
   metaContent: "Welcome to Variables"
 };
-const header$1 = "_header_16thq_1";
-const wrapper = "_wrapper_16thq_5";
-const container$1 = "_container_16thq_12";
+const header$1 = "_header_7nffa_1";
+const wrapper = "_wrapper_7nffa_5";
+const container$1 = "_container_7nffa_12";
+const headerContainer$1 = "_headerContainer_7nffa_20";
 const styles$2 = {
   header: header$1,
   wrapper,
-  container: container$1
+  container: container$1,
+  headerContainer: headerContainer$1
 };
 const meta$2 = pageMeta(variablesPage);
 function VariablesPage$1() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const variables = useSelector(selectVariables);
   const { addVariable, removeVariable, updateVariable } = useActions();
   return /* @__PURE__ */ jsx("div", { className: styles$2.wrapper, children: /* @__PURE__ */ jsxs("div", { className: styles$2.container, children: [
-    /* @__PURE__ */ jsx("h1", { className: styles$2.header, children: t("variablesPage.header") }),
+    /* @__PURE__ */ jsxs("div", { className: styles$2.headerContainer, children: [
+      /* @__PURE__ */ jsx("h1", { className: styles$2.header, children: t("variablesPage.header") }),
+      /* @__PURE__ */ jsx(Button, { onClick: () => navigate(AppRoutes.HISTORY), children: t("buttons.btnHistory") }),
+      /* @__PURE__ */ jsx(Button, { onClick: () => navigate(AppRoutes.REST_CLIENT), children: t("buttons.btnRestClient") })
+    ] }),
     /* @__PURE__ */ jsx(
       KeyValueEditor,
       {
@@ -2663,28 +2693,13 @@ function mapHistoryFromRow(historyRow) {
 const historyPageMessages = {
   metaTitle: "REST client App / History",
   metaName: "description",
-  metaContent: "Welcome to History",
-  header: "History",
-  table: {
-    headers: {
-      action: "Action",
-      latency: "Latency (ms)",
-      status: "Status",
-      timestamp: "Time",
-      method: "Method",
-      requestSize: "Request Size",
-      responseSize: "Response Size",
-      error: "Error",
-      url: "URL"
-    },
-    emptyMessage: "No requests in history"
-  }
+  metaContent: "Welcome to History"
 };
-const header = "_header_1hyst_1";
-const headerContainer = "_headerContainer_1hyst_5";
-const container = "_container_1hyst_11";
-const table = "_table_1hyst_18";
-const link$1 = "_link_1hyst_39";
+const header = "_header_ect7a_1";
+const headerContainer = "_headerContainer_ect7a_5";
+const container = "_container_ect7a_11";
+const table = "_table_ect7a_18";
+const link$1 = "_link_ect7a_39";
 const styles$1 = {
   header,
   headerContainer,
@@ -2694,30 +2709,28 @@ const styles$1 = {
 };
 const meta$1 = pageMeta(historyPageMessages);
 function HistoryPage$1({ data }) {
-  const headerMessages = historyPageMessages.table.headers;
-  const handleClearHistory = async () => {
-    await clearAllHistoryForCurrentUser(supabase);
-    window.location.reload();
-  };
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   return /* @__PURE__ */ jsxs("div", { children: [
     /* @__PURE__ */ jsxs("div", { className: styles$1.headerContainer, children: [
-      /* @__PURE__ */ jsx("h1", { className: styles$1.header, children: historyPageMessages.header }),
-      /* @__PURE__ */ jsx(Button, { onClick: handleClearHistory, children: "Clear History" })
+      /* @__PURE__ */ jsx("h1", { className: styles$1.header, children: t("history.header") }),
+      /* @__PURE__ */ jsx(Button, { onClick: () => navigate(AppRoutes.VARIABLES), children: t("buttons.btnVariables") }),
+      /* @__PURE__ */ jsx(Button, { onClick: () => navigate(AppRoutes.REST_CLIENT), children: t("buttons.btnRestClient") })
     ] }),
     /* @__PURE__ */ jsx("div", { className: styles$1.container, children: /* @__PURE__ */ jsxs("table", { className: styles$1.table, children: [
       /* @__PURE__ */ jsx("thead", { children: /* @__PURE__ */ jsxs("tr", { children: [
-        /* @__PURE__ */ jsx("th", { children: headerMessages.action }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.timestamp }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.url }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.latency }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.status }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.method }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.requestSize }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.responseSize }),
-        /* @__PURE__ */ jsx("th", { children: headerMessages.error })
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.action") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.timestamp") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.url") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.latency") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.status") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.method") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.requestSize") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.responseSize") }),
+        /* @__PURE__ */ jsx("th", { children: t("history.table.headers.error") })
       ] }) }),
       /* @__PURE__ */ jsxs("tbody", { children: [
-        data.length === 0 && /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx("td", { colSpan: 8, children: historyPageMessages.table.emptyMessage }) }),
+        data.length === 0 && /* @__PURE__ */ jsx("tr", { children: /* @__PURE__ */ jsx("td", { colSpan: 8, children: t("history.table.emptyMessage") }) }),
         data.sort((a, b) => {
           return b.timestamp.getTime() - a.timestamp.getTime();
         }).map((record) => /* @__PURE__ */ jsxs("tr", { children: [
@@ -2727,7 +2740,7 @@ function HistoryPage$1({ data }) {
               className: styles$1.link,
               to: AppRoutes.REST_CLIENT,
               state: { history: record },
-              children: "Open"
+              children: t("history.table.openLink")
             }
           ) }),
           /* @__PURE__ */ jsx("td", { children: record.timestamp.toLocaleString() }),
@@ -2763,13 +2776,13 @@ async function loader({
 }
 const index_lazy = UNSAFE_withComponentProps(function HistoryPageLazy({
   loaderData: {
-    history
+    history: history2
   }
 }) {
   return /* @__PURE__ */ jsx(Suspense, {
     fallback: /* @__PURE__ */ jsx(WaitingLoader, {}),
     children: /* @__PURE__ */ jsx(HistoryPage, {
-      data: history
+      data: history2
     })
   });
 });
@@ -3008,7 +3021,7 @@ const route10 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.definePrope
   default: index,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-D_1pitoP.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-De8f5Rlr.js", "/assets/index-D5drsK32.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-CWi6UflI.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-De8f5Rlr.js", "/assets/index-D5drsK32.js", "/assets/useActions-BszarLlk.js", "/assets/index-CccItA-E.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/errors-CoG0Sso0.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/constants-DpNX-Nkr.js", "/assets/index-DoCg87t9.js", "/assets/developerList-DHiqLtt3.js", "/assets/selectors-BWbzJZ6c.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/preload-helper-BXl3LOEh.js"], "css": ["/assets/root-BeHPqHHW.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/mainPage/index": { "id": "routes/mainPage/index", "parentId": "root", "path": "/", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-DlkITXBd.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/selectors-BWbzJZ6c.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/developerList-DHiqLtt3.js", "/assets/images-BlyGK0L5.js", "/assets/index-BYZrWzNU.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/constants-DpNX-Nkr.js", "/assets/index-DoCg87t9.js"], "css": ["/assets/index-BZkWvy93.css", "/assets/index-DQ32LpfJ.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/signInPage/index": { "id": "routes/signInPage/index", "parentId": "routes/mainPage/index", "path": "/signIn", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-C0bJtgcI.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/authError-IcKkR9Mu.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-CccItA-E.js", "/assets/useTranslation-DXBimYVq.js", "/assets/constants-DpNX-Nkr.js", "/assets/toasts-D6dcO255.js", "/assets/index-Dld79zns.js", "/assets/useActions-BszarLlk.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/index-DoCg87t9.js", "/assets/preload-helper-BXl3LOEh.js", "/assets/index-D5drsK32.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/errors-CoG0Sso0.js"], "css": ["/assets/index-t2y7AJ7h.css", "/assets/authError-DsXWlitX.css", "/assets/index-CAOKBxpR.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/signUpPage/index": { "id": "routes/signUpPage/index", "parentId": "routes/mainPage/index", "path": "/signUp", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-CcOkoaTJ.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/useTranslation-DXBimYVq.js", "/assets/authError-IcKkR9Mu.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-CccItA-E.js", "/assets/constants-DpNX-Nkr.js", "/assets/toasts-D6dcO255.js", "/assets/index-Dld79zns.js", "/assets/images-BlyGK0L5.js", "/assets/index-De8f5Rlr.js", "/assets/index-DoCg87t9.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/preload-helper-BXl3LOEh.js", "/assets/index-D5drsK32.js"], "css": ["/assets/index-CncN-_14.css", "/assets/authError-DsXWlitX.css", "/assets/index-CAOKBxpR.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/index": { "id": "routes/privateRoutes/index", "parentId": "root", "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-DEUWchOY.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/selectors-BWbzJZ6c.js", "/assets/index-CccItA-E.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/toasts-D6dcO255.js", "/assets/useActions-BszarLlk.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/errors-CoG0Sso0.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/restClientPage/index.lazy": { "id": "routes/privateRoutes/restClientPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/restClient", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-DfrLcqXQ.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/index-DoCg87t9.js", "/assets/useActions-BszarLlk.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/constants-DpNX-Nkr.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-BYZrWzNU.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/errors-CoG0Sso0.js", "/assets/selectors-BQcOzsIp.js", "/assets/historyService-CfPzYjuN.js", "/assets/index-Dld79zns.js", "/assets/images-BlyGK0L5.js", "/assets/index-D5drsK32.js"], "css": ["/assets/index-CEewC5p2.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css", "/assets/index-DQ32LpfJ.css", "/assets/selectors-DLOAoPLA.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/variablesPage/index.lazy": { "id": "routes/privateRoutes/variablesPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/variables", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-e_JPqqrI.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/index-DoCg87t9.js", "/assets/useActions-BszarLlk.js", "/assets/selectors-BQcOzsIp.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/useTranslation-DXBimYVq.js", "/assets/images-BlyGK0L5.js", "/assets/index-Dld79zns.js"], "css": ["/assets/index-BzOEqfQi.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css", "/assets/selectors-DLOAoPLA.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/historyPage/index.lazy": { "id": "routes/privateRoutes/historyPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/history", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-BIqZWwXz.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-DoCg87t9.js", "/assets/historyService-CfPzYjuN.js", "/assets/useTranslation-DXBimYVq.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/images-BlyGK0L5.js", "/assets/index-D5drsK32.js"], "css": ["/assets/index-CFrr8gt1.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/restClientPage/serverFetch": { "id": "routes/privateRoutes/restClientPage/serverFetch", "parentId": "root", "path": "/api/fetch", "index": void 0, "caseSensitive": void 0, "hasAction": true, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/serverFetch-l0sNRNKZ.js", "imports": [], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/set-language": { "id": "routes/set-language", "parentId": "root", "path": "/set-language", "index": void 0, "caseSensitive": void 0, "hasAction": true, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/set-language-l0sNRNKZ.js", "imports": [], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/notFoundPage/index": { "id": "routes/notFoundPage/index", "parentId": "root", "path": "*", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-DImCRjD6.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/useTranslation-DXBimYVq.js"], "css": ["/assets/index-DrpkvHKO.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-c3280ba2.js", "version": "c3280ba2", "sri": void 0 };
+const serverManifest = { "entry": { "module": "/assets/entry.client-D_1pitoP.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-De8f5Rlr.js", "/assets/index-D5drsK32.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": true, "module": "/assets/root-BgpEfNPL.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-De8f5Rlr.js", "/assets/index-D5drsK32.js", "/assets/useActions-BszarLlk.js", "/assets/useAppInitializer-BlIbNgOo.js", "/assets/index-CccItA-E.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/constants-DpNX-Nkr.js", "/assets/index-DoCg87t9.js", "/assets/developerList-DHiqLtt3.js", "/assets/errors-CoG0Sso0.js", "/assets/selectors-BWbzJZ6c.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/preload-helper-BXl3LOEh.js"], "css": ["/assets/root-BeHPqHHW.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/mainPage/index": { "id": "routes/mainPage/index", "parentId": "root", "path": "/", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-DlkITXBd.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/selectors-BWbzJZ6c.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/developerList-DHiqLtt3.js", "/assets/images-BlyGK0L5.js", "/assets/index-BYZrWzNU.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/constants-DpNX-Nkr.js", "/assets/index-DoCg87t9.js"], "css": ["/assets/index-BZkWvy93.css", "/assets/index-DQ32LpfJ.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/signInPage/index": { "id": "routes/signInPage/index", "parentId": "routes/mainPage/index", "path": "/signIn", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-C0bJtgcI.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/authError-IcKkR9Mu.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-CccItA-E.js", "/assets/useTranslation-DXBimYVq.js", "/assets/constants-DpNX-Nkr.js", "/assets/toasts-D6dcO255.js", "/assets/index-Dld79zns.js", "/assets/useActions-BszarLlk.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/index-DoCg87t9.js", "/assets/preload-helper-BXl3LOEh.js", "/assets/index-D5drsK32.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/errors-CoG0Sso0.js"], "css": ["/assets/index-t2y7AJ7h.css", "/assets/authError-DsXWlitX.css", "/assets/index-CAOKBxpR.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/signUpPage/index": { "id": "routes/signUpPage/index", "parentId": "routes/mainPage/index", "path": "/signUp", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-CcOkoaTJ.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/useTranslation-DXBimYVq.js", "/assets/authError-IcKkR9Mu.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-CccItA-E.js", "/assets/constants-DpNX-Nkr.js", "/assets/toasts-D6dcO255.js", "/assets/index-Dld79zns.js", "/assets/images-BlyGK0L5.js", "/assets/index-De8f5Rlr.js", "/assets/index-DoCg87t9.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/preload-helper-BXl3LOEh.js", "/assets/index-D5drsK32.js"], "css": ["/assets/index-CncN-_14.css", "/assets/authError-DsXWlitX.css", "/assets/index-CAOKBxpR.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/index": { "id": "routes/privateRoutes/index", "parentId": "root", "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-CYXOgbLO.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/selectors-BWbzJZ6c.js", "/assets/index-CccItA-E.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/toasts-D6dcO255.js", "/assets/index-BJ8A_XIr.js", "/assets/useActions-BszarLlk.js", "/assets/useAppInitializer-BlIbNgOo.js", "/assets/useSaveUserToLS-DIEwQHbH.js", "/assets/images-BlyGK0L5.js", "/assets/errors-CoG0Sso0.js"], "css": ["/assets/index-BLbvd2f4.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/restClientPage/index.lazy": { "id": "routes/privateRoutes/restClientPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/restClient", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-Dulv5Qtt.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/index-DoCg87t9.js", "/assets/useActions-BszarLlk.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/constants-DpNX-Nkr.js", "/assets/supabaseClient-DY9RoP_i.js", "/assets/index-BYZrWzNU.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/errors-CoG0Sso0.js", "/assets/selectors-zyYo9xgv.js", "/assets/index-Dld79zns.js", "/assets/images-BlyGK0L5.js", "/assets/index-D5drsK32.js"], "css": ["/assets/index-Oyf_pA5U.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css", "/assets/index-DQ32LpfJ.css", "/assets/selectors-DLOAoPLA.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/variablesPage/index.lazy": { "id": "routes/privateRoutes/variablesPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/variables", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-CQ-Yq_TF.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/index-DoCg87t9.js", "/assets/useActions-BszarLlk.js", "/assets/selectors-zyYo9xgv.js", "/assets/react-redux-D-ZMRAB3.js", "/assets/useTranslation-DXBimYVq.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/images-BlyGK0L5.js", "/assets/index-Dld79zns.js"], "css": ["/assets/index-CcpwVmsx.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css", "/assets/selectors-DLOAoPLA.css", "/assets/index-D79CwlIT.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/historyPage/index.lazy": { "id": "routes/privateRoutes/historyPage/index.lazy", "parentId": "routes/privateRoutes/index", "path": "/history", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index.lazy-CmO79WI3.js", "imports": ["/assets/preload-helper-BXl3LOEh.js", "/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/index-BJ8A_XIr.js", "/assets/index-DoCg87t9.js", "/assets/useTranslation-DXBimYVq.js", "/assets/metaHelpers-C0J2Sg90.js", "/assets/images-BlyGK0L5.js"], "css": ["/assets/index-CIfI5lzF.css", "/assets/index-BLbvd2f4.css", "/assets/index-CAOKBxpR.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/privateRoutes/restClientPage/serverFetch": { "id": "routes/privateRoutes/restClientPage/serverFetch", "parentId": "root", "path": "/api/fetch", "index": void 0, "caseSensitive": void 0, "hasAction": true, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/serverFetch-l0sNRNKZ.js", "imports": [], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/set-language": { "id": "routes/set-language", "parentId": "root", "path": "/set-language", "index": void 0, "caseSensitive": void 0, "hasAction": true, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/set-language-l0sNRNKZ.js", "imports": [], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 }, "routes/notFoundPage/index": { "id": "routes/notFoundPage/index", "parentId": "root", "path": "*", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasClientMiddleware": false, "hasErrorBoundary": false, "module": "/assets/index-DImCRjD6.js", "imports": ["/assets/chunk-B7RQU5TL-C9rJqkoP.js", "/assets/useTranslation-DXBimYVq.js"], "css": ["/assets/index-DrpkvHKO.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "clientMiddlewareModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-ad7f0f2b.js", "version": "ad7f0f2b", "sri": void 0 };
 const assetsBuildDirectory = "build/client";
 const basename = "/";
 const future = { "v8_middleware": false, "unstable_optimizeDeps": false, "unstable_splitRouteModules": false, "unstable_subResourceIntegrity": false, "unstable_viteEnvironmentApi": false };

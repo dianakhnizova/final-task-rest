@@ -33,7 +33,7 @@ vi.mock('@/components/icons/', () => ({
   Logo: () => <div data-testid="logo">Logo</div>,
 }));
 
-vi.mock('../Header.module.css', () => ({
+vi.mock('../header.module.css', () => ({
   default: {
     left: 'left',
     home: 'home',

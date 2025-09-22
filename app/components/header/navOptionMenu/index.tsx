@@ -1,6 +1,6 @@
 import { LanguageToggler } from '@/components/togglers/languageToggler';
 import { ThemeToggler } from '@/components/togglers/themeToggler';
-import styles from '../Header.module.css';
+import styles from '../header.module.css';
 import { AuthBar } from './components/authBar';
 
 export const NavOptionMenu = () => {
